@@ -1,0 +1,20 @@
+.login-layout{
+background: #2577BC;
+background: -moz-linear-gradient(top, #2577BC 0%, #0059A1 35%, #004C96 51%, #00448D 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, #2577BC), color-stop(35%, #0059A1), color-stop(51%, #004C96), color-stop(100%, #00448D));
+background: -webkit-linear-gradient(top, #2577BC 0%, #0059A1 35%, #004C96 51%, #00448D 100%);
+background: -o-linear-gradient(top, #2577BC 0%, #0059A1 35%, #004C96 51%, #00448D 100%);
+background: -ms-linear-gradient(top, #2577BC 0%, #0059A1 35%, #004C96 51%, #00448D 100%);
+background: linear-gradient(to bottom, #2577BC 0%, #0059A1 35%, #004C96 51%, #00448D 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2577BC', endColorstr='#00448D', GradientType=0 );
+}
+.widget-main{}
+p.alert{color:#fff;background:#012060;font-size:19px;text-align:center;border:1px solid #2375BA;}
+.inpbox{width:60%;margin-left:20%;}
+.yellow-alert{font-size:19px;text-align:center;color:#E9F021;text-transform:uppercase;}
+#userloginresponse{text-align:center;}
+
+.cong_heading_1{font-size:36px;text-align:center;color:#fff;text-transform:uppercase;}
+.cong_heading_2{font-size:23px;text-align:center;color:#000;text-transform:uppercase;margin-top:50px;}
+.cong_heading_3{font-size:21px;text-align:center;color:#BB8F2F;text-transform:uppercase;}
+.cong_heading_4{font-size:19px;text-align:center;color:#E9F021;text-transform:uppercase;margin-top:28px;}
