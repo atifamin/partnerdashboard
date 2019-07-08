@@ -1,0 +1,8 @@
+--
+-- Update from v.1.4 to v.1.5
+--
+
+ALTER TABLE `configs` CHANGE `conf_background_color` `conf_background_image` VARCHAR(200) NULL;
+ALTER TABLE `configs` ADD `conf_background_opacity` FLOAT(1.1) NOT NULL DEFAULT '0.2' FIRST;
+
+UPDATE `configs` SET `conf_background_image` = 'eca68f2b2de52855d043d8ab7adac011.jpg', `conf_background_opacity` = '0.1'

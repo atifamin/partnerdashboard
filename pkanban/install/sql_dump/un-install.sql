@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `boards`;
+DROP TABLE IF EXISTS `containers`;
+DROP TABLE IF EXISTS `configs`;
+DROP TABLE IF EXISTS `tasks`;
+DROP TABLE IF EXISTS `tasks_todo`;
+DROP TABLE IF EXISTS `task_periods`;
+DROP TABLE IF EXISTS `boards_users`;
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `ci_sessions`;

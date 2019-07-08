@@ -1,0 +1,54 @@
+<a name="top"></a>
+<h2>Installation of Your Program v1.0 (example)</h2>  
+<table border=0 width="100%">
+<tbody>
+<tr>
+	<td>
+		<ul>
+			<li><a href="#Step_1._Creating_database."><span>Step 1. Creating database.</span></a>
+			<li><a href="#Step_2._Settings_and_access_rights."><span>Step 2. Import SQL File.</span></a>
+			<li><a href="#Step_3._Running_example_file."><span>Step 3. Config base url.</span></a>
+			<li><a href="#Step_4._Enjoy."><span>Step 4. Enjoy.</span></a>
+		</ul>
+	</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>A new installation of pKANBAN Program is a very straight forward process: </p>
+
+
+
+<div style="float:right;">[<a href="#top">top</a>]</div>
+<a name="Step_1._Creating_database."></a>
+<h3><b>Step 1. Creating database.</b></h3>
+<hr>
+<p>Open your phpMyadmin or other mysql tool and go to "Create new database". Choose the database name and save it.</p>
+<p><br /></p>
+
+<div style="float:right;">[<a href="#top">top</a>]</div>
+<a name="Step_2._Settings_and_access_rights."></a>
+<h3><b>Step 2. Import SQL File.</b></h3>
+<hr>
+<p>Go to <pKanban folder> -> install -> sql_dump -> create.sql, open and copy the content of sql file. Now, go to your phpMyadmin and click the SQL Tab, paste the content on the textarea and execute query.</p>
+<p><br /></p>
+
+<div style="float:right;">[<a href="#top">top</a>]</div>
+<a name="Step_3._Running_example_file."></a>
+<h3><b>Step 3. Configure base url.</b></h3>
+<hr>
+<p>Edit the config file: <pKanban folder> -> application -> config -> config.php and put your project url on "config['base_url']" with subdirectory (if you have it), save and exit. <br />
+<strong>Do you have install pKanba in a subdirectory?</strong>
+Edit <pKanban folder> -> .htaccess file and put your subdirectory name on "Rewrite Base" value, save and exit.
+</p>
+<p><br /></p>
+
+<div style="float:right;">[<a href="#top">top</a>]</div>
+<a name="Step_4._Enjoy."></a>
+<h3><b>Step 4. Enjoy!</b></h3>
+<hr>
+<p>If everything went well, go to your url project and start using the pKanban board! </p>
+<p><br /></p>
+
+Congratulations, you now have Your Program v1.0 Installed!
