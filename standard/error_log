@@ -1,0 +1,41 @@
+[06-Nov-2018 13:31:31 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[06-Nov-2018 13:31:57 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[08-Nov-2018 14:26:51 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[12-Nov-2018 12:39:11 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/config_news.php on line 6
+[12-Nov-2018 12:40:05 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/config_news.php on line 6
+[13-Nov-2018 15:28:30 UTC] PHP Fatal error:  Call to undefined function count_messages() in /home/norcom/public_html/cpmDev1/new/includes/top_nav.php on line 27
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 33
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 117
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:54 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 154
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/message_modal.php on line 4
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/message_recipient.php on line 20
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/create_project_update.php on line 24
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 5
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 11
+[14-Nov-2018 07:52:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/norcom/public_html/cpmDev1/new/includes/footer.php on line 241
+[29-Nov-2018 08:35:44 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/new/includes/header.php on line 20
+[08-Dec-2018 01:57:43 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/new/includes/header.php on line 20

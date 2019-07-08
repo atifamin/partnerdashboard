@@ -1,0 +1,11 @@
+[06-Nov-2018 06:54:54 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/tabs/financial_services.php:58) in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 1
+[06-Nov-2018 13:33:03 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[06-Nov-2018 13:33:05 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[06-Nov-2018 13:33:10 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[06-Nov-2018 13:33:13 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[06-Nov-2018 13:33:16 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/newAtif-Nov05-2018/includes/header.php on line 20
+[09-Nov-2018 11:25:26 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/new/includes/header.php on line 20
+[14-Nov-2018 10:10:44 UTC] PHP Warning:  include(./config/config_main.php): failed to open stream: No such file or directory in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 2
+[14-Nov-2018 10:10:44 UTC] PHP Warning:  include(./config/config_main.php): failed to open stream: No such file or directory in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 2
+[14-Nov-2018 10:10:44 UTC] PHP Warning:  include(): Failed opening './config/config_main.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/norcom/public_html/cpmDev1/new/includes/functions.php on line 2
+[02-Mar-2019 18:15:28 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/norcom/public_html/cpmDev1/new/includes/header.php on line 20
