@@ -5,28 +5,6 @@ include("../includes/top_nav.php");
 //include("../functions/functions.php");
 ?>
 <link rel="stylesheet" href="../assets/css/bizVault.css">
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-<style type="text/css">
-
-.bizvult-sidebar{
-
-	background-color: #2a91f5;
-	color: white;
-	min-height: 100vh;
-}
-
-.side_bar-icons{
-
-	display:inline-block;
-    font-size: 30px;
-    margin-left: -4px;
-    margin-top: 10px;
-
-}
-
-
-
-</style>
 <div class="row main-area">
   <header class="logo-area"><img src="../assets/img/dummy-logo.jpg" alt="" width="150"></header>
   <section class="bizVaultSection">
