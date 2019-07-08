@@ -1,0 +1,60 @@
+<!-- <link rel="stylesheet" href="<?php echo base_url; ?>bower_components/select2/dist/css/select2.min.css">-->
+<div id="create_notification" class="modal fade" role="dialog" >
+   <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content" style="color:#204d74!important;background-color:#bdd8df!important;border-color:#84c6d6!important;">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <br>
+               <div style="text-align:center;background-color:#5397c0!important;padding:1px;">
+               <h3>Create New Notification</h3>
+               </div>
+           </div>
+           <div class="modal-body">
+           <div class="row">
+           <form action="<?php echo base_url; ?>create_notification.php" method="POST">
+           <div class="col-md-6">
+           <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+           <label class="col-md-2 col-xs-2" for="to">To</label>
+           <select name="to" class="select2" style="width:62%;">
+           <option >Select Recepient</option>
+           <?php $result=exec_sqlQuery("SELECT * FROM user");
+           while($row = mysqli_fetch_assoc($result)){?>
+
+           <option value="<?php echo $row['user_id']; ?>"><?php echo $row['user_fname'];?></option>
+           <?php } ?>
+           </select>
+           </div>
+           </div>
+           <div class="row">
+           <div class="col-md-6">
+           <label class="col-md-2 col-xs-2" for="title">Title</label>
+           <input  name="title">
+           </div>
+           </div>
+          
+          
+           <br>
+           <textarea id="editor8"  name="editor8" rows="10" cols="80" ></textarea>
+           </div>
+           <div class="pull-right" style="margin-top:10px;">
+           <p style="background-color: #3c8dbc; color:white;padding:4px;">Total Characters: <span id="letterCountnoti"></span><br>
+          Remaining Characters: <span id="remainingnoti"></span></p>
+           </div>
+          
+           <button style="margin-left:1%" type="button" class=" btn btn-primary btn-sm" >Maximum Characters 2048</button><br><br>
+             <br>
+           
+          
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <input  class="btn btn-primary" type="submit" value="save">
+           </div>
+           </form>
+       </div>
+   </div>
+  </div> 
+  <!-- <script src="<?PHP echo base_url; ?>bower_components/select2/dist/js/select2.full.min.js"></script>
+   <script>
+   $('.select2').select2()
+   </script>-->

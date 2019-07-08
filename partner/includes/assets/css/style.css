@@ -1,0 +1,116 @@
+/* News widget*/
+.news {
+  padding: 5px 20px 5px 10px;
+}
+.news .item {
+  margin-bottom: 10px;
+}
+.news .item:before,
+.news .item:after {
+  content: " ";
+  display: table;
+}
+.news .item:after {
+  clear: both;
+}
+
+.box-input {
+  max-width: 200px;
+}
+.news-wrapper {
+	height: 300px;
+    overflow: hidden
+}
+.news-wrapper ul{
+    padding: 0;
+    list-style: none;
+}
+.news-wrapper li{
+    padding: 0px;
+    border-bottom: 1px dashed #ccc;
+    display: table-row;
+}
+.news-wrapper li a.title {
+	font-size: 15px;
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+.news-wrapper li a.title:after {
+	clear: both;
+	content: " ";
+  display: table;
+}
+.box-blue {
+	background-color: #5279bd;
+}
+.news-box .box-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    text-align: center;
+    height: 100%;
+}
+.news-box .box-icon img {
+    height: 43.5px;
+    width: auto;
+}
+.news-box .box-header {
+	padding: 12px;
+}
+.news-box .box-title {
+	padding-left: 100px;
+	text-transform: uppercase;
+}
+.pin-box {
+    width: 100px;
+    background-color: #efefe7;
+    display: table-cell;
+    position: relative;
+   
+}
+.vertical-content {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+}
+.news-box.box.box-solid.box-info {
+	 border-color: #94cfde;
+}
+.news-box.box.box-solid.box-info>.box-header {
+    color: #000;
+    background: #94cfde;
+    background-color: #94cfde;
+}
+.news-details {
+	display: table-cell;
+	padding: 10px 20px;
+	border-bottom: 1px solid #ccc;
+}
+.pin-box .pin-icon {
+	background-color: #94cfde;
+	 text-align: center;
+    padding: 15px 0 5px;
+    text-transform: uppercase;
+}
+.pin-box img {
+	height: 32px;
+    width: auto;
+}
+.readmore img {
+	height: 35px;
+}
+.tblnews tbody td {
+	vertical-align: middle!important;
+}
+.text-truncate {
+    overflow: hidden;
+}
