@@ -48,7 +48,7 @@
                 </div>
             </div>
             </a> </li>
-            <li class="sidebar-li <?php if( $_FILE_NAME == "contract_destails.php"){echo "active";} ?>" style="border-style:solid;border-color:#d8dbdf80;"> <a href="javascript:;">
+            <li class="sidebar-li <?php if( $_FILE_NAME == "bizVault.php"){echo "active";} ?>" style="border-style:solid;border-color:#d8dbdf80;"> <a href="<?php echo base_url; ?>tabs/bizVault.php">
             <div class="sidebar-menu-header">BUSINESS SUCCESS TOOLS</div>
             <div class="sidebar-menu-desc">
             <div class="row">    
@@ -94,11 +94,17 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header" style="background-color:#9e9e9e42;">
+    <!-- <section class="content-header" style="background-color:#9e9e9e42;">
       <h1 style="line-height: 1.5;">
         2018 Key Performance Indicators for <br> <?php echo $BusinessName; ?>
         
       </h1>
+      <ol class="breadcrumb">
+        <li><a href=""><i class="fas fa-tachometer-alt"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section> -->
+    <section class="content-header">
       <ol class="breadcrumb">
         <li><a href=""><i class="fas fa-tachometer-alt"></i> Home</a></li>
         <li class="active">Dashboard</li>

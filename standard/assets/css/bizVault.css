@@ -1,0 +1,12 @@
+.content{
+    background-color: #ffffff;
+    
+}
+.main-area{
+    margin-top: 2%;
+    border:1px solid lightgray;
+}
+.logo-area{
+    padding:1% 1%;
+    border-bottom:1px solid lightgray;
+}
