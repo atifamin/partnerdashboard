@@ -9,7 +9,7 @@
 .nav-left{
 
 	background-color: #2a91f5;
-	min-height: 107pc;
+	min-height: 100vh;
 }
 
 ul li a{
@@ -19,7 +19,7 @@ ul li a{
 
 .side_bar-icons{
 
-	font-size: 30px;
+	font-size: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
     margin-left: 10px;
@@ -61,6 +61,9 @@ li a:hover{
         <li><a href="javascript:;"><i class="fa fa-question-circle small"></i></a></li>
     </ul>
 </nav>
+
+
+
 
 
 

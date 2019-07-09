@@ -44,3 +44,42 @@ include("../includes/top_nav.php");
   </footer>
 </div>
 <?php include("../includes/footer.php"); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  $('document').ready(function() {
+    $('.bizVaultNav').css({'height': $('.bizVaultArticle').outerHeight()});
+});
+
+</script>
