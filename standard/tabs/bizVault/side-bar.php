@@ -54,7 +54,7 @@ li a:hover{
         <li><a href="javascript:;"><i class="fa fa-file-text side_bar-icons"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-retweet side_bar-icons"></i></a></li>
         <li><a href="javascript:;"><i class="material-icons side_bar-icons">access_alarm</i></a></li>
-        <li><a href="javascript:;"><i class="icon-pulse2 mr-3 icon-2x side_bar-icons"></i></a></li>
+        <li><a href="javascript:;"><i class="fa fa fa-heartbeat side_bar-icons"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-users side_bar-icons"></i></a></li>
     	<li style="margin-top: 400px;"><a href="javascript:;"><i class="fa fa-cog small"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-info-circle small"></i></a></li>
