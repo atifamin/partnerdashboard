@@ -1,15 +1,85 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <?php require_once ("functions.php"); ?> 
+
+<style type="text/css">
+  .nav-updates{
+    background-color: #357ca5;
+    height: 53px;
+    width: 310px;
+    margin-left: 5px;
+    display: inline-block;
+    overflow: hidden;
+
+  }
+
+  .label-show{
+    position: relative;
+    top: -8px;
+    text-align: center;
+    font-size: 8px;
+    padding: 1px 3px;
+    line-height: 0.9;
+    right: 6px;
+  }
+
+</style>
 
   <header class="main-header">
     <a href="index2.html" class="logo" style="height: 57px;">
       <span class="logo-mini"><b>A</b>LT</span>
       <span class="logo-lg" style="margin-top:5px ;" ><b>AWT</b>-CEP</span>
     </a>
-    <nav class="navbar navbar-static-top"> 
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" >
+    <nav class="navbar navbar-static-top">
+    <div>
+       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" >
         <span class="sr-only">Toggle navigation</span><span style="font-size: 20px; margin-left: 10px; font-family: Calibri;"><large>Procurement Marketplace Partner Platform</large></span> 
       </a>
+    </div>
+     
+
+      <div class="nav-updates">
+         <div style="float: left; margin-top: 4px;">
+             <small style="color:white;margin-left: 10px;">Your CloudBox Updates</small><br>
+            <img style="width: 40px; margin-left: 20px;" src="<?php echo base_url; ?>assets/img/a3.png" alt="bizVault"><strong><span style="font-size: 10px; color: black">biz<span style="color: #adaebc;">Vault<SUP>TM</SUP></span></span></strong>
+         </div>
+         <div style="float: right;margin-right: 45px;margin-top: 6px;">
+          <a href="#" style="color: white;">
+            <i class="fa fa-clock-o"></i>
+            <span class="label label-warning label-show">9</span>
+            <span>Notifications</span><br>
+          </a>
+          <a href="#" style="color: white;">
+            <i class="fa fa-commenting"></i>
+            <span class="label label-default label-show">6</span>
+            <span>Messages</span>
+          </a>
+          
+         </div>
+        
+
+        
+      </div>
+  
+
+
+<!--       <div>
+        <a style="color: white;" href="#">
+           <small>Your CloudBox Updates</small>
+           <br>
+           <img style="width: 40px;" src="<?php echo base_url; ?>assets/img/a3.png" alt="bizVault"><strong><span style="font-size: 10px; color: black">biz<span style="color: #adaebc;">Vault<SUP>TM</SUP></span></span></strong>
+        </a>
+      </div>
+       <div>
+         <a>
+           <span><i class="fa fa-clock-o"></i><span class="label label-warning">9</span> &nbsp;Notifications</span><br>
+           <span><i class="fa fa-commenting"></i><span class="label label-default">6</span> &nbsp;Messages</span>
+         </a>
+       </div> -->
+      
+       
+       
+       <!-- <small style="font-size: 50% !important;">Secure Business Private Cloud Storage</small> -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
