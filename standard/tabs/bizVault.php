@@ -53,4 +53,6 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
   <?php }else{ ?>
     load_content($user_id);
   <?php } ?>
+
+  
 </script>
