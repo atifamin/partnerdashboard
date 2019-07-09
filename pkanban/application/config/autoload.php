@@ -132,4 +132,4 @@ $autoload['language'] = array('english');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('sec');
+$autoload['model'] = array('sec', 'file_manager_model');
