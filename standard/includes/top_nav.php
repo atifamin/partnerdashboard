@@ -5,7 +5,7 @@
 <style type="text/css">
   .nav-updates{
     background-color: #357ca5;
-    height: 53px;
+    height: 52px;
     width: 310px;
     margin-left: 5px;
     display: inline-block;
@@ -23,42 +23,47 @@
     right: 6px;
   }
 
+  header.main-header{
+    height: 52px !important;
+  }
+
+  .line_height{
+    line-height: 1.128571 !important;
+    height: 52px !important;
+  }
+
 </style>
 
   <header class="main-header">
-    <a href="<?php echo base_url; ?>tabs/contract_details.php" class="logo" style="height: 57px;">
+    <a href="<?php echo base_url; ?>tabs/contract_details.php" class="logo" style="height: 52px;">
       <span class="logo-mini"><b>A</b>LT</span>
       <span class="logo-lg" style="margin-top:5px ;" ><b>AWT</b>-CEP</span>
     </a>
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" style="height: 52px;">
     <div>
-       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" >
+       <a href="#" class="sidebar-toggle line_height" data-toggle="push-menu" role="button" >
         <span class="sr-only">Toggle navigation</span><span style="font-size: 20px; margin-left: 10px; font-family: Calibri;"><large>Procurement Marketplace Partner Platform</large></span> 
       </a>
     </div>
      
 
       <div class="nav-updates">
-         <div style="float: left; margin-top: 4px;">
-             <small style="color:white;margin-left: 10px;">Your CloudBox Updates</small><br>
-            <img style="width: 40px; margin-left: 20px;" src="<?php echo base_url; ?>assets/img/a3.png" alt="bizVault"><strong><span style="font-size: 10px; color: black">biz<span style="color: #adaebc;">Vault<SUP>TM</SUP></span></span></strong>
-         </div>
-         <div style="float: right;margin-right: 45px;margin-top: 6px;">
-          <a href="#" style="color: white;">
-            <i class="fa fa-clock-o"></i>
-            <span class="label label-warning label-show">9</span>
-            <span>Notifications</span><br>
-          </a>
-          <a href="#" style="color: white;">
-            <i class="fa fa-commenting"></i>
-            <span class="label label-default label-show">6</span>
-            <span>Messages</span>
-          </a>
-          
-         </div>
-        
-
-        
+           <div style="float: left; margin-top: 4px;">
+               <small style="color:white;margin-left: 10px;">Your CloudBox Updates</small><br>
+              <img style="width: 40px; margin-left: 20px;" src="<?php echo base_url; ?>assets/img/a3.png" alt="bizVault"><strong><span style="font-size: 10px; color: black">biz<span style="color: #adaebc;">Vault<SUP>TM</SUP></span></span></strong>
+           </div>
+           <div style="float: right;margin-right: 45px;margin-top: 6px;">
+            <a href="#" style="color: white;">
+              <i class="fa fa-clock-o"></i>
+              <span class="label label-warning label-show">9</span>
+              <span>Notifications</span><br>
+            </a>
+            <a href="#" style="color: white;">
+              <i class="fa fa-commenting"></i>
+              <span class="label label-default label-show">6</span>
+              <span>Messages</span>
+            </a>   
+           </div>       
       </div>
   
 
@@ -84,7 +89,7 @@
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
+            <a href="#" class="dropdown-toggle line_height" data-toggle="dropdown" style="height: 58px;">
               <i class="far fa-envelope" style="margin-top: 9px;"></i>
               <span class="label label-success" style="margin-top: 6px;">4</span>
             </a>
@@ -160,7 +165,7 @@
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
+            <a href="#" class="dropdown-toggle line_height" data-toggle="dropdown" style="height: 58px;">
               <i class="fas fa-bell" style="margin-top: 9px;"></i>
               <span class="label label-warning" style="margin-top: 6px;">10</span>
             </a>
@@ -223,7 +228,7 @@
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
+            <a href="#" class="dropdown-toggle line_height" data-toggle="dropdown" style="height: 58px;">
               <i class="far fa-flag" style="margin-top: 9px;"></i>
               <span class="label label-danger" style="margin-top: 6px;">9</span>
             </a>
@@ -300,9 +305,9 @@
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu" style="height: 58px">
+          <li class="dropdown user user-menu" style="height: 52px">
         
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
+               <a href="#" class="dropdown-toggle line_height" data-toggle="dropdown" style="height: 52px;">
               <img src="<?php echo base_url; ?>assets/avatars/user.jpg" class="img-circle" alt="User Image" style="margin-top: -4px;">
                 <span class="user-info">
               <span class="hidden-xs"><?php echo $_SESSION['user_fname'].' '.$_SESSION['user_lname']; ?></span>
