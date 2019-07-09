@@ -9,8 +9,8 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
 <input type="hidden" value="<?php echo pkanban_url; ?>" id="pkanban_url">
 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" id="user_id">
-<input type="text" value="0" id="parent_id">
-<input type="text" value="<?php echo $parent_id; ?>" id="business_folder_type_id">
+<input type="hidden" value="0" id="parent_id">
+<input type="hidden" value="<?php echo $parent_id; ?>" id="business_folder_type_id">
 <link rel="stylesheet" href="../bower_components/iCheck/all.css">
 <link rel="stylesheet" href="../assets/css/bizVault.css">
 <div class="row main-area">
