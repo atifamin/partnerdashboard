@@ -65,4 +65,12 @@ class File_manager extends CI_Controller {
 		//echo "<pre>"; print_r($folderDetail); exit;
 		$this->load->view("file_manager/sub_folders", $data);
 	}
+
+	public function load_company_logo(){
+		$user_id = $this->input->post('user_id');
+		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
+		$data = $this->partnerDB->query($query)->row();
+		$text = '<div class="col-md-1">image here</div><div class="col-md-4" style="padding-left: 0;font-size:13px"><span>'.$data->user_fname.' '.$data->user_lname.'</span><br><span style="font-size: 18px">'.$data->firm_name.'</span></div>';
+		echo $text;
+	} 
 }

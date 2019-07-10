@@ -48,7 +48,6 @@ li a:hover{
 
 
 
-
 <nav class="bizVaultNav nav-left">
     <ul>
         <li><a href="<?php echo base_url; ?>tabs/bizVault.php"><i class="fa fa-file-text side_bar-icons"></i></a></li>

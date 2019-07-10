@@ -14,7 +14,11 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <link rel="stylesheet" href="../bower_components/iCheck/all.css">
 <link rel="stylesheet" href="../assets/css/bizVault.css">
 <div class="row main-area">
-  <header class="logo-area"><img src="../assets/img/dummy-logo.jpg" alt="" width="150"></header>
+  <header class="logo-area" >
+    <!-- <img src="../assets/img/dummy-logo.jpg" alt="" width="150"> -->
+    <div class="row" id="company_logo_content">
+    </div>
+  </header>
   <section class="bizVaultSection">
     <?php include("bizVault/side-bar.php") ?>
     <article class="bizVaultArticle">
@@ -54,5 +58,12 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
     load_content($user_id);
   <?php } ?>
 
+  $(document).ready(function(){
+    pkanban_url = $("#pkanban_url").val();
+    var user_id = $("#user_id").val();
+    $.post(""+pkanban_url+"file_manager/load_company_logo", {user_id:user_id}).done(function(e){
+        $("#company_logo_content").html(e);
+    }); 
+  });
   
 </script>
