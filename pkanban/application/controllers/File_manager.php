@@ -36,7 +36,7 @@ class File_manager extends CI_Controller {
 		$this->partnerDB->insert("business_filedoc_list", $insert);
 		$folderId = $this->partnerDB->insert_id();
 		$folder = $this->partnerDB->where("id", $folderId)->get("business_filedoc_list")->row();
-		$html = '<div class="col-md-12 folder" onclick="open_folder('.$folder->id.')" id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div class="col-md-8 main-folder-area-content"><h3>'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><a href="javascript:;"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" style="color:red"><i class="fa fa-trash"></i></a></div></div>';
+		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-8 main-folder-area-content"><h3>'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$sub->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
 		echo $html;
 		//$this->load_file_folders($post);
 		//$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
@@ -59,10 +59,45 @@ class File_manager extends CI_Controller {
 	public function open_folder(){
 		$post = $this->input->post();
 		$folder_id = $post['folder_id'];
+		$slug = $post['slug'];
+		// $data['files_breadcrumb'] = array_reverse($this->breadcrumb($slug));
+		//echo "<pre>";print_r($data['files_breadcrumb']);exit;
 		$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
 		$data['folderType'] = $this->partnerDB->where("id", $data['folder']->business_folder_type_id)->get("business_folder_type")->row();
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("business_filedoc_list")->result();
 		//echo "<pre>"; print_r($folderDetail); exit;
 		$this->load->view("file_manager/sub_folders", $data);
+	}
+
+
+
+
+	public function breadcrumb($slug){
+
+		return $this->recursiveForBreadcrumb($slug, array());
+	}
+	
+
+	public function recursiveForBreadcrumb($slug, $data){
+       
+		$folder = $this->partnerDB->where("name", $slug)->get("business_filedoc_list")->row();
+		$data[] = $folder;
+		$result = $this->partnerDB->where("parent_id",$folder->parent_id)->get("business_filedoc_list")->row();
+
+		if(count($result)>0){
+			return $this->recursiveForBreadcrumb($result->name, $data);
+		}
+		return $data;
+	}
+
+
+	public function remove_folder(){
+
+        $folder_id = $this->input->post('folder_id');
+        $this->partnerDB->where("id", $folder_id)->delete("business_filedoc_list");
+
+        return TRUE;
+        
+
 	}
 }

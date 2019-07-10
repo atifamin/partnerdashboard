@@ -4,16 +4,19 @@
   <div id="folders_area">
   <?php if(count($sub_folders)>0){ ?>
   <?php foreach($sub_folders as $sub){ ?>
-  <div class="col-md-12 folder" onclick="open_folder(<?php echo $sub->id; ?>)" id="folder_id_<?php echo $sub->id; ?>">
-    <div class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
-    <div class="col-md-8 main-folder-area-content">
-      <h3><?php echo $sub->name; ?></h3>
+  <div class="col-md-12 folder"  id="folder_id_<?php echo $sub->id; ?>">
+    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->name; ?>')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
+    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->name; ?>')" class="col-md-8 main-folder-area-content">
+      <h3 id="folder_name" contenteditable="false"><?php echo $sub->name; ?></h3>
       <p>Updated 3 days ago by testOne 17.5MB</p>
     </div>
     <div class="col-md-2">
-        <a href="javascript:;"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" style="color:red"><i class="fa fa-trash"></i></a>
+        <span onclick="edit_folder(<?php echo $sub->id; ?>)" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span 
+        onclick="remove_folder(<?php echo $sub->id; ?>)" style="color:red"><i class="fa fa-trash"></i></span>
     </div>
+    
   </div>
+  
   <?php }  ?>
   <?php }else{ ?>
     <div class="col-md-12" align="center" style="color:lightgrey;" id="no-content"><i>No Content Available.</i></div>
@@ -23,4 +26,8 @@
 <script>
     $("#parent_id").val(<?php echo $folder->id; ?>);
     $("#business_folder_type_id").val(<?php echo $folder->business_folder_type_id; ?>);
+
+
+
+ 
 </script>
