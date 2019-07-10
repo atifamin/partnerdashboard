@@ -48,6 +48,74 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
     <p>Footer</p>
   </footer>
 </div>
+
+<div class="modal" id="notification_model">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tbody class="table">
+              <tr>
+                  <td>Content Here</td>
+              </tr>
+              <tr>
+                  <td>Content Here</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="access_activity_model">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tbody class="table">
+              <tr>
+                  <td>Content Here</td>
+              </tr>
+              <tr>
+                  <td>Content Here</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="acitivity_model">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tbody class="table">
+              <tr>
+                  <td>Content Here</td>
+              </tr>
+              <tr>
+                  <td>Content Here</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="../bower_components/iCheck/icheck.min.js"></script> 
 <script src="../assets/js/bizVault.js"></script>
 <?php include("../includes/footer.php"); ?>
@@ -66,4 +134,19 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
     }); 
   });
   
+  function refresh_folder_content(){
+    location.reload(); 
+  }
+
+  function notification(){
+    $('#notification_model').modal('show');
+  }
+
+  function access_activity(){
+    $('#access_activity_model').modal('show');
+  }
+
+  function activity(){
+    $('#acitivity_model').modal('show');
+  }
 </script>

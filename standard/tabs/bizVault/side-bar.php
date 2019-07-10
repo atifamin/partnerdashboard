@@ -51,10 +51,10 @@ li a:hover{
 <nav class="bizVaultNav nav-left">
     <ul>
         <li><a href="<?php echo base_url; ?>tabs/bizVault.php"><i class="fa fa-file-text side_bar-icons"></i></a></li>
-        <li><a href="javascript:;"><i class="fa fa-retweet side_bar-icons"></i></a></li>
-        <li><a href="javascript:;"><i class="material-icons side_bar-icons">access_alarm</i></a></li>
-        <li><a href="javascript:;"><i class="fa fa fa-heartbeat side_bar-icons"></i></a></li>
-        <li><a href="javascript:;"><i class="fa fa-users side_bar-icons"></i></a></li>
+        <li><a href="javascript:refresh_folder_content()"><i class="fa fa-retweet side_bar-icons"></i></a></li>
+        <li><a href="javascript:notification()"><i class="material-icons side_bar-icons">access_alarm</i></a></li>
+        <li><a href="javascript:access_activity()"><i class="fa fa fa-heartbeat side_bar-icons"></i></a></li>
+        <li><a href="javascript:activity()"><i class="fa fa-users side_bar-icons"></i></a></li>
     	<li style="margin-top: 400px;"><a href="javascript:;"><i class="fa fa-cog small"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-info-circle small"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-question-circle small"></i></a></li>
