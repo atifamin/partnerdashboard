@@ -3,7 +3,13 @@ include("../includes/header.php");
 include("../includes/top_nav.php");
 $parent_id = 0;
 if(isset($_GET['type']) && $_GET['type']=="other_folder"){
+
   $parent_id = 4;
+}
+
+if(isset($_GET['type']) && $_GET['type']=="business_folder"){
+ 
+  $parent_id = 1;
 }
 ?>
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
@@ -20,7 +26,7 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
     </div>
   </header>
   <section class="bizVaultSection">
-    <?php include("bizVault/side-bar.php") ?>
+    <?php include("bizVault/side-bar.php");?>
     <article class="bizVaultArticle">
       <div class="row bizVaultArticle-row">
         <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
@@ -122,6 +128,8 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <script>
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
+  <?php }elseif(isset($_GET['type']) && $_GET['type']=="business_folder"){ ?>
+    load_business_folder($user_id, $("#business_folder_type_id").val(), '<?=$_GET['files_type']?>');
   <?php }else{ ?>
     load_content($user_id);
   <?php } ?>

@@ -14,6 +14,12 @@ function load_other_folder(user_id, parent_id){
     });
 }
 
+function load_business_folder(user_id, business_folder_type_id, files_type){
+    $.post(""+$pkanban_url+"file_manager/load_business_folder", {user_id:user_id, business_folder_type_id:business_folder_type_id, files_type:files_type}).done(function(e){
+        $("#main_content").html(e);
+    });
+}
+
 function create_folder(){
     var parent_id = $("#parent_id").val();
     var business_folder_type_id = $("#business_folder_type_id").val();
@@ -44,6 +50,10 @@ function open_folder(folder_id, slug){
 
 function open_other_folder(){
     window.location.href = $("#base_url").val()+'tabs/bizVault.php?type=other_folder';
+}
+
+function open_business_folder(files_type){
+    window.location.href = $("#base_url").val()+'tabs/bizVault.php?type=business_folder&files_type='+files_type;
 }
 
 function open_home_page(){
@@ -88,9 +98,7 @@ function edit_folder(id){
 function change_folder_name(id,name){
 
     $("#folder_"+id+"").attr("contenteditable", false);
-
-    $.post(""+$pkanban_url+"file_manager/change_folder_name", {id:id, name:name}).done(function(e){
-       
+      $.post(""+$pkanban_url+"file_manager/change_folder_name", {id:id, name:name}).done(function(e){       
     });
 
 

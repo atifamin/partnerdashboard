@@ -14,8 +14,10 @@ class File_manager extends CI_Controller {
 	}
 
 	public function load_file_folders($data){
+
 		$data['folderTypes'] = $this->partnerDB->get("business_folder_type")->result();
 		$data['userDetail'] = $this->partnerDB->where('user_id', $data['user_id'])->get("user")->row();
+		// echo '<pre>';print_r($data);exit;
 		$this->load->view("file_manager/index", $data);
 	}
 
@@ -24,6 +26,12 @@ class File_manager extends CI_Controller {
 		$data['folderType'] = $this->partnerDB->where("slug", "other")->get("business_folder_type")->row();
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $post['parent_id'])->where("type", "folder")->where("business_folder_type_id", $data['folderType']->id)->get("business_filedoc_list")->result();
 		$this->load->view("file_manager/sub_folders", $data);
+	}
+
+	public function load_business_folder(){
+		$post = $this->input->post();
+		$data['files'] = $this->partnerDB->where("user_id", $post['user_id'])->where("business_folder_type_id", $post['business_folder_type_id'])->where("business_file_type", $post['files_type'])->get("business_filedoc_list")->result();
+		$this->load->view("file_manager/business_files", $data);
 	}
 
 	public function create_folder(){
