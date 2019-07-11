@@ -3,20 +3,23 @@ include("../includes/header.php");
 include("../includes/top_nav.php");
 $parent_id = 0;
 if(isset($_GET['type']) && $_GET['type']=="other_folder"){
+
   $parent_id = 4;
 }
-?>
 
-<?php 
-  $str = "Hello To Php"; 
-  $word = explode(" ", ucwords($str));
-  $str1 = " ";
-  foreach ($word as $w) {
-    $str1 .= $w[0];
+if(isset($_GET['type']) && $_GET['type']=="business_folder"){
+ 
+  $parent_id = 1;
+}
+?>
+<style type="text/css">
+  td#custom_table_style{
+    font-size: 20px;
+    color: #ffff;
+    border: #0b24d6
   }
+</style>
 
-
-?>
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
 <input type="hidden" value="<?php echo pkanban_url; ?>" id="pkanban_url">
 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" id="user_id">
@@ -28,8 +31,11 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
   <header class="logo-area" >
     <!-- <img src="../assets/img/dummy-logo.jpg" alt="" width="150"> -->
     <div class="row" id="company_logo_content">
-      <!-- <div class="col-md-1" style="width: 6%">
-        <div style="width: 50px;height: 50px;border-radius: 25px;background: #0f7cbb;"><span style="color: #ffff;position: relative;margin-left: 13px;top:13px">HCL</span></div>
+      <!-- <div class="col-md-1" style="width: 6%"> -->
+        <!-- <div style="width: 50px;height: 50px;border-radius: 25px;background: #0f7cbb;">
+          <span style="color: #ffff;position: relative;margin-left: 13px;top:13px">HCL</span>
+        </div> -->
+        <!-- <img style="width: 50px;border-radius: 25px" src="<?php //echo pkanban_url."uploads/face1.jpg"; ?>">
       </div>
       <div class="col-md-4" style="padding-left: 0;font-size:13px">
         <span>Anurag Singh</span>
@@ -38,7 +44,7 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
     </div>
   </header>
   <section class="bizVaultSection">
-    <?php include("bizVault/side-bar.php") ?>
+    <?php include("bizVault/side-bar.php");?>
     <article class="bizVaultArticle">
       <div class="row bizVaultArticle-row">
         <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
@@ -58,7 +64,8 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
           <div class="col-md-9 main-folders-area" id="main_content">
           </div>
         
-        <div class="col-md-3 main-preview-area">Preview Area</div>
+        <div class="col-md-3 main-preview-area">Preview Area
+        </div>
       </div>
     </article>
   </section>
@@ -70,19 +77,29 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <div class="modal" id="notification_model">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-header" style="border: 0;background-color: #1F487E">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
+        <h3 class="modal-title text-center" style="color: #ffff;">CLOUDBOX NOTIFICATIONS</h3>
       </div>
-      <div class="modal-body">
-        <table>
-          <tbody class="table">
-              <tr>
-                  <td>Content Here</td>
-              </tr>
-              <tr>
-                  <td>Content Here</td>
-              </tr>
+      <div class="modal-body" style="padding: 0">
+        <table class="table table-striped" id="tblGrid">
+          <tbody>
+            <tr style="background-color: #31859D;">
+              <td class="text-center" id="custom_table_style">Notification Title</td>
+              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
+            </tr>
+             <tr style="background-color: #1F5A68;">
+              <td class="text-center" id="custom_table_style">Notification Title</td>
+              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
+            </tr>
+            <tr style="background-color: #31859D;">
+              <td class="text-center" id="custom_table_style">Notification Title</td>
+              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
+            </tr>
+             <tr style="background-color: #1F5A68;">
+              <td class="text-center" id="custom_table_style">Notification Title</td>
+              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -92,19 +109,33 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <div class="modal" id="access_activity_model">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-header" style="border: 0;background-color: #1F487E">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
+        <h3 class="modal-title text-center" style="color: #ffff;">CLOUDBOX ACCESS ACTIVITY</h3>
       </div>
-      <div class="modal-body">
-        <table>
-          <tbody class="table">
-              <tr>
-                  <td>Content Here</td>
-              </tr>
-              <tr>
-                  <td>Content Here</td>
-              </tr>
+      <div class="modal-body" style="padding: 0">
+        <table class="table table-striped">
+          <tbody>
+            <tr style="background-color: #31859D;">
+              <td class="text-center" id="custom_table_style">Activity Type</td>
+              <td class="text-center" id="custom_table_style">User Name</td>
+              <td class="text-center" id="custom_table_style">Date/Time</td>
+            </tr>
+             <tr style="background-color: #1F5A68;">
+              <td class="text-center" id="custom_table_style">Activity Type</td>
+              <td class="text-center" id="custom_table_style">User Name</td>
+              <td class="text-center" id="custom_table_style">Date/Time</td>
+            </tr>
+            <tr style="background-color: #31859D;">
+              <td class="text-center" id="custom_table_style">Activity Type</td>
+              <td class="text-center" id="custom_table_style">User Name</td>
+              <td class="text-center" id="custom_table_style">Date/Time</td>
+            </tr>
+             <tr style="background-color: #1F5A68;">
+              <td class="text-center" id="custom_table_style">Activity Type</td>
+              <td class="text-center" id="custom_table_style">User Name</td>
+              <td class="text-center" id="custom_table_style">Date/Time</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -186,6 +217,8 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <script>
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
+  <?php }elseif(isset($_GET['type']) && $_GET['type']=="business_folder"){ ?>
+    load_business_folder($user_id, $("#business_folder_type_id").val(), '<?=$_GET['files_type']?>');
   <?php }else{ ?>
     load_content($user_id);
   <?php } ?>

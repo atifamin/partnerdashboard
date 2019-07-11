@@ -8,14 +8,20 @@ class File_manager extends CI_Controller {
 		$this->partnerDB = $this->load->database('partnerdashboard', TRUE);
     }
 
+	function Tutorial(){
+	  parent::Controller();  
+	  $this->load->library('breadcrumbcomponent'); 
+	}
 	public function index(){
 		$post = $this->input->post();
 		$this->load_file_folders($post);
 	}
 
 	public function load_file_folders($data){
+
 		$data['folderTypes'] = $this->partnerDB->get("business_folder_type")->result();
 		$data['userDetail'] = $this->partnerDB->where('user_id', $data['user_id'])->get("user")->row();
+		// echo '<pre>';print_r($data);exit;
 		$this->load->view("file_manager/index", $data);
 	}
 
@@ -24,6 +30,12 @@ class File_manager extends CI_Controller {
 		$data['folderType'] = $this->partnerDB->where("slug", "other")->get("business_folder_type")->row();
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $post['parent_id'])->where("type", "folder")->where("business_folder_type_id", $data['folderType']->id)->get("business_filedoc_list")->result();
 		$this->load->view("file_manager/sub_folders", $data);
+	}
+
+	public function load_business_folder(){
+		$post = $this->input->post();
+		$data['files'] = $this->partnerDB->where("user_id", $post['user_id'])->where("business_folder_type_id", $post['business_folder_type_id'])->where("business_file_type", $post['files_type'])->get("business_filedoc_list")->result();
+		$this->load->view("file_manager/business_files", $data);
 	}
 
 	public function create_folder(){
@@ -108,7 +120,7 @@ class File_manager extends CI_Controller {
 	}
 	public function load_company_logo(){
 		$user_id = $this->input->post('user_id');
-		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
+		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name , dbe.Logo from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
 		$data = $this->partnerDB->query($query)->row();
 
 		$word = explode(" ", ucwords($data->firm_name));
@@ -116,11 +128,19 @@ class File_manager extends CI_Controller {
 		foreach ($word as $w) {
 			$business_name .= $w[0];
 		}
-		$text = '<div class="col-md-1" style="width: 6%"><div style="width: 50px;height: 50px;border-radius: 25px;background: #0f7cbb;"><span style="color: #ffff;position: relative;margin-left: 13px;top:13px">'.$business_name.'</span></div></div><div class="col-md-4" style="padding-left: 0;font-size:13px"><span>'.$data->user_fname.' '.$data->user_lname.'</span><br><span style="font-size: 18px">'.$data->firm_name.'</span></div>';
+		
+		$text = '<div class="col-md-1" style="width: 6%">';
+		if (!empty($data->Logo)) $text .= '<img style="width: 50px;border-radius: 25px" src="'.base_url().'uploads/'.$data->Logo.'">';
+		else $text .= '
+		<div style="width: 50px;height: 50px;border-radius: 25px;background: #0f7cbb;">
+		<span style="color: #ffff;position: relative;margin-left: 13px;top:13px">'.substr($business_name, 0,4).'</span></div>';
+		$text .= '</div>
+		<div class="col-md-4" style="padding-left: 0;font-size:13px"><span>'.$data->user_fname.' '.$data->user_lname.'</span><br><span style="font-size: 18px">'.$data->firm_name.'</span></div>';
+
 		echo $text;
 	} 
 
-
+	//http://localhost/partnerdashboard/pkanban/uploads/face1.jpg
 
 	public function change_folder_name(){
 
