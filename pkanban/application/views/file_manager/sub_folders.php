@@ -7,7 +7,7 @@
   <div class="col-md-12 folder"  id="folder_id_<?php echo $sub->id; ?>">
     <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->name; ?>')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
     <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->name; ?>')" class="col-md-8 main-folder-area-content">
-      <h3 id="folder_name" contenteditable="false"><?php echo $sub->name; ?></h3>
+      <h3 id="folder_<?php echo $sub->id; ?>" onblur="change_folder_name(<?php echo $sub->id; ?>,$(this).html())" contenteditable="false"><?php echo $sub->name; ?></h3>
       <p>Updated 3 days ago by testOne 17.5MB</p>
     </div>
     <div class="col-md-2">

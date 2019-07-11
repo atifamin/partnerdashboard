@@ -76,26 +76,22 @@ function remove_folder(folder_id){
 
 
 
-function edit_folder(folder_id){
+function edit_folder(id){
 
 
-    $('#folder_name').attr('contenteditable',true).focus();
-
-    // $('#folder_name').change(function(){
-
-    //     alert('change');
-    // });
+    $('#folder_'+id).attr('contenteditable',true).focus();
 
 
-// $('#folder_name').on('focus', function() {
-//  var before = $(this).html();
-// }).on('blur keyup paste', function() { 
-//   if (before != $(this).html()) { $(this).trigger('change'); }
-// });
-
-// $('#folder_name').on('change', function() {alert('changed')});
+}
 
 
+function change_folder_name(id,name){
+
+    $("#folder_"+id+"").attr("contenteditable", false);
+
+    $.post(""+$pkanban_url+"file_manager/change_folder_name", {id:id, name:name}).done(function(e){
+       
+    });
 
 
 }
