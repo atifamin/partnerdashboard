@@ -6,6 +6,17 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
   $parent_id = 4;
 }
 ?>
+
+<?php 
+  $str = "Hello To Php"; 
+  $word = explode(" ", ucwords($str));
+  $str1 = " ";
+  foreach ($word as $w) {
+    $str1 .= $w[0];
+  }
+
+
+?>
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
 <input type="hidden" value="<?php echo pkanban_url; ?>" id="pkanban_url">
 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" id="user_id">
@@ -17,6 +28,13 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
   <header class="logo-area" >
     <!-- <img src="../assets/img/dummy-logo.jpg" alt="" width="150"> -->
     <div class="row" id="company_logo_content">
+      <!-- <div class="col-md-1" style="width: 6%">
+        <div style="width: 50px;height: 50px;border-radius: 25px;background: #0f7cbb;"><span style="color: #ffff;position: relative;margin-left: 13px;top:13px">HCL</span></div>
+      </div>
+      <div class="col-md-4" style="padding-left: 0;font-size:13px">
+        <span>Anurag Singh</span>
+        <br><span style="font-size: 18px">DREAMBUILDER CONSTRUCTION CORP</span>
+      </div> -->
     </div>
   </header>
   <section class="bizVaultSection">
