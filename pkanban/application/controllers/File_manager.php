@@ -8,6 +8,10 @@ class File_manager extends CI_Controller {
 		$this->partnerDB = $this->load->database('partnerdashboard', TRUE);
     }
 
+	function Tutorial(){
+	  parent::Controller();  
+	  $this->load->library('breadcrumbcomponent'); 
+	}
 	public function index(){
 		$post = $this->input->post();
 		$this->load_file_folders($post);
@@ -116,13 +120,27 @@ class File_manager extends CI_Controller {
 	}
 	public function load_company_logo(){
 		$user_id = $this->input->post('user_id');
-		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
+		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name , dbe.Logo from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
 		$data = $this->partnerDB->query($query)->row();
-		$text = '<div class="col-md-1">image here</div><div class="col-md-4" style="padding-left: 0;font-size:13px"><span>'.$data->user_fname.' '.$data->user_lname.'</span><br><span style="font-size: 18px">'.$data->firm_name.'</span></div>';
+
+		$word = explode(" ", ucwords($data->firm_name));
+		$business_name = " ";
+		foreach ($word as $w) {
+			$business_name .= $w[0];
+		}
+		
+		$text = '<div class="col-md-1" style="width: 6%">';
+		if (!empty($data->Logo)) $text .= '<img style="width: 50px;border-radius: 25px" src="'.base_url().'uploads/'.$data->Logo.'">';
+		else $text .= '
+		<div style="width: 50px;height: 50px;border-radius: 25px;background: #0f7cbb;">
+		<span style="color: #ffff;position: relative;margin-left: 13px;top:13px">'.substr($business_name, 0,4).'</span></div>';
+		$text .= '</div>
+		<div class="col-md-4" style="padding-left: 0;font-size:13px"><span>'.$data->user_fname.' '.$data->user_lname.'</span><br><span style="font-size: 18px">'.$data->firm_name.'</span></div>';
+
 		echo $text;
 	} 
 
-
+	//http://localhost/partnerdashboard/pkanban/uploads/face1.jpg
 
 	public function change_folder_name(){
 
