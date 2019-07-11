@@ -36,7 +36,7 @@ class File_manager extends CI_Controller {
 		$this->partnerDB->insert("business_filedoc_list", $insert);
 		$folderId = $this->partnerDB->insert_id();
 		$folder = $this->partnerDB->where("id", $folderId)->get("business_filedoc_list")->row();
-		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-8 main-folder-area-content"><h3>'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$sub->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
+		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->id.'" onblur="change_folder_name('.$folder->id.',$(this).html())" contenteditable="false">'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
 		echo $html;
 		//$this->load_file_folders($post);
 		//$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
@@ -94,9 +94,15 @@ class File_manager extends CI_Controller {
 	public function remove_folder(){
 
         $folder_id = $this->input->post('folder_id');
-        $this->partnerDB->where("id", $folder_id)->delete("business_filedoc_list");
+        
 
-        return TRUE;
+        if($this->partnerDB->where("id", $folder_id)->delete("business_filedoc_list"))
+          {
+            return true;
+
+          }else{
+        	     return false;
+                }
         
 
 	}
@@ -107,4 +113,21 @@ class File_manager extends CI_Controller {
 		$text = '<div class="col-md-1">image here</div><div class="col-md-4" style="padding-left: 0;font-size:13px"><span>'.$data->user_fname.' '.$data->user_lname.'</span><br><span style="font-size: 18px">'.$data->firm_name.'</span></div>';
 		echo $text;
 	} 
+
+
+
+	public function change_folder_name(){
+
+     $id = $this->input->post('id');
+     $name = $this->input->post('name');
+     if($this->partnerDB->set('name',$name)->where("id", $id)->update("business_filedoc_list"))
+        {
+            return true;
+        }else
+             {
+        	   return false;
+             }
+
+
+	}
 }
