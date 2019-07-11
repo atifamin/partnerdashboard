@@ -114,23 +114,69 @@ if(isset($_GET['type']) && $_GET['type']=="other_folder"){
 <div class="modal" id="acitivity_model">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-header" style="text-align: center; color: white; height: 60px; background-color: #1F487E; border: none;">
+        <h3 class="modal-title">CLOUDBOX ACCESS</h3>
       </div>
-      <div class="modal-body">
-        <table>
+      
+        <table class="table">
+          <thead style="background-color: #17375E;">
+            <tr>
+              <th style="color: white; text-align: center; border: none; font-size: 20px;">User</th>
+              <th style="color: white; text-align: center; border: none; font-size: 20px;">Access</th>
+              <th style="color: white; text-align: center; border: none; font-size: 20px;">File/Folder</th>
+              <th style="color: white; text-align: center; border: none; font-size: 20px;">Expires</th>
+            </tr>
+          </thead>
           <tbody class="table">
-              <tr>
-                  <td>Content Here</td>
+              <tr style="background-color: #B8DEE6">
+                  <td style="border: none; width: 24%;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
+                      </div>
+                      <div class="col-md-6">
+                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
+                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td style="text-align: center; border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><span style=" color: red;font-style: italic;">(Expires in 1 Day)</span><br><span style="color: #5EB2D5; font-size: 10px; font-style: italic;">Click here to change Expiration Date</span></td>
               </tr>
-              <tr>
-                  <td>Content Here</td>
+              <tr style="background-color:  #92CDDE">
+                  <td style="border: none; width: 24%;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
+                      </div>
+                      <div class="col-md-6">
+                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
+                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td style="text-align: center; border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><span style=" color: red;font-style: italic;">(Expires in 1 Day)</span><br><span style="color: #5EB2D5; font-size: 10px; font-style: italic;">Click here to change Expiration Date</span></td>
+              </tr>
+              <tr style="background-color: #B8DEE6">
+                  <td style="border: none; width: 24%;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
+                      </div>
+                      <div class="col-md-6">
+                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
+                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td style="text-align: center; border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><span style=" color: red;font-style: italic;">(Expires in 1 Day)</span><br><span style="color: #5EB2D5; font-size: 10px; font-style: italic;">Click here to change Expiration Date</span></td>
               </tr>
           </tbody>
         </table>
       </div>
-    </div>
+    
   </div>
 </div>
 
