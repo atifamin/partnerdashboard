@@ -76,6 +76,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           </div>
         
         <div class="col-md-3 main-preview-area" style="">
+         <div id="upload_progress">
           <div class="row text-center" style="background-color: #4E80C6;">
             <div class="col-md-12">
               <span class="text-white" style="font-size: 40px;">3</span><span style="font-size: 35px; color: #A9D8F4"> FILES MISSING</span>
@@ -91,6 +92,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
               <img src="<?php echo pkanban_url.'images/progres.png'; ?>" style="width: 115%" >
             </div>
           </div>
+         </div>
         </div>
       </div>
     </article>
@@ -248,6 +250,19 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   <?php }else{ ?>
     load_content($user_id);
   <?php } ?>
+
+  <?php if(isset($_GET['type']) && $_GET['type']=="business_folder"){ ?>
+      
+     $('#upload_progress').show();
+
+  <?php }else{ ?>
+    
+    $('#upload_progress').hide();
+
+  <?php } ?>
+
+
+ 
 
   $(document).ready(function(){
     pkanban_url = $("#pkanban_url").val();

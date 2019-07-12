@@ -4,14 +4,14 @@
   <p><span><?php echo $folderType->name; ?></span></p>
 </div>
 <?php if($folderType->slug=="business"){ ?>
-<div class="col-md-12 folder" onclick="open_business_folder('Basic')">
+<div class="col-md-12 folder business_folder" onclick="open_business_folder('Basic')">
   <div class="col-md-2 main-folder-area-icon" ><i class="fa fa-folder"></i></div>
   <div class="col-md-8 main-folder-area-content">
     <h3 contenteditable="false">Basic Business Financials</h3>
     <p style="color:#4484f1;">Basic Business financials typically requested</p>
   </div>
 </div>
-<div class="col-md-12 folder" onclick="open_business_folder('Detail')">
+<div class="col-md-12 folder business_folder" onclick="open_business_folder('Detail')">
   <div class="col-md-2 main-folder-area-icon" ><i class="fa fa-folder"></i></div>
   <div class="col-md-8 main-folder-area-content">
     <h3 contenteditable="false">Detailed Business Financials</h3>
@@ -29,3 +29,21 @@
 </div>
 <?php } ?>
 <?php endforeach; ?>
+
+<script type="text/javascript">
+	 $('.business_folder').hover(function(){
+    
+     $('#upload_progress').show();
+  });
+
+
+	$(".business_folder").on({
+	  mouseenter: function(){
+	    $('#upload_progress').show();
+	  }, 
+	  mouseleave: function(){
+	    $('#upload_progress').hide();
+	  },
+
+	});
+</script>
