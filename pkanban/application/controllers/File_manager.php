@@ -91,7 +91,7 @@ class File_manager extends CI_Controller {
 		$folder = $this->partnerDB->where("name", $slug)->get("business_filedoc_list")->row();
 		$data[] = $folder;
 		$result = $this->partnerDB->where("id",$folder->parent_id)->get("business_filedoc_list")->row();
-		if(count($result)>0){
+		if($result!= NULL && count($result)>0){
 			return $this->recursiveForBreadcrumb($result->name, $data);
 		}
 		return $data;
