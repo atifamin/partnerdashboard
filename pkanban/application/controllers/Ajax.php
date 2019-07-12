@@ -154,7 +154,9 @@ class Ajax extends CI_Controller
 
         } else if ($this->session->userdata('conf_date_format') == 2) {
 */
-            $data['task'] = $this->db->query("SELECT *, DATE_FORMAT(task_date_creation,'$date_hour_format') AS task_date_creation, DATE_FORMAT(task_date_closed,'$date_hour_format') AS task_date_closed FROM tasks LEFT JOIN users ON task_user = user_id WHERE task_id = '$task_id'")->row_array();
+            $task_data = $this->db->query("SELECT *, DATE_FORMAT(task_date_creation,'$date_hour_format') AS task_date_creation, DATE_FORMAT(task_date_closed,'$date_hour_format') AS task_date_closed FROM tasks LEFT JOIN users ON task_user = user_id WHERE task_id = '$task_id'")->row_array();
+            $data['task'] = $task_data;
+            $data['task_funded_amount_formated'] = nice_number($task_data['task_funding_amount_requested'],'format');
             $data['task_attachments'] = $this->db->query("SELECT *, DATE_FORMAT(attachment_creation_date,'%d-%m-%Y') AS attachment_creation_date FROM attachments LEFT JOIN users ON attachment_user_id = user_id WHERE attachment_task_id = '$task_id'")->result_array();
             $data['task_todo'] = $this->db->query("SELECT * FROM tasks_todo WHERE task_id = '$task_id'")->result_array();
             $data['task_comment'] =  $this->db->query("SELECT * FROM task_comment WHERE task_comment_task_id = '$task_id'")->result_array();

@@ -85,5 +85,31 @@ function get_container_total($container_id){
     $data =  $query->result_array()[0];
     return $data['total'];
 }
-
+function nice_number($n,$Type=NULL) {
+    if($Type == 'format'){
+        // first strip any formatting;
+        $n = (0+str_replace(",", "", $n));
+        // is this a number?
+        if (!is_numeric($n)) return false;
+        // now filter it;
+        if ($n >= 1000000000000) return round(($n/1000000000000), 1).'T';
+        elseif ($n >= 1000000000) return round(($n/1000000000), 1).'B';
+        elseif ($n >= 1000000) return round(($n/1000000), 1).'M';
+        elseif ($n >= 1000) return round(($n/1000), 1).'K';
+        elseif ($n < 1000) return round(($n), 1);
+        return number_format($n);
+    }else{
+        // first strip any formatting;
+        $n = (0+str_replace(",", "", $n));
+        // is this a number?
+        if (!is_numeric($n)) return false;
+        // now filter it;
+        if ($n >= 1000000000000) return round(($n/1000000000000), 1);
+        elseif ($n >= 1000000000) return round(($n/1000000000), 1);
+        elseif ($n >= 1000000) return round(($n/1000000), 1);
+        elseif ($n >= 1000) return round(($n/1000), 1);
+        elseif ($n < 1000) return round(($n), 1);
+        return number_format($n);
+    }
+}
 ?>
