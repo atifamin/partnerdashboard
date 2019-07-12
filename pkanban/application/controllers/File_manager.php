@@ -143,7 +143,11 @@ class File_manager extends CI_Controller {
              {
         	   return false;
              }
+	}
 
-
+	public function upload_file(){
+		$file = $this->input->post('names');
+		print_r($_POST);
+		exit;
 	}
 }
