@@ -247,8 +247,6 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 
   function activity(){
     $('#acitivity_model').modal('show');
-
-    alert();
   }
 
   $('#upload_file').on('change',function(e){
