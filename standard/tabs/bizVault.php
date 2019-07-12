@@ -18,6 +18,15 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     color: #ffff;
     border: #0b24d6
   }
+  .text-white{
+    color: white;
+  }
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
 </style>
 
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
@@ -66,7 +75,22 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           <div class="col-md-9 main-folders-area" id="main_content">
           </div>
         
-        <div class="col-md-3 main-preview-area">Preview Area
+        <div class="col-md-3 main-preview-area" style="">
+          <div class="row text-center" style="background-color: #4E80C6;">
+            <div class="col-md-12">
+              <span class="text-white" style="font-size: 40px;">3</span><span style="font-size: 35px; color: #A9D8F4"> FILES MISSING</span>
+            </div>
+          </div>
+          <div class="row text-center" style="background-color: #C0504E">
+            <div class="col-md-12">
+              <span class="text-white" style="font-size: 20px;">PLEASE UPLOAD<br> MISSING FILES</span>
+            </div>
+          </div>
+          <div class="row" style="background-color:#F2F2F2">
+            <div class="col-md-12">
+              <img src="<?php echo pkanban_url.'images/progres.png'; ?>" style="width: 115%" >
+            </div>
+          </div>
         </div>
       </div>
     </article>
