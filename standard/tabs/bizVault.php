@@ -56,7 +56,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
         <?php } ?>
         <div class="col-md-12 top-search-bar-area">
           <div class="col-md-6">
-            <p style="cursor:pointer;" onclick="open_home_page()"><i class="fa fa-folder top-search-bar-area-folder"></i>&nbsp&nbspHome</p>
+            <p id="bread_crum" style="cursor:pointer;" onclick="open_home_page()"><i class="fa fa-folder top-search-bar-area-folder"></i>&nbsp&nbspHome</p>
           </div>
           <div class="col-md-6">
             <input type="text" class="form-control search-input" placeholder="Search">
