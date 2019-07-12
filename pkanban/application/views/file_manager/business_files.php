@@ -24,28 +24,56 @@
   	</div> -->
   	<div class="col-md-12 files-table">
   		<div class="file-header">Basic Business Files/Documents</div>
-  		<table class="table table-bordered" style="width: 100%;">
+  		<table class="table table-bordered">
   			<tbody>
   				<tr>
-  					<td class="file-cell" style="text-align: center;font-size: 30px;"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-  					<td class="file-cell">2017 Balance Sheet</td>
-  					<td>Status</td>
+  					<td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+  					<td class="file-cell" style="border: 10px solid #ffff">2017 Balance Sheet</td>
+  					<td >
+              <div style="background-color:#4AACC9;text-align: center;">
+                <span style="color: #ffff;font-size: 18px">STATUS</span>
+              </div>
+              <div style="text-align: center;background-color:#FFC000">
+                <span style="font-size: 22px">PLEASE UPLOAD!</span>
+              </div>
+            </td>
   				</tr>
   				<tr>
-  					<td class="file-cell" style="text-align: center;font-size: 30px;"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-  					<td class="file-cell">2018 Balance Sheet</td>
-  					<td>Status</td>
-  				</tr>
-  				<tr>
-  					<td class="file-cell" style="text-align: center;font-size: 30px;"><i class="fa fa-file " style="color: #FBD5B5;"></i></td>
-  					<td class="file-cell">2017 Cash Flow Stmt</td>
-  					<td>Status</td>
-  				</tr>
-  				<tr>
-  					<td class="file-cell" style="text-align: center;font-size: 30px;"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-  					<td class="file-cell">2018 Cash Flow Stmt</td>
-  					<td>Status</td>
-  				</tr>
+            <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+            <td class="file-cell" style="border: 10px solid #ffff">2017 Balance Sheet</td>
+            <td >
+              <div style="background-color:#4AACC9;text-align: center;">
+                <span style="color: #ffff;font-size: 18px">STATUS</span>
+              </div>
+              <div style="text-align: center;background-color:#FFC000">
+                <span style="font-size: 22px">PLEASE UPLOAD!</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+            <td class="file-cell" style="border: 10px solid #ffff">2017 Balance Sheet</td>
+            <td >
+              <div style="background-color:#4AACC9;text-align: center;">
+                <span style="color: #ffff;font-size: 18px">STATUS</span>
+              </div>
+              <div style="text-align: center;background-color:#FFC000">
+                <span style="font-size: 22px">PLEASE UPLOAD!</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+            <td class="file-cell" style="border: 10px solid #ffff">2017 Balance Sheet</td>
+            <td >
+              <div style="background-color:#4AACC9;text-align: center;">
+                <span style="color: #ffff;font-size: 18px">STATUS</span>
+              </div>
+              <div style="text-align: center;background-color:#FFC000">
+                <span style="font-size: 22px">PLEASE UPLOAD!</span>
+              </div>
+            </td>
+          </tr>
   			</tbody>
   		</table>
   	</div>
