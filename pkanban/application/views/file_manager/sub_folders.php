@@ -1,3 +1,18 @@
+<?php
+     if(isset($files_breadcrumb)){
+        if(count($files_breadcrumb)>0){
+          $breadCount = 0;
+          foreach($files_breadcrumb as $bread){
+            $nextIcon = '';
+            if($breadCount>0){
+              $nextIcon = '<i class="fa fa-angle-right" style="color:#686b6d;font-size:1.3rem;"></i>';
+            }
+            echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_folder('.$bread->id.', \''.$bread->name.'\')" style="color:#686b6d;font-size:1.3rem;">'.$bread->name.'</a>';
+             $breadCount++;
+          }
+        }
+      }
+    ?>
 <div class="col-md-12 main-folder-area-title">
     <p><span><?php echo $folderType->name; ?></span></p>
   </div>
@@ -27,7 +42,6 @@
     $("#parent_id").val(<?php echo $folder->id; ?>);
     $("#business_folder_type_id").val(<?php echo $folder->business_folder_type_id; ?>);
 
-
-
+  
  
 </script>
