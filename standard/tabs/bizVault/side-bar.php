@@ -55,7 +55,7 @@ li a:hover{
         <li><a href="javascript:notification()"><i class="material-icons side_bar-icons">access_alarm</i></a></li>
         <li><a href="javascript:access_activity()"><i class="fa fa fa-heartbeat side_bar-icons"></i></a></li>
         <li><a href="javascript:activity()"><i class="fa fa-users side_bar-icons"></i></a></li>
-    	<li style="margin-top: 400px;"><a href="javascript:;"><i class="fa fa-cog small"></i></a></li>
+    	<li style="margin-top: 350px;"><a href="javascript:;"><i class="fa fa-cog small"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-info-circle small"></i></a></li>
         <li><a href="javascript:;"><i class="fa fa-question-circle small"></i></a></li>
     </ul>
