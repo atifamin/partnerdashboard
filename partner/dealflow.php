@@ -38,7 +38,7 @@
                   $r = mysqli_fetch_object($res1);
                   //echo"<pre>";print_r($res1);exit();
 
-                  $query2='SELECT SUM(task_funding_approved_amount) AS funding_amount 
+                  $query2='SELECT SUM(task_funding_amount_requested) AS funding_amount 
                             FROM 
                             tasks,users,containers,boards_users 
                             WHERE 
@@ -97,7 +97,7 @@
               <p class="white">Total Active Deals</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-cog"></i>
             </div>
           </div>
         </div>
@@ -105,12 +105,12 @@
           <!-- small box -->
           <div class="small-box" style="background-color:#E8505C;">
             <div class="inner">
-              <h3 class="white">$<?php echo number_format($r2->funding_amount); ?></h3>
+              <h3 class="white">$<?php echo nice_number($r2->funding_amount,'format'); ?></h3>
 
               <p class="white">Total Deal Amount</p>
             </div>
             <div class="icon">
-              <i class="fa fa-fw fa-dollar"></i>
+              <i class="fa fa-bar-chart"></i>
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
               <p class="white">Total Funded Deals</p>
             </div>
             <div class="icon">
-              <i class="fa fa-fw fa-clipboard"></i>
+              <i class="fa fa-money"></i>
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@
               <p class="white">Deal Win Rate</p>
             </div>
             <div class="icon">
-              <i class="fa fa-fw fa-trophy"></i>
+              <i class="fa fa-trophy"></i>
             </div>
           </div>
         </div>                         

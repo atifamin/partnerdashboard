@@ -112,7 +112,6 @@ class File_manager extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name , dbe.Logo from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
 		$data = $this->partnerDB->query($query)->row();
-
 		$word = explode(" ", ucwords($data->firm_name));
 		$business_name = " ";
 		foreach ($word as $w) {

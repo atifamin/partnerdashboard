@@ -26,7 +26,7 @@ $config['demo_mode'] = FALSE; // Only for online demo of pkanban
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "http://".$_SERVER['SERVER_NAME']."/partnerdashboard/pkanban/"; // If you have a subdirectory, use: "http://".$_SERVER[HTTP_HOST]."/yourdirectory/";
+$config['base_url'] = "http://".$_SERVER['SERVER_NAME'].":81/dashboard/pkanban/"; // If you have a subdirectory, use: "http://".$_SERVER[HTTP_HOST]."/yourdirectory/";
 
 /* ++++++++++++++++++++++++ E-mail headers +++++++++++++++++++++++++++++ */
 /* Change this parameters with your domain */
