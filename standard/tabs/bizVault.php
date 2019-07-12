@@ -18,6 +18,15 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     color: #ffff;
     border: #0b24d6
   }
+  .text-white{
+    color: white;
+  }
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
 </style>
 
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
@@ -49,12 +58,14 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
       <div class="row bizVaultArticle-row">
         <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
         <div class="col-md-12 top-button-area" align="right">
-        <a class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload</a> <a href="javascript:create_folder()" class="new-folder-button"><i class="fa fa-folder"></i>&nbsp;&nbsp;New Folder</a>
+          <input type="file" id="upload_file" name="file[]" multiple style="display: none;">
+          <a onclick="document.getElementById('upload_file').click(); return false" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
+          </a> <a href="javascript:create_folder()" class="new-folder-button"><i class="fa fa-folder"></i>&nbsp;&nbsp;New Folder</a>
         </div>
         <?php } ?>
         <div class="col-md-12 top-search-bar-area">
           <div class="col-md-6">
-            <p style="cursor:pointer;" onclick="open_home_page()"><i class="fa fa-folder top-search-bar-area-folder"></i>&nbsp&nbspHome</p>
+            <p id="bread_crum" style="cursor:pointer;" onclick="open_home_page()"><i class="fa fa-folder top-search-bar-area-folder"></i>&nbsp&nbspHome</p>
           </div>
           <div class="col-md-6">
             <input type="text" class="form-control search-input" placeholder="Search">
@@ -64,13 +75,30 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           <div class="col-md-9 main-folders-area" id="main_content">
           </div>
         
-        <div class="col-md-3 main-preview-area">Preview Area
+        <div class="col-md-3 main-preview-area" style="">
+         <div id="upload_progress">
+          <div class="row text-center" style="background-color: #4E80C6;">
+            <div class="col-md-12">
+              <span class="text-white" style="font-size: 40px;">3</span><span style="font-size: 35px; color: #A9D8F4"> FILES MISSING</span>
+            </div>
+          </div>
+          <div class="row text-center" style="background-color: #C0504E">
+            <div class="col-md-12">
+              <span class="text-white" style="font-size: 20px;">PLEASE UPLOAD<br> MISSING FILES</span>
+            </div>
+          </div>
+          <div class="row" style="background-color:#F2F2F2">
+            <div class="col-md-12">
+              <img src="<?php echo pkanban_url.'images/progres.png'; ?>" style="width: 115%" >
+            </div>
+          </div>
+         </div>
         </div>
       </div>
     </article>
   </section>
-  <footer class="bizVaultFooter">
-    <p>Footer</p>
+  <footer class="bizVaultFooter" style="height: 40px;">
+    <p>App Software © 2018 ExaVault ® Inc. | Contents © 2018 Orpha Inc</p>
   </footer>
 </div>
 
@@ -213,7 +241,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 
 <script src="../bower_components/iCheck/icheck.min.js"></script> 
 <script src="../assets/js/bizVault.js"></script>
-<?php include("../includes/footer.php"); ?>
+<?php include("../includes/footer3.php"); ?>
 <script>
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
@@ -222,6 +250,19 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   <?php }else{ ?>
     load_content($user_id);
   <?php } ?>
+
+  <?php if(isset($_GET['type']) && $_GET['type']=="business_folder"){ ?>
+      
+     $('#upload_progress').show();
+
+  <?php }else{ ?>
+    
+    $('#upload_progress').hide();
+
+  <?php } ?>
+
+
+ 
 
   $(document).ready(function(){
     pkanban_url = $("#pkanban_url").val();
@@ -246,4 +287,27 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   function activity(){
     $('#acitivity_model').modal('show');
   }
+
+  $('#upload_file').on('change',function(e){
+    e.preventDefault();
+    var names = [];
+    for (var i = 0; i < $(this).get(0).files.length; ++i) {
+        names.push($(this).get(0).files[i]);
+    }
+   // var formData = new FormData();
+    // console.log(names);
+    // return false;
+    $.ajax({
+      type: "POST",
+      url: ""+pkanban_url+"file_manager/upload_file",
+      data: {names:names},
+      success:function(data){
+        console.log(data);
+      }
+    });
+    // $.post(""+pkanban_url+"file_manager/upload_file",{names:names}).done(function(data){
+    //   console.log(data);
+    // });
+  });
+
 </script>
