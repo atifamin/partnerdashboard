@@ -95,8 +95,8 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
       </div>
     </article>
   </section>
-  <footer class="bizVaultFooter">
-    <p>Footer</p>
+  <footer class="bizVaultFooter" style="height: 40px;">
+    <p>App Software © 2018 ExaVault ® Inc. | Contents © 2018 Orpha Inc</p>
   </footer>
 </div>
 
@@ -239,7 +239,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 
 <script src="../bower_components/iCheck/icheck.min.js"></script> 
 <script src="../assets/js/bizVault.js"></script>
-<?php include("../includes/footer.php"); ?>
+<?php //include("../includes/footer.php"); ?>
 <script>
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
