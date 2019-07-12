@@ -72,7 +72,7 @@ class File_manager extends CI_Controller {
 		$post = $this->input->post();
 		$folder_id = $post['folder_id'];
 		$slug = $post['slug'];
-		// $data['files_breadcrumb'] = array_reverse($this->breadcrumb($slug));
+	    $data['files_breadcrumb'] = array_reverse($this->breadcrumb($slug));
 		//echo "<pre>";print_r($data['files_breadcrumb']);exit;
 		$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
 		$data['folderType'] = $this->partnerDB->where("id", $data['folder']->business_folder_type_id)->get("business_folder_type")->row();
@@ -94,7 +94,7 @@ class File_manager extends CI_Controller {
        
 		$folder = $this->partnerDB->where("name", $slug)->get("business_filedoc_list")->row();
 		$data[] = $folder;
-		$result = $this->partnerDB->where("parent_id",$folder->parent_id)->get("business_filedoc_list")->row();
+		$result = $this->partnerDB->where("id",$folder->parent_id)->get("business_filedoc_list")->row();
 
 		if(count($result)>0){
 			return $this->recursiveForBreadcrumb($result->name, $data);
@@ -153,7 +153,11 @@ class File_manager extends CI_Controller {
              {
         	   return false;
              }
+	}
 
-
+	public function upload_file(){
+		$file = $this->input->post('names');
+		print_r($_POST);
+		exit;
 	}
 }
