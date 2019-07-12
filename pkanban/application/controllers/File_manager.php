@@ -82,32 +82,23 @@ class File_manager extends CI_Controller {
 	}
 
 
-
-
 	public function breadcrumb($slug){
 
 		return $this->recursiveForBreadcrumb($slug, array());
 	}
 	
-
-	public function recursiveForBreadcrumb($slug, $data){
-       
+	public function recursiveForBreadcrumb($slug, $data){  
 		$folder = $this->partnerDB->where("name", $slug)->get("business_filedoc_list")->row();
 		$data[] = $folder;
 		$result = $this->partnerDB->where("id",$folder->parent_id)->get("business_filedoc_list")->row();
-
 		if(count($result)>0){
 			return $this->recursiveForBreadcrumb($result->name, $data);
 		}
 		return $data;
 	}
 
-
 	public function remove_folder(){
-
         $folder_id = $this->input->post('folder_id');
-        
-
         if($this->partnerDB->where("id", $folder_id)->delete("business_filedoc_list"))
           {
             return true;
@@ -115,9 +106,8 @@ class File_manager extends CI_Controller {
           }else{
         	     return false;
                 }
-        
-
 	}
+
 	public function load_company_logo(){
 		$user_id = $this->input->post('user_id');
 		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name , dbe.Logo from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
