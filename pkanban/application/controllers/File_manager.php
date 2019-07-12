@@ -146,8 +146,26 @@ class File_manager extends CI_Controller {
 	}
 
 	public function upload_file(){
-		$file = $this->input->post('names');
-		print_r($_POST);
-		exit;
+		$filesCount = count($_FILES['file']['name']);
+		for ($i=0; $i < $filesCount ; $i++) { 
+			$name = $_FILES['file']['name'][$i];
+			$type = $_FILES['file']['type'][$i];
+			$tmp_name = $_FILES['file']['tmp_name'][$i];
+            $error = $_FILES['file']['error'][$i];
+            $size = $_FILES['file']['size'][$i];
+
+			// File upload configuration
+            $uploadPath = 'uploads/';
+            $config['upload_path'] = $uploadPath;
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+
+			echo "<pre>"; print_r($size);
+		}
+	// 	if(count($_FILES["file"]["name"])>0){
+	// 		print_r($_FILES['file']['name']);	
+	// 	}
+		
+	// 	exit;
 	}
+
 }
