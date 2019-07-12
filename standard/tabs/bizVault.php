@@ -239,7 +239,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 
 <script src="../bower_components/iCheck/icheck.min.js"></script> 
 <script src="../assets/js/bizVault.js"></script>
-<?php //include("../includes/footer.php"); ?>
+<?php include("../includes/footer3.php"); ?>
 <script>
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
