@@ -24,7 +24,7 @@ function create_folder(){
     var parent_id = $("#parent_id").val();
     var business_folder_type_id = $("#business_folder_type_id").val();
     var user_id = $("#user_id").val();
-    var folder_name = "New Folder";
+    var folder_name = "NewFolder";
     var data = {
         parent_id       :   parent_id,
         type            :   "folder",

@@ -11,7 +11,7 @@
             if($breadCount>0){
               $nextIcon = '<i class="fa fa-angle-right" style="color:#686b6d;font-size:1.3rem;"></i>';
             }
-            echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_folder('.$bread->id.', \''.$bread->name.'\')" style="color:#2239ab;font-size:1.3rem;border-bottom: 1px solid;">'.$bread->name.'</a>';
+            echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_folder('.$bread->id.', \''.$bread->slug.'\')" style="color:#2239ab;font-size:1.3rem;border-bottom: 1px solid;">'.$bread->name.'</a>';
              $breadCount++;
           }
         }
@@ -22,8 +22,8 @@
   <?php if(count($sub_folders)>0){ ?>
   <?php foreach($sub_folders as $sub){ ?>
   <div class="col-md-12 folder"  id="folder_id_<?php echo $sub->id; ?>">
-    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->name; ?>')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
-    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->name; ?>')" class="col-md-8 main-folder-area-content">
+    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->slug; ?>')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
+    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->slug; ?>')" class="col-md-8 main-folder-area-content">
       <h3 id="folder_<?php echo $sub->id; ?>" onblur="change_folder_name(<?php echo $sub->id; ?>,$(this).html())" contenteditable="false"><?php echo $sub->name; ?></h3>
       <p>Updated 3 days ago by testOne 17.5MB</p>
     </div>
