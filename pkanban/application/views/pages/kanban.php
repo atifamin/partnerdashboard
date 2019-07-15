@@ -235,6 +235,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab_edit"><?php echo e('Edit Deal', true); ?></a> </li>
           <li><a data-toggle="tab" href="#tab_attachments"><?php echo e('Attachments', true); ?></a></li>
+          <li><a data-toggle="tab" href="#tab_bizvault_files_document"><?php echo e('bizVAULT™ Files and Documents', true); ?></a></li>
           <li><a data-toggle="tab" href="#tab_periods"><?php echo e('Working periods', true); ?></a></li>
         </ul>
         <div class="tab-content bck">
@@ -409,6 +410,105 @@
             </form>
             <?php endif; ?>
           </div>
+          <div id="tab_bizvault_files_document" class="tab-pane fade in">
+            <div class="row" style="background-color: #93CCDD;padding: 3% 0">
+              <div class="col-md-2">
+                <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px">
+              </div>
+              <div class="col-md-6">
+                <p>First Name Last Name</p>
+                <p>Business Name</p>
+              </div>
+              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%">
+                <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a>
+              </div>
+            </div>
+            <div class="row" style="background-color: #33859B;color: #ffff">
+              <div class="col-md-12">
+                <h4>BASIC BUSINESS FILES AND DOCUMENTS</h4>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <tbody>
+                <tr style="background-color: #DBEEF4">
+                  <td style="border: none; ">
+                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
+                      <span>2017 Cash Flow Stmt</span>
+                    </div>
+                  </td>
+                  <td class="text-center" style="width: 22%">
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">View</a>
+                    </div>
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">Download</a>
+                    </div>
+                  </td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                </tr>
+                <tr style="background-color: #8FB3E3">
+                  <td style="border: none; ">
+                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
+                      <span>2017 Cash Flow Stmt</span>
+                    </div>
+                  </td>
+                  <td class="text-center" style="width: 22%">
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">View</a>
+                    </div>
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">Download</a>
+                    </div>
+                  </td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                </tr>
+                <tr style="background-color: #DBEEF4">
+                  <td style="border: none; ">
+                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
+                      <span>2017 Cash Flow Stmt</span>
+                    </div>
+                  </td>
+                  <td class="text-center" style="width: 22%">
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">View</a>
+                    </div>
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">Download</a>
+                    </div>
+                  </td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                </tr>
+                <tr style="background-color: #8FB3E3">
+                  <td style="border: none; ">
+                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
+                      <span>2017 Cash Flow Stmt</span>
+                    </div>
+                  </td>
+                  <td class="text-center" style="width: 22%">
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">View</a>
+                    </div>
+                    <div style="background-color: #48AAC6;margin-top: 6%">
+                      <a href="" style="color: #ffff">Download</a>
+                    </div>
+                  </td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div id="tab_periods" class="tab-pane fade in">
             <div class="row">
               <div class="col-md-4 text-center">
@@ -443,6 +543,101 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="bizvault_access_request_modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 550px;overflow-y: auto;">
+        <div class="row">
+          <div class="col-md-12" style="margin-top: 12px">
+            <span style="border: 1px solid;font-size: 20px;border-radius: 10px;padding: 3px;color: #8aa0bf"><b>Basic Business Files and Documents</b></span>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
+            <span style="font-size: 18px">Required Business Documents</span>
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
+                <td >
+                  <div style="background-color:#47AEC3;text-align: center;">
+                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                  </div>
+                  <div style="text-align: center;background-color:#92D14F">
+                    <span style="font-size: 18px">VIEW ONLY</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
+                <td >
+                  <div style="background-color:#47AEC3;text-align: center;">
+                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                  </div>
+                  <div style="text-align: center;background-color:#92D14F">
+                    <span style="font-size: 18px">VIEW AND DOWNLOAD</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="margin-top: 12px">
+            <span style="border: 1px solid;font-size: 20px;border-radius: 10px;padding: 3px;color: #8aa0bf"><b>Detailed Business Files and Documents</b></span>
+          </div>
+          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
+            <span style="font-size: 18px">Required Business Documents</span>
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
+                <td >
+                  <div style="background-color:#47AEC3;text-align: center;">
+                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                  </div>
+                  <div style="text-align: center;background-color:#92D14F">
+                    <span style="font-size: 18px">VIEW AND DOWNLOAD</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="margin-top: 12px">
+            <span style="border: 1px solid;font-size: 20px;border-radius: 10px;padding: 3px;color: #8aa0bf"><b>Basic Personal Financial</b></span>
+          </div>
+          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
+            <span style="font-size: 18px">Required Business Documents</span>
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
+                <td >
+                  <div style="background-color:#47AEC3;text-align: center;">
+                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                  </div>
+                  <div style="text-align: center;background-color:#92D14F">
+                    <span style="font-size: 18px">VIEW ONLY</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php if ($data['task_standby'] && $this->config->item('demo_mode') == FALSE): ?>
 <div class="modal fade" id="resumeWorkTaskModal" tabindex="-1" role="dialog"
          aria-labelledby="resumeWorkTaskModalLabel" aria-hidden="true">
@@ -471,6 +666,8 @@
   </div>
 </div>
 <?php endif; ?>
+
+
 <script>
   //ck editor
   //  CKEDITOR.replace( 'editTodoInput2');
@@ -1118,6 +1315,11 @@
             return false;
         });
     });
-
-
+  
+  function bizvault_access_request(){
+    // alert();
+    // return false;
+    $('#bizvault_access_request_modal').modal('show');
+    $('#editTaskModal').modal('hide');
+  }
 </script> 

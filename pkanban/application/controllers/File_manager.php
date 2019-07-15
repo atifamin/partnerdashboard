@@ -165,7 +165,7 @@ class File_manager extends CI_Controller {
             $config['upload_path'] = $uploadPath;
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
 
-			echo "<pre>"; print_r($size);
+			echo "<pre>"; print_r($_FILES);
 		}
 	// 	if(count($_FILES["file"]["name"])>0){
 	// 		print_r($_FILES['file']['name']);	

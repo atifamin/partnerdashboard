@@ -27,15 +27,17 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     <article class="bizVaultArticle">
       <div class="row bizVaultArticle-row">
         <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
-        <div class="col-md-12 top-button-area" align="right">
-          <a href="#" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
-          </a> <a href="javascript:create_folder()" class="new-folder-button"><i class="fa fa-folder"></i>&nbsp;&nbsp;New Folder</a>
-          <form id="file_upload_form" method="post">
-          <input type="file" id="upload_file" name="file[]" multiple style="display: none;">
-          <a onclick="document.getElementById('upload_file').click(); return false" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
-          </a> 
-          </form>
-
+        <div class="col-md-12 top-button-area" >
+          <div class="row">
+            <div class="col-md-3 col-md-offset-9">
+              <form id="file_upload_form" method="post" style="float: left;margin-left: 20%">
+                <input type="file" id="upload_file" name="file[]" multiple style="display: none;">
+                <a onclick="document.getElementById('upload_file').click(); return false" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
+                </a> 
+              </form>
+              <a href="javascript:create_folder()" style="float: right;margin: 2% 5% 0 0;" class="new-folder-button"><i class="fa fa-folder"></i>&nbsp;&nbsp;New Folder</a>
+            </div>
+          </div>
         </div>
         <?php } ?>
         <div class="col-md-12 top-search-bar-area">
@@ -77,7 +79,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   </footer>
 </div>
 
-<div class="modal" id="notification_model">
+<div class="modal fade" id="notification_model">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border: 0;background-color: #1F487E">
@@ -109,7 +111,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     </div>
   </div>
 </div>
-<div class="modal" id="access_activity_model">
+<div class="modal fade" id="access_activity_model">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border: 0;background-color: #1F487E">
@@ -145,7 +147,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     </div>
   </div>
 </div>
-<div class="modal" id="acitivity_model">
+<div class="modal fade" id="acitivity_model">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center; color: white; height: 60px; background-color: #1F487E; border: none;">
