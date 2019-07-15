@@ -3,12 +3,13 @@ $pkanban_url = $("#pkanban_url").val();
 $user_id = $("#user_id").val();
 
 function load_content(user_id){
-    $.post(""+$pkanban_url+"file_manager/index", {user_id:user_id}).done(function(e){
+    var parent_id = $("#parent_id").val();
+    $.post(""+$pkanban_url+"file_manager/index", {user_id:user_id,parent_id:parent_id}).done(function(e){
         $("#main_content").html(e);
     });
 }
 
-function load_other_folder(user_id, parent_id){
+function load_other_folder(user_id, parent_id, folder_id){
     $.post(""+$pkanban_url+"file_manager/load_other_folder", {user_id:user_id, parent_id:parent_id}).done(function(e){
         $("#main_content").html(e);
     });
@@ -83,6 +84,58 @@ function remove_folder(folder_id){
 
 
 }
+
+
+$('#upload_file').on('change',function(e){
+    e.preventDefault();
+    var names = [];
+    for (var i = 0; i < $(this).get(0).files.length; ++i) {
+        names.push($(this).get(0).files[i]);
+    }
+    var formData = new FormData($('#file_upload_form')[0]);
+
+    // console.log(formData);
+    // return false;
+    $.ajax({
+      type: "POST",
+      url: ""+pkanban_url+"file_manager/upload_file",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success:function(data){
+        console.log(data);
+      }
+    });
+    // $.post(""+pkanban_url+"file_manager/upload_file",{names:names}).done(function(data){
+    //   console.log(data);
+    // });
+  });
+
+
+  $(document).ready(function(){
+    pkanban_url = $("#pkanban_url").val();
+    var user_id = $("#user_id").val();
+    $.post(""+pkanban_url+"file_manager/load_company_logo", {user_id:user_id}).done(function(e){
+        $("#company_logo_content").html(e);
+    }); 
+  });
+  
+  function refresh_folder_content(){
+    location.reload(); 
+  }
+
+  function notification(){
+    $('#notification_model').modal('show');
+  }
+
+  function access_activity(){
+    $('#access_activity_model').modal('show');
+  }
+
+  function activity(){
+    $('#acitivity_model').modal('show');
+  }
 
 
 

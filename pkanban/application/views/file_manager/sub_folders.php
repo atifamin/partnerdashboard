@@ -1,22 +1,38 @@
-
 <div class="col-md-12 main-folder-area-title">
     <p><span><?php echo $folderType->name; ?></span></p>
   </div>
   <?php
-     if(isset($files_breadcrumb)){
-        if(count($files_breadcrumb)>0){
-          $breadCount = 0;
-          foreach($files_breadcrumb as $bread){
-            $nextIcon = '';
-            if($breadCount>0){
-              $nextIcon = '<i class="fa fa-angle-right" style="color:#686b6d;font-size:1.3rem;"></i>';
-            }
-            echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_folder('.$bread->id.', \''.$bread->slug.'\')" style="color:#2239ab;font-size:1.3rem;border-bottom: 1px solid;">'.$bread->name.'</a>';
-             $breadCount++;
-          }
-        }
-      }
+    //  if(isset($files_breadcrumb)){
+    //     if(count($files_breadcrumb)>0){
+    //       $breadCount = 0;
+    //       foreach($files_breadcrumb as $bread){
+    //         $nextIcon = '';
+    //         if($breadCount>0){
+    //           $nextIcon = '<i class="fa fa-angle-right" style="color:#686b6d;font-size:1.3rem;"></i>';
+    //         }
+    //         echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_folder('.$bread->id.', \''.$bread->slug.'\')" style="color:#2239ab;font-size:1.3rem;border-bottom: 1px solid;">'.$bread->name.'</a>';
+    //          $breadCount++;
+    //       }
+    //     }
+    //   }
     ?>
+  <?php if(isset($files_breadcrumb) && count($files_breadcrumb)>0): ?>
+  <div class="row" style="padding-left:6%;padding-right:6%;">
+  <div class="col-md-12">
+  <ol class="breadcrumb breadcrumb-arrow">
+		<li><a href="javascript:;">Home</a></li>
+    <?php foreach($files_breadcrumb as $key=>$bread): ?>
+		<?php if(count($files_breadcrumb)-1==$key){ ?>
+      <li class="active"><span><?php echo $bread->name; ?></span></li>
+    <?php }else{ ?>
+    <li><a href="javascript:;" onclick="open_folder(<?php echo $bread->id; ?>, '<?php echo $bread->slug; ?>')"><?php echo $bread->name; ?></a></li>
+    <?php } ?>
+    <?php endforeach; ?>
+		<!-- <li class="active"><span>Data</span></li> -->
+	</ol>
+  </div>
+  </div>
+  <?php endif; ?>
   <div id="folders_area">
     
   <?php if(count($sub_folders)>0){ ?>
@@ -41,8 +57,8 @@
   </div>
 
 <script>
-    $("#parent_id").val(<?php echo $folder->id; ?>);
-    $("#business_folder_type_id").val(<?php echo $folder->business_folder_type_id; ?>);
+    $("#parent_id").val(<?php if(isset($folder)){echo $folder->id;}else{echo 0;} ?>);
+    $("#business_folder_type_id").val(<?php if(isset($folder)){echo $folder->business_folder_type_id;}else{echo $business_folder_type_id;} ?>);
 
   
  

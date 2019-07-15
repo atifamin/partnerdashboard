@@ -12,7 +12,7 @@ class File_manager_model extends CI_Model
                 ->where("parent_id", $parent_id)
                 ->where("business_folder_type_id", $type_id)
                 ->where("type", "folder")
-                ->get("business_filedoc_list")->result();
+                ->get("bizvault_filedoc_list")->result();
     }
 
 }
