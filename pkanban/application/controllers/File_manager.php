@@ -21,8 +21,9 @@ class File_manager extends CI_Controller {
 	public function load_file_folders($data){
 		$data['folderTypes'] = $this->partnerDB->where("type", "category")->get("bizvault_files_and_folders")->result();
 		foreach($data['folderTypes'] as $key=>$val):
-			$data['folderTypes'][$key]->folders = $this->partnerDB->where("parent_id", $val->id)->get("bizvault_files_and_folders")->result();
-			if(count($data['folderTypes'][$key]->folders)>0){
+			$data['folderTypes'][$key]->folders = $this->partnerDB->where("parent_id", $val->id)->get("bizvault_files_and_folders");
+			if($data['folderTypes'][$key]->folders->num_rows()>0){
+				$data['folderTypes'][$key]->folders = $data['folderTypes'][$key]->folders->result();
 				foreach($data['folderTypes'][$key]->folders as $key1=>$val1){
 					$data['folderTypes'][$key]->folders[$key1]->completedPercentage = $this->completedPercentage($val1->id, $data['user_id']);
 					$data['folderTypes'][$key]->folders[$key1]->missingFiles = $this->missingFiles($val1->id, $data['user_id']);
@@ -36,13 +37,14 @@ class File_manager extends CI_Controller {
 
 	public function completedPercentage($id, $user_id){
 		$percent = 0;
-		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders")->result();
-		$totalFiles = count($totalPreFiles);
+		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders");
+		$totalFiles = $totalPreFiles->num_rows();
 		if($totalFiles>0){
 			$uploadedFiles = 0;
-			foreach($totalPreFiles as $key=>$val){
-				$file = $this->partnerDB->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list")->row();
-				if(count($file)>0){
+			foreach($totalPreFiles->result() as $key=>$val){
+				$file = $this->partnerDB->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+				if($file->num_rows()>0){
+					$file = $file->row();
 					$uploadedFiles = $uploadedFiles+1;
 				}
 			}
@@ -56,13 +58,14 @@ class File_manager extends CI_Controller {
 
 	public function missingFiles($id, $user_id){
 		$missing = 0;
-		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders")->result();
-		$totalFiles = count($totalPreFiles);
+		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders");
+		$totalFiles = $totalPreFiles->num_rows();
 		if($totalFiles>0){
 			$uploadedFiles = 0;
-			foreach($totalPreFiles as $key=>$val){
-				$file = $this->partnerDB->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list")->row();
-				if(count($file)>0){
+			foreach($totalPreFiles->result() as $key=>$val){
+				$file = $this->partnerDB->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+				if($file->num_rows()>0){
+					$file = $file->row();
 					$uploadedFiles = $uploadedFiles+1;
 				}
 			}
@@ -87,8 +90,9 @@ class File_manager extends CI_Controller {
 		$data['folder']->files = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "file")->get("bizvault_files_and_folders")->result();
 		foreach($data['folder']->files as $key=>$val):
 			$data['folder']->files[$key]->uploaded = 0;
-			$file = $this->partnerDB->where("user_id", $post['user_id'])->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list")->row();
-			if(count($file)>0){
+			$file = $this->partnerDB->where("user_id", $post['user_id'])->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+			if($file->num_rows()>0){
+				$file = $file->row();
 				$data['folder']->files[$key]->uploaded = 1;
 				$data['folder']->files[$key]->file = $file;
 			}
@@ -278,11 +282,15 @@ class File_manager extends CI_Controller {
 	public function upload_predefied_file(){
 		$post = $this->input->post();
 		$config['upload_path']          = './uploads/temp/';
+		if (!file_exists($config['upload_path'])) {
+			mkdir($config['upload_path'], 0777, true);
+		}
 		$config['allowed_types']        = '*';
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('file')){
 			header('Location: '.$post['redirect_url'].'');
-			// $error = array('error' => $this->upload->display_errors());
+			//$error = array('error' => $this->upload->display_errors());
+			//echo "<pre>"; print_r($error); exit;
 		}else{
 			$upload_data = array('upload_data' => $this->upload->data());
 			$data['parent_id'] = 0;
@@ -297,8 +305,9 @@ class File_manager extends CI_Controller {
 			$data["file_extension"] = $upload_data['upload_data']['file_ext'];
 			$data["file_size"] = $upload_data['upload_data']['file_size'];
 			//echo "<pre>"; print_r($data); exit;
-			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_files_and_folders_id", $post['bizvault_files_and_folders_id'])->where("user_id", $post['user_id'])->get("bizvault_filedoc_list")->row();
-			if(count($checkIfUploadedBefore)>0){
+			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_files_and_folders_id", $post['bizvault_files_and_folders_id'])->where("user_id", $post['user_id'])->get("bizvault_filedoc_list");
+			if($checkIfUploadedBefore->num_rows()>0){
+				$checkIfUploadedBefore = $checkIfUploadedBefore->row();
 				unlink($checkIfUploadedBefore->full_path);
 				$data["updated_at"] = date("Y-m-d H:i:s");
 				$data["updated_by"] = $post["user_id"];

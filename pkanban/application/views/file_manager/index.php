@@ -3,8 +3,8 @@
 <div class="col-md-12 main-folder-area-title">
   <p><span><?php echo $folderType->name; ?></span></p>
 </div>
-<?php if(count($folderType->folders)>0){ ?>
 <?php foreach($folderType->folders as $key=>$subFolder){ ?>
+<?php if($folderType->slug!="other"){ ?>
 <div class="col-md-12 folder bizvault_folder" completed="<?php echo $subFolder->completedPercentage; ?>" missing="<?php echo $subFolder->missingFiles; ?>" onclick="open_folder(<?php echo $subFolder->id; ?>)">
   <div class="col-md-2 main-folder-area-icon" ><i class="fa fa-folder"></i></div>
   <div class="col-md-8 main-folder-area-content">
@@ -14,7 +14,8 @@
     <?php } ?>
   </div>
 </div>
-<?php }} ?>
+<?php } ?>
+<?php } ?>
 <?php if($folderType->slug=="other"){ ?>
 <div class="col-md-12 folder" onclick="open_other_folder()">
   <div class="col-md-2 main-folder-area-icon" ><i class="fa fa-folder"></i></div>
