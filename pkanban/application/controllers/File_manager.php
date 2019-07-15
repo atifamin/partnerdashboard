@@ -29,6 +29,7 @@ class File_manager extends CI_Controller {
 		$post = $this->input->post();
 		$data['folderType'] = $this->partnerDB->where("slug", "other")->get("business_folder_type")->row();
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $post['parent_id'])->where("type", "folder")->where("business_folder_type_id", $data['folderType']->id)->get("business_filedoc_list")->result();
+		//echo "<pre>"; print_r($data); exit;
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
@@ -45,10 +46,11 @@ class File_manager extends CI_Controller {
 		$insert["business_folder_type_id"] = $post["business_folder_type_id"];
 		$insert["user_id"] = $post["user_id"];
 		$insert["name"] = $post["folder_name"];
+		$insert['slug']	= $this->slug($post["folder_name"], "business_filedoc_list");
 		$this->partnerDB->insert("business_filedoc_list", $insert);
 		$folderId = $this->partnerDB->insert_id();
 		$folder = $this->partnerDB->where("id", $folderId)->get("business_filedoc_list")->row();
-		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->id.'" onblur="change_folder_name('.$folder->id.',$(this).html())" contenteditable="false">'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
+		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_folder('.$folder->id.',\''.$folder->slug.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_folder('.$folder->id.',\''.$folder->slug.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->id.'" onblur="change_folder_name('.$folder->id.',$(this).html())" contenteditable="false">'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
 		echo $html;
 		//$this->load_file_folders($post);
 		//$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
@@ -73,11 +75,12 @@ class File_manager extends CI_Controller {
 		$folder_id = $post['folder_id'];
 		$slug = $post['slug'];
 	    $data['files_breadcrumb'] = array_reverse($this->breadcrumb($slug));
+
 		//echo "<pre>";print_r($data['files_breadcrumb']);exit;
 		$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
 		$data['folderType'] = $this->partnerDB->where("id", $data['folder']->business_folder_type_id)->get("business_folder_type")->row();
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("business_filedoc_list")->result();
-		//echo "<pre>"; print_r($folderDetail); exit;
+		//echo "<pre>"; print_r($data); exit;
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
@@ -87,12 +90,17 @@ class File_manager extends CI_Controller {
 		return $this->recursiveForBreadcrumb($slug, array());
 	}
 	
-	public function recursiveForBreadcrumb($slug, $data){  
-		$folder = $this->partnerDB->where("name", $slug)->get("business_filedoc_list")->row();
+	public function recursiveForBreadcrumb($slug, $data){ 
+		
+
+		$folder = $this->partnerDB->where("slug", $slug)->get("business_filedoc_list")->row();
 		$data[] = $folder;
-		$result = $this->partnerDB->where("id",$folder->parent_id)->get("business_filedoc_list")->row();
-		if($result!= NULL && count($result)>0){
-			return $this->recursiveForBreadcrumb($result->name, $data);
+
+	
+
+	   $result = $this->partnerDB->where("id",$folder->parent_id)->get("business_filedoc_list")->row();
+		if(!empty($result)){
+			return $this->recursiveForBreadcrumb($result->slug, $data);
 		}
 		return $data;
 	}
@@ -149,5 +157,43 @@ class File_manager extends CI_Controller {
 		$file = $this->input->post('names');
 		print_r($_POST);
 		exit;
+	}
+
+
+	public function slug($text, $tblname){
+		$text = str_replace("'", "", $text);
+		$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+		$text = trim($text, '-');
+		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+		$text = strtolower($text);
+		$text = preg_replace('~[^-\w]+~', '', $text);
+		if (empty($text)) return 'n-a';
+		
+		$result = $this->partnerDB
+				  ->where("slug", $text)
+				  ->get($tblname)->row();
+		
+		if(!empty($result)){
+			$slug = $result->slug;
+			$result1 = $this->partnerDB->query("SELECT *
+			FROM business_filedoc_list
+			WHERE slug LIKE '".$slug."-%'
+			ORDER BY slug DESC
+			LIMIT 1")->row();
+
+			if(!empty($result1)){
+				$counter = explode("-", $result1->slug);
+				$counter = end($counter);
+				$counter++;
+				$text = $text.'-'.($counter);
+				return $text;
+			}else{
+				$counter = 0;
+				$counter++;
+				$text = $text.'-'.($counter);
+				return $text;
+			}
+		}
+		return $text;
 	}
 }
