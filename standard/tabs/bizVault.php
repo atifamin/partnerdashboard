@@ -59,10 +59,18 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
       <div class="row bizVaultArticle-row">
         <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
         <div class="col-md-12 top-button-area" align="right">
+
          <!--  <input type="file" id="upload_file" name="file[]" multiple style="display: none;"> -->
           <!-- onclick="document.getElementById('upload_file').click(); return false" -->
           <a href="#" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
           </a> <a href="javascript:create_folder()" class="new-folder-button"><i class="fa fa-folder"></i>&nbsp;&nbsp;New Folder</a>
+
+          <form id="file_upload_form" method="post">
+          <input type="file" id="upload_file" name="file[]" multiple style="display: none;">
+          <a onclick="document.getElementById('upload_file').click(); return false" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
+          </a> 
+          </form>
+
         </div>
         <?php } ?>
         <div class="col-md-12 top-search-bar-area">
@@ -296,13 +304,17 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     for (var i = 0; i < $(this).get(0).files.length; ++i) {
         names.push($(this).get(0).files[i]);
     }
-   // var formData = new FormData();
-    // console.log(names);
+    var formData = new FormData($('#file_upload_form')[0]);
+
+    // console.log(formData);
     // return false;
     $.ajax({
       type: "POST",
       url: ""+pkanban_url+"file_manager/upload_file",
-      data: {names:names},
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
       success:function(data){
         console.log(data);
       }

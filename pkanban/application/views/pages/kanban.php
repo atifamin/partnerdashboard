@@ -96,17 +96,31 @@
                      data-toggle="modal" data-target="#editTaskModal"
                      data-task_id="<?php echo $task['task_id']; ?>">
       <div class="portlet-border"></div>
-      <div class="portlet-header"> <span class="task_title"><?php echo $task['task_title']; ?></span> <span class="portlet-date">
-        <?php if ($task['task_description']): ?>
-        <span class='ui-icon ui-icon-plusthick portlet-toggle nodrag'></span>
-        <?php endif; ?>
-        <span
-                                class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>"><?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?></span> <?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?> </span>
+      <div class="portlet-header"> 
+        <span class="task_title"><?php echo $task['task_title']; ?></span> 
+        <span class="portlet-date">
+          <?php if ($task['task_description']): ?>
+            <span class='ui-icon ui-icon-plusthick portlet-toggle nodrag'></span>
+          <?php endif; ?>
+          <span class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>">
+            <?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?>
+          </span> 
+          <?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> 
+          <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?> 
+          <div>
+          <span><?php if($task['task_funding_amount_requested']!=0){ ?>
+            FUNDING AMOUNT: 
+            <?php echo '$' .nice_number($task['task_funding_amount_requested'],'format');
+            } ?></span>
+          </div>
+        </span>
+        
         <div class="action_button hidden-xs">
-        <span><?php if($task['task_funding_amount_requested']!=0){echo '$'.number_format($task['task_funding_amount_requested']);} ?></span>
+        
           <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
           <img class="time_tracker_action" rel="<?php echo $task['task_id']; ?>"
                                  src="<?php echo base_url(); ?>images/icon_start.png"/>
+          
           <?php endif; ?>
         </div>
       </div>
@@ -210,8 +224,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-        <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: <span
-                        class="task_header"></span><span style="float:right;margin-right:20px;display:none;" id="loan_amount_span">Loan Amount <label class="label label-success" style="background-color:#ebf1de;color:#4f622f;"></label></span></h4>
+        <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: 
+          <span class="task_header"></span>
+          <span style="float:right;margin-right:20px;display:none;" id="loan_amount_span">Funding Amount 
+            <label class="label label-success" style="background-color:#ebf1de;color:#4f622f;"></label>
+          </span>
+        </h4>
         <small><?php echo e('Created by', true); ?>: <span class="task_user_name"></span></small> </div>
       <div class="modal-body">
         <ul class="nav nav-tabs">
@@ -287,7 +305,7 @@
                 <br />
               </div>
               
-              </form>
+              
               
               
               
@@ -359,8 +377,10 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close_button" data-dismiss="modal"> <?php echo e('Close', true); ?> </button>
+                <!--
                 <button type="button" class="btn btn-danger" id="delete_task"
-                                        rel=""><?php echo e('Delete Deal', true); ?> </button>
+                                        rel=""><?php //echo e('Delete Deal', true); ?> </button>
+                !-->
                 <button type="submit"
                                         class="btn btn-primary"><?php echo e('Save Deal', true); ?></button>
               </div>
@@ -801,7 +821,7 @@
                 modal.find('.task_container').val(data.task.task_container);
                 modal.find('#loan_amount_span').hide();
                 if(data.task.task_funding_amount_requested!=0){
-                  modal.find('#loan_amount_span').find('label').html('$'+data.task.task_funding_amount_requested);
+                  modal.find('#loan_amount_span').find('label').html('$'+data.task_funded_amount_formated);
                   modal.find('#loan_amount_span').show();
                 }
 

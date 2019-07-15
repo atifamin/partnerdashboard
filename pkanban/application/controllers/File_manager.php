@@ -120,7 +120,6 @@ class File_manager extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name , dbe.Logo from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
 		$data = $this->partnerDB->query($query)->row();
-
 		$word = explode(" ", ucwords($data->firm_name));
 		$business_name = " ";
 		foreach ($word as $w) {
@@ -154,10 +153,28 @@ class File_manager extends CI_Controller {
 	}
 
 	public function upload_file(){
-		$file = $this->input->post('names');
-		print_r($_POST);
-		exit;
+		$filesCount = count($_FILES['file']['name']);
+		for ($i=0; $i < $filesCount ; $i++) { 
+			$name = $_FILES['file']['name'][$i];
+			$type = $_FILES['file']['type'][$i];
+			$tmp_name = $_FILES['file']['tmp_name'][$i];
+            $error = $_FILES['file']['error'][$i];
+            $size = $_FILES['file']['size'][$i];
+
+			// File upload configuration
+            $uploadPath = 'uploads/';
+            $config['upload_path'] = $uploadPath;
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+
+			echo "<pre>"; print_r($size);
+		}
+	// 	if(count($_FILES["file"]["name"])>0){
+	// 		print_r($_FILES['file']['name']);	
+	// 	}
+		
+	// 	exit;
 	}
+
 
 
 	public function slug($text, $tblname){
@@ -196,4 +213,5 @@ class File_manager extends CI_Controller {
 		}
 		return $text;
 	}
+
 }
