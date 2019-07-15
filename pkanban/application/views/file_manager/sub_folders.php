@@ -10,7 +10,7 @@
     //         if($breadCount>0){
     //           $nextIcon = '<i class="fa fa-angle-right" style="color:#686b6d;font-size:1.3rem;"></i>';
     //         }
-    //         echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_folder('.$bread->id.', \''.$bread->slug.'\')" style="color:#2239ab;font-size:1.3rem;border-bottom: 1px solid;">'.$bread->name.'</a>';
+    //         echo '&nbsp; '.$nextIcon.' <a href="javascript:;" onclick="open_other_inner_folder('.$bread->id.', \''.$bread->slug.'\')" style="color:#2239ab;font-size:1.3rem;border-bottom: 1px solid;">'.$bread->name.'</a>';
     //          $breadCount++;
     //       }
     //     }
@@ -25,7 +25,7 @@
 		<?php if(count($files_breadcrumb)-1==$key){ ?>
       <li class="active"><span><?php echo $bread->name; ?></span></li>
     <?php }else{ ?>
-    <li><a href="javascript:;" onclick="open_folder(<?php echo $bread->id; ?>, '<?php echo $bread->slug; ?>')"><?php echo $bread->name; ?></a></li>
+    <li><a href="javascript:;" onclick="open_other_inner_folder(<?php echo $bread->id; ?>, '<?php echo $bread->slug; ?>')"><?php echo $bread->name; ?></a></li>
     <?php } ?>
     <?php endforeach; ?>
 		<!-- <li class="active"><span>Data</span></li> -->
@@ -38,8 +38,8 @@
   <?php if(count($sub_folders)>0){ ?>
   <?php foreach($sub_folders as $sub){ ?>
   <div class="col-md-12 folder"  id="folder_id_<?php echo $sub->id; ?>">
-    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->slug; ?>')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
-    <div onclick="open_folder(<?php echo $sub->id; ?>, '<?php echo $sub->slug; ?>')" class="col-md-8 main-folder-area-content">
+    <div onclick="open_other_inner_folder(<?php echo $sub->id; ?>, '<?php echo $sub->slug; ?>')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
+    <div onclick="open_other_inner_folder(<?php echo $sub->id; ?>, '<?php echo $sub->slug; ?>')" class="col-md-8 main-folder-area-content">
       <h3 id="folder_<?php echo $sub->id; ?>" onblur="change_folder_name(<?php echo $sub->id; ?>,$(this).html())" contenteditable="false"><?php echo $sub->name; ?></h3>
       <p>Updated 3 days ago by testOne 17.5MB</p>
     </div>
@@ -58,7 +58,7 @@
 
 <script>
     $("#parent_id").val(<?php if(isset($folder)){echo $folder->id;}else{echo 0;} ?>);
-    $("#business_folder_type_id").val(<?php if(isset($folder)){echo $folder->business_folder_type_id;}else{echo $business_folder_type_id;} ?>);
+    $("#bizvault_files_and_folders_id").val(<?php if(isset($folder)){echo $folder->bizvault_files_and_folders_id;}else{echo $bizvault_files_and_folders_id;} ?>);
 
   
  

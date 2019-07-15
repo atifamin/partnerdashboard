@@ -10,14 +10,14 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   $parent_id = 1;
 }
 ?>
-
+<link rel="stylesheet" href="../bower_components/iCheck/all.css">
+<link rel="stylesheet" href="../bower_components/percircle/dist/css/percircle.css">
+<link rel="stylesheet" href="../assets/css/bizVault.css">
 <input type="hidden" value="<?php echo base_url; ?>" id="base_url">
 <input type="hidden" value="<?php echo pkanban_url; ?>" id="pkanban_url">
 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" id="user_id">
 <input type="hidden" value="0" id="parent_id">
-<input type="hidden" value="<?php echo $parent_id; ?>" id="business_folder_type_id">
-<link rel="stylesheet" href="../bower_components/iCheck/all.css">
-<link rel="stylesheet" href="../assets/css/bizVault.css">
+<input type="hidden" value="<?php echo $parent_id; ?>" id="bizvault_files_and_folders_id">
 <div class="row main-area">
   <header class="logo-area" >
     <div class="row" id="company_logo_content"></div>
@@ -50,24 +50,8 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           <div class="col-md-9 main-folders-area" id="main_content">
           </div>
         
-        <div class="col-md-3 main-preview-area" style="">
-         <div id="upload_progress">
-          <div class="row text-center" style="background-color: #4E80C6;">
-            <div class="col-md-12">
-              <span class="text-white" style="font-size: 40px;">3</span><span style="font-size: 35px; color: #A9D8F4"> FILES MISSING</span>
-            </div>
-          </div>
-          <div class="row text-center" style="background-color: #C0504E">
-            <div class="col-md-12">
-              <span class="text-white" style="font-size: 20px;">PLEASE UPLOAD<br> MISSING FILES</span>
-            </div>
-          </div>
-          <div class="row" style="background-color:#F2F2F2">
-            <div class="col-md-12">
-              <img src="<?php echo pkanban_url.'images/progres.png'; ?>" style="width: 115%" >
-            </div>
-          </div>
-         </div>
+        <div class="col-md-3 main-preview-area">
+         <div id="summary_preview"></div>
         </div>
       </div>
     </article>
@@ -213,6 +197,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     
   </div>
 </div>
+<script type="text/javascript" src="../bower_components/percircle/dist/js/percircle.js"></script>
 
 <script src="../bower_components/iCheck/icheck.min.js"></script> 
 <script src="../assets/js/bizVault.js"></script>
@@ -220,27 +205,11 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 <script>
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
-  <?php }elseif(isset($_GET['type']) && $_GET['type']=="business_folder"){ ?>
-    load_business_folder($user_id, $("#business_folder_type_id").val(), '<?=$_GET['files_type']?>');
+  <?php }elseif(isset($_GET['folder'])){ ?>
+    load_folder($user_id, $("#bizvault_files_and_folders_id").val(), '<?=$_GET['folder']?>');
+    $('#summary_preview').show();
   <?php }else{ ?>
     load_content($user_id);
+    $('#summary_preview').hide();
   <?php } ?>
-
-  <?php if(isset($_GET['type']) && $_GET['type']=="business_folder"){ ?>
-      
-     $('#upload_progress').show();
-
-  <?php }else{ ?>
-    
-    $('#upload_progress').hide();
-
-  <?php } ?>
-
-
- 
-
-  
-
-  
-
 </script>
