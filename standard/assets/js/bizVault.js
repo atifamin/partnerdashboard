@@ -3,8 +3,7 @@ $pkanban_url = $("#pkanban_url").val();
 $user_id = $("#user_id").val();
 
 function load_content(user_id){
-    var parent_id = $("#parent_id").val();
-    $.post(""+$pkanban_url+"file_manager/index", {user_id:user_id,parent_id:parent_id}).done(function(e){
+    $.post(""+$pkanban_url+"file_manager/index", {user_id:user_id}).done(function(e){
         $("#main_content").html(e);
     });
 }
@@ -15,21 +14,21 @@ function load_other_folder(user_id, parent_id, folder_id){
     });
 }
 
-function load_business_folder(user_id, business_folder_type_id, files_type){
-    $.post(""+$pkanban_url+"file_manager/load_business_folder", {user_id:user_id, business_folder_type_id:business_folder_type_id, files_type:files_type}).done(function(e){
+function load_folder(user_id, bizvault_files_and_folders_id, folder_id){
+    $.post(""+$pkanban_url+"file_manager/load_folder", {user_id:user_id, bizvault_files_and_folders_id:bizvault_files_and_folders_id, folder_id:folder_id}).done(function(e){
         $("#main_content").html(e);
     });
 }
 
 function create_folder(){
     var parent_id = $("#parent_id").val();
-    var business_folder_type_id = $("#business_folder_type_id").val();
+    var bizvault_files_and_folders_id = $("#bizvault_files_and_folders_id").val();
     var user_id = $("#user_id").val();
     var folder_name = "NewFolder";
     var data = {
         parent_id       :   parent_id,
         type            :   "folder",
-        business_folder_type_id :   business_folder_type_id,
+        bizvault_files_and_folders_id :   bizvault_files_and_folders_id,
         user_id         :   user_id,
         folder_name     :   folder_name
     }
@@ -39,12 +38,12 @@ function create_folder(){
     });
 }
 
-function open_folder(folder_id, slug){
+function open_other_inner_folder(folder_id, slug){
     var data = {
         folder_id:folder_id,
         slug:slug,
     }
-    $.post(""+$pkanban_url+"file_manager/open_folder",data).done(function(e){
+    $.post(""+$pkanban_url+"file_manager/open_other_inner_folder",data).done(function(e){
         $("#main_content").html(e);
     });
 }
@@ -53,8 +52,8 @@ function open_other_folder(){
     window.location.href = $("#base_url").val()+'tabs/bizVault.php?type=other_folder';
 }
 
-function open_business_folder(files_type){
-    window.location.href = $("#base_url").val()+'tabs/bizVault.php?type=business_folder&files_type='+files_type;
+function open_folder(id){
+    window.location.href = $("#base_url").val()+'tabs/bizVault.php?folder='+id;
 }
 
 function open_home_page(){
@@ -155,4 +154,15 @@ function change_folder_name(id,name){
     });
 
 
+}
+
+function load_summary(percent, total_missing_files){
+    var uploadHtml = '<div class="row text-center" style="background-color: #8dea7b"><div class="col-md-12"><span class="text-white" style="font-size: 20px;">UPLOADED</span></div>';
+    if(total_missing_files!=0){
+        uploadHtml = '<div class="row text-center" style="background-color: #C0504E"><div class="col-md-12"><span class="text-white" style="font-size: 20px;">PLEASE UPLOAD<br> MISSING FILES</span></div>';
+    }
+    var html = '<div class="row text-center" style="background-color: #4E80C6;"><div class="col-md-12"><span class="text-white" style="font-size: 40px;">'+total_missing_files+'</span><span style="font-size: 35px; color: #A9D8F4"> FILES MISSING</span></div></div>'+uploadHtml+'</div><div class="row" style="background-color:#F2F2F2;padding:12% 0;" align="center"><div class="col-md-12"><div id="greencircle" data-percent="'+percent+'" class="big green" style="background-color:unset;"></div></div></div>';
+    $("#summary_preview").html(html);
+    $(function(){$("[id$='circle']").percircle();});
+    $("#summary_preview").show();
 }
