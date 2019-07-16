@@ -22,7 +22,16 @@
 	$Q_Sub = 'SELECT  `Legal Business Name` AS BusinessName from sbdvbe  WHERE `Certification ID`= '.$UserCertficationID.'';
 	$Q_SubR = mysqli_query($con_MAIN,$Q_Sub);
 	$Name = mysqli_fetch_assoc($Q_SubR);
-	$BusinessName = $Name['BusinessName'];	
+  $BusinessName = $Name['BusinessName'];
+  
+  $BNArray = explode(" ", $BusinessName);
+
+  if(!empty($BNArray)){
+    $BNShortForm = '';
+    foreach($BNArray as $BNKEY=>$BNVAL):
+      $BNShortForm .= substr($BNVAL,0,1);
+    endforeach;
+  }
 ?>
 <!DOCTYPE html>
 <html>
