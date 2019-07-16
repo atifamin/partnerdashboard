@@ -324,4 +324,11 @@ class File_manager extends CI_Controller {
 		
 	}
 
+	public function delete_file($id){
+		$file = $this->partnerDB->where("id", $id)->get("bizvault_filedoc_list")->row();
+		unlink($file->full_path);
+		$this->partnerDB->where("id", $id)->delete("bizvault_filedoc_list");
+		return redirect($_SERVER['HTTP_REFERER']);
+	}
+
 }
