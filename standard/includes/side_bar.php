@@ -39,11 +39,9 @@
             <div class="col-md-4" style="padding-left: 10px;padding-top: 10px;">
                 <img src="<?php echo base_url; ?>assets/img/a2.png" style="width:60px;" >
                 </div>
-                <div class="col-md-6" style="padding-left:0px;">
-                <p style="text-align:center;"><button class="btn btn-sm btn-primary" style="background-color: #77933c;border-color: #77933c;">DBC</button>
-                <br><b>Comapny Name</b>
-                <br>Some Text Here
-                </p>
+                <div class="col-md-8" style="padding-left:0px;" align="center">
+                <button class="btn btn-sm btn-primary" style="background-color: #77933c;border-color: #77933c;"><?php echo $BNShortForm; ?></button>
+                <p style="text-align:center;white-space: initial;"><?php echo ucwords(strtolower($BusinessName)); ?></p>
                 </div>
                 </div>
             </div>

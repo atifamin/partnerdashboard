@@ -159,3 +159,28 @@ function load_summary(percent, total_missing_files){
     $(function(){$("[id$='circle']").percircle();});
     $("#summary_preview").show();
 }
+
+function delete_file(id){
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Your file has been deleted!", {
+            icon: "success",
+          }).then((value)=>{
+              window.location.href = $pkanban_url+'file_manager/delete_file/'+id+'';
+          });
+        } else {
+          swal("Your file is safe!");
+        }
+      });
+}
+
+function view_file(id){
+    window.open($base_url+'tabs/view_file.php?h='+id+'', '_blank');
+}

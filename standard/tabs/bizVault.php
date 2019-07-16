@@ -203,7 +203,8 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 </div>
 <script type="text/javascript" src="../bower_components/percircle/dist/js/percircle.js"></script>
 
-<script src="../bower_components/iCheck/icheck.min.js"></script> 
+<script src="../bower_components/iCheck/icheck.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <script src="../assets/js/bizVault.js"></script>
 <?php include("../includes/footer3.php"); ?>
 <script>
