@@ -218,29 +218,52 @@ class File_manager extends CI_Controller {
 	}
 
 	public function upload_file(){
-		$filesCount = count($_FILES['file']['name']);
+		$post = $this->input->post();
+		$filesCount = count($_FILES['files']['name']);
+		//print_r($filesCount);exit;
 		for ($i=0; $i < $filesCount ; $i++) { 
-			$name = $_FILES['file']['name'][$i];
-			$type = $_FILES['file']['type'][$i];
-			$tmp_name = $_FILES['file']['tmp_name'][$i];
-            $error = $_FILES['file']['error'][$i];
-            $size = $_FILES['file']['size'][$i];
+			$_FILES['file']['name'] 	= $_FILES['files']['name'][$i];
+			$_FILES['file']['type'] 	= $_FILES['files']['type'][$i];
+			$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+            $_FILES['file']['error'] 	= $_FILES['files']['error'][$i];
+            $_FILES['file']['size'] 	= $_FILES['files']['size'][$i];
 
-			// File upload configuration
-            $uploadPath = 'uploads/';
+            $uploadPath = './uploads/otherfiles';
             $config['upload_path'] = $uploadPath;
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['allowed_types'] = '*';
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('file')){
+            	$error = array('error' => $this->upload->display_errors());
+				// print_r($error);exit;
+				//header('Location: '.$post['redirect_url'].'');
+			}else{
+				$fileData = $this->upload->data();
+				$data['parent_id'] = 0;
+				$data['type'] = 'file';
+				$data['bizvault_files_and_folders_id'] = $post['bizvault_files_and_folders_id'];
+				$data['user_id'] 	= $post['user_id'];
+				$data["name"] 		= $fileData['orig_name'];
+				$data['file_name'] 	= $fileData['file_name'];
+				$data['file_path'] 	= $fileData['file_path'];
+				$data['file_type'] 	= $fileData['file_type'];
+				$data['full_path'] 	= $fileData['full_path'];
+				$data['file_extension'] = $fileData['file_ext'];
+				$data['file_size'] 	= $fileData['file_size'];
+				$data["created_at"] = date("Y-m-d H:i:s");
+				$data["created_by"] = $post["user_id"];
+				$data["updated_at"] = date("Y-m-d H:i:s");
+				$data["updated_by"] = $post["user_id"];
 
-			echo "<pre>"; print_r($_FILES);
+				$this->partnerDB->insert("bizvault_filedoc_list", $data);	
+			}
 		}
-	// 	if(count($_FILES["file"]["name"])>0){
-	// 		print_r($_FILES['file']['name']);	
-	// 	}
-		
-	// 	exit;
+		$data['other_files'] = $this->partnerDB->where('bizvault_files_and_folders_id',$post['bizvault_files_and_folders_id'])
+									->where('type','file')
+									->where('user_id',$post['user_id'])
+									->get("bizvault_filedoc_list")
+									->result();
+		$this->load->view("file_manager/other_files_view", $data);
 	}
-
-
 
 	public function slug($text, $tblname){
 		$text = str_replace("'", "", $text);
@@ -280,7 +303,6 @@ class File_manager extends CI_Controller {
 	}
 
 	public function upload_predefied_file(){
-		//print_r($_FILES);exit;
 		$post = $this->input->post();
 		$config['upload_path']          = './uploads/temp/';
 		if (!file_exists($config['upload_path'])) {
