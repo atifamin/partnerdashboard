@@ -59,6 +59,31 @@
 	-webkit-border-radius: 0px; 
 	-moz-border-radius: 0px; 
 }
+#request_modal_heading{
+  border: 1px solid;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 3px;
+  color: #8aa0bf;
+}
+#request_modal_heading:after{
+    left: 0.5em;
+    margin-right: -79.5%;
+}
+#request_modal_heading:after {
+    background-color: #929bbf;
+    content: "";
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    vertical-align: middle;
+    width: 80%;
+}
+#file_docs_cus_btn{
+  background-color: #48AAC6;
+  margin-top: 6%;
+  color: #ffff;
+}
 
 </style>
 <script type="text/javascript" src="<?php echo base_url(); ?>template/js/jquery-dateformat.js"></script>
@@ -440,10 +465,10 @@
                     </div>
                   </td>
                   <td class="text-center" style="width: 22%">
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn" >
                       <a href="" style="color: #ffff">View</a>
                     </div>
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">Download</a>
                     </div>
                   </td>
@@ -459,11 +484,11 @@
                     </div>
                   </td>
                   <td class="text-center" style="width: 22%">
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">View</a>
                     </div>
-                    <div style="background-color: #48AAC6;margin-top: 6%">
-                      <a href="" style="color: #ffff">Download</a>
+                    <div id="file_docs_cus_btn">
+                      <a href=""style="color: #ffff">Download</a>
                     </div>
                   </td>
                   <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
@@ -478,10 +503,10 @@
                     </div>
                   </td>
                   <td class="text-center" style="width: 22%">
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">View</a>
                     </div>
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">Download</a>
                     </div>
                   </td>
@@ -497,10 +522,10 @@
                     </div>
                   </td>
                   <td class="text-center" style="width: 22%">
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">View</a>
                     </div>
-                    <div style="background-color: #48AAC6;margin-top: 6%">
+                    <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">Download</a>
                     </div>
                   </td>
@@ -549,9 +574,10 @@
     <div class="modal-content">
       <div class="modal-body" style="height: 550px;overflow-y: auto;">
         <div class="row">
+          <button type="button" class="close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
           <div class="col-md-12" style="margin-top: 12px">
-            <span style="border: 1px solid;font-size: 20px;border-radius: 10px;padding: 3px;color: #8aa0bf"><b>Basic Business Files and Documents</b></span>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <span id="request_modal_heading"><b>Basic Business Files and Documents</b></span>
+            
           </div>
           <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
             <span style="font-size: 18px">Required Business Documents</span>
@@ -561,24 +587,24 @@
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td >
-                  <div style="background-color:#47AEC3;text-align: center;">
-                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                <td>
+                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
+                    <a href="" style="color: #ffff;">ACCESS</a>
                   </div>
-                  <div style="text-align: center;background-color:#92D14F">
-                    <span style="font-size: 18px">VIEW ONLY</span>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
+                    <a href="" style="color: #000">VIEW ONLY</a>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
                  <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td >
-                  <div style="background-color:#47AEC3;text-align: center;">
-                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                <td>
+                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
+                    <a href="" style="color: #ffff;">ACCESS</a>
                   </div>
-                  <div style="text-align: center;background-color:#92D14F">
-                    <span style="font-size: 18px">VIEW AND DOWNLOAD</span>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
+                    <a href="" style="color: #000">VIEW AND DOWNLOAD</a>
                   </div>
                 </td>
               </tr>
@@ -587,7 +613,7 @@
         </div>
         <div class="row">
           <div class="col-md-12" style="margin-top: 12px">
-            <span style="border: 1px solid;font-size: 20px;border-radius: 10px;padding: 3px;color: #8aa0bf"><b>Detailed Business Files and Documents</b></span>
+            <span id="request_modal_heading"><b>Detailed Business Files and Documents</b></span>
           </div>
           <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
             <span style="font-size: 18px">Required Business Documents</span>
@@ -597,12 +623,12 @@
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
                  <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td >
-                  <div style="background-color:#47AEC3;text-align: center;">
-                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                <td>
+                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
+                    <a href="" style="color: #ffff;">ACCESS</a>
                   </div>
-                  <div style="text-align: center;background-color:#92D14F">
-                    <span style="font-size: 18px">VIEW AND DOWNLOAD</span>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
+                    <a href="" style="color: #000">VIEW AND DOWNLOAD</a>
                   </div>
                 </td>
               </tr>
@@ -611,7 +637,7 @@
         </div>
         <div class="row">
           <div class="col-md-12" style="margin-top: 12px">
-            <span style="border: 1px solid;font-size: 20px;border-radius: 10px;padding: 3px;color: #8aa0bf"><b>Basic Personal Financial</b></span>
+            <span id="request_modal_heading"><b>Basic Personal Financial</b></span>
           </div>
           <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
             <span style="font-size: 18px">Required Business Documents</span>
@@ -621,12 +647,12 @@
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td >
-                  <div style="background-color:#47AEC3;text-align: center;">
-                    <span style="color: #ffff;font-size: 18px">ACCESS</span>
+                <td>
+                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
+                    <a href="" style="color: #ffff;">ACCESS</a>
                   </div>
-                  <div style="text-align: center;background-color:#92D14F">
-                    <span style="font-size: 18px">VIEW ONLY</span>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
+                    <a href="" style="color: #000">VIEW ONLY</a>
                   </div>
                 </td>
               </tr>

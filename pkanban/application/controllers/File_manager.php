@@ -276,6 +276,7 @@ class File_manager extends CI_Controller {
 	}
 
 	public function upload_predefied_file(){
+		//print_r($_FILES);exit;
 		$post = $this->input->post();
 		$config['upload_path']          = './uploads/temp/';
 		$config['allowed_types']        = '*';
