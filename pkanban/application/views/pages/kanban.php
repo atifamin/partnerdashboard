@@ -46,45 +46,67 @@
 	border-color: #d9d9d9;
 	background-color: white;
 }
-.comment_name{width:40px;height:40px;border-radius:25px;background-color:lightgrey;padding:50%;text-align:center;font-weight:bold;}
-.comment_row{background-color:#fafafa;margin-top:2%;padding:3% 0;}
-#editTaskTodoUl2{background-color:white;}
-.comment_heading{font-size:12px;}
-.comment_body{background-color:white;border-radius:5px;padding:2%;font-size:12px;}
-.comment_reply_btn{color:black;}
-.task_comment_textarea:focus{
-	-moz-box-shadow: inset 0 0 0px rgba(0,0,0,0.0); 
-	-webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.0); 
+.comment_name {
+	width: 40px;
+	height: 40px;
+	border-radius: 25px;
+	background-color: lightgrey;
+	padding: 50%;
+	text-align: center;
+	font-weight: bold;
+}
+.comment_row {
+	background-color: #fafafa;
+	margin-top: 2%;
+	padding: 3% 0;
+}
+#editTaskTodoUl2 {
+	background-color: white;
+}
+.comment_heading {
+	font-size: 12px;
+}
+.comment_body {
+	background-color: white;
+	border-radius: 5px;
+	padding: 2%;
+	font-size: 12px;
+}
+.comment_reply_btn {
+	color: black;
+}
+.task_comment_textarea:focus {
+	-moz-box-shadow: inset 0 0 0px rgba(0,0,0,0.0);
+	-webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.0);
 	box-shadow: inner 0 0 0px rgba(0, 0, 0, 0.0);
-	-webkit-border-radius: 0px; 
-	-moz-border-radius: 0px; 
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
 }
-#request_modal_heading{
-  border: 1px solid;
-  font-size: 20px;
-  border-radius: 10px;
-  padding: 3px;
-  color: #8aa0bf;
-}
-#request_modal_heading:after{
-    left: 0.5em;
-    margin-right: -79.5%;
+#request_modal_heading {
+	border: 1px solid;
+	font-size: 20px;
+	border-radius: 10px;
+	padding: 3px;
+	color: #8aa0bf;
 }
 #request_modal_heading:after {
-    background-color: #929bbf;
-    content: "";
-    display: inline-block;
-    height: 2px;
-    position: relative;
-    vertical-align: middle;
-    width: 80%;
+	left: 0.5em;
+	margin-right: -79.5%;
 }
-#file_docs_cus_btn{
-  background-color: #48AAC6;
-  margin-top: 6%;
-  color: #ffff;
+#request_modal_heading:after {
+	background-color: #929bbf;
+	content: "";
+	display: inline-block;
+	height: 2px;
+	position: relative;
+	vertical-align: middle;
+	width: 80%;
 }
-
+#file_docs_cus_btn {
+	background-color: #48AAC6;
+	margin-top: 6%;
+	color: #ffff;
+}
 </style>
 <script type="text/javascript" src="<?php echo base_url(); ?>template/js/jquery-dateformat.js"></script>
 <div class="row">
@@ -98,55 +120,58 @@
   <?php if ($numItems == 7) $division = 1; ?>
   <?php $column_value = (count($data['containers']) > 2) ? $division : 4; ?>
   <?php if (++$i === $numItems && ($division * $numItems) < 12) $column_value = round(12 - ($division * ($numItems - 1)), 0, PHP_ROUND_HALF_UP); ?>
-  <div class="column sortable col-md-<?php echo $column_value; ?>" rel="<?php echo $container['container_id']; ?>"
-             style="background-color:<?php echo "rgba({$container['container_rgb']}, {$data['configs']['conf_background_opacity']})"; ?>;">
-    <div
-                class="column-header-total"
-                style="background-color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"> <?php echo '$'.number_format(get_container_total($container['container_id'])) ; ?> </div>
-    <div
-                class="column-header nodrag"
-                style="background-color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"><?php echo $container['container_name']; ?>
+  <div class="column sortable col-md-<?php echo $column_value; ?>" rel="<?php echo $container['container_id']; ?>" style="background-color:<?php echo "rgba({$container['container_rgb']}, {$data['configs']['conf_background_opacity']})"; ?>;">
+    <div class="column-header-total" style="background-color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"> <?php echo '$'.number_format(get_container_total($container['container_id'])) ; ?> </div>
+    <div class="column-header nodrag" style="background-color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"><?php echo $container['container_name']; ?>
       <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
       <!-- <img src="<?php echo base_url(); ?>images/plus_icon.png" class="plus_button"
-                     data-toggle="modal"
-                     data-target="#addTaskModal"
-                     data-container_name="<?php echo $container['container_name']; ?>"
-                     data-container_id="<?php echo $container['container_id']; ?>"/> -->
+       data-toggle="modal"
+       data-target="#addTaskModal"
+       data-container_name="<?php echo $container['container_name']; ?>"
+       data-container_id="<?php echo $container['container_id']; ?>"/> -->
       <?php endif; ?>
     </div>
     <?php foreach ($data['tasks'][$container['container_id']] as $task): ?>
-    <div class="portlet task_element"
-                     <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>"
-                     id="<?php echo $task['task_id']; ?>"
-                     data-toggle="modal" data-target="#editTaskModal"
-                     data-task_id="<?php echo $task['task_id']; ?>">
+    <?php
+    $this->load->model("Sec");
+    $DETAIL = $this->sec->get_task_content($task['task_id']);
+    //echo "<pre>"; print_r($DETAIL);
+    ?>
+    <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" >
       <div class="portlet-border"></div>
-      <div class="portlet-header"> 
-        <span class="task_title"><?php echo $task['task_title']; ?></span> 
-        <span class="portlet-date">
-          <?php if ($task['task_description']): ?>
-            <span class='ui-icon ui-icon-plusthick portlet-toggle nodrag'></span>
-          <?php endif; ?>
-          <span class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>">
-            <?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?>
-          </span> 
-          <?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> 
-          <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?> 
-          <div>
-          <span><?php if($task['task_funding_amount_requested']!=0){ ?>
-            FUNDING AMOUNT: 
-            <?php echo '$' .nice_number($task['task_funding_amount_requested'],'format');
-            } ?></span>
+      <div class="portlet-header" style="padding-right:0px;padding-left:0px;min-height:100px;">
+        <div id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+          <div class="col-md-12" style="padding:0px;">
+            <div class="col-md-3" style="padding: 0px;background-color: red;border-right: 5px solid white;height: 55px;text-align: center;line-height: 3.6;">Logo</div>
+            <div class="col-md-9" style="padding:0px;">
+              <p style="font-size:12px;background-color:#4f81bd;padding:2%;padding-right:5%;color:white;white-space:nowrap;overflow:hidden;">Charles Michael Trucking... </p>
+              <p style="font-size:12px;background-color:#31859c;padding:2%;color:white;white-space:nowrap;overflow:hidden;">C Michael - Owner</p>
+            </div>
           </div>
-        </span>
-        
-        <div class="action_button hidden-xs">
-        
-          <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
-          <img class="time_tracker_action" rel="<?php echo $task['task_id']; ?>"
-                                 src="<?php echo base_url(); ?>images/icon_start.png"/>
-          
-          <?php endif; ?>
+          <div class="col-md-12" style="padding: 0px;">
+            <div class="col-md-10" style="padding-right:0px;text-align:center;"><span class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>"> <?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?> </span> <span style="font-size:12px;"><?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?></span></div>
+            <div class="col-md-2" style="padding:unset;padding-top:6%;">
+              <div class="action_button hidden-xs">
+                <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
+                <img class="time_tracker_action" rel="<?php echo $task['task_id']; ?>" src="<?php echo base_url(); ?>images/icon_start.png"/>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12" style="padding: 0px;margin-top:5%;">
+          <div class="col-md-3"> <a href="javascript:;toggleShowDescription(<?php echo $task['task_id']; ?>)" style="color:black;"><i class="fa fa-chevron-down"></i></a> </div>
+          <div class="col-md-9" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+            <div class="col-md-6" style="background-color:#ebf1de;color:#77933c;padding-right: 2px;padding-left: 2px;text-align: center;">
+              <p style="font-size:10px;margin-bottom:0px;min-height: 30px;">FUNDING AMOUNT</p>
+            </div>
+            <div class="col-md-6" style="background-color:#77933c;color:#ebf1de;padding-right: 2px;padding-left: 2px;text-align: center;">
+              <p style="font-size:14px;margin-bottom:0px;min-height: 30px;line-height: 2;"><?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); }else{echo "0";} ?></p>
+            </div>
+          </div>
+          <div class="col-md-12" style="padding:2%;padding-top:5%;display:none;" id="description_<?php echo $task['task_id']; ?>">
+          <b><?php echo $task['task_title']; ?></b><br>
+          <?php if(empty($task['task_description'])){echo "<p style='font-size:10px;text-align:center;'>No Comment Available.</p>";}else{echo $task['task_description'];} ?></div>
         </div>
       </div>
       <?php if ($task['task_description']): ?>
@@ -169,7 +194,7 @@
   <span class="col-title"><?php echo $container['container_name']; ?></span> <span
             style="color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"> <?php echo count($data['tasks'][$container['container_id']]); ?> </span> <span class="separator">|</span>
   <?php endforeach; ?>
-  <!-- <span class="board-time-spent"><?php //echo e('TIME SPENT ON THIS BOARD', true); ?> <strong><?php //echo $data['board_time_spent_active']; ?></strong> (<?php //echo $data['board_time_spent_archived']; ?> Archived task)</span>--> </div> 
+  <!-- <span class="board-time-spent"><?php //echo e('TIME SPENT ON THIS BOARD', true); ?> <strong><?php //echo $data['board_time_spent_active']; ?></strong> (<?php //echo $data['board_time_spent_archived']; ?> Archived task)</span>--> </div>
 
 <!------------------ ############################ MODALS ########################################## -->
 
@@ -249,12 +274,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-        <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: 
-          <span class="task_header"></span>
-          <span style="float:right;margin-right:20px;display:none;" id="loan_amount_span">Funding Amount 
-            <label class="label label-success" style="background-color:#ebf1de;color:#4f622f;"></label>
-          </span>
-        </h4>
+        <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: <span class="task_header"></span> <span style="float:right;margin-right:20px;display:none;" id="loan_amount_span">Funding Amount
+          <label class="label label-success" style="background-color:#ebf1de;color:#4f622f;"></label>
+          </span> </h4>
         <small><?php echo e('Created by', true); ?>: <span class="task_user_name"></span></small> </div>
       <div class="modal-body">
         <ul class="nav nav-tabs">
@@ -266,27 +288,24 @@
         <div class="tab-content bck">
           <div id="tab_edit" class="tab-pane fade in active">
             <form class="formAjax" action="<?php echo base_url(); ?>ajax/edit_task/" method="post">
-              <input class="task_id" type="hidden" name="task_id" value=""/>
-              <div class="form-group">
-                <label for="task_title" class="form-control-label"><?php echo e('Title', true); ?> :</label>
-                <input name="task_title" type="text" class="task_title form-control">
-              </div>
-              <div class="form-group">
-                <label for="task_description"
+            <input class="task_id" type="hidden" name="task_id" value=""/>
+            <div class="form-group">
+              <label for="task_title" class="form-control-label"><?php echo e('Title', true); ?> :</label>
+              <input name="task_title" type="text" class="task_title form-control">
+            </div>
+            <div class="form-group">
+              <label for="task_description"
                                        class="form-control-label"><?php echo e('Description', true); ?>:</label>
-                <textarea name="task_description" class="task_description form-control"
+              <textarea name="task_description" class="task_description form-control"
                                           rows="3"></textarea>
-              </div>
-              
-              
-              
-              <form id="addComments" enctype="multipart/form-data" method="POST">
+            </div>
+            <form id="addComments" enctype="multipart/form-data" method="POST">
               <div class="form-group to_do"> &nbsp;&nbsp;<i class="fa fa-comment-o">&nbsp;&nbsp;&nbsp;&nbsp;</i>
                 <label for="Add_comment" class="form-control-label"><?php echo e('Add Comment', true); ?> </label>
                 <br>
                 <div class="row" id="row1">
                   <div class="col-md-1 circle" id="col1">
-                  <?php
+                    <?php
                    $dashboardUserDetail = $this->partnerDB->where("user_id", $_SESSION['user_session']['dashboard_user_id'])->get("user")->row();
                   ?>
                     <?=substr($dashboardUserDetail->user_fname, 0,1).substr($dashboardUserDetail->user_lname, 0,1); ?>
@@ -307,33 +326,26 @@
                 <div class="header" style="padding-bottom:3%;"> 
                   <!-- <script src="<?php //echo base_url(); ?>ckeditor/ckeditor.js" type="text/javascript"></script> -->
                   <div style="background-color: white;margin: 2%;">
-                  <div style="text-align:left;color:grey;font-size: 12px;" id="reply_section">
-                    
-                  </div>
-                  <input type="hidden" id="replyId" name="replyId" value="0">
-                  <textarea name="task_comment" id="editTodoInput2" style="border: 0px;resize: none;" class="task_comment form-control todoInput task_comment_textarea"
+                    <div style="text-align:left;color:grey;font-size: 12px;" id="reply_section"> </div>
+                    <input type="hidden" id="replyId" name="replyId" value="0">
+                    <textarea name="task_comment" id="editTodoInput2" style="border: 0px;resize: none;" class="task_comment form-control todoInput task_comment_textarea"
                                           rows="3" placeholder="Write a comment"></textarea>
-				  <div style="text-align:right;margin-right: 10px;padding-bottom:5px;"><a href="javascript:;" id="comment_attach_a"><p id="uploaded_file_name"></p><img src="<?php echo base_url("images/paperclip.png"); ?>" width="15" /></a></div>
+                    <div style="text-align:right;margin-right: 10px;padding-bottom:5px;"><a href="javascript:;" id="comment_attach_a">
+                      <p id="uploaded_file_name"></p>
+                      <img src="<?php echo base_url("images/paperclip.png"); ?>" width="15" /></a></div>
                   </div>
                   <div id="commentMessageError" style="color:red;display:none">This field is required.</div>
                   <input type="file" name="comment_file" style="display:none" />
-                  <!--<span id="editTaskAddBtn2" class="addBtn">Add</span>--> 
-                 <input type="button" class="addBtn" id="editTaskAddBtn2" value="Add" style="float:right;margin-right:12px;" />
-                 </div>
-                  
+                  <!--<span id="editTaskAddBtn2" class="addBtn">Add</span>-->
+                  <input type="button" class="addBtn" id="editTaskAddBtn2" value="Add" style="float:right;margin-right:12px;" />
+                </div>
                 <input type="hidden" name="Add_comment" id="edit_task_todo" value=""/>
                 <!--<ul id="editTaskTodoUl2" class="todo_ul todo_ul_edit_mode">
                 </ul>-->
                 
-                <div class="row" id="editTaskTodoUl2">
-                
-                </div>
+                <div class="row" id="editTaskTodoUl2"> </div>
                 <br />
               </div>
-              
-              
-              
-              
               
               <!--     <div class="form-group to_do">
                                 <label for="task_comment" class="form-control-label"><?php //echo e('Add Comment', true); ?>
@@ -429,24 +441,20 @@
             <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
             <div class="dropzone_error"></div>
             <form action="/upload-target" class="dropzone" id="dropzone_form">
-            <div class="fallback">
-              <input class="upload_task_id" type="hidden" name="task_id" value=""/>
+              <div class="fallback">
+                <input class="upload_task_id" type="hidden" name="task_id" value=""/>
               </div>
             </form>
             <?php endif; ?>
           </div>
           <div id="tab_bizvault_files_document" class="tab-pane fade in">
             <div class="row" style="background-color: #93CCDD;padding: 3% 0">
-              <div class="col-md-2">
-                <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px">
-              </div>
+              <div class="col-md-2"> <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px"> </div>
               <div class="col-md-6">
                 <p>First Name Last Name</p>
                 <p>Business Name</p>
               </div>
-              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%">
-                <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a>
-              </div>
+              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
             </div>
             <div class="row" style="background-color: #33859B;color: #ffff">
               <div class="col-md-12">
@@ -456,81 +464,41 @@
             <table class="table table-striped">
               <tbody>
                 <tr style="background-color: #DBEEF4">
-                  <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
-                    <!-- <a href=""><i class="far fa-file-pdf"></i></a> -->
-                  </td>
-                  <td style="text-align: center;">
-                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
-                      <span>2017 Cash Flow Stmt</span>
-                    </div>
-                  </td>
-                  <td class="text-center" style="width: 22%">
-                    <div id="file_docs_cus_btn" >
-                      <a href="" style="color: #ffff">View</a>
-                    </div>
-                    <div id="file_docs_cus_btn">
-                      <a href="" style="color: #ffff">Download</a>
-                    </div>
-                  </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"> 
+                    <!-- <a href=""><i class="far fa-file-pdf"></i></a> --></td>
+                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
+                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn" > <a href="" style="color: #ffff">View</a> </div>
+                    <div id="file_docs_cus_btn"> <a href="" style="color: #ffff">Download</a> </div></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
+                    <span>July 19, 2019</span><br>
+                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
                 </tr>
                 <tr style="background-color: #8FB3E3">
-                  <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
-                  </td>
-                  <td style="text-align: center;">
-                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
-                      <span>2017 Cash Flow Stmt</span>
-                    </div>
-                  </td>
-                  <td class="text-center" style="width: 22%">
-                    <div id="file_docs_cus_btn">
-                      <a href="" style="color: #ffff">View</a>
-                    </div>
-                    <div id="file_docs_cus_btn">
-                      <a href=""style="color: #ffff">Download</a>
-                    </div>
-                  </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"></td>
+                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
+                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn"> <a href="" style="color: #ffff">View</a> </div>
+                    <div id="file_docs_cus_btn"> <a href=""style="color: #ffff">Download</a> </div></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
+                    <span>July 19, 2019</span><br>
+                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
                 </tr>
                 <tr style="background-color: #DBEEF4">
-                  <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
-                  </td>
-                  <td style="text-align: center;">
-                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
-                      <span>2017 Cash Flow Stmt</span>
-                    </div>
-                  </td>
-                  <td class="text-center" style="width: 22%">
-                    <div id="file_docs_cus_btn">
-                      <a href="" style="color: #ffff">View</a>
-                    </div>
-                    <div id="file_docs_cus_btn">
-                      <a href="" style="color: #ffff">Download</a>
-                    </div>
-                  </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"></td>
+                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
+                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn"> <a href="" style="color: #ffff">View</a> </div>
+                    <div id="file_docs_cus_btn"> <a href="" style="color: #ffff">Download</a> </div></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
+                    <span>July 19, 2019</span><br>
+                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
                 </tr>
                 <tr style="background-color: #8FB3E3">
-                  <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
-                  </td>
-                  <td style="text-align: center;">
-                    <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
-                      <span>2017 Cash Flow Stmt</span>
-                    </div>
-                  </td>
-                  <td class="text-center" style="width: 22%">
-                    <div id="file_docs_cus_btn">
-                      <a href="" style="color: #ffff">View</a>
-                    </div>
-                    <div id="file_docs_cus_btn">
-                      <a href="" style="color: #ffff">Download</a>
-                    </div>
-                  </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"></td>
+                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
+                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn"> <a href="" style="color: #ffff">View</a> </div>
+                    <div id="file_docs_cus_btn"> <a href="" style="color: #ffff">Download</a> </div></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
+                    <span>July 19, 2019</span><br>
+                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
                 </tr>
               </tbody>
             </table>
@@ -569,102 +537,63 @@
     </div>
   </div>
 </div>
-
 <div class="modal fade" id="bizvault_access_request_modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body" style="height: 550px;overflow-y: auto;">
         <div class="row">
           <button type="button" class="close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
-          <div class="col-md-12" style="margin-top: 12px">
-            <span id="request_modal_heading"><b>Basic Business Files and Documents</b></span>
-            
-          </div>
-          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
-            <span style="font-size: 18px">Required Business Documents</span>
-          </div>
+          <div class="col-md-12" style="margin-top: 12px"> <span id="request_modal_heading"><b>Basic Business Files and Documents</b></span> </div>
+          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;"> <span style="font-size: 18px">Required Business Documents</span> </div>
           <table class="table table-bordered">
             <tbody>
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td>
-                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
-                    <a href="" style="color: #ffff;">ACCESS</a>
-                  </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
-                    <a href="" style="color: #000">VIEW ONLY</a>
-                  </div>
-                </td>
+                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW ONLY</a> </div></td>
               </tr>
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td>
-                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
-                    <a href="" style="color: #ffff;">ACCESS</a>
-                  </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
-                    <a href="" style="color: #000">VIEW AND DOWNLOAD</a>
-                  </div>
-                </td>
+                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
+                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW AND DOWNLOAD</a> </div></td>
               </tr>
             </tbody>
-          </table>  
+          </table>
         </div>
         <div class="row">
-          <div class="col-md-12" style="margin-top: 12px">
-            <span id="request_modal_heading"><b>Detailed Business Files and Documents</b></span>
-          </div>
-          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
-            <span style="font-size: 18px">Required Business Documents</span>
-          </div>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td>
-                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
-                    <a href="" style="color: #ffff;">ACCESS</a>
-                  </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
-                    <a href="" style="color: #000">VIEW AND DOWNLOAD</a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>  
-        </div>
-        <div class="row">
-          <div class="col-md-12" style="margin-top: 12px">
-            <span id="request_modal_heading"><b>Basic Personal Financial</b></span>
-          </div>
-          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;">
-            <span style="font-size: 18px">Required Business Documents</span>
-          </div>
+          <div class="col-md-12" style="margin-top: 12px"> <span id="request_modal_heading"><b>Detailed Business Files and Documents</b></span> </div>
+          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;"> <span style="font-size: 18px">Required Business Documents</span> </div>
           <table class="table table-bordered">
             <tbody>
               <tr>
                 <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
                 <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td>
-                  <div style="background-color:#47AEC3;text-align: center;font-size: 18px">
-                    <a href="" style="color: #ffff;">ACCESS</a>
-                  </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;">
-                    <a href="" style="color: #000">VIEW ONLY</a>
-                  </div>
-                </td>
+                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW AND DOWNLOAD</a> </div></td>
               </tr>
             </tbody>
-          </table>  
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="margin-top: 12px"> <span id="request_modal_heading"><b>Basic Personal Financial</b></span> </div>
+          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;"> <span style="font-size: 18px">Required Business Documents</span> </div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
+                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
+                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
+                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW ONLY</a> </div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <?php if ($data['task_standby'] && $this->config->item('demo_mode') == FALSE): ?>
 <div class="modal fade" id="resumeWorkTaskModal" tabindex="-1" role="dialog"
          aria-labelledby="resumeWorkTaskModalLabel" aria-hidden="true">
@@ -693,8 +622,6 @@
   </div>
 </div>
 <?php endif; ?>
-
-
 <script>
   //ck editor
   //  CKEDITOR.replace( 'editTodoInput2');
@@ -1348,5 +1275,9 @@
     // return false;
     $('#bizvault_access_request_modal').modal('show');
     $('#editTaskModal').modal('hide');
+  }
+
+  function toggleShowDescription(id){
+    $("#description_"+id+"").slideToggle();
   }
 </script> 
