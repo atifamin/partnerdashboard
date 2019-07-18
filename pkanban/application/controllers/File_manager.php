@@ -84,6 +84,7 @@ class File_manager extends CI_Controller {
 		$data['files'] = $this->partnerDB->where('parent_id',$post['parent_id'])
 									->where('type','file')
 									->where('user_id',$post['user_id'])
+									->where("bizvault_files_and_folders_id", $data['folderType']->id)
 									->get("bizvault_filedoc_list")
 									->result();
 		$this->load->view("file_manager/sub_folders", $data);
@@ -153,6 +154,7 @@ class File_manager extends CI_Controller {
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("bizvault_filedoc_list")->result();
 		$data['files'] = $this->partnerDB->where('parent_id',$folder_id)
 									->where('type','file')
+									->where("bizvault_files_and_folders_id", $data['folderType']->id)
 									->get("bizvault_filedoc_list")
 									->result();
 		$this->load->view("file_manager/sub_folders", $data);

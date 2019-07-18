@@ -134,13 +134,12 @@
     <?php foreach ($data['tasks'][$container['container_id']] as $task): ?>
     <?php
     $this->load->model("Sec");
-    $DETAIL = $this->sec->get_task_content($task['task_id']);
+    //$DETAIL = $this->sec->get_task_content($task['task_id']);
     //echo "<pre>"; print_r($DETAIL['logo']);
     ?>
     <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
       <div class="portlet-border"></div>
-      
-      <div class="portlet-header"> 
+            <div class="portlet-header"> 
         <span class="task_title"><?php echo $task['task_title']; ?></span> <span class="portlet-date">
         <?php if ($task['task_description']): ?>
         <span class='ui-icon ui-icon-plusthick portlet-toggle nodrag'></span>
@@ -156,7 +155,8 @@
                                       src="<?php echo base_url(); ?>images/icon_start.png"/>
           <?php endif; ?>
         </div>
-      </div>
+      </div> 
+      
       <?php if ($task['task_description']): ?>
       <div class="portlet-content" style="display:none"><?php echo nl2br($task['task_description']); ?></div>
       <?php endif; ?>
