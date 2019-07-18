@@ -139,24 +139,42 @@
     ?>
     <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
       <div class="portlet-border"></div>
-      
-      <div class="portlet-header"> 
-        <span class="task_title"><?php echo $task['task_title']; ?></span> <span class="portlet-date">
-        <?php if ($task['task_description']): ?>
-        <span class='ui-icon ui-icon-plusthick portlet-toggle nodrag'></span>
-        <?php endif; ?>
-        <span class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>"> <?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?> </span> <?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?>
-        <div> <span>
-          <?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); } ?>
-          </span> </div>
-        </span>
-        <div class="action_button hidden-xs">
-          <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
-          <img class="time_tracker_action" rel="<?php echo $task['task_id']; ?>"
-                                      src="<?php echo base_url(); ?>images/icon_start.png"/>
-          <?php endif; ?>
+       <div class="portlet-header" style="padding-right:0px;padding-left:0px;min-height:100px;">
+        <div >
+          <div class="col-md-12" style="padding:0px;">
+            <div class="col-md-3" style="padding: 0px;background-color: #<?php echo $DETAIL['dashboard_firm']['Firm_Color']; ?>;border-right: 5px solid white;height: 55px;text-align: center;line-height: 3.6;color:white;font-weight:900;"><?php echo $DETAIL['logo']; ?></div>
+            <div class="col-md-9" style="padding:0px;">
+              <p style="font-size:12px;background-color:#4f81bd;padding:2%;padding-right:5%;color:white;white-space:nowrap;overflow:hidden;"><?php echo $DETAIL['dashboard_firm']['Firm/DBA Name']; ?> </p>
+              <p style="font-size:12px;background-color:#31859c;padding:2%;color:white;white-space:nowrap;overflow:hidden;"><?php echo substr($DETAIL['dashboard_user']->user_fname,0,1); ?> <?php echo $DETAIL['dashboard_user']->user_lname; ?> - Owner</p>
+            </div>
+          </div>
+          <div class="col-md-12" style="padding: 0px;">
+            <div class="col-md-10" style="padding-right:0px;text-align:center;"><span class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>"> <?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?> </span> <span style="font-size:12px;"><?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?></span></div>
+            <div class="col-md-2" style="padding:unset;padding-top:6%;">
+              <div class="action_button hidden-xs">
+                <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
+                <img class="time_tracker_action" rel="<?php echo $task['task_id']; ?>" src="<?php echo base_url(); ?>images/icon_start.png"/>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="col-md-12" style="padding: 0px;margin-top:5%;">
+          <div class="col-md-3"> <a href="javascript:;toggleShowDescription(<?php echo $task['task_id']; ?>)" style="color:black;"><i class="fa fa-chevron-down"></i></a> </div>
+          <div class="col-md-9" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+            <div class="col-md-6" style="background-color:#ebf1de;color:#77933c;padding-right: 2px;padding-left: 2px;text-align: center;">
+              <p style="font-size:10px;margin-bottom:0px;min-height: 30px;">FUNDING AMOUNT</p>
+            </div>
+            <div class="col-md-6" style="background-color:#77933c;color:#ebf1de;padding-right: 2px;padding-left: 2px;text-align: center;">
+              <p style="font-size:14px;margin-bottom:0px;min-height: 30px;line-height: 2;"><?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); }else{echo "0";} ?></p>
+            </div>
+          </div>
+          <div class="col-md-12" style="padding:2%;padding-top:5%;display:none;" id="description_<?php echo $task['task_id']; ?>">
+          <b><?php echo $task['task_title']; ?></b><br>
+          <?php if(empty($task['task_description'])){echo "<p style='font-size:10px;text-align:center;'>No Comment Available.</p>";}else{echo $task['task_description'];} ?></div>
+        </div>
+      </div> 
+      
       <?php if ($task['task_description']): ?>
       <div class="portlet-content" style="display:none"><?php echo nl2br($task['task_description']); ?></div>
       <?php endif; ?>
