@@ -51,15 +51,15 @@
   </div>
   
   <?php }  ?>
+  
+
+  <?php }else if (count($files)>0) {
+    foreach($files as $file){ ?>
+  <?php include(APPPATH."views/file_manager/load_other_files.php"); ?>
+  <?php } ?>
   <?php }else{ ?>
     <div class="col-md-12" align="center" style="color:lightgrey;" id="no-content"><i>No Content Available.</i></div>
   <?php }; ?>
-
-<?php if(count($files)>0){
-  foreach($files as $file){ ?>
-<?php include(APPPATH."views/file_manager/load_other_files.php"); ?>
-<?php } ?>
-<?php } ?>
 
   </div>
 

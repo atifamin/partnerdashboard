@@ -243,7 +243,7 @@ class File_manager extends CI_Controller {
             $_FILES['file']['error'] 	= $_FILES['files']['error'][$i];
             $_FILES['file']['size'] 	= $_FILES['files']['size'][$i];
 
-            $uploadPath = './uploads/otherfiles';
+            $uploadPath = './uploads/temp/';
             $config['upload_path'] = $uploadPath;
             $config['allowed_types'] = '*';
             $this->load->library('upload', $config);
