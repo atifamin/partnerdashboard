@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php $fileName =  basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?>
-<?php 
-      if($fileName == "dashboard.php"){
+<?php
+    if($fileName == "dashboard.php"){
       include "config/config_awt.php"; 
       include "config/config_main.php"; 
       include "config/config_prmsub.php"; 
