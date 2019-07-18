@@ -584,12 +584,12 @@ class Ajax extends CI_Controller
     {
         $data = $this->input->post();
         $to_done = false;
-
         foreach ($data as $container_id => $tasks) {
             $x = 1;
             if ($this->db->query("SELECT * FROM containers WHERE container_id = '$container_id' AND container_done = '1'")->num_rows() > 0) {
                 $to_done = true;
             }
+            
             foreach ($tasks as $task) {
                 // Check if drag to DONE column
                 if ($to_done == true) {

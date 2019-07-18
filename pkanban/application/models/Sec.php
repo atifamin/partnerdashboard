@@ -73,9 +73,12 @@ class Sec extends CI_Model
     }
 
     public function get_task_content($task_id){
+        $this->assignColorToFirms();
+
         $TD = $this->db->where("task_id", $task_id)->get("tasks");
         $task_detail = "";
         $user_detail = "";
+        $dashboard_user_app_form = "";
         $dashboard_user_detail = "";
         $dashboard_firm_detail = "";
         if($TD->num_rows()>0)
@@ -85,23 +88,55 @@ class Sec extends CI_Model
         if($UD->num_rows()>0)
             $user_detail = $UD->row();
 
-        $DUD = $this->partnerDB->where("user_id", $user_detail->dashboard_user_id)->get("user");
+        $DUAF = $this->partnerDB->where("task_id", $task_id)->get("user_application_form");
+        if($DUAF->num_rows()>0)
+            $dashboard_user_app_form = $DUAF->row();
+        
+        $DUD = $this->partnerDB->where("user_id", $dashboard_user_app_form->user_id)->get("user");
         if($DUD->num_rows()>0)
             $dashboard_user_detail = $DUD->row();
         
         if($dashboard_user_detail->dbe_firm_id!=0){
             $DFD = $this->partnerDB->query("SELECT * FROM dbe WHERE `Firm ID` = ".$dashboard_user_detail->dbe_firm_id."");
                 if($DFD->num_rows()>0)
-                    $dashboard_firm_detail = $DFD->row();
+                    $dashboard_firm_detail = (array)$DFD->row();
         }
-
         $data['task'] = $task_detail;
         $data['user'] = $user_detail;
         $data['dashboard_user'] = $dashboard_user_detail;
         $data['dashboard_firm'] = $dashboard_firm_detail;
 
+
+        $BNArray = explode(" ", $dashboard_firm_detail['Firm/DBA Name']);
+        
+        if(!empty($BNArray)){
+            $BNShortForm = '';
+            foreach($BNArray as $BNKEY=>$BNVAL):
+            $BNShortForm .= substr($BNVAL,0,1);
+            endforeach;
+        }
+        
+        $data['logo'] = $BNShortForm;
+        if(!empty($dashboard_firm_detail['Logo'])){
+            $data['logo'] = '<img style="width: 50px;border-radius: 25px" src="'.base_url().'uploads/'.$dashboard_firm_detail['Logo'].'">';
+        }
+
         return $data;
     }
 
+    public function assignColorToFirms(){
+        $firms = $this->partnerDB->where("Firm_Color", "")->get("dbe")->result();
+        //$firms = $this->partnerDB->get("dbe")->result();
+        foreach($firms as $firm):
+            if($firm->Firm_Color==""):
+                $firm = (array)$firm;
+                $this->partnerDB->query('UPDATE dbe SET `Firm_Color` = "'.$this->random_color().'" WHERE `Firm ID` = '.$firm['Firm ID'].'');
+            endif;
+        endforeach;
+    }
+    
+    public function random_color(){
+        return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT) . str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT) . str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+    }
 
 }

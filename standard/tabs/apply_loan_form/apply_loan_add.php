@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../../base_path.php");
 include("../../../config/config_main.php");
 include("../../../config/config_taskboard.php");
@@ -45,6 +46,7 @@ $data['task_id'] = $LastTask['task_id'];
 
 $InsertQuery = "INSERT INTO user_application_form (
     `task_id`,
+    `user_id`,
     `company_name`,
     `address`,
     `city`,
@@ -119,6 +121,7 @@ $InsertQuery = "INSERT INTO user_application_form (
     
 ) VALUES (
     '".$data['task_id']."',
+    '".$_SESSION['user_id']."',
     '".$data['company_name']."',
     '".$data["address"]."',
     '".$data['city']."',
