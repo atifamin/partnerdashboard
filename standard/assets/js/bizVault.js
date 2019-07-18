@@ -1,6 +1,7 @@
 $base_url = $("#base_url").val();
 $pkanban_url = $("#pkanban_url").val();
 $user_id = $("#user_id").val();
+$parent_id = $('#parent_id').val();
 
 function load_content(user_id){
     $.post(""+$pkanban_url+"file_manager/index", {user_id:user_id}).done(function(e){
@@ -74,36 +75,57 @@ $('document').ready(function() {
 
 
 function remove_folder(folder_id){
-
-
- $.post(""+$pkanban_url+"file_manager/remove_folder", {folder_id:folder_id}).done(function(e){
-    //$("#main_content").html(e);
+  $.post(""+$pkanban_url+"file_manager/remove_folder", {folder_id:folder_id}).done(function(e){
+  //$("#main_content").html(e);
     location.reload();
-});
+  });
+}
 
-
+function remove_file(file_id){
+  $.post(""+$pkanban_url+"file_manager/remove_file", {file_id:file_id}).done(function(e){
+    location.reload();
+  });
 }
 
 
-$('#upload_file').on('change',function(e){
-    e.preventDefault();
-    var formData = new FormData($('#file_upload_form')[0]);
-    $.ajax({
-      type: "POST",
-      url: ""+pkanban_url+"file_manager/upload_file",
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success:function(data){
-        $('#files_area').html(data);
-      }
-    });
-    // $.post(""+pkanban_url+"file_manager/upload_file",{names:names}).done(function(data){
-    //   console.log(data);
-    // });
+// $('#upload_file').on('change',function(e){
+//     // e.preventDefault();
+//     //var parent_id = $("#parent_id").val();
+    
+//     var formData = new FormData($('#file_upload_form')[0]);
+//     formData.append('parent_id',$parent_id);
+//     $.ajax({
+//       type: "POST",
+//       url: ""+pkanban_url+"file_manager/upload_file",
+//       data: formData,
+//       cache: false,
+//       contentType: false,
+//       processData: false,
+//       success:function(data){
+//         $('#files_area').html(data);
+//       }
+//     });
+//     // $.post(""+pkanban_url+"file_manager/upload_file",{names:names}).done(function(data){
+//     //   console.log(data);
+//     // });
+//   });
+function upload_files(){
+  var parent_id = $("#parent_id").val();
+  var formData = new FormData($('#file_upload_form')[0]);
+  formData.append('parent_id',parent_id);
+  $.ajax({
+    type: "POST",
+    url: ""+pkanban_url+"file_manager/upload_file",
+    data: formData,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success:function(data){
+      //$('#files_area').html(data);
+      $("#folders_area").append(data);
+    }
   });
-
+}
 
   $(document).ready(function(){
     pkanban_url = $("#pkanban_url").val();
@@ -182,5 +204,9 @@ function delete_file(id){
 }
 
 function view_file(id){
-    window.open($base_url+'tabs/view_file.php?h='+id+'', '_blank');
+  window.open($base_url+'tabs/view_file.php?h='+id+'', '_blank');
+}
+
+function home_breadcrumb(){
+  window.location.replace($base_url+'/tabs/bizVault.php?type=other_folder');
 }
