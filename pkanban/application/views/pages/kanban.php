@@ -457,10 +457,10 @@
               <tbody>
                 <tr style="background-color: #DBEEF4">
                   <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                    <img src="<?php echo base_url().'images/excel-icon.png'; ?>">
                     <!-- <a href=""><i class="far fa-file-pdf"></i></a> -->
                   </td>
-                  <td style="text-align: center;">
+                  <td class="text-center">
                     <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
                       <span>2017 Cash Flow Stmt</span>
                     </div>
@@ -473,13 +473,13 @@
                       <a href="" style="color: #ffff">Download</a>
                     </div>
                   </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><em style=" color: red;">(3 Days Left)</em></td>
                 </tr>
                 <tr style="background-color: #8FB3E3">
                   <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                    <img src="<?php echo base_url().'images/pdf-icon.png'; ?>">
                   </td>
-                  <td style="text-align: center;">
+                  <td class="text-center">
                     <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
                       <span>2017 Cash Flow Stmt</span>
                     </div>
@@ -487,18 +487,18 @@
                   <td class="text-center" style="width: 22%">
                     <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">View</a>
-                    </div>
+                    </div><!-- 
                     <div id="file_docs_cus_btn">
                       <a href=""style="color: #ffff">Download</a>
-                    </div>
+                    </div> -->
                   </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><em style=" color: red;">(3 Days Left)</em></td>
                 </tr>
                 <tr style="background-color: #DBEEF4">
                   <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                    <img src="<?php echo base_url().'images/excel-icon.png'; ?>">
                   </td>
-                  <td style="text-align: center;">
+                  <td class="text-center">
                     <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
                       <span>2017 Cash Flow Stmt</span>
                     </div>
@@ -506,18 +506,18 @@
                   <td class="text-center" style="width: 22%">
                     <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">View</a>
-                    </div>
+                    </div><!-- 
                     <div id="file_docs_cus_btn">
                       <a href="" style="color: #ffff">Download</a>
-                    </div>
+                    </div> -->
                   </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><em style=" color: red;">(3 Days Left)</em></td>
                 </tr>
                 <tr style="background-color: #8FB3E3">
                   <td style="border: none; ">
-                    <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                    <img src="<?php echo base_url().'images/excel-icon.png'; ?>">
                   </td>
-                  <td style="text-align: center;">
+                  <td class="text-center">
                     <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">
                       <span>2017 Cash Flow Stmt</span>
                     </div>
@@ -530,7 +530,7 @@
                       <a href="" style="color: #ffff">Download</a>
                     </div>
                   </td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br><span>July 19, 2019</span><br><em style=" color: red;">(3 Days Left)</em></td>
                 </tr>
               </tbody>
             </table>
