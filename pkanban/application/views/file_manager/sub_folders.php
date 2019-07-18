@@ -20,7 +20,7 @@
   <div class="row" style="padding-left:6%;padding-right:6%;">
   <div class="col-md-12">
   <ol class="breadcrumb breadcrumb-arrow">
-		<li><a href="javascript:;">Home</a></li>
+		<li><a href="javascript:home_breadcrumb()">Home</a></li>
     <?php foreach($files_breadcrumb as $key=>$bread): ?>
 		<?php if(count($files_breadcrumb)-1==$key){ ?>
       <li class="active"><span><?php echo $bread->name; ?></span></li>
@@ -34,6 +34,7 @@
   </div>
   <?php endif; ?>
   <div id="folders_area">
+    <?php //echo "<pre>"; print_r($sub_folders);exit; ?>
   <?php if(count($sub_folders)>0){ ?>
   <?php foreach($sub_folders as $sub){ ?>
   <div class="col-md-12 folder"  id="folder_id_<?php echo $sub->id; ?>">
@@ -53,26 +54,13 @@
   <?php }else{ ?>
     <div class="col-md-12" align="center" style="color:lightgrey;" id="no-content"><i>No Content Available.</i></div>
   <?php }; ?>
-  </div>
 
+<?php if(count($sub_folders)>0){
+  foreach($files as $file){ ?>
+<?php include(APPPATH."views/file_manager/load_other_files.php"); ?>
+<?php } ?>
+<?php } ?>
 
-  <div id="files_area">
-   <!--  <div class="col-md-12 folder"  id="">
-      <div onclick="" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div>
-      <div onclick="" class="col-md-8 main-folder-area-content">
-        <h3 id="" onblur="" contenteditable="false">Image Name</h3>
-        <p>Updated 3 days ago by testOne 17.5MB</p>
-      </div>
-      <div class="col-md-2">
-          <span onclick="" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span 
-          onclick="" style="color:red"><i class="fa fa-trash"></i></span>
-      </div>
-      
-    </div> -->
-  
-  <!-- <?php //}else{ ?>
-    <div class="col-md-12" align="center" style="color:lightgrey;" id="no-content"><i>No Content Available.</i></div>
-  <?php //}; ?> -->
   </div>
 
 <script>

@@ -78,9 +78,14 @@ class File_manager extends CI_Controller {
 	public function load_other_folder(){
 		$post = $this->input->post();
 		$data['folderType'] = $this->partnerDB->where("slug", "other")->get("bizvault_files_and_folders")->row();
+		//echo "<pre>"; print_r($data['folderType']);exit;
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $post['parent_id'])->where("type", "folder")->where("bizvault_files_and_folders_id", $data['folderType']->id)->get("bizvault_filedoc_list")->result();
-		//echo "<pre>"; print_r($data); exit;
 		$data['bizvault_files_and_folders_id'] = $data['folderType']->id;
+		$data['files'] = $this->partnerDB->where('parent_id',$post['parent_id'])
+									->where('type','file')
+									->where('user_id',$post['user_id'])
+									->get("bizvault_filedoc_list")
+									->result();
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
@@ -143,9 +148,13 @@ class File_manager extends CI_Controller {
 
 		//echo "<pre>";print_r($data['files_breadcrumb']);exit;
 		$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("bizvault_filedoc_list")->row();
+		;
 		$data['folderType'] = $this->partnerDB->where("id", $data['folder']->bizvault_files_and_folders_id)->get("bizvault_files_and_folders")->row();
 		$data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("bizvault_filedoc_list")->result();
-		//echo "<pre>"; print_r($data); exit;
+		$data['files'] = $this->partnerDB->where('parent_id',$folder_id)
+									->where('type','file')
+									->get("bizvault_filedoc_list")
+									->result();
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
@@ -157,11 +166,8 @@ class File_manager extends CI_Controller {
 	
 	public function recursiveForBreadcrumb($slug, $data){ 
 		
-
 		$folder = $this->partnerDB->where("slug", $slug)->get("bizvault_filedoc_list")->row();
 		$data[] = $folder;
-
-	
 
 	   $result = $this->partnerDB->where("id",$folder->parent_id)->get("bizvault_filedoc_list")->row();
 		if(!empty($result)){
@@ -173,14 +179,24 @@ class File_manager extends CI_Controller {
 	public function remove_folder(){
         $folder_id = $this->input->post('folder_id');
         if($this->partnerDB->where("id", $folder_id)->delete("bizvault_filedoc_list"))
-          {
-            return true;
-
-          }else{
-        	     return false;
-                }
+		{
+			return true;
+		}else{
+			return false;
+		}
 	}
 
+	public function remove_file(){
+		$file_id = $this->input->post('file_id');
+		$file = $this->partnerDB->where('id',$file_id)->get('bizvault_filedoc_list')->row();\
+		unlink($file->full_path);
+		if($this->partnerDB->where("id", $file_id)->delete("bizvault_filedoc_list"))
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public function load_company_logo(){
 		$user_id = $this->input->post('user_id');
 		$query = 'select user.user_fname , user.user_lname , dbe.`Firm/DBA name` as firm_name , dbe.Logo from user left join dbe ON user.dbe_firm_id = dbe.`Firm ID` where user.user_id = "'.$user_id.'"';
@@ -202,8 +218,6 @@ class File_manager extends CI_Controller {
 		echo $text;
 	} 
 
-	//http://localhost/partnerdashboard/pkanban/uploads/face1.jpg
-
 	public function change_folder_name(){
 
      $id = $this->input->post('id');
@@ -212,15 +226,16 @@ class File_manager extends CI_Controller {
         {
             return true;
         }else
-             {
-        	   return false;
-             }
+        {
+        	return false;
+        }
 	}
 
 	public function upload_file(){
 		$post = $this->input->post();
 		$filesCount = count($_FILES['files']['name']);
 		//print_r($filesCount);exit;
+		$last_id = array();
 		for ($i=0; $i < $filesCount ; $i++) { 
 			$_FILES['file']['name'] 	= $_FILES['files']['name'][$i];
 			$_FILES['file']['type'] 	= $_FILES['files']['type'][$i];
@@ -238,7 +253,7 @@ class File_manager extends CI_Controller {
 				//header('Location: '.$post['redirect_url'].'');
 			}else{
 				$fileData = $this->upload->data();
-				$data['parent_id'] = 0;
+				$data['parent_id'] = $post['parent_id'];
 				$data['type'] = 'file';
 				$data['bizvault_files_and_folders_id'] = $post['bizvault_files_and_folders_id'];
 				$data['user_id'] 	= $post['user_id'];
@@ -253,16 +268,19 @@ class File_manager extends CI_Controller {
 				$data["created_by"] = $post["user_id"];
 				$data["updated_at"] = date("Y-m-d H:i:s");
 				$data["updated_by"] = $post["user_id"];
-
-				$this->partnerDB->insert("bizvault_filedoc_list", $data);	
+				
+				$this->partnerDB->insert("bizvault_filedoc_list", $data);
+				
+				array_push($last_id, $this->partnerDB->insert_id());
 			}
 		}
-		$data['other_files'] = $this->partnerDB->where('bizvault_files_and_folders_id',$post['bizvault_files_and_folders_id'])
+		$data['files'] = $this->partnerDB->where_in('id',$last_id)
 									->where('type','file')
+									->where('bizvault_files_and_folders_id',$post['bizvault_files_and_folders_id'])
 									->where('user_id',$post['user_id'])
 									->get("bizvault_filedoc_list")
 									->result();
-		$this->load->view("file_manager/other_files_view", $data);
+		$this->load->view("file_manager/create_file", $data);
 	}
 
 	public function slug($text, $tblname){
