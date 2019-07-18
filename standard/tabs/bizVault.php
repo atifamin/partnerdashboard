@@ -31,7 +31,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           <div class="row">
             <div class="col-md-3 col-md-offset-9">
               <form id="file_upload_form" method="post" style="float: left;margin-left: 20%">
-                <input type="file" id="upload_file" name="files[]" multiple style="display: none;">
+                <input type="file" onchange="upload_files()" id="upload_file" name="files[]" multiple style="display: none;">
                 <a onclick="document.getElementById('upload_file').click(); return false" class="btn btn-primary upload-button"><i class="fa fa-file-upload"></i>&nbsp;&nbsp;Upload
                 </a> 
                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">

@@ -9,9 +9,9 @@
 class Sec extends CI_Model
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
+		$this->partnerDB = $this->load->database('partnerdashboard', TRUE);
     }
 
     public function ck()
@@ -69,6 +69,37 @@ class Sec extends CI_Model
         } else {
             $data = file_get_contents($url);
         }
+        return $data;
+    }
+
+    public function get_task_content($task_id){
+        $TD = $this->db->where("task_id", $task_id)->get("tasks");
+        $task_detail = "";
+        $user_detail = "";
+        $dashboard_user_detail = "";
+        $dashboard_firm_detail = "";
+        if($TD->num_rows()>0)
+            $task_detail = $TD->row();
+        
+        $UD = $this->db->where("user_id", $task_detail->task_user)->get("users");
+        if($UD->num_rows()>0)
+            $user_detail = $UD->row();
+
+        $DUD = $this->partnerDB->where("user_id", $user_detail->dashboard_user_id)->get("user");
+        if($DUD->num_rows()>0)
+            $dashboard_user_detail = $DUD->row();
+        
+        if($dashboard_user_detail->dbe_firm_id!=0){
+            $DFD = $this->partnerDB->query("SELECT * FROM dbe WHERE `Firm ID` = ".$dashboard_user_detail->dbe_firm_id."");
+                if($DFD->num_rows()>0)
+                    $dashboard_firm_detail = $DFD->row();
+        }
+
+        $data['task'] = $task_detail;
+        $data['user'] = $user_detail;
+        $data['dashboard_user'] = $dashboard_user_detail;
+        $data['dashboard_firm'] = $dashboard_firm_detail;
+
         return $data;
     }
 
