@@ -215,15 +215,16 @@ $(document).ready(function(){
 
     $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
         var elmForm = $("#form-step-" + stepNumber);
-        // stepDirection === 'forward' :- this condition allows to do the form validation
+        //stepDirection === 'forward' :- this condition allows to do the form validation
         // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
         
         if(stepDirection === 'forward' && elmForm){
           
             elmForm.validator('validate');
             var elmErr = elmForm.children('.has-error');
-            
-            if(elmErr && elmErr.length > 0){
+            var elmFormErr = elmForm.find('.has-error');
+            //alert(elmErr.length);
+            if(elmErr && elmFormErr.length > 0){
                 // Form validation failed
                 return false;
             }
