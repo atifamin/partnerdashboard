@@ -113,17 +113,45 @@ function upload_files(){
   var parent_id = $("#parent_id").val();
   var formData = new FormData($('#file_upload_form')[0]);
   formData.append('parent_id',parent_id);
+  // $.ajax({
+  //   type: "POST",
+  //   url: ""+pkanban_url+"file_manager/upload_file",
+  //   data: formData,
+  //   cache: false,
+  //   contentType: false,
+  //   processData: false,
+  //   success:function(data){
+  //     $("#folders_area").append(data);
+  //   }
+  // });
+
   $.ajax({
-    type: "POST",
     url: ""+pkanban_url+"file_manager/upload_file",
+    type: 'POST',
+    xhr: function () {
+        $('#progress-row').show();
+        var xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function (evt) {
+          if (evt.lengthComputable) {
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
+            $('#progress-row > div > .progress > .progress-bar').css('width', percentComplete + '%');
+            if(percentComplete==100)
+              setTimeout(function(){
+                $('#progress-row').fadeOut();
+                $('#progress-row > div > .progress > .progress-bar').css('width', '0%');
+              }, 1000);
+          }
+        }, false);
+        return xhr;
+    },
+    success: function (data) {
+      $("#folders_area").append(data);
+    },
     data: formData,
     cache: false,
     contentType: false,
-    processData: false,
-    success:function(data){
-      //$('#files_area').html(data);
-      $("#folders_area").append(data);
-    }
+    processData: false
   });
 }
 

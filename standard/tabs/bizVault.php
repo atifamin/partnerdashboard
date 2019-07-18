@@ -25,6 +25,15 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   <section class="bizVaultSection">
     <?php include("bizVault/side-bar.php");?>
     <article class="bizVaultArticle">
+    <div class="row" style="display:none" id="progress-row">
+      <div class="col-md-12">
+        <div class="progress progress-sm active">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+            <span class="sr-only">20% Complete</span>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="row bizVaultArticle-row">
         <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
         <div class="col-md-12 top-button-area" >
