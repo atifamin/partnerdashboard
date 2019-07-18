@@ -458,6 +458,7 @@
                 <tr style="background-color: #DBEEF4">
                   <td style="border: none; ">
                     <img src="<?php echo base_url().'images/placeholder.png'; ?>">
+                    <!-- <a href=""><i class="far fa-file-pdf"></i></a> -->
                   </td>
                   <td style="text-align: center;">
                     <div style="font-size: 20px; color: #17266f;background-color: #B8DEE9">

@@ -87,14 +87,7 @@ function remove_folder(folder_id){
 
 $('#upload_file').on('change',function(e){
     e.preventDefault();
-    var names = [];
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-        names.push($(this).get(0).files[i]);
-    }
     var formData = new FormData($('#file_upload_form')[0]);
-
-    // console.log(formData);
-    // return false;
     $.ajax({
       type: "POST",
       url: ""+pkanban_url+"file_manager/upload_file",
@@ -103,7 +96,7 @@ $('#upload_file').on('change',function(e){
       contentType: false,
       processData: false,
       success:function(data){
-        console.log(data);
+        $('#files_area').html(data);
       }
     });
     // $.post(""+pkanban_url+"file_manager/upload_file",{names:names}).done(function(data){
