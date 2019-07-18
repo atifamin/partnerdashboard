@@ -136,17 +136,17 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 <div class="modal fade" id="acitivity_model">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="text-align: center; color: white; height: 60px; background-color: #1F487E; border: none;">
+      <div class="modal-header text-white text-center" style="height: 60px; background-color: #1F487E; border: none;">
         <h3 class="modal-title">CLOUDBOX ACCESS</h3>
       </div>
       
         <table class="table">
           <thead style="background-color: #17375E;">
-            <tr>
-              <th style="color: white; text-align: center; border: none; font-size: 20px;">User</th>
-              <th style="color: white; text-align: center; border: none; font-size: 20px;">Access</th>
-              <th style="color: white; text-align: center; border: none; font-size: 20px;">File/Folder</th>
-              <th style="color: white; text-align: center; border: none; font-size: 20px;">Expires</th>
+            <tr style="font-size: 20px;">
+              <th class="text-center text-white b-none" style="">User</th>
+              <th class="text-center text-white" style="border: none;">Access</th>
+              <th class="text-center text-white" style="border: none;">File/Folder</th>
+              <th class="text-center text-white" style="border: none;">Expires</th>
             </tr>
           </thead>
           <tbody class="table">
@@ -161,9 +161,9 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                       </div>
                     </div>
                   </td>
-                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
-                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td style="text-align: center; border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><span style=" color: red;font-style: italic;">(Expires in 1 Day)</span><br><span style="color: #5EB2D5; font-size: 10px; font-style: italic;">Click here to change Expiration Date</span></td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
               </tr>
               <tr style="background-color:  #92CDDE">
                   <td style="border: none; width: 24%;">
@@ -176,9 +176,9 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                       </div>
                     </div>
                   </td>
-                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
-                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td style="text-align: center; border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><span style=" color: red;font-style: italic;">(Expires in 1 Day)</span><br><span style="color: #5EB2D5; font-size: 10px; font-style: italic;">Click here to change Expiration Date</span></td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
               </tr>
               <tr style="background-color: #B8DEE6">
                   <td style="border: none; width: 24%;">
@@ -191,9 +191,9 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                       </div>
                     </div>
                   </td>
-                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
-                  <td style="text-align: center; color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td style="text-align: center; border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><span style=" color: red;font-style: italic;">(Expires in 1 Day)</span><br><span style="color: #5EB2D5; font-size: 10px; font-style: italic;">Click here to change Expiration Date</span></td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em><br><em style="color: #5EB2D5; font-size: 10px; ">Click here to change Expiration Date</em></td>
               </tr>
           </tbody>
         </table>
