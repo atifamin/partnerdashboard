@@ -31,7 +31,55 @@
 #form-step-1{padding:2%;}
 </style>
 <!-- Include SmartWizard CSS -->
+<?php session_start(); ?>
+<?php include("../config/config_main.php"); ?>
+<?php
 
+function exec_sqlQuery($con, $q){
+  //$con=mysqli_connect("localhost","root","","partnerdashboard");
+// Check connection
+  // if (mysqli_connect_errno())
+  // {
+  // echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  // }
+  $result = mysqli_query($con,$q);
+  return $result;
+}
+
+function bizVaultStatus($con){
+  $userData = $_SESSION;
+  $gettingBasicFiles = exec_sqlQuery($con, "SELECT *
+  FROM bizvault_files_and_folders
+  WHERE parent_id = (
+  SELECT id
+  FROM bizvault_files_and_folders
+  WHERE slug = 'business_basic')");
+  
+  $completed = "no";
+  $percentage = 0;
+  $total_files = $gettingBasicFiles->num_rows;
+  $uploaded_files = 0;
+
+  while($row = mysqli_fetch_array($gettingBasicFiles)){
+      $checkIfFileExists = exec_sqlQuery($con, "SELECT * FROM bizvault_filedoc_list WHERE bizvault_files_and_folders_id = ".$row['id']." AND user_id = ".$userData['user_id']."");
+      if($checkIfFileExists->num_rows>0){
+          $uploaded_files =+ $uploaded_files+1;
+      }
+  }
+  if($total_files!=0 && $total_files==$uploaded_files){
+      $completed = "yes";
+  }
+  if($uploaded_files!=0){
+      $percentage = number_format($uploaded_files/$total_files*100);
+  }
+
+  $data['completed'] = $completed;
+  $data['percentage'] = $percentage;
+  return $data;
+}
+
+?>
+<textarea name="bizVaultStatus" id="bizVaultStatus" cols="30" rows="10" style="display:none"><?php echo json_encode(bizVaultStatus($con_MAIN)); ?></textarea>
 <!-- Optional SmartWizard theme -->
 <link href="../assets/smartWizard/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
 <link href="../assets/smartWizard/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
@@ -120,6 +168,8 @@
 <script type="text/javascript" src="../assets/smartWizard/js/jquery.smartWizard.js"></script> 
 <script type="text/javascript">
 $(document).ready(function(){
+    var $bizVaultStatus = $("#bizVaultStatus").html();
+    $bizVaultStatus = JSON.parse($bizVaultStatus);
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')
@@ -140,15 +190,13 @@ $(document).ready(function(){
             }
         }
     });
+    
     var btnCancel = $('<button></button>').text('Cancel')
     .addClass('btn btn-danger')
     .on('click', function(){
         $('#smartwizard').smartWizard("reset");
         $('#myForm').find("input, textarea").val("");
     });
-
-
-
     // Smart Wizard
     $('#smartwizard').smartWizard({
       selected: 0,
@@ -191,6 +239,10 @@ $(document).ready(function(){
             $('.btn-finish').addClass('disabled');
         }
     });
+    
+    if($bizVaultStatus.completed=="no"){
+      $(".sw-toolbar-bottom").html('<div style="text-align:center;background-color:#4f81bd;padding: 3% 0;"><h1 style="color:#ffc000;font-weight:900;">STATUS</h1><p style="color:#f8fe00;font-size:28px;">In order to complete your Funding Request Please complete uploading your basic files to your bizVAULT</p></div>');
+    }
 
 });
 
