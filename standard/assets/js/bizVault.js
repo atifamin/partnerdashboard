@@ -82,9 +82,28 @@ function remove_folder(folder_id){
 }
 
 function remove_file(file_id){
-  $.post(""+$pkanban_url+"file_manager/remove_file", {file_id:file_id}).done(function(e){
-    location.reload();
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("Your file has been deleted!", {
+        icon: "success",
+      }).then((value)=>{
+          window.location.href = $pkanban_url+'file_manager/remove_file/'+file_id+'';
+      });
+    } else {
+      swal("Your file is safe!");
+    }
   });
+
+  // $.post(""+$pkanban_url+"file_manager/remove_file", {file_id:file_id}).done(function(e){
+  //   location.reload();
+  // });
 }
 
 
