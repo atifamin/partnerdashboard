@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php $fileName =  basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?>
-<?php 
-      if($fileName == "dashboard.php"){
+<?php
+    if($fileName == "dashboard.php"){
       include "config/config_awt.php"; 
       include "config/config_main.php"; 
       include "config/config_prmsub.php"; 
@@ -22,7 +22,16 @@
 	$Q_Sub = 'SELECT  `Legal Business Name` AS BusinessName from sbdvbe  WHERE `Certification ID`= '.$UserCertficationID.'';
 	$Q_SubR = mysqli_query($con_MAIN,$Q_Sub);
 	$Name = mysqli_fetch_assoc($Q_SubR);
-	$BusinessName = $Name['BusinessName'];	
+  $BusinessName = $Name['BusinessName'];
+  
+  $BNArray = explode(" ", $BusinessName);
+
+  if(!empty($BNArray)){
+    $BNShortForm = '';
+    foreach($BNArray as $BNKEY=>$BNVAL):
+      $BNShortForm .= substr($BNVAL,0,1);
+    endforeach;
+  }
 ?>
 <!DOCTYPE html>
 <html>

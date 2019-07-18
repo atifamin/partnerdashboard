@@ -14,51 +14,118 @@ class File_manager extends CI_Controller {
 	}
 	public function index(){
 		$post = $this->input->post();
-		$this->load_file_folders($post);
+		$data = $this->load_file_folders($post);
+		$this->load->view("file_manager/index", $data);
 	}
 
 	public function load_file_folders($data){
-
-		$data['folderTypes'] = $this->partnerDB->get("business_folder_type")->result();
+		$data['folderTypes'] = $this->partnerDB->where("type", "category")->get("bizvault_files_and_folders")->result();
+		foreach($data['folderTypes'] as $key=>$val):
+			$data['folderTypes'][$key]->folders = $this->partnerDB->where("parent_id", $val->id)->get("bizvault_files_and_folders");
+			if($data['folderTypes'][$key]->folders->num_rows()>0){
+				$data['folderTypes'][$key]->folders = $data['folderTypes'][$key]->folders->result();
+				foreach($data['folderTypes'][$key]->folders as $key1=>$val1){
+					$data['folderTypes'][$key]->folders[$key1]->completedPercentage = $this->completedPercentage($val1->id, $data['user_id']);
+					$data['folderTypes'][$key]->folders[$key1]->missingFiles = $this->missingFiles($val1->id, $data['user_id']);
+				}
+			}
+		endforeach;
+		//echo "<pre>"; print_r($data); exit;
 		$data['userDetail'] = $this->partnerDB->where('user_id', $data['user_id'])->get("user")->row();
-		// echo '<pre>';print_r($data);exit;
-		$this->load->view("file_manager/index", $data);
+		return $data;
+	}
+
+	public function completedPercentage($id, $user_id){
+		$percent = 0;
+		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders");
+		$totalFiles = $totalPreFiles->num_rows();
+		if($totalFiles>0){
+			$uploadedFiles = 0;
+			foreach($totalPreFiles->result() as $key=>$val){
+				$file = $this->partnerDB->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+				if($file->num_rows()>0){
+					$file = $file->row();
+					$uploadedFiles = $uploadedFiles+1;
+				}
+			}
+			if($uploadedFiles>0){
+				$percent = ($uploadedFiles/$totalFiles)*100;
+				$percent = number_format($percent);
+			}
+		}
+		return $percent;
+	}
+
+	public function missingFiles($id, $user_id){
+		$missing = 0;
+		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders");
+		$totalFiles = $totalPreFiles->num_rows();
+		if($totalFiles>0){
+			$uploadedFiles = 0;
+			foreach($totalPreFiles->result() as $key=>$val){
+				$file = $this->partnerDB->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+				if($file->num_rows()>0){
+					$file = $file->row();
+					$uploadedFiles = $uploadedFiles+1;
+				}
+			}
+
+			$missing = $totalFiles - $uploadedFiles;
+		}
+		return $missing;
 	}
 
 	public function load_other_folder(){
 		$post = $this->input->post();
-		$data['folderType'] = $this->partnerDB->where("slug", "other")->get("business_folder_type")->row();
-		$data['sub_folders'] = $this->partnerDB->where("parent_id", $post['parent_id'])->where("type", "folder")->where("business_folder_type_id", $data['folderType']->id)->get("business_filedoc_list")->result();
+		$data['folderType'] = $this->partnerDB->where("slug", "other")->get("bizvault_files_and_folders")->row();
+		$data['sub_folders'] = $this->partnerDB->where("parent_id", $post['parent_id'])->where("type", "folder")->where("bizvault_files_and_folders_id", $data['folderType']->id)->get("bizvault_filedoc_list")->result();
+		//echo "<pre>"; print_r($data); exit;
+		$data['bizvault_files_and_folders_id'] = $data['folderType']->id;
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
-	public function load_business_folder(){
+	public function load_folder(){
 		$post = $this->input->post();
-		$data['files'] = $this->partnerDB->where("user_id", $post['user_id'])->where("business_folder_type_id", $post['business_folder_type_id'])->where("business_file_type", $post['files_type'])->get("business_filedoc_list")->result();
-		$this->load->view("file_manager/business_files", $data);
+		$data['folder'] = $this->partnerDB->where("id", $post['folder_id'])->get("bizvault_files_and_folders")->row();
+		$data['folder']->files = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "file")->get("bizvault_files_and_folders")->result();
+		foreach($data['folder']->files as $key=>$val):
+			$data['folder']->files[$key]->uploaded = 0;
+			$file = $this->partnerDB->where("user_id", $post['user_id'])->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+			if($file->num_rows()>0){
+				$file = $file->row();
+				$data['folder']->files[$key]->uploaded = 1;
+				$data['folder']->files[$key]->file = $file;
+			}
+		endforeach;
+		$data['folder']->completedPercentage = $this->completedPercentage($post['folder_id'], $post['user_id']);
+		$data['folder']->missingFiles = $this->missingFiles($post['folder_id'], $post['user_id']);
+		$data['user_id'] = $post['user_id'];
+		//echo "<pre>"; print_r($data['folder']); exit;
+		$this->load->view("file_manager/load_folder", $data);
 	}
 
 	public function create_folder(){
 		$post = $this->input->post();
 		$insert["parent_id"] = $post["parent_id"];
 		$insert["type"] = $post["type"];
-		$insert["business_folder_type_id"] = $post["business_folder_type_id"];
+		$insert["bizvault_files_and_folders_id"] = $post["bizvault_files_and_folders_id"];
 		$insert["user_id"] = $post["user_id"];
 		$insert["name"] = $post["folder_name"];
-		$this->partnerDB->insert("business_filedoc_list", $insert);
+		$insert['slug']	= $this->slug($post["folder_name"], "bizvault_filedoc_list");
+		$this->partnerDB->insert("bizvault_filedoc_list", $insert);
 		$folderId = $this->partnerDB->insert_id();
-		$folder = $this->partnerDB->where("id", $folderId)->get("business_filedoc_list")->row();
-		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_folder('.$folder->id.',\''.$folder->name.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->id.'" onblur="change_folder_name('.$folder->id.',$(this).html())" contenteditable="false">'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
+		$folder = $this->partnerDB->where("id", $folderId)->get("bizvault_filedoc_list")->row();
+		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_other_inner_folder('.$folder->id.',\''.$folder->slug.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_other_inner_folder('.$folder->id.',\''.$folder->slug.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->id.'" onblur="change_folder_name('.$folder->id.',$(this).html())" contenteditable="false">'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
 		echo $html;
 		//$this->load_file_folders($post);
-		//$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
-		// $data['folderType'] = $this->partnerDB->where("id", $data['folder']->business_folder_type_id)->get("business_folder_type")->row();
-		// $data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("business_filedoc_list")->result();
+		//$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("bizvault_filedoc_list")->row();
+		// $data['folderType'] = $this->partnerDB->where("id", $data['folder']->bizvault_files_and_folders_id)->get("bizvault_files_and_folders")->row();
+		// $data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("bizvault_filedoc_list")->result();
 		// $this->load->view("file_manager/sub_folders", $data);
 	}
 
 	// public function load_main_folders_inputs(){
-	// 	$folderTypes = $this->partnerDB->get("business_folder_type")->result();
+	// 	$folderTypes = $this->partnerDB->get("bizvault_files_and_folders")->result();
 	// 	$html = '';
 	// 	foreach($folderTypes as $key=>$val){
 	// 		($val->id==1)? $checked = 'checked="checked"' : $checked = '' ;
@@ -68,16 +135,17 @@ class File_manager extends CI_Controller {
 	// 	echo $html;
 	// }
 
-	public function open_folder(){
+	public function open_other_inner_folder(){
 		$post = $this->input->post();
 		$folder_id = $post['folder_id'];
 		$slug = $post['slug'];
 	    $data['files_breadcrumb'] = array_reverse($this->breadcrumb($slug));
+
 		//echo "<pre>";print_r($data['files_breadcrumb']);exit;
-		$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("business_filedoc_list")->row();
-		$data['folderType'] = $this->partnerDB->where("id", $data['folder']->business_folder_type_id)->get("business_folder_type")->row();
-		$data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("business_filedoc_list")->result();
-		//echo "<pre>"; print_r($folderDetail); exit;
+		$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("bizvault_filedoc_list")->row();
+		$data['folderType'] = $this->partnerDB->where("id", $data['folder']->bizvault_files_and_folders_id)->get("bizvault_files_and_folders")->row();
+		$data['sub_folders'] = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "folder")->get("bizvault_filedoc_list")->result();
+		//echo "<pre>"; print_r($data); exit;
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
@@ -87,19 +155,24 @@ class File_manager extends CI_Controller {
 		return $this->recursiveForBreadcrumb($slug, array());
 	}
 	
-	public function recursiveForBreadcrumb($slug, $data){  
-		$folder = $this->partnerDB->where("name", $slug)->get("business_filedoc_list")->row();
+	public function recursiveForBreadcrumb($slug, $data){ 
+		
+
+		$folder = $this->partnerDB->where("slug", $slug)->get("bizvault_filedoc_list")->row();
 		$data[] = $folder;
-		$result = $this->partnerDB->where("id",$folder->parent_id)->get("business_filedoc_list")->row();
-		if($result!= NULL && count($result)>0){
-			return $this->recursiveForBreadcrumb($result->name, $data);
+
+	
+
+	   $result = $this->partnerDB->where("id",$folder->parent_id)->get("bizvault_filedoc_list")->row();
+		if(!empty($result)){
+			return $this->recursiveForBreadcrumb($result->slug, $data);
 		}
 		return $data;
 	}
 
 	public function remove_folder(){
         $folder_id = $this->input->post('folder_id');
-        if($this->partnerDB->where("id", $folder_id)->delete("business_filedoc_list"))
+        if($this->partnerDB->where("id", $folder_id)->delete("bizvault_filedoc_list"))
           {
             return true;
 
@@ -135,7 +208,7 @@ class File_manager extends CI_Controller {
 
      $id = $this->input->post('id');
      $name = $this->input->post('name');
-     if($this->partnerDB->set('name',$name)->where("id", $id)->update("business_filedoc_list"))
+     if($this->partnerDB->set('name',$name)->where("id", $id)->update("bizvault_filedoc_list"))
         {
             return true;
         }else
@@ -145,8 +218,140 @@ class File_manager extends CI_Controller {
 	}
 
 	public function upload_file(){
-		$file = $this->input->post('names');
-		print_r($_POST);
-		exit;
+		$post = $this->input->post();
+		$filesCount = count($_FILES['files']['name']);
+		//print_r($filesCount);exit;
+		for ($i=0; $i < $filesCount ; $i++) { 
+			$_FILES['file']['name'] 	= $_FILES['files']['name'][$i];
+			$_FILES['file']['type'] 	= $_FILES['files']['type'][$i];
+			$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+            $_FILES['file']['error'] 	= $_FILES['files']['error'][$i];
+            $_FILES['file']['size'] 	= $_FILES['files']['size'][$i];
+
+            $uploadPath = './uploads/otherfiles';
+            $config['upload_path'] = $uploadPath;
+            $config['allowed_types'] = '*';
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('file')){
+            	$error = array('error' => $this->upload->display_errors());
+				// print_r($error);exit;
+				//header('Location: '.$post['redirect_url'].'');
+			}else{
+				$fileData = $this->upload->data();
+				$data['parent_id'] = 0;
+				$data['type'] = 'file';
+				$data['bizvault_files_and_folders_id'] = $post['bizvault_files_and_folders_id'];
+				$data['user_id'] 	= $post['user_id'];
+				$data["name"] 		= $fileData['orig_name'];
+				$data['file_name'] 	= $fileData['file_name'];
+				$data['file_path'] 	= $fileData['file_path'];
+				$data['file_type'] 	= $fileData['file_type'];
+				$data['full_path'] 	= $fileData['full_path'];
+				$data['file_extension'] = $fileData['file_ext'];
+				$data['file_size'] 	= $fileData['file_size'];
+				$data["created_at"] = date("Y-m-d H:i:s");
+				$data["created_by"] = $post["user_id"];
+				$data["updated_at"] = date("Y-m-d H:i:s");
+				$data["updated_by"] = $post["user_id"];
+
+				$this->partnerDB->insert("bizvault_filedoc_list", $data);	
+			}
+		}
+		$data['other_files'] = $this->partnerDB->where('bizvault_files_and_folders_id',$post['bizvault_files_and_folders_id'])
+									->where('type','file')
+									->where('user_id',$post['user_id'])
+									->get("bizvault_filedoc_list")
+									->result();
+		$this->load->view("file_manager/other_files_view", $data);
 	}
+
+	public function slug($text, $tblname){
+		$text = str_replace("'", "", $text);
+		$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+		$text = trim($text, '-');
+		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+		$text = strtolower($text);
+		$text = preg_replace('~[^-\w]+~', '', $text);
+		if (empty($text)) return 'n-a';
+		
+		$result = $this->partnerDB
+				  ->where("slug", $text)
+				  ->get($tblname)->row();
+		
+		if(!empty($result)){
+			$slug = $result->slug;
+			$result1 = $this->partnerDB->query("SELECT *
+			FROM bizvault_filedoc_list
+			WHERE slug LIKE '".$slug."-%'
+			ORDER BY slug DESC
+			LIMIT 1")->row();
+
+			if(!empty($result1)){
+				$counter = explode("-", $result1->slug);
+				$counter = end($counter);
+				$counter++;
+				$text = $text.'-'.($counter);
+				return $text;
+			}else{
+				$counter = 0;
+				$counter++;
+				$text = $text.'-'.($counter);
+				return $text;
+			}
+		}
+		return $text;
+	}
+
+	public function upload_predefied_file(){
+		$post = $this->input->post();
+		$config['upload_path']          = './uploads/temp/';
+		if (!file_exists($config['upload_path'])) {
+			mkdir($config['upload_path'], 0777, true);
+		}
+		$config['allowed_types']        = '*';
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('file')){
+			header('Location: '.$post['redirect_url'].'');
+			//$error = array('error' => $this->upload->display_errors());
+			//echo "<pre>"; print_r($error); exit;
+		}else{
+			$upload_data = array('upload_data' => $this->upload->data());
+			$data['parent_id'] = 0;
+			$data['type'] = 'file';
+			$data['bizvault_files_and_folders_id'] = $post['bizvault_files_and_folders_id'];
+			$data['user_id'] = $post['user_id'];
+			$data["name"] = $upload_data['upload_data']['orig_name'];
+			$data["file_name"] = $upload_data['upload_data']['file_name'];
+			$data["file_path"] = $upload_data['upload_data']['file_path'];
+			$data['file_type'] = $upload_data['upload_data']['file_type'];
+			$data["full_path"] = $upload_data['upload_data']['full_path'];
+			$data["file_extension"] = $upload_data['upload_data']['file_ext'];
+			$data["file_size"] = $upload_data['upload_data']['file_size'];
+			//echo "<pre>"; print_r($data); exit;
+			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_files_and_folders_id", $post['bizvault_files_and_folders_id'])->where("user_id", $post['user_id'])->get("bizvault_filedoc_list");
+			if($checkIfUploadedBefore->num_rows()>0){
+				$checkIfUploadedBefore = $checkIfUploadedBefore->row();
+				unlink($checkIfUploadedBefore->full_path);
+				$data["updated_at"] = date("Y-m-d H:i:s");
+				$data["updated_by"] = $post["user_id"];
+				$this->partnerDB->where("id", $checkIfUploadedBefore->id)->update("bizvault_filedoc_list", $data);
+			}else{
+				$data["created_at"] = date("Y-m-d H:i:s");
+				$data["created_by"] = $post["user_id"];
+				$data["updated_at"] = date("Y-m-d H:i:s");
+				$data["updated_by"] = $post["user_id"];
+				$this->partnerDB->insert("bizvault_filedoc_list", $data);
+			}
+			header('Location: '.$post['redirect_url'].'');
+		}
+		
+	}
+
+	public function delete_file($id){
+		$file = $this->partnerDB->where("id", $id)->get("bizvault_filedoc_list")->row();
+		unlink($file->full_path);
+		$this->partnerDB->where("id", $id)->delete("bizvault_filedoc_list");
+		return redirect($_SERVER['HTTP_REFERER']);
+	}
+
 }
