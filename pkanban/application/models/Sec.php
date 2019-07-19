@@ -106,8 +106,11 @@ class Sec extends CI_Model
         $data['dashboard_user'] = $dashboard_user_detail;
         $data['dashboard_firm'] = $dashboard_firm_detail;
 
-
-        $BNArray = explode(" ", $dashboard_firm_detail['Firm/DBA Name']);
+        if($dashboard_user_detail->dbe_firm_id!=0){
+            $BNArray = explode(" ", $dashboard_firm_detail['Firm/DBA Name']);
+        }else{
+            $BNArray = array(''.$dashboard_user_detail->user_fname.'', ''.$dashboard_user_detail->user_lname.'');
+        }
         
         if(!empty($BNArray)){
             $BNShortForm = '';
@@ -137,6 +140,11 @@ class Sec extends CI_Model
     
     public function random_color(){
         return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT) . str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT) . str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+    }
+
+    public function check_form_exists($task_id){
+        $result = $this->partnerDB->where("task_id", $task_id)->get("user_application_form");
+        return $result->num_rows();
     }
 
 }

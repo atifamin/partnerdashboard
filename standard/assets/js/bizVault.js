@@ -91,19 +91,17 @@ function remove_file(file_id){
   })
   .then((willDelete) => {
     if (willDelete) {
+      $("#file_id_"+file_id+"").remove();
+      $.post(""+$pkanban_url+"file_manager/remove_file", {file_id:file_id}).done(function(e){});
       swal("Your file has been deleted!", {
         icon: "success",
-      }).then((value)=>{
-          window.location.href = $pkanban_url+'file_manager/remove_file/'+file_id+'';
       });
     } else {
       swal("Your file is safe!");
     }
   });
 
-  // $.post(""+$pkanban_url+"file_manager/remove_file", {file_id:file_id}).done(function(e){
-  //   location.reload();
-  // });
+  
 }
 
 

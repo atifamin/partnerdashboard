@@ -87,6 +87,7 @@ class File_manager extends CI_Controller {
 									->where("bizvault_files_and_folders_id", $data['folderType']->id)
 									->get("bizvault_filedoc_list")
 									->result();
+		//echo "<pre>"; print_r($data['files']); exit;
 		$this->load->view("file_manager/sub_folders", $data);
 	}
 
@@ -188,11 +189,11 @@ class File_manager extends CI_Controller {
 		}
 	}
 
-	public function remove_file($file_id){
-		$file = $this->partnerDB->where('id',$file_id)->get('bizvault_filedoc_list')->row();\
+	public function remove_file(){
+		$post = $this->input->post();
+		$file = $this->partnerDB->where('id',$post['file_id'])->get('bizvault_filedoc_list')->row();\
 		unlink($file->full_path);
-		$this->partnerDB->where("id", $file_id)->delete("bizvault_filedoc_list");
-		return redirect($_SERVER['HTTP_REFERER']);
+		$this->partnerDB->where("id", $post['file_id'])->delete("bizvault_filedoc_list");
 	}
 	public function load_company_logo(){
 		$user_id = $this->input->post('user_id');

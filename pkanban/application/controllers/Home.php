@@ -139,10 +139,28 @@ class Home extends CI_Controller {
 
         $data['configs'] = $this->db->get('configs')->row_array();
 
+        
+        // if(count($data['tasks'])>0){
+        //     echo "<pre>";
+        //     foreach($data['tasks'] as  $key1=>$val1){
+        //         if(!isset($val1[0])){
+        //             unset($data['tasks'][$key1]);
+        //         }
+        //         if(isset($val1[0])){
+        //             $task1 = $val1[0];
+        //             $result = $this->partnerDB->where("task_id", $task1['task_id'])->get("user_application_form");
+        //             if($result->num_rows()<=0){
+        //                 unset($data['tasks'][$key1]);
+        //             }
+        //         }
+        //     }
+        // }
+        // print_r($data);
+        // exit;
+        //echo "<pre>"; print_r(count($data['tasks'])); exit;
         if ($this->sec->ck() == false) {
             $this->activation();
         } else {
-			//echo "<pre>"; print_r($data); exit;
             $page = $this->load->view('pages/kanban', array('data' => $data), true);
             $this->printpage($page);
         }
