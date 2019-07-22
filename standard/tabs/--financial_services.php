@@ -24,6 +24,7 @@ if(mysqli_num_rows($Tab3_Q4R)>0){
 	$Logo		 = 'assets/img/companylogo.png';
 }
 ?>
+
 									<div class="alert alert-info tab3_boxes" style="float:left;width:100%;margin-top:25px;">
 										<div class="col-lg-4"><img src="<?php echo $Logo; ?>" alt="" width="200" /></div>
 										

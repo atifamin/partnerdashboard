@@ -26,7 +26,7 @@ if($FirmID > 0){
 	 
 	if($TotalPrimes>0 && $TotalSub>0){
 		include "tab1/both_contractors.php";
-	}elseif($TotalPrimes>0){ 
+	}elseif($TotalPrimes>0){
 		include "tab1/prime_contractors.php";
 	}elseif($TotalSub>0){ 
 		include "tab1/sub_contractors.php";

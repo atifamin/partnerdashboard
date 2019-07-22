@@ -1,3 +1,4 @@
+
 <?php
 $Tab1_Q1 = 'SELECT *
 			FROM prime_contractor pc
@@ -192,14 +193,22 @@ if($TotalRows>=2){
 <?php
 }
 ?>	
+<style type="text/css">
+	.bg-custom-header{
+		background-color: #4F81BE;
+	}
+	.text-white{
+		color: white;
+	}
+</style>
 
 <div class="modal fade" id="modal-default">
           <div class="modal-dialog" style="width:80%;">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header bg-custom-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Contract Financing Options</h4>
+                <h3 class="modal-title text-white">CALIFORNIA CERTIFIED BUSINESS FASTFUND™ INVOICE FINANCING</h3>
               </div>
               <div class="modal-body">
                 <?php include "./financial_services.php"; ?>
@@ -207,7 +216,7 @@ if($TotalRows>=2){
               </div>
 			  
               <div class="modal-footer" >
-                <button type="button" class="btn btn-danger pull-left" style="margin-top:10px;" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Close</button>
+                <!-- <button type="button" class="btn btn-danger pull-left" style="margin-top:10px;" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Close</button> -->
                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
               </div>
             </div>
@@ -264,4 +273,4 @@ $(document).ready(function(){
    echo $chevronContractDetails;
  ?>
 });
-</script>		
+</script>
