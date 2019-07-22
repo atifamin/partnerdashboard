@@ -1,0 +1,87 @@
+.modal-financing-table > tbody > tr > td{padding-top:3%;padding-bottom:3%;}
+.div-cont-amount {
+  background-color: #474628;
+  height: 180px;
+}
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #ACA588;
+    font-size: 50px;
+}
+.text-white {
+  color: white;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.vl {
+    border-left: 6px solid #31859c;
+  height: 120px;
+  position: absolute;
+  left: 100%;
+  margin-left: -3px;
+  top: 10px;
+}
+.vl-1 {
+    border-left: 6px solid #31859c;
+  height: 120px;
+  position: absolute;
+  left: 100%;
+  margin-left: -3px;
+  top: 0px;
+}
+.cus-border {
+  border: 2px solid; 
+  border-color: #93ccdd;
+}
+.new5 {
+  border: 3px solid #93ccdd;
+  border-radius: 2px;
+}
+.color-1 {
+  color: #31859c;
+}
+.color-2 {
+  color: #5F898C;
+}
+.color-3 {
+  color: #3285A1;
+}
+.bg-1 {
+  background-color:#10253f;
+}
+.bg-2 {
+  background-color:#31859c;
+}
+.bg-button {
+  background-color: #768B47;
+}
+.custom-btn {
+   background-color: #507FC7; 
+   width: 130px; 
+   height: 45px;
+}
+.font-30 {
+  font-size: 30px;
+}
+.font-25 {
+  font-size: 25px;
+}
+.font-20 {
+  font-size: 20px;
+}
+.w-90 {
+  width: 90%;
+}
+.w-70 {
+  width: 70%;
+}
