@@ -16,59 +16,59 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 
    //echo "<pre>";print_r(); 
 	?>
-<style>
-.modal-financing-table > tbody > tr > td{padding-top:3%;padding-bottom:3%;}
-</style>
-   <div class="row">
-	   <div class="col-lg-6 col-xs-12">
-		 <div class="box">
-		   <!-- <div class="box-header">
-			 <h3 class="box-title">Responsive Hover Table</h3>
 
-			 <div class="box-tools">
-			   <div class="input-group input-group-sm" style="width: 150px;">
-				 <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+<div class="row">
+  <div class="col-lg-8 col-xs-12">
+    <div class="box"> 
+      <!-- <div class="box-header">
+		 <h3 class="box-title">Responsive Hover Table</h3>
 
-				 <div class="input-group-btn">
-				   <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-				 </div>
-			   </div>
+		 <div class="box-tools">
+		   <div class="input-group input-group-sm" style="width: 150px;">
+			 <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+			 <div class="input-group-btn">
+			   <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 			 </div>
-		   </div> -->
-		   <!-- /.box-header -->
-		   <div class="box-body table-responsive no-padding">
-			 <table class="table table-hover modal-financing-table">
-			   <tr>
-				 <td>Company Name</td>
-				 <td><strong><?php echo $Tab1_Q1D['prime_contractor_name']; ?></strong></td>
-			   </tr>
-			   <tr>
-				 <td>Contract Name</td>
-				 <td><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
-			   </tr>
-			   <tr>
-				 <td>Contract Number</td>
-				 <td><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
-			   </tr>
-			   <tr>
-				 <td>Contract Amount</td>
-				 <td><strong>$<?php echo number_format($Tab1_Q1D['award_amount']); ?></strong></td>
-			   </tr>
-			 </table>
 		   </div>
-		   <!-- /.box-body -->
 		 </div>
-		 <!-- /.box -->
-		 
-	   </div>
-	   <div class="col-lg-6 col-xs-12" align="center">
-			<video width="auto" controls style="width:100%">
-				<source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-				Your browser does not support HTML5 video.
-			</video>
-		 </div>
-	 </div>
- <?php } 
+	   </div> --> 
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover modal-financing-table">
+          <tr>
+            <td>Company Name</td>
+            <td><strong><?php echo $Tab1_Q1D['prime_contractor_name']; ?></strong></td>
+          </tr>
+          <tr>
+            <td>Contract Name</td>
+            <td><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
+          </tr>
+          <tr>
+            <td>Contract Number</td>
+            <td><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
+          </tr>
+          <!-- 
+		   <tr>
+			 <td>Contract Amount</td>
+			 <td><strong>$<?php //echo number_format($Tab1_Q1D['award_amount']); ?></strong></td>
+		   </tr> -->
+        </table>
+      </div>
+      <!-- /.box-body --> 
+    </div>
+    <!-- /.box --> 
+    
+  </div>
+  <div class="col-lg-4 col-xs-12" align="center">
+    <div class="div-cont-amount"> <span class="container">$757,000</span> </div>
+    <!-- <video width="auto" controls style="width:100%">
+			<source src="<?php //echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
+			Your browser does not support HTML5 video.
+		</video> --> 
+  </div>
+</div>
+<?php } 
 if($_FILE_NAME != "contract_details.php"){
 include("../includes/header.php");
 include("../includes/top_nav.php");
@@ -147,11 +147,81 @@ $UserID		 = $_SESSION['user_id'];
 $Insert = "INSERT INTO `finserv_views`(`finserv_user_id`,`finserv_id`,`finserv_view_date`) VALUES ('".$UserID."','".$FinServID."','".date('Y-m-d H:i:s')."')";
 $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 } 	
-?>									
-						
-  
-									
-	<div class="tab3_boxes" style="float:left;width:100%;margin-top:25px;padding:10px;">
+?>
+<div class="row cus-border">
+  <div class="col-md-4 text-center">
+    <div class="mt-10"> <span class="font-30 color-1">Contract Financing<br>
+      $5000 - $100,000</span> </div>
+    <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">Request Financing</span></a>
+    <div class="vl"></div>
+  </div>
+  <div class="col-md-5 text-center">
+    <table class="mt-20 color-2 w-70" align="center">
+      <tr class="text-left">
+        <td>FINANCING TYPE:</td>
+        <td>CONTACT FINANCING</td>
+      </tr>
+      <tr class="text-left">
+        <td>APPLICATION FEE:</td>
+        <td>$150.00 (One Time Fee)</td>
+      </tr>
+      <tr class="text-left">
+        <td>INTEREST RATE:</td>
+        <td>1% PER MONTH</td>
+      </tr>
+      <tr class="text-left">
+        <td>REPAYMENT TERM:</td>
+        <td>1-3 MONTHS</td>
+      </tr>
+    </table>
+    <span class="color-2">(UPON PAYMENT OF SUBMITTED INVOICE)</span>
+    <div class="vl"></div>
+  </div>
+  <div class="col-md-3 text-center">
+    <div class="mt-10 mb-10"> <strong class="color-1 font-25">PRE-PAYMENT<br>
+      PENELTY?</strong><br>
+      <button type="button" class="btn custom-btn mt-10"><strong class="text-white font-25">NO</strong></button>
+    </div>
+  </div>
+</div>
+<div class="row mt-10 cus-border">
+  <div class="col-md-4 text-center mt-10 mb-10">
+    <div class="col-md-12 mb-10 text-white">
+      <div class="bg-1"><span class="font-20">YOUR bizVAULT Status</span></div>
+    </div>
+    <div class="col-md-4"><img src="../assets/img/a13.png" width="80"></div>
+    <div class="col-md-8">
+      <div class="text-white bg-2"><span>Your bizVAULT Contains All <br>
+        Needed Documents and <br>
+        Files</span></div>
+    </div>
+    <div class="vl-1"></div>
+  </div>
+  <!-- <div class="col-md-1">
+			<div class="vl"></div>
+		</div> -->
+  <div class="col-md-5 text-center">
+    <div class="mt-10"> <span class="mt-10 font-25 color-3">Contract and Invoice Financing<br>
+      Solutions for your  California<br>
+      Certified Business</span> </div>
+    <div class="vl"></div>
+  </div>
+  <div class="col-md-3 text-center">
+    <video class="mt-10 w-90" width="auto" controls>
+      <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
+      Your browser does not support HTML5 video. </video>
+  </div>
+  <div class="col-md-12">
+    <hr class="new5">
+  </div>
+  <br>
+  <div class="row mb-10">
+    <div class="col-md-6 text-center"><img src="../assets/img/financing-cycle.jpg" width="60%"></div>
+    <div class="col-md-6 text-center"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10"> </div>
+  </div>
+</div>
+
+<!-- <div class="tab3_boxes" style="float:left;width:100%;margin-top:25px;padding:10px;">
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align: center;background:#9ec7c2;height: 230px;padding:0%;">
 		<h4 style="color:white;background: #2e9288fa;padding: 2%;margin-top: 0%;"><?php echo $PartnerName; ?></h4><br /><?php if(isset($Logo)){ ?>
 		<img src="<?php echo base_url.$Logo; ?>" alt="" width="200" />
@@ -192,7 +262,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 				<i class="icon-on-right ace-icon fa fa-arrow-right"></i>
 			</a>
 		</div>
-	</div>
+	</div> -->
 <?php
 	}// While close
 }else{
@@ -200,8 +270,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 include "tab3/specialcase.php";	
 }
 }else{echo $NoResult;}
-?>							
-
+?>
 <?php 
 if($_FILE_NAME != "contract_details.php"){
 include("../includes/footer.php");
