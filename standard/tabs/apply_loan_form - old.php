@@ -1,3 +1,27 @@
+<!-- <div id="apply-load-modal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <form action="" method="post" id="apply_loan_form">
+      <div class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" name="task_todo" value="0">
+		  <input type="hidden" name="task_container" value="33">
+		  <div class="form-group">
+            <label for="task_title" class="form-control-label">Deal Title :</label>
+            <input name="task_title" id="task_title" type="text" class="form-control" required="required">
+          </div> 
+		  <div class="form-group">
+            <label for="task_funding_amount_requested" class="form-control-label">Loan Amount :</label>
+            <input name="task_funding_amount_requested" id="task_funding_amount_requested" type="text" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="modal-footer no-margin-top">
+          <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal"> <i class="ace-icon fa fa-times"></i> Close </button>
+          <button type="submit" class="btn btn-primary">Apply Loan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->
 <link href="../assets/smartWizard/css/smart_wizard.css" rel="stylesheet" type="text/css" />
 <link href="../plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
 <style>
@@ -5,41 +29,19 @@
 	font-size: 12px;
 }
 #form-step-1{padding:2%;}
-#bottom-message{
-  position: absolute;
-  top: 130px;
-  z-index: 10000;
-}
 </style>
 <!-- Include SmartWizard CSS -->
 <?php session_start(); ?>
+<?php include("../config/config_main.php"); ?>
 <?php
-include("../config/config_main.php");
-include('../base_path.php');
-?>
-<?php
-
-function getBusiTypeByParent($QUERY, $CONN){
-  $QUERY_R = exec_sqlQuery($CONN, $QUERY);
-  $array = array();
-  while($Row = mysqli_fetch_array($QUERY_R)){
-    $type = new stdClass;
-    $type->id = $Row['id'];
-    $type->parent_id = $Row['parent_id'];
-    $type->company_id = $Row['company_id'];
-    $type->slug = $Row['slug'];
-    $type->name = $Row['name'];
-    $array[] = $type;
-  }
-  return $array;
-}
-$businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = 0", $con_MAIN);
-
-foreach($businesTypes as $key=>$val){
-  $businesTypes[$key]->sub = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = ".$val->id."", $con_MAIN);
-}
 
 function exec_sqlQuery($con, $q){
+  //$con=mysqli_connect("localhost","root","","partnerdashboard");
+// Check connection
+  // if (mysqli_connect_errno())
+  // {
+  // echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  // }
   $result = mysqli_query($con,$q);
   return $result;
 }
@@ -76,17 +78,6 @@ function bizVaultStatus($con){
   return $data;
 }
 
-
-
-$FirmID = $_SESSION['dbe_firm_id'];
-$Tab1_Q1 = 'SELECT *
-FROM prime_contractor pc
-JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
-GROUP BY pc.contract_id ORDER BY pc.contract_id DESC';
-$Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error());  
-$Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R); 
-
 ?>
 <textarea name="bizVaultStatus" id="bizVaultStatus" cols="30" rows="10" style="display:none"><?php echo json_encode(bizVaultStatus($con_MAIN)); ?></textarea>
 <!-- Optional SmartWizard theme -->
@@ -97,7 +88,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <h1 style="text-align:center;"><strong>FastFund Basic Application Form</strong></h1>
+        <h1 style="text-align:center;">Standard User Online Application Form</h1>
         <form action="apply_loan_form/apply_loan_add.php" id="myForm" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
           
           <!-- SmartWizard html -->
@@ -108,6 +99,14 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
               <li><a href="#step-2">Step 2<br />
                 <small>Company Profile</small></a></li>
               <li><a href="#step-3">Step 3<br />
+                <small>Liabilities</small></a></li>
+              <li><a href="#step-4">Step 4<br />
+                <small>Bank Account</small></a></li>
+              <li><a href="#step-5">Step 5<br />
+                <small>Business References</small></a></li>
+              <li><a href="#step-6">Step 6<br />
+                <small>Authorized Management</small></a></li>
+              <li><a href="#step-7">Step 7<br />
                 <small>Finish</small></a></li>
             </ul>
             <div>
@@ -123,32 +122,32 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
                   <?php include("apply_loan_form/step2.php"); ?>
                 </div>
               </div>
-              <!-- <div id="step-3">
+              <div id="step-3">
                 <h2>Liabilities</h2>
                 <div id="form-step-2" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step3.php"); ?>
+                  <?php include("apply_loan_form/step3.php"); ?>
                 </div>
               </div>
               <div id="step-4">
                 <h2>Business Bank Account And Writing Instructions</h2>
                 <div id="form-step-3" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step4.php"); ?>
+                  <?php include("apply_loan_form/step4.php"); ?>
                 </div>
               </div>
               <div id="step-5">
                 <h2>Personal OR Business Referances (Provide Two)</h2>
                 <div id="form-step-4" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step5.php"); ?>
+                  <?php include("apply_loan_form/step5.php"); ?>
                 </div>
               </div>
               <div id="step-6">
                 <div id="form-step-5" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step6.php"); ?>
+                  <?php include("apply_loan_form/step6.php"); ?>
                 </div>
-              </div> -->
-              <div id="step-3" class="">
+              </div>
+              <div id="step-7" class="">
                 <h2>Terms and Conditions</h2>
-                <?php include("apply_loan_form/step3.php"); ?>
+                <?php include("apply_loan_form/step7.php"); ?>
               </div>
             </div>
           </div>
@@ -243,7 +242,7 @@ $(document).ready(function(){
     });
     
     if($bizVaultStatus.completed=="no"){
-      $(".sw-toolbar-bottom").html('<div class="row" style="text-align:center;padding: 3% 0;background-color:white;" id="bottom-message"><div class="col-md-12" style="background-color:#17375e;padding:5% 0;"><div class="col-md-offset-2 col-md-8"><h1 style="font-size:42px;color:white">YOU ARE MISSING FILES IN YOUR bizVALUT<sup>TM</sup></h1></div></div><div class="col-md-12" style="background-color:#4f81bd;"><h1 style="color:#ffc000;font-weight:900;">STATUS</h1><p style="color:#f8fe00;font-size:28px;">In order to complete your Funding Request Please complete uploading your basic files to your bizVAULT</p></div><div class="col-md-12" style="background-color:#17375e;padding:5% 0;"><div class="col-md-offset-2 col-md-8"><a href="<?=base_url.'tabs/bizVault.php'?>" class="btn btn-block btn-primary" style="background-color:#cc6600;border-color:#cc6600;font-size:36px;color:white;">CLICK HERE TO UPLOAD <br>MISSING FILES</a></div></div></div>');
+      $(".sw-toolbar-bottom").html('<div style="text-align:center;background-color:#4f81bd;padding: 3% 0;"><h1 style="color:#ffc000;font-weight:900;">STATUS</h1><p style="color:#f8fe00;font-size:28px;">In order to complete your Funding Request Please complete uploading your basic files to your bizVAULT</p></div>');
     }
 
 });

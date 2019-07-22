@@ -141,18 +141,18 @@
     $DETAIL = $this->sec->get_task_content($task['task_id']);
     //echo "<pre>"; print_r($DETAIL['logo']);
     ?>
-    <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+    <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>">
       <div class="portlet-border"></div>
        <div class="portlet-header" style="padding-right:0px;padding-left:0px;min-height:100px;">
         <div >
-          <div class="col-md-12" style="padding:0px;">
+          <div class="col-md-12" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
             <div class="col-md-3" style="padding: 0px;background-color: #<?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm_Color'];} else{echo "000000";} ?>;border-right: 5px solid white;height: 55px;text-align: center;line-height: 3.6;color:white;font-weight:900;"><?php echo $DETAIL['logo']; ?></div>
             <div class="col-md-9" style="padding:0px;">
               <p style="font-size:12px;background-color:#4f81bd;padding:2%;padding-right:5%;color:white;white-space:nowrap;overflow:hidden;"><?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm/DBA Name'];}else{echo $DETAIL['dashboard_user']->user_fname." ".$DETAIL['dashboard_user']->user_lname;} ?> </p>
               <p style="font-size:12px;background-color:#31859c;padding:2%;color:white;white-space:nowrap;overflow:hidden;"><?php echo substr($DETAIL['dashboard_user']->user_fname,0,1); ?> <?php echo $DETAIL['dashboard_user']->user_lname; ?> - Owner</p>
             </div>
           </div>
-          <div class="col-md-12" style="padding: 0px;">
+          <div class="col-md-12" style="padding: 0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
             <div class="col-md-10" style="padding-right:0px;text-align:center;"><span class="<?php if (date('Y-m-d', strtotime($task['task_due_date'])) < date('Y-m-d')): ?>danger_date<?php endif; ?>"> <?php echo ($task['task_due_date'] != 0) ? print_date($task['task_due_date']) : null; ?> </span> <span style="font-size:12px;"><?php echo ($task['task_time_estimate'] != "00:00:00") ? "Est.: " . $task['task_time_estimate'] : null; ?> <?php echo ($task['task_time_spent'] != "00:00:00") ? "Spent: " . $task['task_time_spent'] : null; ?></span></div>
             <div class="col-md-2" style="padding:unset;padding-top:6%;">
               <div class="action_button hidden-xs">
@@ -166,7 +166,7 @@
         <div class="col-md-12" style="padding: 0px;margin-top:5%;">
           <div class="col-md-3"> <a href="javascript:;toggleShowDescription(<?php echo $task['task_id']; ?>)" style="color:black;"><i class="fa fa-chevron-down"></i></a> </div>
           <div class="col-md-9" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
-            <div class="col-md-6" style="background-color:#ebf1de;color:#77933c;padding-right: 2px;padding-left: 2px;text-align: center;">
+            <div class="col-md-6" style="background-color:#ebf1de;color:#77933c;padding-right: 2px;padding-left: 2px;text-align: center;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
               <p style="font-size:10px;margin-bottom:0px;min-height: 30px;">FUNDING AMOUNT</p>
             </div>
             <div class="col-md-6" style="background-color:#77933c;color:#ebf1de;padding-right: 2px;padding-left: 2px;text-align: center;">
