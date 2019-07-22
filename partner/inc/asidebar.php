@@ -1,3 +1,4 @@
+
   <aside class="main-sidebar" style="width:;">
     <section class="sidebar">
       <div class="user-panel" style="height: 68px;">
@@ -31,7 +32,7 @@
       </li> -->
 
   <ul class="sidebar-menu" data-widget="tree"  style="background:#b9aeae38;">
-            <li class="margin-top-sidebar" style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>">
+            <li class="margin-top-sidebar" style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "dashboard.php"){echo "active";} ?>">
               <!-- <a href="<?php //echo base_url; ?>tabs/financial_services.php"> -->
               <a href="dashboard.php">
                 <div class="row"> 
@@ -62,7 +63,7 @@
             </li>
             </ul> -->
             <ul class="sidebar-menu" data-widget="tree"  style="background:#b9aeae38;">
-            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>">
+            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "dealflow.php"){echo "active";} ?>">
               <a href="dealflow.php">
               <div class="row"> 
                 <div class="col-sm-1">
@@ -78,8 +79,8 @@
             </li>
             </ul>
           <ul class="sidebar-menu" data-widget="tree"  style="background:#b9aeae38;">
-            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>">
-              <a href="#">
+            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "client_engagement.php"){echo "active";} ?>">
+              <a href="client_engagement.php">
               <div class="row"> 
                 <div class="col-sm-1">
                        <img class="img_res3" src="inc/img/client_engagement_icon-trans.png" style="width:85px;margin-top: 2px;">
@@ -94,8 +95,8 @@
             </li>
           </ul>
           <ul class="sidebar-menu" data-widget="tree"  style="background:#b9aeae38;">
-            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>">
-              <a href="#">
+            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "client_analytics.php"){echo "active";} ?>">
+              <a href="client_analytics.php">
               <div class="row"> 
                 <div class="col-sm-1">
                        <img  class="img_res4" src="inc/img/client_analytics_icon-trans.png" style="width:77px;margin-top: 2px;">
@@ -110,8 +111,8 @@
             </li>
           </ul>
           <ul class="sidebar-menu" data-widget="tree"  style="background:#b9aeae38;">
-            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>">
-              <a href="#">
+            <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="<?php if( $_FILE_NAME == "data_export_tool.php"){echo "active";} ?>">
+              <a href="data_export_tool.php">
              <div class="row"> 
                 <div class="col-sm-1">
                        <img class="img_res5" src="inc/img/data_export_tool_icon-trans.png" style="width:74px;margin-top: 2px;">
