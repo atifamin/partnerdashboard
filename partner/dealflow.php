@@ -23,7 +23,7 @@
       </ol>
     </section>
 <section class="content">
-  <div class="row" id="dealFlowStatsRow">
+  <div class="row" id="pageStatsRow">
                   <?php 
                   
                   $query1= 'SELECT COUNT(*) as total_deals 

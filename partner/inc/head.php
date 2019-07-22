@@ -123,8 +123,7 @@
     @media only screen and (max-width: 720px) and (min-width: 641px)  {
       .imgclass {width: 10% !important}
     }
+    .text1{background-color: #1F487C;width: 98%;margin-left: 1%;margin-bottom: 10px}
 
-
-    
   </style>
 </head>
