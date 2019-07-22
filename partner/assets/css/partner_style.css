@@ -42,3 +42,5 @@ ul.product_statistics_range li a.active{background:#DAE4F0;}
 
 #pageStatsRow > div > .small-box{text-align:right;}
 #pageStatsRow > div > .small-box > .icon{right:unset;}
+
+#page_font_style{float: right;color: #ffff;font-size: 40px}

@@ -145,7 +145,7 @@
         </div>                         
  	</div>
 	<div class="row">
-	  	<div class="col-md-12 custom_changes">
+	  	<div class="col-md-12 text1">
 	  		<p id="page_font_style">FastFund Client Engagements</p>
 	  	</div>
 	</div>
