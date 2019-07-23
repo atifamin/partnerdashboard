@@ -285,7 +285,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab_edit"><?php echo e('Edit Deal', true); ?></a> </li>
           <li><a data-toggle="tab" href="#tab_attachments"><?php echo e('Attachments', true); ?></a></li>
-          <?php if ($this->session->userdata['user_session']['dashboard_user_id'] == 5001) { ?>
+          <?php if ($this->session->userdata['user_session']['user_id'] == 5001) { ?>
           <li><a data-toggle="tab" href="#tab_bizvault_files_document"><?php echo e('bizVAULT™ Files and Documents', true); ?></a></li>
         <?php } ?>
           <li><a data-toggle="tab" href="#tab_periods"><?php echo e('Working periods', true); ?></a></li>
@@ -311,7 +311,7 @@
                 <div class="row" id="row1">
                   <div class="col-md-1 circle" id="col1">
                     <?php
-                   $dashboardUserDetail = $this->partnerDB->where("user_id", $_SESSION['user_session']['dashboard_user_id'])->get("user")->row();
+                   $dashboardUserDetail = $this->partnerDB->where("user_id", $_SESSION['user_session']['user_id'])->get("user")->row();
                   ?>
                     <?=substr($dashboardUserDetail->user_fname, 0,1).substr($dashboardUserDetail->user_lname, 0,1); ?>
                   </div>

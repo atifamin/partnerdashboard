@@ -174,14 +174,14 @@ class Ajax extends CI_Controller
     public function get_comments_by_task($task_id){
         $allComments = $this->db->select("tc.*, u.*, DATE_FORMAT(tc.task_comment_date, '%a %d, %Y at %h:%i %p') as task_created_at")->join("users AS u", "u.user_id = tc.task_comment_user_id")->where("tc.task_comment_task_id", $task_id)->order_by("task_comment_id", "DESC")->get("task_comment AS tc")->result();
         foreach($allComments as $key=>$val):
-            $dashboardUserDetail = $this->partnerDB->where("user_id", $val->dashboard_user_id)->get("user")->row();
+            $dashboardUserDetail = $this->partnerDB->where("user_id", $val->user_id)->get("user")->row();
 
             $repliedComment = $this->db->where("commentId", $val->task_comment_id)->get("task_comment_reply")->row();
             $repliedCommentResult = array();
             if(isset($repliedComment->replyId)){
                 $repliedCommentResult = $this->getCommentResult($repliedComment->replyId);
                 $repliedCommentResult = $repliedCommentResult[0];
-                $DUDR = $this->partnerDB->where("user_id", $repliedCommentResult->dashboard_user_id)->get("user")->row();
+                $DUDR = $this->partnerDB->where("user_id", $repliedCommentResult->user_id)->get("user")->row();
                 $repliedCommentResult->dashboardUserFirstName = $DUDR->user_fname;
                 $repliedCommentResult->dashboardUserLastName = $DUDR->user_lname;
             }
@@ -753,13 +753,13 @@ class Ajax extends CI_Controller
 
 		$comment['result'] =	$this->getCommentResult($id);
 		foreach($comment['result'] as $key=>$val){
-            $dashboardUserDetail = $this->partnerDB->where("user_id", $val->dashboard_user_id)->get("user")->row();
+            $dashboardUserDetail = $this->partnerDB->where("user_id", $val->user_id)->get("user")->row();
             $repliedComment = $this->db->where("commentId", $id)->get("task_comment_reply")->row();
             $repliedCommentResult = array();
             if(isset($repliedComment->replyId)){
                 $repliedCommentResult = $this->getCommentResult($repliedComment->replyId);
                 $repliedCommentResult = $repliedCommentResult[0];
-                $DUDR = $this->partnerDB->where("user_id", $repliedCommentResult->dashboard_user_id)->get("user")->row();
+                $DUDR = $this->partnerDB->where("user_id", $repliedCommentResult->user_id)->get("user")->row();
                 $repliedCommentResult->dashboardUserFirstName = $DUDR->user_fname;
                 $repliedCommentResult->dashboardUserLastName = $DUDR->user_lname;
             }

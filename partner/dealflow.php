@@ -33,7 +33,7 @@
                             tasks.task_container=containers.container_id AND
                             containers.container_board=boards_users.board_id AND
                             boards_users.user_id=users.user_id AND 
-                            tasks.task_archived=0 AND  users.dashboard_user_id='.$_SESSION["user_id"];
+                            tasks.task_archived=0 AND  users.user_id='.$_SESSION["user_id"];
                   $res1= mysqli_query($con_TaskBoard,$query1);
                   $r = mysqli_fetch_object($res1);
                   //echo"<pre>";print_r($res1);exit();
@@ -45,7 +45,7 @@
                             tasks.task_container=containers.container_id AND
                             containers.container_board=boards_users.board_id AND
                             boards_users.user_id=users.user_id AND 
-                            tasks.task_archived=0 AND users.dashboard_user_id='.$_SESSION["user_id"];
+                            tasks.task_archived=0 AND users.user_id='.$_SESSION["user_id"];
                   $res2= mysqli_query($con_TaskBoard,$query2);
                   $r2 = mysqli_fetch_object($res2);
                   //echo"<pre>";print_r($r2);exit();
@@ -54,7 +54,7 @@
                   tasks,users,containers,boards_users 
                   WHERE containers.container_name="Funding Closed" AND tasks.task_container=containers.container_id AND containers.container_board=boards_users.board_id AND
                   boards_users.user_id=users.user_id AND 
-                  tasks.task_archived=0 AND users.dashboard_user_id='.$_SESSION["user_id"];
+                  tasks.task_archived=0 AND users.user_id='.$_SESSION["user_id"];
 //echo $query3;exit;
                   $res3= mysqli_query($con_TaskBoard,$query3);
                   $r3= mysqli_fetch_object($res3);
@@ -69,7 +69,7 @@
                             AND containers.container_board=boards_users.board_id 
                             AND boards_users.user_id=users.user_id 
                             AND tasks.task_archived=0 
-                            AND users.dashboard_user_id='.$_SESSION["user_id"];
+                            AND users.user_id='.$_SESSION["user_id"];
                   $res4= mysqli_query($con_TaskBoard,$query4);
                   // echo"<pre>";print_r($query4);exit();
 
@@ -148,11 +148,13 @@
           </div>
         </div>                         
   </div> 
- 
-  <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+ <?php
+ //echo "<pre>"; print_r($_SESSION);
+ ?>
+  <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
     </iframe>
-    <!-- <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+    <!-- <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
     </iframe> -->
 </section>  

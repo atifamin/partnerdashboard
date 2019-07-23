@@ -50,14 +50,14 @@ class Access extends CI_Controller
     public function login_auto()
     {   
       
-        $dashboard_user_id = $this->input->get('dashboard_user_id');
+        $user_id = $this->input->get('user_id');
         //$password = $this->input->get('password');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $remember = $this->input->post('remember');
         $password = md5($password);
 
-        $query = $this->db->query("SELECT * FROM users WHERE dashboard_user_id = '$dashboard_user_id' LIMIT 1");
+        $query = $this->db->query("SELECT * FROM users WHERE user_id = '$user_id' LIMIT 1");
         //echo $query;exit;
         if ($query->num_rows() > 0) {
             $this->session->set_userdata('logged', true);
