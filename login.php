@@ -72,7 +72,7 @@
 					</span>
 					</div>
 					<div style="clear:both;height:20px;"></div>
-					<button onclick="logmein()" type="button" class="width-35 btn btn-sm btn-primary">
+					<button onclick="logmein()" type="button" class="width-35 btn btn-sm btn-primary" id="login_btn">
 						<i class="ace-icon fa fa-key"></i>
 						<span class="bigger-110">Login</span>
 					</button>
@@ -173,6 +173,22 @@ function logmein(){
 		}
 	});
 }
+
+var input = document.getElementById("password1");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("login_btn").click();
+  }
+});
+
+var input = document.getElementById("email");
+input.addEventListener("keyup", function(event) {
+	if(event.keyCode === 13) {
+		document.getElementById("login_btn").click();
+	}
+})
+
 </script>
 	</body>
 </html>

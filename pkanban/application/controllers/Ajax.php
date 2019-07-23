@@ -21,7 +21,6 @@ class Ajax extends CI_Controller
      */
 
     public function upload_attachments() {
-        //print_r($this->input->post('task_id')); exit;
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png|pdf|xls|csv|xml|odt|doc|ppt|jpeg|mov|mp4|mp3|zip|rar|docx|xlsx|pptx|avi|html|js|svg';
         $config['max_size']             = 100000; // 100.000 = 100MB

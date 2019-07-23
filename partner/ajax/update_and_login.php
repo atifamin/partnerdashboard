@@ -36,6 +36,7 @@ if(mysqli_num_rows($QueryR)>0){
 	$_SESSION['user_fname'] 		= $UserData['user_fname'];
 	$_SESSION['user_lname'] 		= $UserData['user_lname'];
 	$_SESSION['user_gender'] 		= $UserData['user_gender']; 
+	// $_SESSION['user_pic'] 			= $UserData['user_pic']; 
 	echo '
 		<div class="cong_heading_1">CONGRATULATIONS!!</div>
 		<div class="cong_heading_2">YOU HAVE SUCCESSFULLY ACTIVATED YOUR</div>
