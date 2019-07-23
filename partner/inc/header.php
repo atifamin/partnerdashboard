@@ -1,3 +1,5 @@
+<?php include "config/config_main.php"; ?>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
@@ -229,17 +231,30 @@
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
+          <?php
+            $query = 'select * from user where user_id = "'.$_SESSION['user_id'].'" ';
+            $res = mysqli_query($con_MAIN,$query);
+            $row = mysqli_fetch_object($res);
+          ?> 
           <li class="dropdown user user-menu" style="height: 58px">
         
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
+                <?php if ($row->user_pic != null) { ?>
+              <img src="../pkanban/uploads/<?php echo $row->user_pic; ?>" class="img-circle" alt="User Image" style="margin-top: -4px;width: 45px">
+            <?php }else{ ?>
               <img src="assets/avatars/user.jpg" class="img-circle" alt="User Image" style="margin-top: -4px;">
+            <?php } ?>
                 <span class="user-info">
               <span class="hidden-xs"><?php echo $_SESSION['user_fname'].' '.$_SESSION['user_lname']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
+                <?php if ($row->user_pic != null) { ?>
+                <img src="../pkanban/uploads/<?php echo $row->user_pic; ?>" class="img-circle" alt="User Image">
+              <?php }else{ ?>
                 <img src="assets/avatars/user.jpg" class="img-circle" alt="User Image">
+              <?php } ?>
                 <?php echo $_SESSION['user_fname'].' '.$_SESSION['user_lname']; ?>
               </li>
 

@@ -1,6 +1,4 @@
-<?php
-    //echo "<pre>"; print_r($dashboard_user_id);exit();
- ?>
+
 <style type="text/css">
 #row1 {
 	margin-top: 12px;
@@ -287,7 +285,9 @@
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab_edit"><?php echo e('Edit Deal', true); ?></a> </li>
           <li><a data-toggle="tab" href="#tab_attachments"><?php echo e('Attachments', true); ?></a></li>
+          <?php if ($this->session->userdata['user_session']['dashboard_user_id'] == 5001) { ?>
           <li><a data-toggle="tab" href="#tab_bizvault_files_document"><?php echo e('bizVAULT™ Files and Documents', true); ?></a></li>
+        <?php } ?>
           <li><a data-toggle="tab" href="#tab_periods"><?php echo e('Working periods', true); ?></a></li>
         </ul>
         <div class="tab-content bck">
@@ -447,11 +447,12 @@
             <div class="dropzone_error"></div>
             <form action="/upload-target" class="dropzone" id="dropzone_form">
               <div class="fallback">
-                <input class="upload_task_id" type="hidden" name="task_id" value=""/>
+                <input class="upload_task_id" type="text" name="task_id" value=""/>
               </div>
             </form>
             <?php endif; ?>
           </div>
+          
           <div id="tab_bizvault_files_document" class="tab-pane fade in">
             <div class="row" style="background-color: #93CCDD;padding: 3% 0">
               <div class="col-md-2"> <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px"> </div>

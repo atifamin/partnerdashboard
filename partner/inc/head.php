@@ -19,7 +19,7 @@
   if(strtolower($_SESSION['user_type']) != 'partner'){
       header('Location: ../standard/dashboard.php');
   }
-
+  
 
   $UserCertficationID = $_SESSION['certification_id'];
   $Q_Sub = 'SELECT  `Legal Business Name` AS BusinessName from sbdvbe  WHERE `Certification ID`= '.$UserCertficationID.'';
@@ -124,6 +124,7 @@
       .imgclass {width: 10% !important}
     }
     .text1{background-color: #1F487C;width: 98%;margin-left: 1%;margin-bottom: 10px}
-
+    .icon-left{color: #3c8dbc;float: right; margin-top: 17px;margin-left: 2%;}
+    .btn-refresh{color: #ffff;float: right;margin-bottom: 10px;border-radius: 18px;font-size: 20px;}
   </style>
 </head>
