@@ -1,4 +1,4 @@
-
+<?php // echo"<pre>"; print_r($this->session->userdata['user_session']);exit; ?>
 <style type="text/css">
 #row1 {
 	margin-top: 12px;
