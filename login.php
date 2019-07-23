@@ -95,7 +95,7 @@
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-		<script src="assets/ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -174,20 +174,10 @@ function logmein(){
 	});
 }
 
-var input = document.getElementById("password1");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("login_btn").click();
-  }
+$(document).bind('keyup', function(e){
+	if(e.keyCode==13)
+		logmein();
 });
-
-var input = document.getElementById("email");
-input.addEventListener("keyup", function(event) {
-	if(event.keyCode === 13) {
-		document.getElementById("login_btn").click();
-	}
-})
 
 </script>
 	</body>
