@@ -1,5 +1,15 @@
+<?php session_start(); ?>
+<?php
+include("../config/config_main.php");
+include('../base_path.php');
+?>
 <link href="../assets/smartWizard/css/smart_wizard.css" rel="stylesheet" type="text/css" />
+<link href="../assets/smartWizard/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
+<link href="../assets/smartWizard/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
+<link href="../assets/smartWizard/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
 <link href="../plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" type="text/css" href="../bower_components/jquery.dropdown-master/css/demo.css" /> -->
+<link rel="stylesheet" type="text/css" href="<?PHP echo base_url; ?>bower_components/jquery.dropdown-master/css/dropdown.css" />
 <style>
 .form-group.has-error .help-block {
 	font-size: 12px;
@@ -12,11 +22,7 @@
 }
 </style>
 <!-- Include SmartWizard CSS -->
-<?php session_start(); ?>
-<?php
-include("../config/config_main.php");
-include('../base_path.php');
-?>
+
 <?php
 
 function getBusiTypeByParent($QUERY, $CONN){
@@ -90,9 +96,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
 ?>
 <textarea name="bizVaultStatus" id="bizVaultStatus" cols="30" rows="10" style="display:none"><?php echo json_encode(bizVaultStatus($con_MAIN)); ?></textarea>
 <!-- Optional SmartWizard theme -->
-<link href="../assets/smartWizard/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
-<link href="../assets/smartWizard/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
-<link href="../assets/smartWizard/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
+
 <div id="apply-load-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -161,13 +165,21 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
     </div>
   </div>
 </div>
-
+<!-- <script src="../bower_components/jquery/dist/jquery.min.js"></script> -->
 <!-- Include jQuery Validator plugin --> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script> 
-<script src="../plugins/iCheck/icheck.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script src="../plugins/iCheck/icheck.min.js"></script>
 <!-- Include SmartWizard JavaScript source --> 
-<script type="text/javascript" src="../assets/smartWizard/js/jquery.smartWizard.js"></script> 
+<script type="text/javascript" src="../assets/smartWizard/js/jquery.smartWizard.js"></script>
+<script src="<?PHP echo base_url; ?>bower_components/jquery.dropdown-master/js/jquery.dropdown.js"></script>
 <script type="text/javascript">
+(function($) {
+  $(function() {
+    $('#type_of_business').dropdown();
+  });
+}(jQuery));
+
 $(document).ready(function(){
     var $bizVaultStatus = $("#bizVaultStatus").html();
     $bizVaultStatus = JSON.parse($bizVaultStatus);
@@ -224,9 +236,7 @@ $(document).ready(function(){
             elmForm.validator('validate');
             var elmErr = elmForm.children('.has-error');
             var elmFormErr = elmForm.find('.has-error');
-            //alert(elmErr.length);
             if(elmErr && elmFormErr.length > 0){
-                // Form validation failed
                 return false;
             }
         }
@@ -251,7 +261,8 @@ $(document).ready(function(){
 $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
   checkboxClass: 'icheckbox_minimal-blue',
   radioClass   : 'iradio_minimal-blue'
-})
+});
+
 </script> 
 
 <!-- <script>
