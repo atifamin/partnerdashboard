@@ -148,20 +148,13 @@
           </div>
         </div>                         
   </div> 
-  <div class="row" style="" id="page_refresh_btn">
-    <div class="col-md-12">
-      <i class="fa fa-arrow-left fa-3x icon-left"></i><button class="btn btn-lg btn-primary btn-refresh" onclick="refresh_page()">REFRESH</button>
-    </div>
-  </div>
  
-  <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+  <!-- <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+      Sorry your browser does not support inline frames.
+    </iframe> -->
+    <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
     </iframe>
 </section>  
 </div>
 <?php include "inc/footer.php"; ?>
-<script type="text/javascript">
-  function refresh_page(){
-    location.reload();
-  }
-</script>
