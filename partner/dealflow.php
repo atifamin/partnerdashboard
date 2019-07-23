@@ -148,15 +148,11 @@
           </div>
         </div>                         
   </div> 
-<!--  <?php 
- $insert_id//=$_SESSION['user_id'];
- //$q//="update users set dashboard_user_id = '".$insert_id."' where user_id='1'";
- //$res//= mysqli_query($mynewcon,$q);
- //print_r($res);exit();
-
- ?> -->
  
-  <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+  <!-- <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+      Sorry your browser does not support inline frames.
+    </iframe> -->
+    <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
     </iframe>
 </section>  

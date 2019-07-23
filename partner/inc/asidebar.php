@@ -1,9 +1,18 @@
-
+<?php include "config/config_main.php"; ?>
+<?php
+  $query = 'select * from user where user_id = "'.$_SESSION['user_id'].'" ';
+  $res = mysqli_query($con_MAIN,$query);
+  $row = mysqli_fetch_object($res);
+?>  
   <aside class="main-sidebar" style="width:;">
     <section class="sidebar">
       <div class="user-panel" style="height: 68px;">
         <div class="pull-left image">
+          <?php if ($row->user_pic != null) { ?>
+            <img src="../pkanban/uploads/<?php echo $row->user_pic; ?>" class="img-circle" alt="User Image" style="margin-top:12px; margin-left: 20px;"> 
+          <?php }else{ ?>
           <img src="assets/avatars/user.jpg" class="img-circle" alt="User Image" style="margin-top:12px; margin-left: 20px;">
+        <?php } ?>
         </div>
         <div class="pull-left info">
           <p style="margin-left: 20px; margin-top: 10px;"><?php echo $_SESSION['user_fname'].' '.$_SESSION['user_lname']; ?></p>
