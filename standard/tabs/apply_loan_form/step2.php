@@ -1,10 +1,9 @@
-<!-- <link rel="stylesheet" type="text/css" href="<?=base_url?>bower_components/jquery.dropdown-master/css/demo.css" /> -->
-<link rel="stylesheet" type="text/css" href="<?=base_url?>bower_components/jquery.dropdown-master/css/dropdown.css" />
+
 <style>
-.nestedSelect > .dropdown{width:100%;}
-.nestedSelect > .dropdown > .dropdown-toggle{width:100%}
-.nestedSelect > .dropdown > .dropdown-toggle > .dropdown-text{color:black;}
-.nestedSelect > .dropdown > .dropdown-toggle > .dropdown-icon{float:right;margin-top: 8px;}
+.dropdown-nested{width:100%;}
+.dropdown-nested > .dropdown-nested-toggle{width:100%}
+.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-text{color:black;}
+.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-icon{float:right;margin-top: 8px;}
 </style>
 <div class="row">
   <div class="form-group col-md-8">
@@ -41,7 +40,7 @@
     <input type="text" class="form-control" name="federal_tax_id" id="federal_tax_id" >
     <div class="help-block with-errors"></div>
   </div>
-  <div class="form-group col-md-8 nestedSelect">
+  <div class="form-group col-md-8">
     <label for="type_of_business">Type of Business:</label>
     <!-- <input type="text" class="form-control" name="type_of_business" id="type_of_business" > -->
     <select data-dropdown='{ "closeReset": false }' name="type_of_business" id="type_of_business">
@@ -159,11 +158,3 @@
     </div>
   </div>
 </div>
-<script src="<?=base_url?>bower_components/jquery.dropdown-master/js/jquery.dropdown.js"></script>
-<script type="text/javascript">
-(function($) {
-  $(function() {
-    $('#type_of_business').dropdown();
-  });
-}(jQuery));
-</script>

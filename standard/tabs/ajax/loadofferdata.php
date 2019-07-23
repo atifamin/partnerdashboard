@@ -29,7 +29,7 @@ if(mysqli_num_rows($QueryR)>0){
 		<div style="clear:both;height:46px;"></div>
 		<center>
 		<!-- <a href="<?php echo $OfferData['offer_cta_url']; ?>" class="btn btn-primary" target="_blank" style="padding:2px 32px;">APPLY NOW</a> -->
-		<a href="javascript:;" role="button" onclick="open_load_form()" class="btn btn-primary" target="_blank" style="padding:2px 32px;">APPLY NOW</a>
+		<a href="javascript:;" onclick="open_load_form()" class="btn btn-primary" target="_blank" style="padding:2px 32px;">APPLY NOW</a>
 		</center>
 	</div>
 
