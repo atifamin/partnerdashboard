@@ -141,7 +141,7 @@
     $DETAIL = $this->sec->get_task_content($task['task_id']);
     //echo "<pre>"; print_r($DETAIL['logo']);
     ?>
-    <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>">
+    <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>" onclick="assign_task_id(<?php echo $task['task_id']; ?>)">
       <div class="portlet-border"></div>
        <div class="portlet-header" style="padding-right:0px;padding-left:0px;min-height:100px;">
         <div >
@@ -445,9 +445,9 @@
             </table>
             <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
             <div class="dropzone_error"></div>
+            <input class="upload_task_id" type="hidden" name="task_id" id="task_id" value=""/>
             <form action="/upload-target" class="dropzone" id="dropzone_form">
               <div class="fallback">
-                <input class="upload_task_id" type="hidden" name="task_id" value=""/>
               </div>
             </form>
             <?php endif; ?>
@@ -852,26 +852,31 @@
     }
 
     /****************************************************** DROP ZONE UPLOAD ********************************************** */
-    $(document).ready(function(){
-      var myDropzone = new Dropzone("#dropzone_form", {
-          url: "<?php echo base_url();?>ajax/upload_attachments",
-          dictDefaultMessage: "",
-          success: function(){
-            popolate_attachment(JSON.parse(xhrmessage));
-          }
-      });
+    // $(document).ready(function(){
+    //   var myDropzone = new Dropzone("#dropzone_form", {
+    //       url: "<?php echo base_url();?>ajax/upload_attachments",
+    //       dictDefaultMessage: "",
+    //       success: function(){
+    //         popolate_attachment(JSON.parse(xhrmessage));
+    //       }
+    //   });
+    // });
+    var myDropzone = new Dropzone("#dropzone_form", {url:"<?php echo base_url();?>ajax/upload_attachments"});
+
+    myDropzone.on("error", function (file, error, errorxhr) {
+        error_message = JSON.parse(errorxhr.response);
+        $('.dropzone_error').html(error_message.error);
     });
-    // myDropzone.on("error", function (file, error, errorxhr) {
-    //     error_message = JSON.parse(errorxhr.response);
-    //     $('.dropzone_error').html(error_message.error);
-    // });
-    // myDropzone.on("success", function (file, xhrmessage) {
-    //     popolate_attachment(JSON.parse(xhrmessage))
-    // });
-    // myDropzone.on("complete", function (file, error, xhrmessage) {
-    //     //$('.dropzone_error').html("");
-    //     myDropzone.removeFile(file);
-    // });
+    myDropzone.on("success", function (file, xhrmessage) {
+        popolate_attachment(JSON.parse(xhrmessage))
+    });
+    myDropzone.on("sending", function (file, xhrmessage, formData) {
+        formData.append("task_id", $("#task_id").val());
+    });
+    myDropzone.on("complete", function (file, error, xhrmessage) {
+        //$('.dropzone_error').html("");
+        myDropzone.removeFile(file);
+    });
 
     
 
@@ -1284,5 +1289,9 @@
 
   function toggleShowDescription(id){
     $("#description_"+id+"").slideToggle();
+  }
+
+  function assign_task_id(id){
+    $("#task_id").val(id);
   }
 </script> 
