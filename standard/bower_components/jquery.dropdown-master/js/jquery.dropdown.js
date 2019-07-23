@@ -29,7 +29,7 @@
 	function Dropdown( elem, options ) {
 
 		// Plugin data
-		this.name     = 'dropdown';
+		this.name     = 'dropdown-nested';
 		this.defaults = defaults;
 		this.objects  = objects;
 
@@ -39,7 +39,7 @@
 		this.elems = {};
 
 		// Set options
-		this.opt = $.extend( true, {}, defaults, options, $(elem).data('dropdown') );
+		this.opt = $.extend( true, {}, defaults, options, $(elem).data('dropdown-nested') );
 
 		// Set templates
 		this._tpl = templates;
@@ -1036,7 +1036,7 @@
 			// Get from jQuery object
 			if ( menu.jquery ) {
 
-				var uid = menu.data( 'dropdown-uid' );
+				var uid = menu.data( 'dropdown-nested-uid' );
 
 				if ( !uid || !inst.menus[ uid ] )
 					return false;
@@ -1147,7 +1147,7 @@
 			// Get from jQuery object
 			if ( item.jquery ) {
 
-				var uid = item.data( 'dropdown-uid' );
+				var uid = item.data( 'dropdown-nested-uid' );
 
 				if ( !uid || !inst.items[ uid ] )
 					return false;
@@ -1314,13 +1314,13 @@
 			    $text   = elem.toggleText;
 
 			// Store original
-			if ( !$toggle.data( 'dropdown-text' ) )
-				$toggle.data( 'dropdown-text', $text.html() );
+			if ( !$toggle.data( 'dropdown-nested-text' ) )
+				$toggle.data( 'dropdown-nested-text', $text.html() );
 
 			// Reset
 			if ( !text ) {
 
-				$text.html( $toggle.data( 'dropdown-text' ) );
+				$text.html( $toggle.data( 'dropdown-nested-text' ) );
 				return true;
 
 			}
@@ -1348,21 +1348,21 @@
 			    $text   = elem.toggleText;
 
 			// Store original
-			if ( !$toggle.data( 'dropdown-text' ) )
-				$toggle.data( 'dropdown-text', $text.html() );
+			if ( !$toggle.data( 'dropdown-nested-text' ) )
+				$toggle.data( 'dropdown-nested-text', $text.html() );
 
 			// Reset
 			if ( !text ) {
 
-				$toggle.data( 'dropdown-text-multi', [] );
-				$text.html( $toggle.data( 'dropdown-text' ) );
+				$toggle.data( 'dropdown-nested-text-multi', [] );
+				$text.html( $toggle.data( 'dropdown-nested-text' ) );
 
 				return true;
 
 			}
 
 			// Get values
-			var vals = $toggle.data( 'dropdown-text-multi' );
+			var vals = $toggle.data( 'dropdown-nested-text-multi' );
 			    vals = ( vals ? vals : [] );
 
 			// Check if text already exists
@@ -1377,13 +1377,13 @@
 				vals.push( text );
 
 			// Get new text
-			var str = $toggle.data( 'dropdown-text' );
+			var str = $toggle.data( 'dropdown-nested-text' );
 
 			if ( vals.length )
 				str = vals.join( ', ' );
 
 			// Store values
-			$toggle.data( 'dropdown-text-multi', vals );
+			$toggle.data( 'dropdown-nested-text-multi', vals );
 
 			// Update
 			$text.html( str );
@@ -1556,7 +1556,7 @@
 
 				e.preventDefault();
 
-				self.select( $(this).data( 'dropdown-uid' ) );
+				self.select( $(this).data( 'dropdown-nested-uid' ) );
 
 			});
 
@@ -1574,14 +1574,14 @@
 			});
 
 			// Open dropdown
-			elem.dropdown.on( 'dropdown.open', function() {
+			elem.dropdown.on( 'dropdown-nested.open', function() {
 
 				self.open();
 
 			});
 
 			// Close dropdown
-			elem.dropdown.on( 'dropdown.close', function() {
+			elem.dropdown.on( 'dropdown-nested.close', function() {
 
 				self.close();
 
@@ -1997,7 +1997,7 @@
 			elems.menuMask.appendTo( $menu );
 
 			// Add ID
-			$menu.data( 'dropdown-uid', menu.uid );
+			$menu.data( 'dropdown-nested-uid', menu.uid );
 
 			// Add text
 			elems.menuTitle.text( menu.title );
@@ -2068,7 +2068,7 @@
 			}
 
 			// Add ID
-			$item.data( 'dropdown-uid', item.uid );
+			$item.data( 'dropdown-nested-uid', item.uid );
 
 			// Add content
 			var link = false;
@@ -2207,11 +2207,11 @@
 
 				var item = $.extend( true, {}, self.objects.item, {
 					uid: self.id()
-				}, $(this).data('dropdown') );
+				}, $(this).data('dropdown-nested') );
 
 				// UID
-				if ( $this.data('dropdown-uid') )
-					item.uid = $this.data('dropdown-uid');
+				if ( $this.data('dropdown-nested-uid') )
+					item.uid = $this.data('dropdown-nested-uid');
 
 				// Nested
 				if ( 'OPTGROUP' == $this.prop('tagName') ) {
@@ -2287,16 +2287,16 @@
 
 				var item = $.extend( true, {}, self.objects.item, {
 					uid: self.id()
-				}, $(this).data('dropdown') );
+				}, $(this).data('dropdown-nested') );
 
 				// UID
-				if ( $this.data('dropdown-uid') )
-					item.uid = $this.data('dropdown-uid');
+				if ( $this.data('dropdown-nested-uid') )
+					item.uid = $this.data('dropdown-nested-uid');
 
 				// Nested
 				if ( $this.children('ul, ol').length ) {
 
-					item.text = $this.data('dropdown-text');
+					item.text = $this.data('dropdown-nested-text');
 
 					if ( !item.text ) {
 
@@ -2335,10 +2335,10 @@
 				} else {
 
 					item.text  = $this.text();
-					item.value = $this.data('dropdown-value');
+					item.value = $this.data('dropdown-nested-value');
 
-					if ( $this.data('dropdown-text') )
-						item.text = $this.data('dropdown-text');
+					if ( $this.data('dropdown-nested-text') )
+						item.text = $this.data('dropdown-nested-text');
 
 					if ( !item.value && '0' !== item.value )
 						item.value = item.text;
@@ -2358,11 +2358,11 @@
 					}
 
 					// URL
-					if ( $this.data('dropdown-url') )
-						item.url = $this.data('dropdown-url');
+					if ( $this.data('dropdown-nested-url') )
+						item.url = $this.data('dropdown-nested-url');
 
 					// Selected
-					if ( $this.data('dropdown-selected') || $this.hasClass( self._cls.selected ) )
+					if ( $this.data('dropdown-nested-selected') || $this.hasClass( self._cls.selected ) )
 						item.selected = true;
 
 				}
@@ -3208,58 +3208,58 @@
 	var classes = {
 
 		// Dropdown
-		dropdown:		'dropdown',
-		overlay:		'dropdown-overlay',
+		dropdown:		'dropdown-nested',
+		overlay:		'dropdown-nested-overlay',
 
 		// Menu
-		menuMain:		'dropdown-menu-main',
-		menuOpen:		'dropdown-menu-open',
+		menuMain:		'dropdown-nested-menu-main',
+		menuOpen:		'dropdown-nested-menu-open',
 
-		menuWrapper:	'dropdown-menu-wrapper',
-		menuContainer:	'dropdown-menu-container',
-		menuObject:		'dropdown-menu',
-		menuMask:		'dropdown-mask',
+		menuWrapper:	'dropdown-nested-menu-wrapper',
+		menuContainer:	'dropdown-nested-menu-container',
+		menuObject:		'dropdown-nested-menu',
+		menuMask:		'dropdown-nested-mask',
 
-		menuHeader: 	'dropdown-header',
-		menuTitle:		'dropdown-title',
+		menuHeader: 	'dropdown-nested-header',
+		menuTitle:		'dropdown-nested-title',
 
-		menuList:		'dropdown-list',
-		menuItem:		'dropdown-item',
-		menuLink:		'dropdown-link',
-		menuText:		'dropdown-text',
-		menuParent:		'dropdown-parent',
+		menuList:		'dropdown-nested-list',
+		menuItem:		'dropdown-nested-item',
+		menuLink:		'dropdown-nested-link',
+		menuText:		'dropdown-nested-text',
+		menuParent:		'dropdown-nested-parent',
 
-		menuDivider:	'dropdown-divider',
-		menuLabel:		'dropdown-label',
+		menuDivider:	'dropdown-nested-divider',
+		menuLabel:		'dropdown-nested-label',
 
 		// Toggle
-		toggleButton:	'dropdown-toggle',
-		toggleText:		'dropdown-text',
-		toggleIcon:		'dropdown-icon',
+		toggleButton:	'dropdown-nested-toggle',
+		toggleText:		'dropdown-nested-text',
+		toggleIcon:		'dropdown-nested-icon',
 
 		// Close
-		closeButton:	'dropdown-close',
-		closeText:		'dropdown-text',
-		closeIcon:		'dropdown-icon',
+		closeButton:	'dropdown-nested-close',
+		closeText:		'dropdown-nested-text',
+		closeIcon:		'dropdown-nested-icon',
 
 		// Back
-		backButton:		'dropdown-back',
-		backText:		'dropdown-text',
-		backIcon:		'dropdown-icon',
+		backButton:		'dropdown-nested-back',
+		backText:		'dropdown-nested-text',
+		backIcon:		'dropdown-nested-icon',
 
 		// States
-		open:			'dropdown-open',
-		opening:		'dropdown-opening',
-		closing:		'dropdown-closing',
-		focused:		'dropdown-focused',
-		animating:		'dropdown-animating',
-		resizing:		'dropdown-resizing',
-		selected:		'dropdown-selected',
-		selectedParent:	'dropdown-parent-selected',
+		open:			'dropdown-nested-open',
+		opening:		'dropdown-nested-opening',
+		closing:		'dropdown-nested-closing',
+		focused:		'dropdown-nested-focused',
+		animating:		'dropdown-nested-animating',
+		resizing:		'dropdown-nested-resizing',
+		selected:		'dropdown-nested-selected',
+		selectedParent:	'dropdown-nested-parent-selected',
 
 		// Position
-		above:			'dropdown-above',
-		below:			'dropdown-below'
+		above:			'dropdown-nested-above',
+		below:			'dropdown-nested-below'
 
 	};
 
@@ -3341,9 +3341,9 @@
 
 			return this.each( function() {
 
-				if ( !$.data( this, 'plugin.dropdown' ) ) {
+				if ( !$.data( this, 'plugin.dropdown-nested' ) ) {
 
-					$.data( this, 'plugin.dropdown', new Dropdown( this, options ) );
+					$.data( this, 'plugin.dropdown-nested', new Dropdown( this, options ) );
 				}
 
 			} );
@@ -3354,7 +3354,7 @@
 
 			this.each( function() {
 
-				var instance = $.data( this, 'plugin.dropdown' );
+				var instance = $.data( this, 'plugin.dropdown-nested' );
 
 				// Allow access to public methods
 				if ( instance instanceof dropdown && typeof instance[ options ] === 'function' ) {
@@ -3363,7 +3363,7 @@
 
 				// Allow instances to be destroyed via the 'destroy' method
 				if ( options === 'destroy' ) {
-					$.data( this, 'plugin.dropdown', null );
+					$.data( this, 'plugin.dropdown-nested', null );
 				}
 
 			});
