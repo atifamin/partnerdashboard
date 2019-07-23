@@ -9,7 +9,7 @@
       <div class="user-panel" style="height: 68px;">
         <div class="pull-left image">
           <?php if ($row->user_pic != null) { ?>
-            <img src="<?php echo $row->user_pic; ?>" class="img-circle" alt="User Image" style="margin-top:12px; margin-left: 20px;"> 
+            <img src="<?php echo "../".$row->user_pic; ?>" class="img-circle" alt="User Image" style="margin-top:12px; margin-left: 20px;"> 
           <?php }else{ ?>
           <img src="assets/avatars/user.jpg" class="img-circle" alt="User Image" style="margin-top:12px; margin-left: 20px;">
         <?php } ?>

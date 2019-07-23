@@ -240,7 +240,7 @@
         
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px;">
                 <?php if ($row->user_pic != null) { ?>
-              <img src="<?php echo $row->user_pic; ?>" class="img-circle" alt="User Image" style="margin-top: -4px;width: 45px">
+              <img src="<?php echo "../".$row->user_pic; ?>" class="img-circle" alt="User Image" style="margin-top: -4px;width: 45px">
             <?php }else{ ?>
               <img src="assets/avatars/user.jpg" class="img-circle" alt="User Image" style="margin-top: -4px;">
             <?php } ?>
@@ -251,7 +251,7 @@
               <!-- User image -->
               <li class="user-header">
                 <?php if ($row->user_pic != null) { ?>
-                <img src="../pkanban/uploads/<?php echo $row->user_pic; ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo "../".$row->user_pic; ?>" class="img-circle" alt="User Image">
               <?php }else{ ?>
                 <img src="assets/avatars/user.jpg" class="img-circle" alt="User Image">
               <?php } ?>
