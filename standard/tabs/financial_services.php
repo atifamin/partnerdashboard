@@ -155,18 +155,13 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 
 	//$OfferID = $_POST['offerid'];
 	
-	$Query = 'SELECT * FROM `offer_box` WHERE `offer_box_id`='.$PartnerOfferID.'';
+	$Query = 'SELECT * FROM `offer_box` WHERE `offer_box_id`='.$OfferData['offer_box_id'].'';
 	$QueryR = mysqli_query($con_PRMSUB,$Query);
 	$row = mysqli_fetch_object($QueryR);
-	//echo "<pre>";print_r($OfferID);exit;
+	//echo "<pre>";print_r($row);exit;
 ?>
 
-<style type="text/css">
-	modal-open {
-	  height: 100vh;
-	  overflow-y: hidden;		
-	}
-</style>
+
 
 <div class="row cus-border">
   <div class="col-md-4 text-center">
@@ -227,30 +222,27 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-    <video class="mt-10 w-90" width="auto" data-toggle="modal" data-target="#modal-video">
+      <a href="" role="button" data-toggle="modal"><video class="mt-10 w-90" poster="../assets/img/video_thumbnail.PNG" width="auto" data-toggle="modal" data-target="#modal-video">
       <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-      Your browser does not support HTML5 video. </video>
+      Your browser does not support HTML5 video. </video></a>
   </div>
   <div class="col-md-12">
     <hr class="new5">
   </div>
   <br>
   <div class="row mb-10">
-    <div class="col-md-6 text-center"><img src="../assets/img/financing-cycle.jpg" width="60%" data-toggle="modal" data-target="#modal-img-cycle"></div>
-    <div class="col-md-6 text-center"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10" data-toggle="modal" data-target="#modal-img-works"> </div>
+    <div class="col-md-6 text-center">
+    	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-cycle.jpg" width="60%" data-toggle="modal" data-target="#modal-img-cycle"></a></div>
+    <div class="col-md-6 text-center">
+    	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10" data-toggle="modal" data-target="#modal-img-works"></a></div>
   </div>
 </div>
 <div class="modal fade" id="modal-video">
   <div class="modal-dialog" style="width:80%;">
     <div class="modal-content text-center">
 	  <div class="col-md-12 text-center">
-	  	<video class="mt-10 w-90" width="auto" controls>
-	      <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-	      Your browser does not support HTML5 video. </video>
+	  	<img class="mt-10 w-90" width="auto" controls src="../assets/img/video_thumbnail.PNG">
 	  </div>
-      <div class="modal-footer" >
-        <button type="button" class="btn btn-danger pull-left mt-10" onclick="close_video_modal()"><i class="ace-icon fa fa-times"></i> Close</button>
-      </div>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -259,10 +251,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 <div class="modal fade" id="modal-img-cycle">
   <div class="modal-dialog" style="width:80%;">
     <div class="modal-content text-center">
-	  <div class="col-md-12 text-center"><img src="../assets/img/financing-cycle.jpg" width="100%"></div>
-      <div class="modal-footer" >
-        <button type="button" class="btn btn-danger pull-left mt-10" onclick="close_cycle_modal()"><i class="ace-icon fa fa-times"></i> Close</button>
-      </div>
+	  <div class="col-md-12 text-center"><img src="../assets/img/financing-cycle.jpg" width="80%"></div>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -272,9 +261,6 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
   <div class="modal-dialog" style="width:80%;">
     <div class="modal-content text-center">
 	  <div class="col-md-12 text-center mt-10"><img src="../assets/img/financing-works.jpg" width="100%"></div>
-      <div class="modal-footer" >
-        <button type="button" class="btn btn-danger pull-left mt-10" onclick="close_work_modal()"><i class="ace-icon fa fa-times"></i> Close</button>
-      </div>
     </div>
     <!-- /.modal-content -->
   </div>
