@@ -14,8 +14,11 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	$VIDEO_R = mysqli_query($con_AWT,$VIDEO_QUERY) or die(mysqli_error()); 
 	$VIDEO_D =  mysqli_fetch_assoc($VIDEO_R);
 
-   //echo "<pre>";print_r(); 
+
+
 	?>
+
+
 
 <div class="row">
   <div class="col-lg-8 col-xs-12">
@@ -107,6 +110,8 @@ if(mysqli_num_rows($Tab3_Q1R)>0){
 	while($OfferData = mysqli_fetch_assoc($Tab3_Q1R)){
 		
 $PartnerOfferID = $OfferData['partner_offer_id'];
+//echo "<pre>";print_r($_POST);exit;
+
 $InsQ = "INSERT INTO `partner_offer_views`(`partner_offer_user_id`,`partner_offer_id`) VALUES('".$UserID."','".$PartnerOfferID."')";
 mysqli_query($con_PRMSUB,$InsQ) or die(mysqli_error());
 
@@ -147,11 +152,26 @@ $UserID		 = $_SESSION['user_id'];
 $Insert = "INSERT INTO `finserv_views`(`finserv_user_id`,`finserv_id`,`finserv_view_date`) VALUES ('".$UserID."','".$FinServID."','".date('Y-m-d H:i:s')."')";
 $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 } 	
+
+	//$OfferID = $_POST['offerid'];
+	
+	$Query = 'SELECT * FROM `offer_box` WHERE `offer_box_id`='.$PartnerOfferID.'';
+	$QueryR = mysqli_query($con_PRMSUB,$Query);
+	$row = mysqli_fetch_object($QueryR);
+	//echo "<pre>";print_r($OfferID);exit;
 ?>
+
+<style type="text/css">
+	modal-open {
+	  height: 100vh;
+	  overflow-y: hidden;		
+	}
+</style>
+
 <div class="row cus-border">
   <div class="col-md-4 text-center">
     <div class="mt-10"> <span class="font-30 color-1">Contract Financing<br>
-      $5000 - $100,000</span> </div>
+      $<?php echo number_format($row->offer_amount_min); ?> - $<?php echo number_format($row->offer_amount_max); ?></span> </div>
     <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">Request Financing</span></a>
     <div class="vl"></div>
   </div>
@@ -167,11 +187,11 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
       </tr>
       <tr class="text-left">
         <td>INTEREST RATE:</td>
-        <td>1% PER MONTH</td>
+        <td><?php echo number_format($row->offer_rate_min); ?>% - <?php echo number_format($row->offer_rate_max); ?>%</td>
       </tr>
       <tr class="text-left">
         <td>REPAYMENT TERM:</td>
-        <td>1-3 MONTHS</td>
+        <td><?php echo number_format($row->offer_term_min); ?> - <?php echo number_format($row->offer_term_max); ?> Months</td>
       </tr>
     </table>
     <span class="color-2">(UPON PAYMENT OF SUBMITTED INVOICE)</span>
@@ -207,7 +227,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-    <video class="mt-10 w-90" width="auto" controls>
+    <video class="mt-10 w-90" width="auto" data-toggle="modal" data-target="#modal-video">
       <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
       Your browser does not support HTML5 video. </video>
   </div>
@@ -216,11 +236,50 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
   </div>
   <br>
   <div class="row mb-10">
-    <div class="col-md-6 text-center"><img src="../assets/img/financing-cycle.jpg" width="60%"></div>
-    <div class="col-md-6 text-center"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10"> </div>
+    <div class="col-md-6 text-center"><img src="../assets/img/financing-cycle.jpg" width="60%" data-toggle="modal" data-target="#modal-img-cycle"></div>
+    <div class="col-md-6 text-center"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10" data-toggle="modal" data-target="#modal-img-works"> </div>
   </div>
 </div>
-
+<div class="modal fade" id="modal-video">
+  <div class="modal-dialog" style="width:80%;">
+    <div class="modal-content text-center">
+	  <div class="col-md-12 text-center">
+	  	<video class="mt-10 w-90" width="auto" controls>
+	      <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
+	      Your browser does not support HTML5 video. </video>
+	  </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-danger pull-left mt-10" onclick="close_video_modal()"><i class="ace-icon fa fa-times"></i> Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-img-cycle">
+  <div class="modal-dialog" style="width:80%;">
+    <div class="modal-content text-center">
+	  <div class="col-md-12 text-center"><img src="../assets/img/financing-cycle.jpg" width="100%"></div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-danger pull-left mt-10" onclick="close_cycle_modal()"><i class="ace-icon fa fa-times"></i> Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-img-works">
+  <div class="modal-dialog" style="width:80%;">
+    <div class="modal-content text-center">
+	  <div class="col-md-12 text-center mt-10"><img src="../assets/img/financing-works.jpg" width="100%"></div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-danger pull-left mt-10" onclick="close_work_modal()"><i class="ace-icon fa fa-times"></i> Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 <!-- <div class="tab3_boxes" style="float:left;width:100%;margin-top:25px;padding:10px;">
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align: center;background:#9ec7c2;height: 230px;padding:0%;">
 		<h4 style="color:white;background: #2e9288fa;padding: 2%;margin-top: 0%;"><?php echo $PartnerName; ?></h4><br /><?php if(isset($Logo)){ ?>
@@ -276,3 +335,16 @@ if($_FILE_NAME != "contract_details.php"){
 include("../includes/footer.php");
 }
  ?>
+
+<script type="text/javascript">
+	//$('#modal-img-cycle').scrollTop(0);
+	function close_cycle_modal(){
+		$('#modal-img-cycle').modal('hide');
+	}
+	function close_work_modal(){
+		$('#modal-img-works').modal('hide');
+	}
+	function close_video_modal(){
+		$('#modal-video').modal('hide');
+	}
+</script>
