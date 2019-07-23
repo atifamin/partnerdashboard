@@ -146,7 +146,7 @@
           <div class="col-md-12" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
             <div class="col-md-3" style="padding: 0px;background-color: #<?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm_Color'];} else{echo "000000";} ?>;border-right: 5px solid white;height: 55px;text-align: center;line-height: 3.6;color:white;font-weight:900;"><?php echo $DETAIL['logo']; ?></div>
             <div class="col-md-9" style="padding:0px;">
-              <p style="font-size:12px;background-color:#4f81bd;padding:2%;padding-right:5%;color:white;white-space:nowrap;overflow:hidden;"><?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm/DBA Name'];}else{echo $DETAIL['dashboard_user']->user_fname." ".$DETAIL['dashboard_user']->user_lname;} ?> </p>
+              <p style="font-size:12px;background-color:#4f81bd;padding:2%;padding-right:5%;color:white;white-space:nowrap;overflow:hidden;"><?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm/DBA Name'];}else{echo "N/A";} ?> </p>
               <p style="font-size:12px;background-color:#31859c;padding:2%;color:white;white-space:nowrap;overflow:hidden;"><?php echo substr($DETAIL['dashboard_user']->user_fname,0,1); ?> <?php echo $DETAIL['dashboard_user']->user_lname; ?> - Owner</p>
             </div>
           </div>

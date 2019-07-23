@@ -14,6 +14,7 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	$VIDEO_R = mysqli_query($con_AWT,$VIDEO_QUERY) or die(mysqli_error()); 
 	$VIDEO_D =  mysqli_fetch_assoc($VIDEO_R);
 
+	//echo "<pre>";print_r($Tab1_Q1D);exit;
 
 
 	?>
@@ -40,22 +41,21 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover modal-financing-table">
           <tr>
-            <td>Company Name</td>
-            <td><strong><?php echo $Tab1_Q1D['prime_contractor_name']; ?></strong></td>
-          </tr>
-          <tr>
-            <td>Contract Name</td>
-            <td><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
-          </tr>
-          <tr>
             <td>Contract Number</td>
             <td><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
           </tr>
-          <!-- 
+          <tr>
+            <td>Description</td>
+            <td><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td><strong><?php echo $Tab1_Q1D['dist_co_rte_pm']; ?></strong></td>
+          </tr> 
 		   <tr>
-			 <td>Contract Amount</td>
-			 <td><strong>$<?php //echo number_format($Tab1_Q1D['award_amount']); ?></strong></td>
-		   </tr> -->
+			 <td>Bid Win Date</td>
+			 <td><strong><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></strong></td>
+		   </tr>
         </table>
       </div>
       <!-- /.box-body --> 
@@ -163,11 +163,11 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 
 
 
-<div class="row cus-border">
+<div class="row cus-border mt-10">
   <div class="col-md-4 text-center">
     <div class="mt-10"> <span class="font-30 color-1">Contract Financing<br>
       $<?php echo number_format($row->offer_amount_min); ?> - $<?php echo number_format($row->offer_amount_max); ?></span> </div>
-    <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">Request Financing</span></a>
+    <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">REQUEST FINANCING</span></a>
     <div class="vl"></div>
   </div>
   <div class="col-md-5 text-center">
@@ -206,7 +206,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     </div>
     <div class="col-md-4"><img src="../assets/img/a13.png" width="80"></div>
     <div class="col-md-8">
-      <div class="text-white bg-2"><span>Your bizVAULT Contains All <br>
+      <div class="text-white bg-2 mt-10"><span>Your bizVAULT Contains All <br>
         Needed Documents and <br>
         Files</span></div>
     </div>
@@ -222,7 +222,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-      <a href="" role="button" data-toggle="modal"><video class="mt-10 w-90" poster="../assets/img/video_thumbnail.PNG" width="auto" data-toggle="modal" data-target="#modal-video">
+      <a href="" role="button" data-toggle="modal"><video class="mt-10 w-90" poster="../assets/img/video_thumbnail.PNG" width="auto" onclick="open_video_modal()">
       <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
       Your browser does not support HTML5 video. </video></a>
   </div>
@@ -232,16 +232,18 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
   <br>
   <div class="row mb-10">
     <div class="col-md-6 text-center">
-    	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-cycle.jpg" width="60%" data-toggle="modal" data-target="#modal-img-cycle"></a></div>
+    	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-cycle.jpg" width="60%" onclick="open_cycle_modal()"></a></div>
     <div class="col-md-6 text-center">
-    	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10" data-toggle="modal" data-target="#modal-img-works"></a></div>
+    	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10" onclick="open_works_modal()"></a></div>
   </div>
 </div>
 <div class="modal fade" id="modal-video">
   <div class="modal-dialog" style="width:80%;">
     <div class="modal-content text-center">
 	  <div class="col-md-12 text-center">
-	  	<img class="mt-10 w-90" width="auto" controls src="../assets/img/video_thumbnail.PNG">
+	  	<video class="mt-10 w-90" width="auto" controls="">
+      		<source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
+      		Your browser does not support HTML5 video. </video>
 	  </div>
     </div>
     <!-- /.modal-content -->
@@ -251,7 +253,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 <div class="modal fade" id="modal-img-cycle">
   <div class="modal-dialog" style="width:80%;">
     <div class="modal-content text-center">
-	  <div class="col-md-12 text-center"><img src="../assets/img/financing-cycle.jpg" width="80%"></div>
+	  <div class="col-md-12 text-center"><img src="../assets/img/financing-cycle.jpg" width="70%"></div>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -323,14 +325,20 @@ include("../includes/footer.php");
  ?>
 
 <script type="text/javascript">
-	//$('#modal-img-cycle').scrollTop(0);
-	function close_cycle_modal(){
-		$('#modal-img-cycle').modal('hide');
+
+	function open_cycle_modal() {
+		$('#modal-img-cycle').modal('show');
+		$('#modal-default').scrollTop(0);
 	}
-	function close_work_modal(){
-		$('#modal-img-works').modal('hide');
+
+	function open_works_modal() {
+		$('#modal-img-works').modal('show');
+		$('#modal-default').scrollTop(0);
 	}
-	function close_video_modal(){
-		$('#modal-video').modal('hide');
+
+	function open_video_modal() {
+		$('#modal-video').modal('show');
+		$('#modal-default').scrollTop(0);
 	}
+
 </script>

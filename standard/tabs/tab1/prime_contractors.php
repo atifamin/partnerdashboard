@@ -200,9 +200,13 @@ if($TotalRows>=2){
 	.text-white{
 		color: white;
 	}
+
+	.modal-scroll {
+  		overflow-y: auto;
+	}
 </style>
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade modal-scroll" id="modal-default">
           <div class="modal-dialog" style="width:80%;">
             <div class="modal-content">
               <div class="modal-header bg-custom-header">
