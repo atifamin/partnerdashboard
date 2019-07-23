@@ -19,7 +19,9 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 
 	?>
 
-
+<style type="text/css">
+	
+</style>
 
 <div class="row">
   <div class="col-lg-8 col-xs-12">
@@ -41,20 +43,20 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover modal-financing-table">
           <tr>
-            <td>Contract Number</td>
-            <td><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
+            <td id="l-height">Contract Number</td>
+            <td id="l-height"><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
           </tr>
           <tr>
-            <td>Description</td>
-            <td><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
+            <td id="l-height">Description</td>
+            <td id="l-height"><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
           </tr>
           <tr>
-            <td>Location</td>
-            <td><strong><?php echo $Tab1_Q1D['dist_co_rte_pm']; ?></strong></td>
+            <td id="l-height">Location</td>
+            <td id="l-height"><strong><?php echo $Tab1_Q1D['dist_co_rte_pm']; ?></strong></td>
           </tr> 
 		   <tr>
-			 <td>Bid Win Date</td>
-			 <td><strong><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></strong></td>
+			 <td id="l-height">Bid Win Date</td>
+			 <td id="l-height"><strong><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></strong></td>
 		   </tr>
         </table>
       </div>
@@ -222,9 +224,19 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-      <a href="" role="button" data-toggle="modal"><video class="mt-10 w-90" poster="../assets/img/video_thumbnail.PNG" width="auto" onclick="open_video_modal()">
+  	<button type="button" class="btn btn-block btn-lg bg-button mt-10" onclick="open_video_modal()">
+  		<span class="text-white font-13">California Certified Business FastFund</span>
+  		<br>
+  		<i class="fab fa-youtube mt-5 font-48"></i>
+  		<br>
+  		<span class="text-white font-13">Contact and Invoice Financing</span>
+  	</button>
+  	<!-- <div class="mt-10 bg-button"> <span class="text-white">California Certified Business FastFund</span>
+  		<i class="fa fa-fw fa-youtube-play"></i>
+	</div> -->
+      <!-- <a href="" role="button" data-toggle="modal"><video class="mt-10 w-90" poster="../assets/img/video_thumbnail.PNG" width="auto" onclick="open_video_modal()">
       <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-      Your browser does not support HTML5 video. </video></a>
+      Your browser does not support HTML5 video. </video></a> -->
   </div>
   <div class="col-md-12">
     <hr class="new5">
@@ -237,36 +249,18 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     	<a href="" role="button" data-toggle="modal"><img src="../assets/img/financing-works.jpg" width="80%" class="mt-10" onclick="open_works_modal()"></a></div>
   </div>
 </div>
-<div class="modal fade" id="modal-video">
-  <div class="modal-dialog" style="width:80%;">
-    <div class="modal-content text-center">
-	  <div class="col-md-12 text-center">
-	  	<video class="mt-10 w-90" width="auto" controls="">
+<div class="modal fade text-center" id="modal-video">
+	<video class="mt-10" width="80%" controls="">
       		<source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-      		Your browser does not support HTML5 video. </video>
-	  </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
+      		Your browser does not support HTML5 video. 
+  	</video>
   <!-- /.modal-dialog -->
 </div>
-<div class="modal fade" id="modal-img-cycle">
-  <div class="modal-dialog" style="width:80%;">
-    <div class="modal-content text-center">
-	  <div class="col-md-12 text-center"><img src="../assets/img/financing-cycle.jpg" width="70%"></div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
+<div class="modal fade text-center" id="modal-img-cycle">
+  <img src="../assets/img/financing-cycle.jpg" class="mt-10" width="50%">
 </div>
-<div class="modal fade" id="modal-img-works">
-  <div class="modal-dialog" style="width:80%;">
-    <div class="modal-content text-center">
-	  <div class="col-md-12 text-center mt-10"><img src="../assets/img/financing-works.jpg" width="100%"></div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
+<div class="modal fade text-center" id="modal-img-works">
+  <img src="../assets/img/financing-works.jpg" class="mt-10" width="70%">
 </div>
 <!-- <div class="tab3_boxes" style="float:left;width:100%;margin-top:25px;padding:10px;">
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align: center;background:#9ec7c2;height: 230px;padding:0%;">

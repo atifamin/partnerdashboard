@@ -1,7 +1,7 @@
 .modal-financing-table > tbody > tr > td{padding-top:3%;padding-bottom:3%;}
 .div-cont-amount {
   background-color: #474628;
-  height: 250px;
+  height: 180px;
 }
 .container {
     position: absolute;
@@ -11,8 +11,14 @@
     color: #ACA588;
     font-size: 50px;
 }
+#l-height {
+      line-height: 0.428571;
+  }
 .text-white {
   color: white;
+}
+.mt-5 {
+  margin-top: 5px;
 }
 .mt-10 {
   margin-top: 10px;
@@ -70,6 +76,9 @@
    width: 130px; 
    height: 45px;
 }
+.font-48 {
+  font-size: 48px;
+}
 .font-30 {
   font-size: 30px;
 }
@@ -79,8 +88,8 @@
 .font-20 {
   font-size: 20px;
 }
-.w-90 {
-  width: 90%;
+.font-13 {
+  font-size: 13px;
 }
 .w-70 {
   width: 70%;
