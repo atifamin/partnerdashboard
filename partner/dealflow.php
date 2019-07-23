@@ -149,12 +149,12 @@
         </div>                         
   </div> 
  
-  <!-- <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
-      Sorry your browser does not support inline frames.
-    </iframe> -->
-    <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+  <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
     </iframe>
+    <!-- <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?dashboard_user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+      Sorry your browser does not support inline frames.
+    </iframe> -->
 </section>  
 </div>
 <?php include "inc/footer.php"; ?>
