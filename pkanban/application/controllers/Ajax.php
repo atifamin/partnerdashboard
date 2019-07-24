@@ -47,7 +47,7 @@ class Ajax extends CI_Controller
             $this->db->insert('attachments', $data_file);
 
             $data_file['attachment_creation_date'] = "now!";
-            $data_file['user_name'] = $this->session->userdata('user_session')['user_name'];
+            $data_file['user_name'] = $this->session->userdata('user_session')['username'];
             $data_file['attachment_id'] = $this->db->insert_id();
             echo (json_encode($data_file));
         }
