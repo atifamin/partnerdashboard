@@ -168,7 +168,8 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
 <div class="row cus-border mt-10">
   <div class="col-md-4 text-center">
     <div class="mt-10"> <span class="font-30 color-1">Contract Financing<br>
-      $<?php echo number_format($row->offer_amount_min); ?> - $<?php echo number_format($row->offer_amount_max); ?></span> </div>
+    	$5,000 - $100,000
+      <!-- $<?php // echo number_format($row->offer_amount_min); ?> - $<?php // echo number_format($row->offer_amount_max); ?> --></span> </div>
     <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">REQUEST FINANCING</span></a>
     <div class="vl"></div>
   </div>
@@ -184,11 +185,13 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
       </tr>
       <tr class="text-left">
         <td>INTEREST RATE:</td>
-        <td><?php echo number_format($row->offer_rate_min); ?>% - <?php echo number_format($row->offer_rate_max); ?>%</td>
+        <td>1% PER MONTH</td>
+        <!-- <td><?php // echo number_format($row->offer_rate_min); ?>% - <?php // echo number_format($row->offer_rate_max); ?>%</td> -->
       </tr>
       <tr class="text-left">
         <td>REPAYMENT TERM:</td>
-        <td><?php echo number_format($row->offer_term_min); ?> - <?php echo number_format($row->offer_term_max); ?> Months</td>
+        <td>1-3 MONTHS </td>
+        <!-- <td><?php //echo number_format($row->offer_term_min); ?> - <?php // echo number_format($row->offer_term_max); ?> Months</td> -->
       </tr>
     </table>
     <span class="color-2">(UPON PAYMENT OF SUBMITTED INVOICE)</span>
