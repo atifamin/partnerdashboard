@@ -170,7 +170,8 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
     <div class="mt-10"> <span class="font-30 color-1">Contract Financing<br>
     	$5,000 - $100,000
       <!-- $<?php // echo number_format($row->offer_amount_min); ?> - $<?php // echo number_format($row->offer_amount_max); ?> --></span> </div>
-    <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">REQUEST FINANCING</span></a>
+    <!-- <a href="#modal-table" role="button" data-toggle="modal" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">REQUEST FINANCING</span></a> -->
+	<a href="javascript:;" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10 bg-button"><span class="text-white">REQUEST FINANCING</span></a>
     <div class="vl"></div>
   </div>
   <div class="col-md-5 text-center">

@@ -332,12 +332,19 @@ function show_cfm101(cfmid,cfmtitle){
 		$("#current-selected").html(cfmtitle);
 	});
 }
+// function showofferboxpopup(offerid,partnername){
+// 	// popup file include in dashboard
+// 	$("#popup_partner_name").html(partnername);
+// 	$.post( "ajax/loadofferdata.php", {offerid:offerid}).done(function(data){
+// 		$("#offerdata").html(data); 
+//     $("#modal-table").modal("show");
+// 	});
+// }
 function showofferboxpopup(offerid,partnername){
-	// popup file include in dashboard
-	$("#popup_partner_name").html(partnername);
-	$.post( "ajax/loadofferdata.php", {offerid:offerid}).done(function(data){
-		$("#offerdata").html(data); 
-	});
+  $.post("../tabs/apply_loan_form.php").done(function(e){
+    $("#modalArea").html(e);
+    $("#apply-load-modal").modal("show");
+  });
 }
 function showentireconid(contractID){
 	$("#contractid_"+contractID).html(contractID);
