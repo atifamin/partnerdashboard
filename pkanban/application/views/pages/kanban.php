@@ -1161,7 +1161,12 @@
             },
             /* That's fired last */
             stop: function (event, ui) {
-                $("body").prepend('<div class="row"><div class="col-md-12" align="right"><button class="btn btn-lg btn-primary btn-md btn-refresh" onclick="location.reload()" style="margin:1%;">REFRESH</button></div></div>');
+                var refreshBtnHtml = '<div class="row"><div class="col-md-12" align="right"><button class="btn btn-lg btn-primary btn-md btn-refresh" onclick="location.reload()" style="margin:1%;">REFRESH</button></div></div>';
+                if($("#RefreshBtnDiv").length==0){
+                  $("body").prepend('<div id="RefreshBtnDiv">'+refreshBtnHtml+'</div>');
+                }else{
+                  $("#RefreshBtnDiv").html(refreshBtnHtml);
+                }
                 clearTimeout(globalTimer);
                 ui.item.removeClass('rotate');
                 $('.column').css('overflow-y','auto');// fix for x scroll bug
