@@ -208,6 +208,7 @@ $(document).ready(function(){
     .addClass('btn btn-danger')
     .on('click', function(){
         $('#smartwizard').smartWizard("reset");
+        $('#apply-load-modal').modal('hide');
         $('#myForm').find("input, textarea").val("");
     });
     // Smart Wizard

@@ -56,12 +56,12 @@
   </div>
   <div class="form-group col-md-6">
     <label for="email1">Email:</label>
-    <input type="text" class="form-control" name="email1" id="email1" required>
+    <input type="email" class="form-control" name="email1" id="email1" required>
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="email2">Email:</label>
-    <input type="text" class="form-control" name="email2" id="email2" required>
+    <input type="email" class="form-control" name="email2" id="email2" required>
     <div class="help-block with-errors"></div>
   </div>
 </div>
