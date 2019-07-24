@@ -46,7 +46,6 @@
     <label for="type_of_business">Type of Business:</label>
     <!-- <input type="text" class="form-control" name="type_of_business" id="type_of_business" > -->
     <select data-dropdown='{ "closeReset": false }' name="type_of_business" id="type_of_business" required>
-      <option value="" selected hidden>Type of Business</option>
       <?php foreach($businesTypes as $bKey=>$bVal): ?>
       <optgroup label="<?php echo $bVal->name; ?>">
         <?php foreach($bVal->sub as $b1Key=>$b1Val): ?>
