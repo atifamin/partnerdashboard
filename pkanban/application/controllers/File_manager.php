@@ -14,6 +14,7 @@ class File_manager extends CI_Controller {
 	}
 	public function index(){
 		$post = $this->input->post();
+
 		$data = $this->load_file_folders($post);
 		$this->load->view("file_manager/index", $data);
 	}
