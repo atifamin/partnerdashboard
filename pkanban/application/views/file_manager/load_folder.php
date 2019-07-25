@@ -310,7 +310,7 @@ function formatSizeUnits($size, $precision = 2){
           <div class="col-md-8 col-md-offset-2" style="margin-top: 15px;">
             <button class="btn" style="background-color: #00AF50;color: #ffff;font-size: 20px;">OK</button>
             <button class="btn" style="background-color: #FF4F4F;color: #ffff;font-size: 20px;margin-left: 65px;">DENY</button>
-            <button class="btn" style="background-color: #934A10;color: #ffff;font-size: 20px;margin-left: 65px;">CANCEL</button>
+            <button class="btn" data-dismiss="modal" style="background-color: #934A10;color: #ffff;font-size: 20px;margin-left: 65px;">CANCEL</button>
           </div>
         </div>
       </div>
