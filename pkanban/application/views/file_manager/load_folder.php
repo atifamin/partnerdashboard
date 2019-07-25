@@ -13,6 +13,42 @@
   padding: 1.1% 0;
 }
 .columnSecond, .columnThird{cursor:pointer;}
+
+.btn-style {
+      border-color: #b7dde8;
+      background: white;
+      border-width: medium;
+}
+.btn-text {
+      color: #4e80c6;
+      font-size: 20px;
+}
+
+.btn-access {
+      background-color: #4e80c6;
+      height: 45px;
+      width: 201px;
+}
+
+.btn-grant-access {
+  background-color: #4e80c6; 
+  width: 23%;
+}
+
+.access-div {
+  display:inline-block; 
+  vertical-align: middle; 
+  display: none; 
+  background-color: #D5E4C3; 
+  width: 60%
+}
+.center {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>
 <?php
 function formatSizeUnits($size, $precision = 2){
@@ -26,6 +62,22 @@ function formatSizeUnits($size, $precision = 2){
     return round($size, $precision).$units[$i];
 }
 ?>
+<div class="row">
+  <div class="col-md-3" style="padding-right: unset;">
+    <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text">Business Financials</strong></button>
+  </div>
+  <div class="col-md-9" style="padding-left: unset;">
+    <hr class="new5">
+  </div>
+</div>
+<div class="access-div">
+  <div class="row text-center">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-access mt-20 mb-20" data-toggle="modal" data-target="#view-access-info-modal"><span class="text-white font-20">VIEW ACCESS INFO</span></button>
+      <button type="button" class="btn btn-access mt-20 mb-20" data-toggle="modal" data-target="#grant-access-modal"><span class="text-white font-20">GRANT ACCESS</span></button>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12">
     <div class="box-group" id="accordion">
@@ -114,7 +166,157 @@ function formatSizeUnits($size, $precision = 2){
     </div>
   </div>
 </div>
-
+<div class="modal fade" id="view-access-info-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-white text-center" style="height: 60px; background-color: #1F487E; border: none;">
+        <h3 class="modal-title">CLOUDBOX ACCESS</h3>
+      </div>
+      
+        <table class="table">
+          <thead style="background-color: #17375E;">
+            <tr style="font-size: 20px;">
+              <th class="text-center text-white b-none" style="">User</th>
+              <th class="text-center text-white" style="border: none;">Access</th>
+              <th class="text-center text-white" style="border: none;">File/Folder</th>
+              <th class="text-center text-white" style="border: none;">Expires</th>
+            </tr>
+          </thead>
+          <tbody class="table">
+              <tr style="background-color: #B8DEE6">
+                  <td style="border: none; width: 24%;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
+                      </div>
+                      <div class="col-md-6">
+                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW</td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em></td>
+              </tr>
+              <tr style="background-color:  #92CDDE">
+                  <td style="border: none; width: 24%;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?php echo base_url()."images/placeholder.png"; ?>" style="width: 130%" >
+                      </div>
+                      <div class="col-md-6">
+                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW DOWNLOAD</td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><span class="mt-10">VIEW FILES...</span></td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em></td>
+              </tr>
+              <tr style="background-color: #B8DEE6">
+                  <td style="border: none; width: 24%;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
+                      </div>
+                      <div class="col-md-6">
+                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW</td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em></td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="grant-access-modal">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #B8DEE6; padding: 10px;">
+      <div class="row" id="hover-for-access">
+        <div class="col-md-12">
+          <div class="col-md-3 text-center">
+            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+          </div>
+          <div class="col-md-9">
+            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+          </div>
+        </div>
+        <div class="row text-center" id="access-given" style="display: none;">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="hover-for-access-1" style="padding-top: 10px;">
+        <div class="col-md-12">
+          <div class="col-md-3 text-center">
+            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+          </div>
+          <div class="col-md-9">
+            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+          </div>
+        </div>
+        <div class="row text-center" id="access-given-1" style="display: none;">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="hover-for-access-2" style="padding-top: 10px;">
+        <div class="col-md-12">
+          <div class="col-md-3 text-center">
+            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+          </div>
+          <div class="col-md-9">
+            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+          </div>
+        </div>
+        <div class="row text-center" id="access-given-2" style="display: none;">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="grant-access-modal-1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" style="background-color: #DCE6F2">
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-md-2 col-md-offset-2">
+            <img src="<?php echo base_url()."images/placeholder.png"; ?>" style="width: 75px;margin-top: 30%">
+          </div>
+          <div class="col-md-6">
+            <p>First Name Last Name</p>
+            <p>Partner Company Name</p>
+            <p>Request Type</p>
+            <p>Request Date </p>
+            <p>Request Length</p>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+          <div class="col-md-6 col-md-offset-3">
+            <button class="btn" style="background-color: #93CCDD;width: 100%;color: #1C5566;font-size: 20px;">DOWNLOAD</button>
+            <button class="btn" style="background-color: #93CCDD;width: 100%;margin-top: 12px;color: #1C5566;font-size: 20px;">5 DAYS</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2" style="margin-top: 15px;">
+            <button class="btn" style="background-color: #00AF50;color: #ffff;font-size: 20px;">OK</button>
+            <button class="btn" style="background-color: #FF4F4F;color: #ffff;font-size: 20px;margin-left: 65px;">DENY</button>
+            <button class="btn" style="background-color: #934A10;color: #ffff;font-size: 20px;margin-left: 65px;">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <form id="file_upload_form" action="" method="post" enctype="multipart/form-data" style="display:none">
   <input type="file" name="file" id="file" size="20">
   <input type="hidden" name="bizvault_files_and_folders_id">
@@ -139,4 +341,31 @@ function choose_file(bizvault_files_and_folders_id, user_id, folder_id){
 $("#file").on("change", function(){
   $("#file_upload_form").submit();
 });
+
+function show_access() {
+  $(".access-div").toggle();
+}
+
+function open_grant_access_modal() {
+  $('#grant-access-modal-1').modal('show');
+}
+
+$("#hover-for-access").hover(function(){
+  $('#access-given').show();
+},function(){
+  $('#access-given').hide();
+});
+
+$("#hover-for-access-1").hover(function(){
+  $('#access-given-1').show();
+},function(){
+  $('#access-given-1').hide();
+});
+
+$("#hover-for-access-2").hover(function(){
+  $('#access-given-2').show();
+},function(){
+  $('#access-given-2').hide();
+});
+
 </script>
