@@ -64,7 +64,7 @@ function formatSizeUnits($size, $precision = 2){
 ?>
 <div class="row">
   <div class="col-md-3" style="padding-right: unset;">
-    <button type="button" class="btn btn-sm btn-block btn-style" onclick="showaccess()"><strong class="btn-text">Business Financials</strong></button>
+    <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text">Business Financials</strong></button>
   </div>
   <div class="col-md-9" style="padding-left: unset;">
     <hr class="new5">
@@ -235,18 +235,50 @@ function formatSizeUnits($size, $precision = 2){
 </div>
 <div class="modal fade" id="grant-access-modal">
   <div class="modal-dialog">
-    <div class="modal-content" style="background-color: #B8DEE6">
-      <div class="row">
-        <div class="col-md-3 text-center">
-          <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+    <div class="modal-content" style="background-color: #B8DEE6; padding: 10px;">
+      <div class="row" id="hover-for-access">
+        <div class="col-md-12">
+          <div class="col-md-3 text-center">
+            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+          </div>
+          <div class="col-md-9">
+            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+          </div>
         </div>
-        <div class="col-md-9">
-          <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+        <div class="row text-center" id="access-given" style="display: none;">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          </div>
         </div>
       </div>
-      <div class="row text-center">
+      <div class="row" id="hover-for-access-1" style="padding-top: 10px;">
         <div class="col-md-12">
-          <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          <div class="col-md-3 text-center">
+            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+          </div>
+          <div class="col-md-9">
+            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+          </div>
+        </div>
+        <div class="row text-center" id="access-given-1" style="display: none;">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="hover-for-access-2" style="padding-top: 10px;">
+        <div class="col-md-12">
+          <div class="col-md-3 text-center">
+            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+          </div>
+          <div class="col-md-9">
+            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
+          </div>
+        </div>
+        <div class="row text-center" id="access-given-2" style="display: none;">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
+          </div>
         </div>
       </div>
     </div>
@@ -310,12 +342,30 @@ $("#file").on("change", function(){
   $("#file_upload_form").submit();
 });
 
-function showaccess() {
+function show_access() {
   $(".access-div").toggle();
 }
 
 function open_grant_access_modal() {
   $('#grant-access-modal-1').modal('show');
 }
+
+$("#hover-for-access").hover(function(){
+  $('#access-given').show();
+},function(){
+  $('#access-given').hide();
+});
+
+$("#hover-for-access-1").hover(function(){
+  $('#access-given-1').show();
+},function(){
+  $('#access-given-1').hide();
+});
+
+$("#hover-for-access-2").hover(function(){
+  $('#access-given-2').show();
+},function(){
+  $('#access-given-2').hide();
+});
 
 </script>
