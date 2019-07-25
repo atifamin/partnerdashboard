@@ -1,3 +1,4 @@
+
 <?php foreach($folderTypes as $folderType): ?>
 <?php $sub_folders = $this->file_manager_model->get_folders(0, $folderType->id); ?>
 <div class="col-md-12 main-folder-area-title">

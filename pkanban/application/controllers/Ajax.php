@@ -780,7 +780,15 @@ class Ajax extends CI_Controller
         ->get("task_comment AS tc")->result();
     }
 	
-	
+	public function bizvault_access_request(){
+        $post = $this->input->post();
+        $data['user_id'] = $post['user_id'];
+        $data['task_id'] = $post['task_id'];
+        $data['type'] = "";
+         $data['doc_folder_id'] = "";
+        $data['created_by'] = $post['user_id'];
+        $data['request'] = $this->partnerDB->insert('request_access',$data);
+    }
 
 
 }

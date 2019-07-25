@@ -1,4 +1,4 @@
-<?php // echo"<pre>"; print_r($data);exit; ?>
+<?php // echo"<pre>"; print_r($this->session->userdata['user_session']);exit; ?>
 <style type="text/css">
 #row1 {
 	margin-top: 12px;
@@ -1288,15 +1288,10 @@
     });
   
   function bizvault_access_request(){
-    var task_id = $('#task_id').val();
-    var user_id = "<?php echo $this->session->userdata('user_session')['user_id']; ?>";
-    $.post("<?php echo base_url();?>ajax/bizvault_access_request", {task_id:task_id,user_id:user_id}).done(function(e){
-      alert("Rquest sent successfuly");
-      $('#editTaskModal').modal('hide');
-
-    });
-    //$('#bizvault_access_request_modal').modal('show');
-    //$('#editTaskModal').modal('hide');
+    // alert();
+    // return false;
+    $('#bizvault_access_request_modal').modal('show');
+    $('#editTaskModal').modal('hide');
   }
 
   function toggleShowDescription(id){
