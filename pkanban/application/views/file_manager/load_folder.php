@@ -49,6 +49,26 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.cus-td {
+  color: #45717A;
+  font-size: 20px;
+}
+
+.d-none {
+  display: none;
+}
+
+.custom-modal {
+  height: 60px; 
+  background-color: #1F487E; 
+  border: none;
+}
+
+.custom-modal-2 {
+  background-color: #B8DEE6; 
+  padding: 10px;
+}
 </style>
 <?php
 function formatSizeUnits($size, $precision = 2){
@@ -169,14 +189,14 @@ function formatSizeUnits($size, $precision = 2){
 <div class="modal fade" id="view-access-info-modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header text-white text-center" style="height: 60px; background-color: #1F487E; border: none;">
+      <div class="modal-header text-white text-center custom-modal">
         <h3 class="modal-title">CLOUDBOX ACCESS</h3>
       </div>
       
         <table class="table">
           <thead style="background-color: #17375E;">
-            <tr style="font-size: 20px;">
-              <th class="text-center text-white b-none" style="">User</th>
+            <tr class="font-20">
+              <th class="text-center text-white" style="border: none;">User</th>
               <th class="text-center text-white" style="border: none;">Access</th>
               <th class="text-center text-white" style="border: none;">File/Folder</th>
               <th class="text-center text-white" style="border: none;">Expires</th>
@@ -190,13 +210,13 @@ function formatSizeUnits($size, $precision = 2){
                         <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
                       </div>
                       <div class="col-md-6">
-                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                        <span class="font-10">First Name<br>Last Name<br>Company/Org</span>
                       </div>
                     </div>
                   </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW</td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em></td>
+                  <td class="text-center cus-td" style="border: none;" >VIEW</td>
+                  <td class="text-center cus-td" style="border: none;" >Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em class="text-red" ">(Expires in 1 Day)</em></td>
               </tr>
               <tr style="background-color:  #92CDDE">
                   <td style="border: none; width: 24%;">
@@ -205,13 +225,13 @@ function formatSizeUnits($size, $precision = 2){
                         <img src="<?php echo base_url()."images/placeholder.png"; ?>" style="width: 130%" >
                       </div>
                       <div class="col-md-6">
-                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                        <span class="font-10">First Name<br>Last Name<br>Company/Org</span>
                       </div>
                     </div>
                   </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW DOWNLOAD</td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><span class="mt-10">VIEW FILES...</span></td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em></td>
+                  <td class="text-center cus-td" style="border: none;" >VIEW DOWNLOAD</td>
+                  <td class="text-center cus-td" style="border: none;" ><span class="mt-10">VIEW FILES...</span></td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em class="text-red" ">(Expires in 1 Day)</em></td>
               </tr>
               <tr style="background-color: #B8DEE6">
                   <td style="border: none; width: 24%;">
@@ -220,13 +240,13 @@ function formatSizeUnits($size, $precision = 2){
                         <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
                       </div>
                       <div class="col-md-6">
-                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                        <span class="font-10">First Name<br>Last Name<br>Company/Org</span>
                       </div>
                     </div>
                   </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW</td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em></td>
+                  <td class="text-center cus-td" style="border: none;" >VIEW</td>
+                  <td class="text-center cus-td" style="border: none;" >Basic<br>Business Financials</td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em class="text-red" ">(Expires in 1 Day)</em></td>
               </tr>
           </tbody>
         </table>
@@ -235,7 +255,7 @@ function formatSizeUnits($size, $precision = 2){
 </div>
 <div class="modal fade" id="grant-access-modal">
   <div class="modal-dialog">
-    <div class="modal-content" style="background-color: #B8DEE6; padding: 10px;">
+    <div class="modal-content custom-modal-2">
       <div class="row" id="hover-for-access">
         <div class="col-md-12">
           <div class="col-md-3 text-center">
@@ -245,7 +265,7 @@ function formatSizeUnits($size, $precision = 2){
             <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
           </div>
         </div>
-        <div class="row text-center" id="access-given" style="display: none;">
+        <div class="row text-center d-none" id="access-given">
           <div class="col-md-12">
             <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
           </div>
@@ -260,7 +280,7 @@ function formatSizeUnits($size, $precision = 2){
             <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
           </div>
         </div>
-        <div class="row text-center" id="access-given-1" style="display: none;">
+        <div class="row text-center d-none" id="access-given-1">
           <div class="col-md-12">
             <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
           </div>
@@ -275,7 +295,7 @@ function formatSizeUnits($size, $precision = 2){
             <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
           </div>
         </div>
-        <div class="row text-center" id="access-given-2" style="display: none;">
+        <div class="row text-center d-none" id="access-given-2">
           <div class="col-md-12">
             <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
           </div>
@@ -302,15 +322,15 @@ function formatSizeUnits($size, $precision = 2){
         </div>
         <div class="row" style="margin-top: 10px">
           <div class="col-md-6 col-md-offset-3">
-            <button class="btn" style="background-color: #93CCDD;width: 100%;color: #1C5566;font-size: 20px;">DOWNLOAD</button>
-            <button class="btn" style="background-color: #93CCDD;width: 100%;margin-top: 12px;color: #1C5566;font-size: 20px;">5 DAYS</button>
+            <button class="btn font-20" style="background-color: #93CCDD;width: 100%;color: #1C5566;">DOWNLOAD</button>
+            <button class="btn font-20 mt-10" style="background-color: #93CCDD;width: 100%;color: #1C5566;">5 DAYS</button>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2" style="margin-top: 15px;">
-            <button class="btn" style="background-color: #00AF50;color: #ffff;font-size: 20px;">OK</button>
-            <button class="btn" style="background-color: #FF4F4F;color: #ffff;font-size: 20px;margin-left: 65px;">DENY</button>
-            <button class="btn" style="background-color: #934A10;color: #ffff;font-size: 20px;margin-left: 65px;">CANCEL</button>
+            <button class="btn font-20" style="background-color: #00AF50;color: #ffff;">OK</button>
+            <button class="btn font-20" style="background-color: #FF4F4F;color: #ffff;margin-left: 65px;">DENY</button>
+            <button class="btn font-20" style="background-color: #934A10;color: #ffff;margin-left: 65px;">CANCEL</button>
           </div>
         </div>
       </div>
