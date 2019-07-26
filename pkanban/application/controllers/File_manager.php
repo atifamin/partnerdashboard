@@ -93,6 +93,9 @@ class File_manager extends CI_Controller {
 
 	public function load_folder(){
 		$post = $this->input->post();
+		$post['folder_id']='5';
+		$post['user_id']='5001';
+
 		//echo "<pre>"; print_r($post); exit;
 		$data['folder'] = $this->partnerDB->where("id", $post['folder_id'])->get("bizvault_files_and_folders")->row();
 		$data['folder']->files = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "file")->get("bizvault_files_and_folders")->result();
@@ -109,15 +112,27 @@ class File_manager extends CI_Controller {
 		$data['folder']->missingFiles = $this->missingFiles($post['folder_id'], $post['user_id']);
 		$data['user_id'] = $post['user_id'];
 		//echo "<pre>"; print_r($data['folder']); exit;
+		$raw_query = 'SELECT request_access.request_access_id, request_access.request_access_type, request_access.request_access_timestamp, user.user_id,user.user_fname, request_access.request_access_length, user.user_lname, user.dbe_firm_id, 
+			dbe.`Firm/DBA Name` as FirmName
+			FROM
+			request_access,user,dbe
+			WHERE
+			request_access.request_access_user_id = user.user_id AND
+			user.dbe_firm_id = dbe.`Firm ID` AND
+			request_access.request_access_filedoc_id='. $data['folder']->id;
+		$data['access_request'] = $this->partnerDB->query($raw_query)->result();
 
-		$data['access_request'] = $this->partnerDB->select("request_access.request_access_id, request_access.request_access_type, request_access.request_access_timestamp, user.user_id,user.user_fname, request_access.request_access_length, user.user_lname, user.dbe_firm_id, dbe.FirmName")
+/*
+
+
+		$data['access_request'] = $this->partnerDB->select("request_access.request_access_id, request_access.request_access_type, request_access.request_access_timestamp, user.user_id,user.user_fname, request_access.request_access_length, user.user_lname, user.dbe_firm_id, dbe.`Firm/DBA&nbsp;Name`")
 							        ->from("request_access")
 							        ->join("user","request_access.request_access_user_id = user.user_id")
-							        ->join("dbe","user.dbe_firm_id = dbe.FirmID")
+							        ->join("dbe","user.dbe_firm_id = dbe.`Firm&nbsp;ID`")
 							        ->where("request_access.request_access_filedoc_id", $data['folder']->id)
 							        ->get()
 							        ->result();
-
+*/
 		//echo "<pre>"; print_r($data['access_request']); exit;
 		$this->load->view("file_manager/load_folder", $data);
 	}
