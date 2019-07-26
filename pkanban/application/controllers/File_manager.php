@@ -93,8 +93,8 @@ class File_manager extends CI_Controller {
 
 	public function load_folder(){
 		$post = $this->input->post();
-		$post['folder_id']='5';
-		$post['user_id']='5001';
+		//$post['folder_id']='5';
+		//$post['user_id']='5001';
 
 		//echo "<pre>"; print_r($post); exit;
 		$data['folder'] = $this->partnerDB->where("id", $post['folder_id'])->get("bizvault_files_and_folders")->row();
