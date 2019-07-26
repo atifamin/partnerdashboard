@@ -1,4 +1,4 @@
-<?php // echo"<pre>"; print_r($data);exit; ?>
+<?php echo"<pre>"; print_r($data);exit; ?>
 <style type="text/css">
 #row1 {
 	margin-top: 12px;

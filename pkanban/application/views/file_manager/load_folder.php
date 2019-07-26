@@ -34,7 +34,25 @@
   background-color: #4e80c6; 
   width: 23%;
 }
-
+.btn-2 {
+  background-color: #93CCDD;
+  width: 100%;
+  color: #1C5566;
+}
+.btn-ok {
+  background-color: #00AF50;
+  color: #ffff;
+}
+.btn-deny {
+  background-color: #FF4F4F;
+  color: #ffff;
+  margin-left: 65px;
+}
+.btn-cancal {
+  background-color: #934A10;
+  color: #ffff;
+  margin-left: 65px;
+}
 .access-div {
   display:inline-block; 
   vertical-align: middle; 
@@ -69,7 +87,14 @@
   background-color: #B8DEE6; 
   padding: 10px;
 }
+.bg-3 {
+
+}
+
 </style>
+
+<?php //echo "<pre>"; print_r($access_request); exit; ?>
+
 <?php
 function formatSizeUnits($size, $precision = 2){
   static $units = array('kB','MB','GB','TB','PB','EB','ZB','YB');
@@ -83,10 +108,10 @@ function formatSizeUnits($size, $precision = 2){
 }
 ?>
 <div class="row">
-  <div class="col-md-3" style="padding-right: unset;">
-    <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text">Business Financials</strong></button>
+  <div class="col-md-4" style="padding-right: unset;">
+    <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text"><?php echo $folder->name; ?></strong></button>
   </div>
-  <div class="col-md-9" style="padding-left: unset;">
+  <div class="col-md-8" style="padding-left: unset;">
     <hr class="new5">
   </div>
 </div>
@@ -256,81 +281,61 @@ function formatSizeUnits($size, $precision = 2){
 <div class="modal fade" id="grant-access-modal">
   <div class="modal-dialog">
     <div class="modal-content custom-modal-2">
+      <?php if(count($access_request)==0) { ?>
+        <div>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <h1>No Access Request Found</h1>
+      <?php } ?>
+      
       <div class="row" id="hover-for-access">
+        <?php if(count($access_request)>0){
+            $count=0;
+            foreach ($access_request as $value) { ?>
         <div class="col-md-12">
-          <div class="col-md-3 text-center">
-            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
-          </div>
-          <div class="col-md-9">
-            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
-          </div>
-        </div>
-        <div class="row text-center d-none" id="access-given">
-          <div class="col-md-12">
-            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="hover-for-access-1" style="padding-top: 10px;">
-        <div class="col-md-12">
-          <div class="col-md-3 text-center">
-            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
-          </div>
-          <div class="col-md-9">
-            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
-          </div>
-        </div>
-        <div class="row text-center d-none" id="access-given-1">
-          <div class="col-md-12">
-            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="hover-for-access-2" style="padding-top: 10px;">
-        <div class="col-md-12">
-          <div class="col-md-3 text-center">
-            <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
-          </div>
-          <div class="col-md-9">
-            <span><strong class="font-13">First Name Last Name<br>Partner Company Name<br>Request Type<br>Request Date<br>Request Length</strong></span>
-          </div>
-        </div>
-        <div class="row text-center d-none" id="access-given-2">
-          <div class="col-md-12">
-            <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-10">GRANT ACCESS</span></button>
-          </div>
-        </div>
+              <div class="col-md-3 text-center">
+                <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+              </div><div class="col-md-9 mb-10 haccess">
+                <span><strong class="font-13"><?php echo $value->user_fname." ".$value->user_lname;?><br><?php echo $value->FirmName;?><br>Type: <?php echo $value->request_access_type;?><br>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?><br>Length: <?php echo $value->request_access_length;?></strong></span>
+              </div>
+              <div class="row text-center " id="access-given">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal()"><span class="text-white font-13">GRANT ACCESS</span></button>
+                </div>
+              </div>
+            <?php $count++; }
+          } ?>
       </div>
     </div>
   </div>
 </div>
-<div id="grant-access-modal-1" class="modal fade">
+<div class="modal fade" id="grant-access-modal-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body" style="background-color: #DCE6F2">
-        <div class="row" style="margin-top: 20px;">
+        <div class="row mt-20">
           <div class="col-md-2 col-md-offset-2">
-            <img src="<?php echo base_url()."images/placeholder.png"; ?>" style="width: 75px;margin-top: 30%">
+            <img src="<?php echo base_url()."images/placeholder.png"; ?>" class="mt-30" style="width: 75px;">
           </div>
           <div class="col-md-6">
-            <p>First Name Last Name</p>
-            <p>Partner Company Name</p>
-            <p>Request Type</p>
-            <p>Request Date </p>
-            <p>Request Length</p>
+            <p><?php echo $value->user_fname." ".$value->user_lname;?></p>
+            <p><?php echo $value->FirmName;?></p>
+            <p>Type: <?php echo $value->request_access_type;?></p>
+            <p>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?></p>
+            <p>Length: <?php echo $value->request_access_length;?></p>
           </div>
         </div>
-        <div class="row" style="margin-top: 10px">
+        <div class="row mt-10">
           <div class="col-md-6 col-md-offset-3">
-            <button class="btn font-20" style="background-color: #93CCDD;width: 100%;color: #1C5566;">DOWNLOAD</button>
-            <button class="btn font-20 mt-10" style="background-color: #93CCDD;width: 100%;color: #1C5566;">5 DAYS</button>
+            <button class="btn font-20 btn-2">DOWNLOAD</button>
+            <button class="btn font-20 mt-10 btn-2">5 DAYS</button>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-8 col-md-offset-2" style="margin-top: 15px;">
-            <button class="btn font-20" style="background-color: #00AF50;color: #ffff;">OK</button>
-            <button class="btn font-20" style="background-color: #FF4F4F;color: #ffff;margin-left: 65px;">DENY</button>
-            <button class="btn font-20" data-dismiss="modal" style="background-color: #934A10;color: #ffff;margin-left: 65px;">CANCEL</button>
+          <div class="col-md-8 col-md-offset-2 mt-15">
+            <button class="btn font-20 btn-ok">OK</button>
+            <button class="btn font-20 btn-deny">DENY</button>
+            <button class="btn font-20 btn-cancal" data-dismiss="modal">CANCEL</button>
           </div>
         </div>
       </div>
@@ -370,22 +375,20 @@ function open_grant_access_modal() {
   $('#grant-access-modal-1').modal('show');
 }
 
-$("#hover-for-access").hover(function(){
-  $('#access-given').show();
-},function(){
-  $('#access-given').hide();
-});
+// function hoverForAccess(id) {
 
-$("#hover-for-access-1").hover(function(){
-  $('#access-given-1').show();
-},function(){
-  $('#access-given-1').hide();
-});
+//   $('#access-given').show();
+ 
+// }
 
-$("#hover-for-access-2").hover(function(){
-  $('#access-given-2').show();
-},function(){
-  $('#access-given-2').hide();
-});
+// function hoverout(id) {
+//   $('#access-given').hide();
+// }
+
+// $(".haccess").hover(function(){
+//   $('#access-given').show();
+// },function(){
+//   $('#access-given').hide();
+// });
 
 </script>
