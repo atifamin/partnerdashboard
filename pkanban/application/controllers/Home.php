@@ -138,9 +138,11 @@ class Home extends CI_Controller {
                                                        WHERE board_id = '$board_id' AND task_archived = '1'")->row()->board_time_spent;
 
         $data['configs'] = $this->db->get('configs')->row_array();
-        $data['user_detail'] = $this->partnerDB->select('user.*')
+
+        $data['user_detail'] = $this->partnerDB->select('user.*,partner.partner_name')
                                                 ->from('user')
-                                                ->where('user_id' , $user_id)
+                                                ->join('partner','user.partner_id = partner.partner_id')
+                                                ->where('user.user_id' , $user_id)
                                                 ->get()->row();
 
         $data['grant_access'] = $this->partnerDB->select('ga.* , bfl.name,bfl.full_path,u.user_pic')

@@ -464,7 +464,7 @@
               <?php } ?>
               <div class="col-md-6">
                 <p><?php echo $data['user_detail']->user_fname." ".$data['user_detail']->user_lname; ?></p>
-                <p>Business Name</p>
+                <p><?php echo $data['user_detail']->partner_name; ?></p>
               </div>
               <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
             </div>
