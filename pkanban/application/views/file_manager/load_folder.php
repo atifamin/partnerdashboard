@@ -295,69 +295,68 @@ function formatSizeUnits($size, $precision = 2){
         </div>
         <h1>No Access Request Found</h1>
       <?php } ?>
-      
+      <?php if(count($access_request)>0){
+          foreach ($access_request as $value) { ?>
       <div class="row" id="hover-for-access">
-        <?php if(count($access_request)>0){
-            
-            foreach ($access_request as $value) { ?>
         <div class="col-md-12">
-              <div class="col-md-3 text-center">
-                <?php if ($value->user_pic != null) { ?>
-                  <img src="<?php echo base_url()."uploads/".$value->user_pic." "; ?>" class="mt-20" width="63%" style="border-radius: 35px">
-                <?php }else{ ?>
-                  <img src="<?php echo base_url().'images/placeholder.png'; ?>" class="mt-20" > 
-                <?php } ?>
-              </div><div class="col-md-9 mb-10 haccess">
-                <span><strong class="font-13"><?php echo $value->user_fname." ".$value->user_lname;?><br><?php echo $value->partner_name;?><br>Type: <?php echo $value->request_access_type;?><br>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?><br>Length: <?php echo $value->request_access_length;?> Days</strong></span>
-              </div>
-              <div class="row text-center " id="access-given">
-                <div class="col-md-12">
-                  <a href="javascript:;" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal(<?php echo $value->request_access_id; ?>)"><span class="text-white font-13">GRANT ACCESS</span></a>
-                </div>
-              </div>
-              <!-- Another Model -->
-              <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-body" style="background-color: #DCE6F2">
-                      <div class="row mt-20">
-                        <div class="col-md-2 col-md-offset-2">
-                          <?php if ($value->user_pic != null) { ?>
-                            <img src="<?php echo base_url()."uploads/".$value->user_pic." "; ?>" class="mt-30" style="width: 75px;margin-top: 25px;border-radius: 35px">
-                          <?php }else{ ?>
-                            <img src="<?php echo base_url()."images/placeholder.png"; ?>" class="mt-30" style="width: 75px;">
-                          <?php  } ?>
-                        </div>
-                        <div class="col-md-6">
-                          <p><?php echo $value->user_fname." ".$value->user_lname;?></p>
-                          <p><?php echo $value->partner_name;?></p>
-                          <p>Type: <?php echo $value->request_access_type;?></p>
-                          <p>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?></p>
-                          <p>Length: <?php echo $value->request_access_length;?> Days</p>
-                        </div>
-                      </div>
-                      <div class="row mt-10">
-                        <div class="col-md-6 col-md-offset-3">
-                          <h2 class="font-20 btn-2 text-center"><?php echo $value->request_access_type ?></h2>
-                          <h2 class="font-20 mt-10 btn-2 text-center"><?php echo $value->request_access_length;?> Days</h2>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 col-md-offset-2 mt-15" style="margin-top: 15px">
-                          <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'ok')" class="btn font-20 btn-ok">OK</a>
-                          <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'deny')" class="btn font-20 btn-deny">DENY</a>
-                          <a href="javascript:close_model(<?php echo $value->request_access_id; ?>)" class="btn font-20 btn-cancal">CANCEL</a>
-                        </div>
-                      </div>
+          <div class="col-md-3 text-center">
+            <?php if ($value->user_pic != null) { ?>
+              <img src="<?php echo "../..".$value->user_pic; ?>" class="mt-20" width="63%" style="border-radius: 35px">
+            <?php }else{ ?>
+              <img src="<?php echo base_url().'images/placeholder.png'; ?>" class="mt-20" > 
+            <?php } ?>
+          </div>
+          <div class="col-md-9 mb-10 haccess">
+            <span><strong class="font-13"><?php echo $value->user_fname." ".$value->user_lname;?><br><?php echo $value->partner_name;?><br>Type: <?php echo $value->request_access_type;?><br>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?><br>Length: <?php echo $value->request_access_length;?> Days</strong></span>
+          </div>
+          <div class="row text-center " id="access-given">
+            <div class="col-md-12">
+              <a href="javascript:;" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal(<?php echo $value->request_access_id; ?>)"><span class="text-white font-13">GRANT ACCESS</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Another Model -->
+        <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body" style="background-color: #DCE6F2">
+                  <div class="row mt-20">
+                    <div class="col-md-2 col-md-offset-2">
+                      <?php if ($value->user_pic != null) { ?>
+                        <img src="<?php echo "../..".$value->user_pic; ?>" class="mt-30" style="width: 75px;margin-top: 25px;border-radius: 35px">
+                      <?php }else{ ?>
+                        <img src="<?php echo base_url()."images/placeholder.png"; ?>" class="mt-30" style="width: 75px;">
+                      <?php  } ?>
+                    </div>
+                    <div class="col-md-6">
+                      <p><?php echo $value->user_fname." ".$value->user_lname;?></p>
+                      <p><?php echo $value->partner_name;?></p>
+                      <p>Type: <?php echo $value->request_access_type;?></p>
+                      <p>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?></p>
+                      <p>Length: <?php echo $value->request_access_length;?> Days</p>
+                    </div>
+                  </div>
+                  <div class="row mt-10">
+                    <div class="col-md-6 col-md-offset-3">
+                      <h2 class="font-20 btn-2 text-center"><?php echo $value->request_access_type ?></h2>
+                      <h2 class="font-20 mt-10 btn-2 text-center"><?php echo $value->request_access_length;?> Days</h2>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2 mt-15" style="margin-top: 15px">
+                      <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'ok')" class="btn font-20 btn-ok">OK</a>
+                      <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'deny')" class="btn font-20 btn-deny">DENY</a>
+                      <a href="javascript:close_model(<?php echo $value->request_access_id; ?>)" class="btn font-20 btn-cancal">CANCEL</a>
                     </div>
                   </div>
                 </div>
               </div>
-              
-            <?php  
+            </div>
+        </div>
+        <?php  
             }
           } ?>
-      </div>
     </div>
   </div>
 </div>
