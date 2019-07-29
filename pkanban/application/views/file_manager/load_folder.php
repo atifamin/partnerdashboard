@@ -294,9 +294,13 @@ function formatSizeUnits($size, $precision = 2){
             foreach ($access_request as $value) { ?>
         <div class="col-md-12">
               <div class="col-md-3 text-center">
-                <img src="<?php echo base_url(). "images/placeholder.png"; ?>" class="mt-20" >
+                <?php if ($value->user_pic != null) { ?>
+                  <img src="<?php echo base_url()."uploads/".$value->user_pic." "; ?>" class="mt-20" width="63%">
+                <?php }else{ ?>
+                  <img src="<?php echo base_url().'images/placeholder.png'; ?>" class="mt-20" > 
+                <?php } ?>
               </div><div class="col-md-9 mb-10 haccess">
-                <span><strong class="font-13"><?php echo $value->user_fname." ".$value->user_lname;?><br><?php echo $value->FirmName;?><br>Type: <?php echo $value->request_access_type;?><br>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?><br>Length: <?php echo $value->request_access_length;?></strong></span>
+                <span><strong class="font-13"><?php echo $value->user_fname." ".$value->user_lname;?><br><?php echo $value->partner_name;?><br>Type: <?php echo $value->request_access_type;?><br>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?><br>Length: <?php echo $value->request_access_length;?> Days</strong></span>
               </div>
               <div class="row text-center " id="access-given">
                 <div class="col-md-12">
@@ -319,10 +323,10 @@ function formatSizeUnits($size, $precision = 2){
           </div>
           <div class="col-md-6">
             <p><?php echo $value->user_fname." ".$value->user_lname;?></p>
-            <p><?php echo $value->FirmName;?></p>
+            <p><?php echo $value->partner_name;?></p>
             <p>Type: <?php echo $value->request_access_type;?></p>
             <p>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?></p>
-            <p>Length: <?php echo $value->request_access_length;?></p>
+            <p>Length: <?php echo $value->request_access_length;?> Days</p>
           </div>
         </div>
         <div class="row mt-10">

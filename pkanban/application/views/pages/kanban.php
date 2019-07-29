@@ -105,7 +105,9 @@
 	margin-top: 6%;
 	color: #ffff;
 }
+
 </style>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>template/css/pkanban.css">
 <script type="text/javascript" src="<?php echo base_url(); ?>template/js/jquery-dateformat.js"></script>
 <div class="row">
   <?php if (count($data['containers']) < 1): ?>
@@ -538,6 +540,20 @@
 <div class="modal fade" id="bizvault_access_request_modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
+      <div class="modal-header text-center" style="background-color: #1F487C">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="text-white">Request Access to bizVAULT™ Files and Documents</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="bizvault_access_request_modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
       <div class="modal-body" style="height: 550px;overflow-y: auto;">
         <div class="row">
           <button type="button" class="close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
@@ -591,7 +607,8 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
 <?php if ($data['task_standby'] && $this->config->item('demo_mode') == FALSE): ?>
 <div class="modal fade" id="resumeWorkTaskModal" tabindex="-1" role="dialog"
          aria-labelledby="resumeWorkTaskModalLabel" aria-hidden="true">
