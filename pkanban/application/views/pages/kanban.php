@@ -458,13 +458,13 @@
           <div id="tab_bizvault_files_document" class="tab-pane fade in">
             <div class="row" style="background-color: #93CCDD;padding: 3% 0">
               <?php if ($data['user_detail']->user_pic != null) { ?>
-                <div class="col-md-2"> <img src="<?php echo base_url().'uploads/'.$data['user_detail']->user_pic.''; ?>" style="width: 70px;border-radius: 35px"> </div>
+                <div class="col-md-2"> <img src="<?php echo "../..".$data['user_detail']->user_pic; ?>" style="width: 70px;border-radius: 35px"> </div>
               <?php }else{ ?>
                 <div class="col-md-2"> <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px"> </div>
               <?php } ?>
               <div class="col-md-6">
                 <p><?php echo $data['user_detail']->user_fname." ".$data['user_detail']->user_lname; ?></p>
-                <p>Business Name</p>
+                <p><?php echo $data['user_detail']->partner_name; ?></p>
               </div>
               <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
             </div>
@@ -481,7 +481,7 @@
                   <?php foreach ($data['grant_access'] as $grant_access): ?>
                 <tr style="background-color: #DBEEF4">
                   <?php if ($grant_access->user_pic != null) { ?>
-                    <td style="border: none; "><img src="<?php echo base_url()."uploads/".$grant_access->user_pic." "; ?>" style= "width: 55px;border-radius: 30px"> </td>
+                    <td style="border: none; "><img src="<?php echo "../..".$grant_access->user_pic; ?>" style= "width: 55px;border-radius: 30px"> </td>
                   <?php }else{ ?>
                   <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"> </td>
                   <?php } ?>
