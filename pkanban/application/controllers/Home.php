@@ -91,7 +91,7 @@ class Home extends CI_Controller {
     }
 
     public function board($board_id) {
-
+        $user_id = $this->session->userdata('user_session')['user_id'];
         $data = array();
         $check_permission = $this->db->query("SELECT * FROM boards WHERE board_id
                                             IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
@@ -138,6 +138,18 @@ class Home extends CI_Controller {
                                                        WHERE board_id = '$board_id' AND task_archived = '1'")->row()->board_time_spent;
 
         $data['configs'] = $this->db->get('configs')->row_array();
+        $data['user_detail'] = $this->partnerDB->select('user.*')
+                                                ->from('user')
+                                                ->where('user_id' , $user_id)
+                                                ->get()->row();
+
+        $data['grant_access'] = $this->partnerDB->select('ga.* , bfl.name,bfl.full_path,u.user_pic')
+                                        ->from('grant_access as ga')
+                                        ->join('bizvault_filedoc_list as bfl','ga.grant_access_filedoc_id = bfl.id','left')
+                                        ->join('user as u','u.user_id = ga.grant_access_user_id','left')
+                                        ->where('ga.grant_access_user_id' , $user_id)
+                                        ->where('ga.grant_access_expiration_date >', date('Y-m-d'))
+                                        ->get()->result();
 
         
         // if(count($data['tasks'])>0){

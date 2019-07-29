@@ -1,4 +1,4 @@
-<?php // echo"<pre>"; print_r($data);exit; ?>
+<?php  // echo"<pre>"; print_r($data['user_detail']);exit; ?>
 <style type="text/css">
 #row1 {
 	margin-top: 12px;
@@ -455,9 +455,13 @@
           
           <div id="tab_bizvault_files_document" class="tab-pane fade in">
             <div class="row" style="background-color: #93CCDD;padding: 3% 0">
-              <div class="col-md-2"> <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px"> </div>
+              <?php if ($data['user_detail']->user_pic != null) { ?>
+                <div class="col-md-2"> <img src="<?php echo base_url().'uploads/'.$data['user_detail']->user_pic.''; ?>" style="width: 70px;border-radius: 35px"> </div>
+              <?php }else{ ?>
+                <div class="col-md-2"> <img src="<?php echo base_url().'images/placeholder.png'; ?>" style="width: 70px"> </div>
+              <?php } ?>
               <div class="col-md-6">
-                <p>First Name Last Name</p>
+                <p><?php echo $data['user_detail']->user_fname." ".$data['user_detail']->user_lname; ?></p>
                 <p>Business Name</p>
               </div>
               <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
@@ -469,43 +473,31 @@
             </div>
             <table class="table table-striped">
               <tbody>
+                <?php if (count($data['grant_access']) == 0) { ?>
+                  <h3 class="text-center">NO Request Found !</h3>
+                <?php }elseif (count($data['grant_access']) > 0) { ?>
+                  <?php foreach ($data['grant_access'] as $grant_access): ?>
                 <tr style="background-color: #DBEEF4">
-                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"> 
-                    <!-- <a href=""><i class="far fa-file-pdf"></i></a> --></td>
-                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
-                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn" > <a href="" style="color: #ffff">View</a> </div>
-                    <div id="file_docs_cus_btn"> <a href="" style="color: #ffff">Download</a> </div></td>
+                  <?php if ($grant_access->user_pic != null) { ?>
+                    <td style="border: none; "><img src="<?php echo base_url()."uploads/".$grant_access->user_pic." "; ?>" style= "width: 55px;border-radius: 30px"> </td>
+                  <?php }else{ ?>
+                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"> </td>
+                  <?php } ?>
+                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9;"> <span><?php echo $grant_access->name; ?></span> </div></td>
+                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn" > <a href="<?php echo $grant_access->full_path; ?>" style="color: #ffff" target="_blank">View</a> </div>
+                    <div id="file_docs_cus_btn"> <a href="<?php echo $grant_access->full_path; ?>" style="color: #ffff" download>Download</a> </div></td>
                   <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
-                    <span>July 19, 2019</span><br>
-                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
+                    <span><?php echo $grant_access->grant_access_expiration_date; ?></span><br>
+                    <?php
+                      $now = time();
+                      $your_date = strtotime($grant_access->grant_access_expiration_date);
+                      $datediff = $your_date - $now;
+                      $newDate = round($datediff / (60 * 60 * 24));
+                    ?>
+                    <span style=" color: red;font-style: italic;">(<?php echo $newDate; ?> Days Left)</span></td>
                 </tr>
-                <tr style="background-color: #8FB3E3">
-                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"></td>
-                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
-                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn"> <a href="" style="color: #ffff">View</a> </div>
-                    <div id="file_docs_cus_btn"> <a href=""style="color: #ffff">Download</a> </div></td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
-                    <span>July 19, 2019</span><br>
-                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
-                </tr>
-                <tr style="background-color: #DBEEF4">
-                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"></td>
-                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
-                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn"> <a href="" style="color: #ffff">View</a> </div>
-                    <div id="file_docs_cus_btn"> <a href="" style="color: #ffff">Download</a> </div></td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
-                    <span>July 19, 2019</span><br>
-                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
-                </tr>
-                <tr style="background-color: #8FB3E3">
-                  <td style="border: none; "><img src="<?php echo base_url().'images/placeholder.png'; ?>"></td>
-                  <td style="text-align: center;"><div style="font-size: 20px; color: #17266f;background-color: #B8DEE9"> <span>2017 Cash Flow Stmt</span> </div></td>
-                  <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn"> <a href="" style="color: #ffff">View</a> </div>
-                    <div id="file_docs_cus_btn"> <a href="" style="color: #ffff">Download</a> </div></td>
-                  <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
-                    <span>July 19, 2019</span><br>
-                    <span style=" color: red;font-style: italic;">(3 Days Left)</span></td>
-                </tr>
+              <?php endforeach; ?>
+                <?php } ?>
               </tbody>
             </table>
           </div>
