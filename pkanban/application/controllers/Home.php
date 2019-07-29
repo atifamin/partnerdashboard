@@ -145,10 +145,11 @@ class Home extends CI_Controller {
                                                 ->where('user.user_id' , $user_id)
                                                 ->get()->row();
 
-        $data['grant_access'] = $this->partnerDB->select('ga.* , bfl.name,bfl.full_path,u.user_pic')
+        $data['grant_access'] = $this->partnerDB->select('ga.*,bfl.full_path,u.user_pic,bff.name')
                                         ->from('grant_access as ga')
                                         ->join('bizvault_filedoc_list as bfl','ga.grant_access_filedoc_id = bfl.id','left')
                                         ->join('user as u','u.user_id = ga.grant_access_user_id','left')
+                                        ->join('bizvault_files_and_folders as bff','bfl.bizvault_files_and_folders_id = bff.id','left')
                                         ->where('ga.grant_access_user_id' , $user_id)
                                         ->where('ga.grant_access_expiration_date >', date('Y-m-d'))
                                         ->get()->result();

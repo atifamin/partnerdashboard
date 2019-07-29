@@ -489,7 +489,7 @@
                   <td class="text-center" style="width: 22%"><div id="file_docs_cus_btn" > <a href="<?php echo $grant_access->full_path; ?>" style="color: #ffff" target="_blank">View</a> </div>
                     <div id="file_docs_cus_btn"> <a href="<?php echo $grant_access->full_path; ?>" style="color: #ffff" download>Download</a> </div></td>
                   <td style="text-align: center; border: none;"><span><strong>ACCCESS EXPIRES</strong></span><br>
-                    <span><?php echo $grant_access->grant_access_expiration_date; ?></span><br>
+                    <span><?php echo date('F d,Y',strtotime($grant_access->grant_access_expiration_date)); ?></span><br>
                     <?php
                       $now = time();
                       $your_date = strtotime($grant_access->grant_access_expiration_date);
