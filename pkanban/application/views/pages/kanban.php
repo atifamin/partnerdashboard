@@ -1,4 +1,4 @@
-<?php echo"<pre>"; print_r($data);exit; ?>
+<?php // echo"<pre>"; print_r($data);exit; ?>
 <style type="text/css">
 #row1 {
 	margin-top: 12px;
@@ -460,7 +460,7 @@
                 <p>First Name Last Name</p>
                 <p>Business Name</p>
               </div>
-              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
+              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
             </div>
             <div class="row" style="background-color: #33859B;color: #ffff">
               <div class="col-md-12">
