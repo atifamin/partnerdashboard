@@ -398,7 +398,7 @@ class File_manager extends CI_Controller {
 
 	public function grant_deny_request(){
 		$post = $this->input->post();
-		if ($post['val'] == 'ok') {
+		if ($post['val'] == 'grant') {
 			$this->partnerDB->set('request_access_status','GRANT')
 							->where('request_access_id',$post['id'])
 							->update('request_access');

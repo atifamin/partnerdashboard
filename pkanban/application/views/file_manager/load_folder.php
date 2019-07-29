@@ -345,7 +345,7 @@ function formatSizeUnits($size, $precision = 2){
                   </div>
                   <div class="row">
                     <div class="col-md-8 col-md-offset-2 mt-15" style="margin-top: 15px">
-                      <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'ok')" class="btn font-20 btn-ok">OK</a>
+                      <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'grant')" class="btn font-20 btn-ok">OK</a>
                       <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'deny')" class="btn font-20 btn-deny">DENY</a>
                       <a href="javascript:close_model(<?php echo $value->request_access_id; ?>)" class="btn font-20 btn-cancal">CANCEL</a>
                     </div>
@@ -397,6 +397,7 @@ function open_grant_access_modal(id) {
 function grant_deny_request(id,val){
   var url = $("#pkanban_url").val();
   $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val}).done(function(e){
+    alert("Request "+val+" Successfully !");
     location.reload();
   });
 }
