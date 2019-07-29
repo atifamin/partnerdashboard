@@ -460,7 +460,7 @@
                 <p>First Name Last Name</p>
                 <p>Business Name</p>
               </div>
-              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
+              <div class="col-md-4 text-center" style="background-color: #34849F;border-radius: 13px;height: 50px;width: 32%"> <a href="javascript:bizvault_access_request()" style="color: #000000"><span style="padding: 2%"><b>REQUEST bizVAULT™ ACCESS</b></span></a> </div>
             </div>
             <div class="row" style="background-color: #33859B;color: #ffff">
               <div class="col-md-12">
@@ -1288,13 +1288,14 @@
     });
   
   function bizvault_access_request(){
-    var task_id = $('#task_id').val();
-    var user_id = "<?php echo $this->session->userdata('user_session')['user_id']; ?>";
-    $.post("<?php echo base_url();?>ajax/bizvault_access_request", {task_id:task_id,user_id:user_id}).done(function(e){
-      alert("Rquest sent successfuly");
-      $('#editTaskModal').modal('hide');
+    $('#bizvault_access_request_modal').modal('show');
+    // var task_id = $('#task_id').val();
+    // var user_id = "<?php echo $this->session->userdata('user_session')['user_id']; ?>";
+    // $.post("<?php echo base_url();?>ajax/bizvault_access_request", {task_id:task_id,user_id:user_id}).done(function(e){
+    //   alert("Rquest sent successfuly");
+    //   $('#editTaskModal').modal('hide');
 
-    });
+    // });
     //$('#bizvault_access_request_modal').modal('show');
     //$('#editTaskModal').modal('hide');
   }
