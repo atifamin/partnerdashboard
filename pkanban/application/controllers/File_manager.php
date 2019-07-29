@@ -112,13 +112,12 @@ class File_manager extends CI_Controller {
 		$data['folder']->missingFiles = $this->missingFiles($post['folder_id'], $post['user_id']);
 		$data['user_id'] = $post['user_id'];
 		//echo "<pre>"; print_r($data['folder']); exit;
-		$raw_query = 'SELECT request_access.request_access_id, request_access.request_access_type, request_access.request_access_timestamp, user.user_id,user.user_fname, request_access.request_access_length, user.user_lname, user.dbe_firm_id, 
-			dbe.`Firm/DBA Name` as FirmName
+		$raw_query = 'SELECT request_access.request_access_id, request_access.request_access_type, request_access.request_access_timestamp, user.user_id,user.user_fname, request_access.request_access_length, user.user_lname, user.user_pic, partner.partner_name	
 			FROM
-			request_access,user,dbe
+			request_access,user,partner
 			WHERE
 			request_access.request_access_user_id = user.user_id AND
-			user.dbe_firm_id = dbe.`Firm ID` AND
+			user.partner_id = partner.partner_id AND
 			request_access.request_access_filedoc_id='. $data['folder']->id;
 		$data['access_request'] = $this->partnerDB->query($raw_query)->result();
 
