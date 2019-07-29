@@ -1,3 +1,45 @@
 .text-white {
   color: white;
 }
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.w-10 {
+	width: 10%;
+}
+.modal-header-request {
+	background-color: #1F487C;
+	border: none;
+}.b-none{
+	border: none;
+}
+.bg-1 {
+	background-color: #4F81BC;
+}
+.clr-1{
+	background-color: #95B3D5;
+}
+.clr-2{
+	background-color: #1F487C;
+}
+.f-left {
+	float: left;
+}
