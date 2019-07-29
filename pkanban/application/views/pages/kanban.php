@@ -476,7 +476,7 @@
             <table class="table table-striped">
               <tbody>
                 <?php if (count($data['grant_access']) == 0) { ?>
-                  <h3 class="text-center">NO Request Found !</h3>
+                  <h3 class="text-center">No Request Found !</h3>
                 <?php }elseif (count($data['grant_access']) > 0) { ?>
                   <?php foreach ($data['grant_access'] as $grant_access): ?>
                 <tr style="background-color: #DBEEF4">
