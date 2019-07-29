@@ -274,7 +274,7 @@
   </div>
 </div>
 <!-- *************************** E D I T MODAL ********************************** -->
-<div class="modal fade" id="editTaskModal" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="editTaskModal" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true" style="overflow-y: auto;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -538,14 +538,81 @@
   </div>
 </div>
 <div class="modal fade" id="bizvault_access_request_modal">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header text-center" style="background-color: #1F487C">
+      <div class="modal-header text-center modal-header-request">
         <div class="row">
           <div class="col-md-12">
-            <h3 class="text-white">Request Access to bizVAULT™ Files and Documents</h3>
+            <h4 class="text-white mb-10">Request Access to bizVAULT™ Files and Documents</h4>
           </div>
         </div>
+      </div>
+      <div class="modal-body clr-1">
+        <table align="center">
+          <tr>
+            <td>
+              <div class="row clr-2">
+                <div class="col-md-12">
+                  <h5 class="text-white">DETAILED BUSINESS FINANCIALS</h5>
+                </div>
+              </div>
+              <div class="row bg-1">
+                <div class="col-md-12">
+                  <select class="form-control form-control-lg mt-10" value="access_type">
+                    <option hidden selected>SELECT ACCESS TYPE</option>
+                    <option>NONE</option>
+                    <option>VIEW ONLY</option>
+                    <option>VIEW AND DOWNLOAD</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row bg-1">
+                <div class="col-md-12">
+                  <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
+                      <option hidden selected>SELECT LENGTH OF ACCESS</option>
+                      <option>NONE</option>
+                      <option>3 DAY</option>
+                      <option>3 DAYS</option>
+                      <option>7 DAYS</option>
+                  </select>
+                </div>
+              </div>
+            </td>
+            <td class="w-10"></td>
+            <td>
+              <div class="row clr-2">
+                <div class="col-md-12">
+                  <h5 class="text-white">DETAILED BUSINESS FINANCIALS</h5>
+                </div>
+              </div>
+              <div class="row bg-1">
+                <div class="col-md-12">
+                  <select class="form-control form-control-lg mt-10" value="access_type">
+                    <option value="access_type" hidden selected>SELECT ACCESS TYPE</option>
+                    <option value="access_type">NONE</option>
+                    <option value="access_type">VIEW ONLY</option>
+                    <option value="access_type">VIEW AND DOWNLOAD</option>
+                </select>
+                </div>
+              </div>
+              <div class="row bg-1">
+                <div class="col-md-12">
+                  <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
+                    <option hidden selected>SELECT LENGTH OF ACCESS</option>
+                    <option>NONE</option>
+                    <option>3 DAY</option>
+                    <option>3 DAYS</option>
+                    <option>7 DAYS</option>
+                  </select>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer b-none clr-1" style="padding: 20px;">
+        <button type="button" class="btn btn-danger close_button f-left" data-dismiss="modal">CANCEL</button>
+        <button type="submit" class="btn btn-success w-10">OK</button>
       </div>
     </div>
   </div>
