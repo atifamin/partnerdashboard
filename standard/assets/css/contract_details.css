@@ -38,6 +38,9 @@
 .mb-20 {
   margin-bottom: 20px;
 }
+.pt-6 {
+  padding-top: 6px;
+}
 .vl {
   border-left: 6px solid #31859c;
   height: 120px;
