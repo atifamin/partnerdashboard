@@ -1,4 +1,4 @@
-<?php  // echo"<pre>"; print_r($data['user_detail']);exit; ?>
+<?php  //echo"<pre>"; print_r($data['user_detail']);exit; ?>
 <style type="text/css">
 #row1 {
 	margin-top: 12px;
@@ -548,6 +548,7 @@
         </div>
       </div>
       <form method="post" id="request_access_files_form" enctype="multipart/form-data">
+        <input type="hidden" name="user_id" value="<?php echo $data['user_detail']->user_id;?>">
         <div class="modal-body clr-1">
           <table align="center">
             <tr>
@@ -572,7 +573,7 @@
                     <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business">
                         <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
                         <option value="NONE">NONE</option>
-                        <option value="1">3 DAY</option>
+                        <option value="1">1 DAY</option>
                         <option value="3">3 DAYS</option>
                         <option value="7">7 DAYS</option>
                     </select>
