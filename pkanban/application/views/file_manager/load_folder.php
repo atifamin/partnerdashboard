@@ -245,7 +245,7 @@ function formatSizeUnits($size, $precision = 2){
                   <div class="row">
                     <div class="col-md-6">
                       <?php if ($info->user_pic != null) {?>
-                        <img src="<?php echo base_url(). "uploads/".$info->user_pic.""; ?>" style="width: 130%;border-radius: 30px;" >
+                        <img src="<?php echo "../..".$info->user_pic; ?>" style="width: 130%;border-radius: 30px;" >
                       <?php }else{ ?>
                         <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
                       <?php } ?>
@@ -336,6 +336,10 @@ function formatSizeUnits($size, $precision = 2){
                       <h2 class="font-20 mt-10 btn-2 text-center"><?php echo $value->request_access_length;?> Days</h2>
                     </div>
                   </div>
+                  <input type="hidden" id="type" value="<?php echo $value->request_access_type ?>">
+                  <input type="hidden" id="length" value="<?php echo $value->request_access_length ?>">
+                  <input type="hidden" id="task_id" value="<?php echo $value->request_access_task_id ?>">
+
                   <div class="row">
                     <div class="col-md-8 col-md-offset-2 mt-15" style="margin-top: 15px">
                       <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'grant')" class="btn font-20 btn-ok">OK</a>
@@ -389,7 +393,10 @@ function open_grant_access_modal(id) {
 
 function grant_deny_request(id,val){
   var url = $("#pkanban_url").val();
-  $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val}).done(function(e){
+  var type = $("#type").val();
+  var length = $("#length").val();
+  var task_id = $("#task_id").val();
+  $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val,type:type,length:length,task_id:task_id}).done(function(e){
     alert("Request "+val+" Successfully !");
     location.reload();
   });
