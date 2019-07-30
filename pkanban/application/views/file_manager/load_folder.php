@@ -310,7 +310,7 @@ function formatSizeUnits($size, $precision = 2){
         </div>
       </div>
       <!-- Another Model -->
-        <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>">
+        <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>" style="overflow: hidden;height: 400px;">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-body" style="background-color: #DCE6F2">
