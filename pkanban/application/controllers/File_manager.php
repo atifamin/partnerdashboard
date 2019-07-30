@@ -122,6 +122,13 @@ class File_manager extends CI_Controller {
 
 		$data['access_request'] = $this->partnerDB->query($raw_query)->result();
 
+		$data['request_access_info'] = $this->partnerDB->SELECT('ra.*,u.user_fname,u.user_lname,u.user_pic,p.partner_name,fff.name as file_folder_name')
+												->from('request_access as ra')
+												->join('user as u','u.user_id = ra.request_access_user_id')
+												->join('partner as p','u.partner_id = p.partner_id')
+												->join('bizvault_files_and_folders as fff','fff.id = ra.request_access_filedoc_id')
+												->where('ra.request_access_filedoc_id',$data['folder']->id)
+												->get()->result();
 /*
 
 

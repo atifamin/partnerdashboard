@@ -166,7 +166,7 @@ function formatSizeUnits($size, $precision = 2){
             <div class="col-md-offset-2 col-md-2" align="center">
             <button type="button" class="btn btn-success btn-sm btn-block" onclick="view_file(<?php echo $val->file->id; ?>)">VIEW</button>
             <button type="button" class="btn btn-danger btn-sm btn-block" onclick="delete_file(<?php echo $val->file->id; ?>)">DELETE</button>
-            <button type="button" class="btn btn-primary btn-sm btn-block">GRANT ACCESS</button>
+            <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#grant-access-modal">GRANT ACCESS</button>
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>UPLOADED</strong></h2>
@@ -222,10 +222,6 @@ function formatSizeUnits($size, $precision = 2){
 <div class="modal fade" id="view-access-info-modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header text-white text-center custom-modal">
-        <h3 class="modal-title">CLOUDBOX ACCESS</h3>
-      </div>
-      
         <table class="table">
           <thead style="background-color: #17375E;">
             <tr class="font-20">
@@ -236,51 +232,48 @@ function formatSizeUnits($size, $precision = 2){
             </tr>
           </thead>
           <tbody class="table">
+            <?php if (count($request_access_info) == 0) { ?>
               <tr style="background-color: #B8DEE6">
-                  <td style="border: none; width: 24%;">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
-                      </div>
-                      <div class="col-md-6">
-                        <span class="font-10">First Name<br>Last Name<br>Company/Org</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-center cus-td" style="border: none;" >VIEW</td>
-                  <td class="text-center cus-td" style="border: none;" >Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em class="text-red" ">(Expires in 1 Day)</em></td>
+                <td colspan="4">
+                  <h3 class="text-center">No Request Found !</h3>
+                </td>
               </tr>
-              <tr style="background-color:  #92CDDE">
-                  <td style="border: none; width: 24%;">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <img src="<?php echo base_url()."images/placeholder.png"; ?>" style="width: 130%" >
-                      </div>
-                      <div class="col-md-6">
-                        <span class="font-10">First Name<br>Last Name<br>Company/Org</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-center cus-td" style="border: none;" >VIEW DOWNLOAD</td>
-                  <td class="text-center cus-td" style="border: none;" ><span class="mt-10">VIEW FILES...</span></td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em class="text-red" ">(Expires in 1 Day)</em></td>
-              </tr>
+            <?php }elseif (count($request_access_info) > 0) { 
+              foreach ($request_access_info as $info) { ?>
               <tr style="background-color: #B8DEE6">
-                  <td style="border: none; width: 24%;">
-                    <div class="row">
-                      <div class="col-md-6">
+                <td style="border: none; width: 24%;">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <?php if ($info->user_pic != null) {?>
+                        <img src="<?php echo base_url(). "uploads/".$info->user_pic.""; ?>" style="width: 130%;border-radius: 30px;" >
+                      <?php }else{ ?>
                         <img src="<?php echo base_url(). "images/placeholder.png"; ?>" style="width: 130%" >
-                      </div>
-                      <div class="col-md-6">
-                        <span class="font-10">First Name<br>Last Name<br>Company/Org</span>
-                      </div>
+                      <?php } ?>
+                      
                     </div>
-                  </td>
-                  <td class="text-center cus-td" style="border: none;" >VIEW</td>
-                  <td class="text-center cus-td" style="border: none;" >Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em class="text-red" >(Expires in 1 Day)</em></td>
+                    <div class="col-md-6">
+                      <p class="font-10"><?php echo $info->user_fname." ".$info->user_lname; ?></p>
+                      <p class="font-10"><?php echo $info->partner_name; ?></p>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center cus-td" style="border: none;" ><?php echo $info->request_access_type; ?></td>
+                <td class="text-center cus-td" style="border: none;" ><?php echo $info->file_folder_name; ?></td>
+                <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>
+                  July , 33 august ,2019 
+                <?php //echo date('l, F d, Y',strtotime($info->grant_access_expiration_date)); ?>
+                </strong></span><br>
+                <?php
+                      // $now = time();
+                      // $your_date = strtotime($info->grant_access_expiration_date);
+                      // $datediff = $your_date - $now;
+                      // $newDate = round($datediff / (60 * 60 * 24));
+                ?>
+                <em class="text-red">(Expires in <?php //echo $newDate; ?> Day)</em>
+                </td>
               </tr>
+            <?php }
+                } ?>
           </tbody>
         </table>
     </div>
