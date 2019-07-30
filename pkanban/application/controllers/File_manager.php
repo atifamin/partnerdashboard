@@ -406,6 +406,15 @@ class File_manager extends CI_Controller {
 	public function grant_deny_request(){
 		$post = $this->input->post();
 		if ($post['val'] == 'grant') {
+			$data['grant_access_user_id'] = $this->session->userdata('user_session')['user_id'];
+			$data['grant_access_request_id'] = $post['id'];
+			$data['grant_access_type'] = $post['type'];
+			$data['grant_access_length'] = $post['length'];
+			$data['grant_access_task_id'] = $post['task_id'];
+			$data['grant_access_filedoc_id'] = "";
+			$data['grant_access_expiration_date'] = "";
+			$this->partnerDB->insert('grant_access',$data);
+
 			$this->partnerDB->set('request_access_status','GRANT')
 							->where('request_access_id',$post['id'])
 							->update('request_access');
