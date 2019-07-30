@@ -547,134 +547,78 @@
           </div>
         </div>
       </div>
-      <div class="modal-body clr-1">
-        <table align="center">
-          <tr>
-            <td>
-              <div class="row clr-2">
-                <div class="col-md-12">
-                  <h5 class="text-white">DETAILED BUSINESS FINANCIALS</h5>
+      <form method="post" id="request_access_files_form" enctype="multipart/form-data">
+        <div class="modal-body clr-1">
+          <table align="center">
+            <tr>
+              <td>
+                <div class="row clr-2">
+                  <div class="col-md-12">
+                    <h5 class="text-white">DETAILED BUSINESS FINANCIALS</h5>
+                  </div>
                 </div>
-              </div>
-              <div class="row bg-1">
-                <div class="col-md-12">
-                  <select class="form-control form-control-lg mt-10" value="access_type">
-                    <option hidden selected>SELECT ACCESS TYPE</option>
-                    <option>NONE</option>
-                    <option>VIEW ONLY</option>
-                    <option>VIEW AND DOWNLOAD</option>
+                <div class="row bg-1">
+                  <div class="col-md-12">
+                    <select class="form-control form-control-lg mt-10" name="access_type">
+                      <option hidden selected>SELECT ACCESS TYPE</option>
+                      <option>NONE</option>
+                      <option>VIEW ONLY</option>
+                      <option>VIEW AND DOWNLOAD</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row bg-1">
+                  <div class="col-md-12">
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
+                        <option hidden selected>SELECT LENGTH OF ACCESS</option>
+                        <option>NONE</option>
+                        <option>3 DAY</option>
+                        <option>3 DAYS</option>
+                        <option>7 DAYS</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td class="w-10"></td>
+              <td>
+                <div class="row clr-2">
+                  <div class="col-md-12">
+                    <h5 class="text-white">DETAILED PERSONAL FINANCIALS</h5>
+                  </div>
+                </div>
+                <div class="row bg-1">
+                  <div class="col-md-12">
+                    <select class="form-control form-control-lg mt-10" name="access_type">
+                      <option value="access_type" hidden selected>SELECT ACCESS TYPE</option>
+                      <option value="NONE">NONE</option>
+                      <option value="VIEW">VIEW ONLY</option>
+                      <option value="DOWNLOAD">VIEW AND DOWNLOAD</option>
                   </select>
+                  </div>
                 </div>
-              </div>
-              <div class="row bg-1">
-                <div class="col-md-12">
-                  <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
+                <div class="row bg-1">
+                  <div class="col-md-12">
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
                       <option hidden selected>SELECT LENGTH OF ACCESS</option>
                       <option>NONE</option>
                       <option>3 DAY</option>
                       <option>3 DAYS</option>
                       <option>7 DAYS</option>
-                  </select>
+                    </select>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td class="w-10"></td>
-            <td>
-              <div class="row clr-2">
-                <div class="col-md-12">
-                  <h5 class="text-white">DETAILED BUSINESS FINANCIALS</h5>
-                </div>
-              </div>
-              <div class="row bg-1">
-                <div class="col-md-12">
-                  <select class="form-control form-control-lg mt-10" value="access_type">
-                    <option value="access_type" hidden selected>SELECT ACCESS TYPE</option>
-                    <option value="access_type">NONE</option>
-                    <option value="access_type">VIEW ONLY</option>
-                    <option value="access_type">VIEW AND DOWNLOAD</option>
-                </select>
-                </div>
-              </div>
-              <div class="row bg-1">
-                <div class="col-md-12">
-                  <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
-                    <option hidden selected>SELECT LENGTH OF ACCESS</option>
-                    <option>NONE</option>
-                    <option>3 DAY</option>
-                    <option>3 DAYS</option>
-                    <option>7 DAYS</option>
-                  </select>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="modal-footer b-none clr-1" style="padding: 20px;">
-        <button type="button" class="btn btn-danger close_button f-left" data-dismiss="modal">CANCEL</button>
-        <button type="submit" class="btn btn-success w-10">OK</button>
-      </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer b-none clr-1" style="padding: 20px;">
+          <button type="button" class="btn btn-danger close_button f-left" data-dismiss="modal">CANCEL</button>
+          <button type="submit" class="btn btn-success w-10">OK</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
-<!-- <div class="modal fade" id="bizvault_access_request_modal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body" style="height: 550px;overflow-y: auto;">
-        <div class="row">
-          <button type="button" class="close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
-          <div class="col-md-12" style="margin-top: 12px"> <span id="request_modal_heading"><b>Basic Business Files and Documents</b></span> </div>
-          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;"> <span style="font-size: 18px">Required Business Documents</span> </div>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW ONLY</a> </div></td>
-              </tr>
-              <tr>
-                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW AND DOWNLOAD</a> </div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="row">
-          <div class="col-md-12" style="margin-top: 12px"> <span id="request_modal_heading"><b>Detailed Business Files and Documents</b></span> </div>
-          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;"> <span style="font-size: 18px">Required Business Documents</span> </div>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW AND DOWNLOAD</a> </div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="row">
-          <div class="col-md-12" style="margin-top: 12px"> <span id="request_modal_heading"><b>Basic Personal Financial</b></span> </div>
-          <div class="col-md-8" style="background-color: #1A365D;color: #ffff;margin: 4% 0px 3px 13px;"> <span style="font-size: 18px">Required Business Documents</span> </div>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="file-cell" style="text-align: center;font-size: 30px;border: 10px solid #ffff;background-color: #B0D5E5"><i class="fa fa-file" style="color: #FBD5B5;"></i></td>
-                <td class="file-cell" style="border: 10px solid #ffff;background-color: #B0D5E5;font-size: 20px;vertical-align: middle;">2017 Balance Sheet</td>
-                <td><div style="background-color:#47AEC3;text-align: center;font-size: 18px"> <a href="" style="color: #ffff;">ACCESS</a> </div>
-                  <div style="text-align: center;background-color:#92D14F;font-size: 18px;"> <a href="" style="color: #000">VIEW ONLY</a> </div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <?php if ($data['task_standby'] && $this->config->item('demo_mode') == FALSE): ?>
 <div class="modal fade" id="resumeWorkTaskModal" tabindex="-1" role="dialog"
@@ -695,9 +639,7 @@
         <center>
           <a href="<?php echo base_url(); ?>datab/delete/task_periods/task_periods_id/<?php echo $data['task_standby']['task_periods_id']; ?>"
                            class="btn btn-secondary"><?php echo e('Dismiss tracking', true); ?></a>
-          <button type="button" class="btn btn-danger"
-                                OnClick="$('.time_tracker_action[rel=<?php echo $data['task_standby']['task_id']; ?>]').trigger('click');$('#resumeWorkTaskModal').modal('hide');"
-                                id="delete_task" rel=""><?php echo e('Resume work', true); ?> </button>
+          <button type="button" class="btn btn-danger" OnClick="$('.time_tracker_action[rel=<?php echo $data['task_standby']['task_id']; ?>]').trigger('click');$('#resumeWorkTaskModal').modal('hide');" id="delete_task" rel=""><?php echo e('Resume work', true); ?> </button>
         </center>
       </div>
     </div>
@@ -1383,4 +1325,19 @@
   function assign_task_id(id){
     $("#task_id").val(id);
   }
+
+  $('#request_access_files_form').on('submit',function(e){
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+      url : "<?php echo base_url();?>ajax/request_access_files",
+      type : "POST",
+      data : formData,
+      processData: false,
+      contentType: false,
+      success: function(data){
+        console.log(data);
+      }
+    });
+  });
 </script> 
