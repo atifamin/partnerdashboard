@@ -260,7 +260,7 @@ function formatSizeUnits($size, $precision = 2){
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->request_access_type; ?></td>
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->file_folder_name; ?></td>
                 <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>
-                  July , 33 august ,2019 
+                  Monday, 15 July, 2019 
                 <?php //echo date('l, F d, Y',strtotime($info->grant_access_expiration_date)); ?>
                 </strong></span><br>
                 <?php
@@ -332,8 +332,8 @@ function formatSizeUnits($size, $precision = 2){
                   </div>
                   <div class="row mt-10">
                     <div class="col-md-6 col-md-offset-3">
-                      <h2 class="font-20 btn-2 text-center"><?php echo $value->request_access_type ?></h2>
-                      <h2 class="font-20 mt-10 btn-2 text-center"><?php echo $value->request_access_length;?> Days</h2>
+                      <h2 class="font-20 btn-2 text-center pt-6"><?php echo $value->request_access_type ?></h2>
+                      <h2 class="font-20 mt-10 btn-2 text-center pt-6"><?php echo $value->request_access_length;?> Days</h2>
                     </div>
                   </div>
                   <input type="hidden" id="type" value="<?php echo $value->request_access_type ?>">
