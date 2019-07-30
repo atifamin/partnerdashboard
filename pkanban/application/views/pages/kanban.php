@@ -559,22 +559,22 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10" name="access_type">
-                      <option hidden selected>SELECT ACCESS TYPE</option>
-                      <option>NONE</option>
-                      <option>VIEW ONLY</option>
-                      <option>VIEW AND DOWNLOAD</option>
+                    <select class="form-control form-control-lg mt-10" name="access_type_business">
+                      <option value="" hidden selected>SELECT ACCESS TYPE</option>
+                      <option value="NONE">NONE</option>
+                      <option value="VIEW">VIEW ONLY</option>
+                      <option value="VIEW AND DOWNLOAD">VIEW AND DOWNLOAD</option>
                     </select>
                   </div>
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
-                        <option hidden selected>SELECT LENGTH OF ACCESS</option>
-                        <option>NONE</option>
-                        <option>3 DAY</option>
-                        <option>3 DAYS</option>
-                        <option>7 DAYS</option>
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business">
+                        <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
+                        <option value="NONE">NONE</option>
+                        <option value="1">3 DAY</option>
+                        <option value="3">3 DAYS</option>
+                        <option value="7">7 DAYS</option>
                     </select>
                   </div>
                 </div>
@@ -588,22 +588,22 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10" name="access_type">
-                      <option value="access_type" hidden selected>SELECT ACCESS TYPE</option>
+                    <select class="form-control form-control-lg mt-10" name="access_type_personal">
+                      <option value="" hidden selected>SELECT ACCESS TYPE</option>
                       <option value="NONE">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
-                      <option value="DOWNLOAD">VIEW AND DOWNLOAD</option>
+                      <option value="VIEW AND DOWNLOAD">VIEW AND DOWNLOAD</option>
                   </select>
                   </div>
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length">
-                      <option hidden selected>SELECT LENGTH OF ACCESS</option>
-                      <option>NONE</option>
-                      <option>3 DAY</option>
-                      <option>3 DAYS</option>
-                      <option>7 DAYS</option>
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_personal">
+                      <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
+                      <option value="NONE">NONE</option>
+                      <option value="1">1 DAY</option>
+                      <option value="3">3 DAYS</option>
+                      <option value="7">7 DAYS</option>
                     </select>
                   </div>
                 </div>
