@@ -304,7 +304,7 @@ function formatSizeUnits($size, $precision = 2){
           </div>
           <div class="row text-center " id="access-given">
             <div class="col-md-12">
-              <a href="javascript:;" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal(<?php echo $value->request_access_lengthccess_id; ?>)"><span class="text-white font-13">GRANT ACCESS</span></a>
+              <a href="javascript:;" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal(<?php echo $value->request_access_id; ?>)"><span class="text-white font-13">GRANT ACCESS</span></a>
             </div>
           </div>
         </div>
