@@ -304,14 +304,14 @@ function formatSizeUnits($size, $precision = 2){
           </div>
           <div class="row text-center " id="access-given">
             <div class="col-md-12">
-              <a href="javascript:;" class="btn btn-grant-access mt-20 mb-20" data-toggle="modal" onclick="open_grant_access_modal(<?php echo $value->request_access_id; ?>)"><span class="text-white font-13">GRANT ACCESS</span></a>
+              <a href="javascript:;" class="btn btn-grant-access mt-20 mb-20" id="grant-access-btn" data-toggle="modal" onclick="open_grant_access_modal(<?php echo $value->request_access_id; ?>)"><span class="text-white font-13">GRANT ACCESS</span></a>
             </div>
           </div>
         </div>
       </div>
       <!-- Another Model -->
-        <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>" style="overflow: hidden;height: 400px;">
-            <div class="modal-dialog">
+        <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>" style="overflow: hidden;height: 377px;">
+            <div class="modal-dialog" style="margin-top: unset;">
               <div class="modal-content">
                 <div class="modal-body" style="background-color: #DCE6F2">
                   <div class="row mt-20">
@@ -389,6 +389,9 @@ function show_access() {
 
 function open_grant_access_modal(id) {
   $('#grant-access-modal-'+id+'').modal('show');
+  //$('#grant-access-btn').off('click');
+  //$('#grant-access-btn').attr("disabled","disabled");
+  //document.getElementById("grant-access-btn").disabled = true;
 }
 
 function grant_deny_request(id,val){
