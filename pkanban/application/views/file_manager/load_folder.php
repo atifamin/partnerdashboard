@@ -310,47 +310,7 @@ function formatSizeUnits($size, $precision = 2){
         </div>
       </div>
       <!-- Another Model -->
-        <div class="modal fade" id="grant-access-modal-<?php echo $value->request_access_id;?>" style="overflow: hidden;height: 377px;">
-            <div class="modal-dialog" style="margin-top: unset;">
-              <div class="modal-content">
-                <div class="modal-body" style="background-color: #DCE6F2">
-                  <div class="row mt-20">
-                    <div class="col-md-2 col-md-offset-2">
-                      <?php if ($value->user_pic != null) { ?>
-                        <img src="<?php echo "../..".$value->user_pic; ?>" class="mt-30" style="width: 75px;margin-top: 25px;border-radius: 35px">
-                      <?php }else{ ?>
-                        <img src="<?php echo base_url()."images/placeholder.png"; ?>" class="mt-30" style="width: 75px;">
-                      <?php  } ?>
-                    </div>
-                    <div class="col-md-6">
-                      <p><?php echo $value->user_fname." ".$value->user_lname;?></p>
-                      <p><?php echo $value->partner_name;?></p>
-                      <p>Type: <?php echo $value->request_access_type;?></p>
-                      <p>Date: <?php echo date("m/d/Y", strtotime($value->request_access_timestamp));?></p>
-                      <p>Length: <?php echo $value->request_access_length;?> Days</p>
-                    </div>
-                  </div>
-                  <div class="row mt-10">
-                    <div class="col-md-6 col-md-offset-3">
-                      <h2 class="font-20 btn-2 text-center pt-6"><?php echo $value->request_access_type ?></h2>
-                      <h2 class="font-20 mt-10 btn-2 text-center pt-6"><?php echo $value->request_access_length;?> Days</h2>
-                    </div>
-                  </div>
-                  <input type="hidden" id="type" value="<?php echo $value->request_access_type ?>">
-                  <input type="hidden" id="length" value="<?php echo $value->request_access_length ?>">
-                  <input type="hidden" id="task_id" value="<?php echo $value->request_access_task_id ?>">
-
-                  <div class="row">
-                    <div class="col-md-8 col-md-offset-2 mt-15" style="margin-top: 15px">
-                      <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'grant')" class="btn font-20 btn-ok">OK</a>
-                      <a href="javascript:grant_deny_request(<?php echo $value->request_access_id; ?>,'deny')" class="btn font-20 btn-deny">DENY</a>
-                      <a href="javascript:close_model(<?php echo $value->request_access_id; ?>)" class="btn font-20 btn-cancal">CANCEL</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
+        
         <?php  
             }
           } ?>
@@ -365,7 +325,13 @@ function formatSizeUnits($size, $precision = 2){
   <input type="hidden" name="folder_id">
   <input type="hidden" name="redirect_url">
 </form>
-
+<div class="modal fade" id="grant-access-modal_1">
+  <div class="modal-dialog">
+    <div class="modal-content" id="request_access_div">
+      <?php  ?>
+    </div>
+  </div>
+</div>
 <script>
 load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
 function choose_file(bizvault_files_and_folders_id, user_id, folder_id){
@@ -388,10 +354,12 @@ function show_access() {
 }
 
 function open_grant_access_modal(id) {
-  $('#grant-access-modal-'+id+'').modal('show');
-  //$('#grant-access-btn').off('click');
-  //$('#grant-access-btn').attr("disabled","disabled");
-  //document.getElementById("grant-access-btn").disabled = true;
+  var url = $("#pkanban_url").val();
+  $.post(""+url+"file_manager/open_grant_access_modal",{id:id}).done(function(e){
+    $('#request_access_div').html(e);
+    $('#grant-access-modal_1').modal('show');
+  });
+  //$('#grant-access-modal-'+id+'').modal('show');
 }
 
 function grant_deny_request(id,val){
@@ -399,13 +367,14 @@ function grant_deny_request(id,val){
   var type = $("#type").val();
   var length = $("#length").val();
   var task_id = $("#task_id").val();
-  $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val,type:type,length:length,task_id:task_id}).done(function(e){
+  var folder_id = $("#folder_id").val();
+  $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val,type:type,length:length,task_id:task_id,folder_id:folder_id}).done(function(e){
     alert("Request "+val+" Successfully !");
     location.reload();
   });
 }
 function close_model(id){
-  $("#grant-access-modal-"+id+"").modal('hide');
+  $("#grant-access-modal_1").modal('hide');
 }
 // function hoverForAccess(id) {
 
