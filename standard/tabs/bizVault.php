@@ -1,4 +1,7 @@
 <?php
+include("../config/config_main.php");
+?>
+<?php
 include("../includes/header.php");
 include("../includes/top_nav.php");
 $parent_id = 0;
@@ -106,6 +109,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="access_activity_model">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -113,6 +117,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
         <h3 class="modal-title text-center" style="color: #ffff;">CLOUDBOX ACCESS ACTIVITY</h3>
       </div>
+      
       <div class="modal-body" style="padding: 0">
         <table class="table table-striped">
           <tbody>
@@ -142,6 +147,18 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
     </div>
   </div>
 </div>
+
+<?php
+    $query = "SELECT ra.*, u.user_id,u.user_fname,u.user_lname, u.user_pic, p.partner_name, fff.name as file_folder_name  
+      FROM
+      request_access as ra, user as u, partner as p, bizvault_files_and_folders as fff
+      WHERE
+      ra.request_access_user_id = u.user_id AND
+      u.partner_id = p.partner_id AND fff.id = ra.request_access_filedoc_id AND ra.request_access_status = 'pending' ";
+      $result = mysqli_query($con_MAIN,$query);
+      
+
+?>
 <div class="modal fade" id="acitivity_model">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -159,51 +176,37 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             </tr>
           </thead>
           <tbody class="table">
+            <?php while ($row = mysqli_fetch_array($result)) { ?>
               <tr style="background-color: #B8DEE6">
                   <td style="border: none; width: 24%;">
                     <div class="row">
                       <div class="col-md-6">
-                        <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
+                        <?php if ($row['user_pic'] != null) { ?>
+                          <img src="<?php echo "../..".$row['user_pic']; ?>" style="width: 130%;border-radius: 30px" >
+                        <?php }else{ ?>
+                          <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
+                        <?php } ?>
+                        
                       </div>
                       <div class="col-md-6">
-                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
+                        <p style="font-size: 11px;"><?php echo $row['user_fname']." ".$row['user_lname']?></p>
+                        <p style="font-size: 11px;"><?php echo $row['partner_name']; ?></p>
                       </div>
                     </div>
                   </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><?php echo $row['request_access_type']; ?></td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><?php echo $row['file_folder_name']; ?></td>
+                  <?php 
+                    $expiry_date =  date('l, F d, Y',strtotime(date('Y-m-d').' + '.$row['request_access_length'].' Days'));
+
+                    $current_date = time();
+                    $expiry_date1 = strtotime($expiry_date);
+                    $datediff =  $expiry_date1 - $current_date;
+                    $newDate = round($datediff / (60 * 60 * 24));
+                  ?>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo $expiry_date; ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
               </tr>
-              <tr style="background-color:  #92CDDE">
-                  <td style="border: none; width: 24%;">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
-                      </div>
-                      <div class="col-md-6">
-                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
-              </tr>
-              <tr style="background-color: #B8DEE6">
-                  <td style="border: none; width: 24%;">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
-                      </div>
-                      <div class="col-md-6">
-                        <span style="font-size: 10px;">First Name<br>Last Name<br>Company/Org</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">VIEW ONLY</td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;">Basic<br>Business Financials</td>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>Monday, August 12, 2019</strong></span><br><em style=" color: red;">(Expires in 1 Day)</em><br><em style="color: #5EB2D5; font-size: 10px; ">Click here to change Expiration Date</em></td>
-              </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
