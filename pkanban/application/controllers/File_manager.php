@@ -128,6 +128,7 @@ class File_manager extends CI_Controller {
 												->join('partner as p','u.partner_id = p.partner_id')
 												->join('bizvault_files_and_folders as fff','fff.id = ra.request_access_filedoc_id')
 												->where('ra.request_access_filedoc_id',$data['folder']->id)
+												->where('ra.request_access_status', 'pending')
 												->get()->result();
 /*
 
