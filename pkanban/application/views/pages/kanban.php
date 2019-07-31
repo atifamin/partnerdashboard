@@ -563,7 +563,7 @@
                   <div class="col-md-12">
                     <select class="form-control form-control-lg mt-10" name="access_type_business" >
                       <option value="" hidden selected>SELECT ACCESS TYPE</option>
-                      <option value="NONE">NONE</option>
+                      <option value="">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
                       <option value="VIEW AND DOWNLOAD">VIEW AND DOWNLOAD</option>
                     </select>
@@ -573,7 +573,7 @@
                   <div class="col-md-12">
                     <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business" >
                         <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
-                        <option value="NONE">NONE</option>
+                        <option value="">NONE</option>
                         <option value="1">1 DAY</option>
                         <option value="3">3 DAYS</option>
                         <option value="7">7 DAYS</option>
@@ -592,7 +592,7 @@
                   <div class="col-md-12">
                     <select class="form-control form-control-lg mt-10" name="access_type_personal" >
                       <option value="" hidden selected>SELECT ACCESS TYPE</option>
-                      <option value="NONE">NONE</option>
+                      <option value="">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
                       <option value="VIEW AND DOWNLOAD">VIEW AND DOWNLOAD</option>
                   </select>
@@ -602,7 +602,7 @@
                   <div class="col-md-12">
                     <select class="form-control form-control-lg mt-10 mb-10" name="access_length_personal" >
                       <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
-                      <option value="NONE">NONE</option>
+                      <option value="">NONE</option>
                       <option value="1">1 DAY</option>
                       <option value="3">3 DAYS</option>
                       <option value="7">7 DAYS</option>
@@ -1338,7 +1338,8 @@
       processData: false,
       contentType: false,
       success: function(data){
-        console.log(data);
+        alert("Request sent Successfully !");
+        location.reload();
       }
     });
   });
