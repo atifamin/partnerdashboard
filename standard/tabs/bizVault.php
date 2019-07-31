@@ -182,7 +182,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                     <div class="row">
                       <div class="col-md-6">
                         <?php if ($row['user_pic'] != null) { ?>
-                          <img src="<?php echo "../..".$row['user_pic']; ?>" style="width: 130%" >
+                          <img src="<?php echo "../..".$row['user_pic']; ?>" style="width: 130%;border-radius: 30px" >
                         <?php }else{ ?>
                           <img src="<?php echo pkanban_url.'images/placeholder.png'; ?>" style="width: 130%" >
                         <?php } ?>
