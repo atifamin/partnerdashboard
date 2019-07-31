@@ -427,7 +427,6 @@ class File_manager extends CI_Controller {
 			$expiryDate = date('Y-m-d', strtotime(date('Y-m-d'). ' + '.$post['length'].' days'));
 			$data['grant_access_expiration_date'] = $expiryDate;
 			$this->partnerDB->insert('grant_access',$data);
-
 			$this->partnerDB->set('request_access_status','GRANT')
 							->where('request_access_id',$post['id'])
 							->update('request_access');
