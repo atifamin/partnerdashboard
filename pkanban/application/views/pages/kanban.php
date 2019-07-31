@@ -560,7 +560,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10" name="access_type_business">
+                    <select class="form-control form-control-lg mt-10" name="access_type_business" required>
                       <option value="" hidden selected>SELECT ACCESS TYPE</option>
                       <option value="NONE">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
@@ -570,7 +570,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business">
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business" required>
                         <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
                         <option value="NONE">NONE</option>
                         <option value="1">1 DAY</option>
@@ -589,7 +589,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10" name="access_type_personal">
+                    <select class="form-control form-control-lg mt-10" name="access_type_personal" required>
                       <option value="" hidden selected>SELECT ACCESS TYPE</option>
                       <option value="NONE">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
@@ -599,7 +599,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_personal">
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_personal" required>
                       <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
                       <option value="NONE">NONE</option>
                       <option value="1">1 DAY</option>
