@@ -260,16 +260,16 @@ function formatSizeUnits($size, $precision = 2){
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->request_access_type; ?></td>
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->file_folder_name; ?></td>
                 <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>
-                  Monday, 15 July, 2019 
-                <?php //echo date('l, F d, Y',strtotime($info->grant_access_expiration_date)); ?>
+                <?php $expiry_date =  date('l, F d, Y',strtotime($info->request_access_timestamp.' + '.$info->request_access_length.' Days'));
+                echo $expiry_date; ?>
                 </strong></span><br>
                 <?php
-                      // $now = time();
-                      // $your_date = strtotime($info->grant_access_expiration_date);
-                      // $datediff = $your_date - $now;
-                      // $newDate = round($datediff / (60 * 60 * 24));
+                  $current_date = time();
+                  $expiry_date1 = strtotime($expiry_date);
+                  $datediff =  $expiry_date1 - $current_date;
+                  $newDate = round($datediff / (60 * 60 * 24));
                 ?>
-                <em class="text-red">(Expires in <?php //echo $newDate; ?> Day)</em>
+                <em class="text-red">(Expires in <?php echo $newDate; ?> Day)</em>
                 </td>
               </tr>
             <?php }
