@@ -792,10 +792,20 @@ class Ajax extends CI_Controller
 
     public function request_access_files(){
         $post = $this->input->post();
-        $post['request_access_user_id'] = $post['user_id'];
-        $query = $this->partnerDB->select('id')->from('bizvault_filedoc_list')->where('user_id', $post['user_id'])->get()->row();
-        $post['request_access_filedoc_id'] = $query->id;
-        print_r($post);
+
+        $business_detail = $this->partnerDB->where('slug','business_detailed')->get('bizvault_files_and_folders')->row();
+        $personel_detail = $this->partnerDB->where('slug','detailed_personal_financials')->get('bizvault_files_and_folders')->row();
+
+        $data['request_access_user_id'] = $post['user_id'];
+        $data['request_access_type'] = $post['access_type_business'];
+        $data['request_access_type'] = $post['access_type_personal'];
+        $data['request_access_status'] = "PENDING";
+        $data['request_access_length'] = $post['access_length_business'];
+        $data['request_access_length'] = $post['access_length_personal'];
+        $data['request_access_task_id'] = $post['task_id'];
+        $data['request_access_filedoc_id'] = $business_detail->id;
+        $data['request_access_filedoc_id'] = $personel_detail->id;
+        $this->partnerDB->insert('request_access',$data);
     }
 
 }

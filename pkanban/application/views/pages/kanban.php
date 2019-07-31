@@ -549,6 +549,7 @@
       </div>
       <form method="post" id="request_access_files_form" enctype="multipart/form-data">
         <input type="hidden" name="user_id" value="<?php echo $data['user_detail']->user_id;?>">
+        <input class="upload_task_id" type="hidden" name="task_id" id="task_id" value=""/>
         <div class="modal-body clr-1">
           <table align="center">
             <tr>
@@ -560,7 +561,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10" name="access_type_business" required>
+                    <select class="form-control form-control-lg mt-10" name="access_type_business" >
                       <option value="" hidden selected>SELECT ACCESS TYPE</option>
                       <option value="NONE">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
@@ -570,7 +571,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business" required>
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_business" >
                         <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
                         <option value="NONE">NONE</option>
                         <option value="1">1 DAY</option>
@@ -589,7 +590,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10" name="access_type_personal" required>
+                    <select class="form-control form-control-lg mt-10" name="access_type_personal" >
                       <option value="" hidden selected>SELECT ACCESS TYPE</option>
                       <option value="NONE">NONE</option>
                       <option value="VIEW">VIEW ONLY</option>
@@ -599,7 +600,7 @@
                 </div>
                 <div class="row bg-1">
                   <div class="col-md-12">
-                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_personal" required>
+                    <select class="form-control form-control-lg mt-10 mb-10" name="access_length_personal" >
                       <option value="" hidden selected>SELECT LENGTH OF ACCESS</option>
                       <option value="NONE">NONE</option>
                       <option value="1">1 DAY</option>
