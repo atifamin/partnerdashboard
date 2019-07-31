@@ -403,6 +403,17 @@ class File_manager extends CI_Controller {
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	public function open_grant_access_modal(){
+		$request_id = $this->input->post('id');
+		$data['request_access_detail'] = $this->partnerDB->SELECT('ra.*,u.user_fname,u.user_lname,u.user_pic,p.partner_name')
+											->from('request_access as ra')
+											->join('user as u','u.user_id = ra.request_access_user_id')
+											->join('partner as p','u.partner_id = p.partner_id')
+											->where('ra.request_access_id',$request_id)
+											->get()->row();
+		$this->load->view('file_manager/open_grant_access_modal', $data);
+	} 
+
 	public function grant_deny_request(){
 		$post = $this->input->post();
 		if ($post['val'] == 'grant') {
@@ -411,8 +422,11 @@ class File_manager extends CI_Controller {
 			$data['grant_access_type'] = $post['type'];
 			$data['grant_access_length'] = $post['length'];
 			$data['grant_access_task_id'] = $post['task_id'];
-			$data['grant_access_filedoc_id'] = "";
-			$data['grant_access_expiration_date'] = "";
+			$data['grant_access_filedoc_id'] = $post['folder_id'];
+				
+			$expiryDate = date('Y-m-d', strtotime(date('Y-m-d'). ' + '.$post['length'].' days'));
+
+			$data['grant_access_expiration_date'] = $expiryDate;
 			$this->partnerDB->insert('grant_access',$data);
 			$this->partnerDB->set('request_access_status','GRANT')
 							->where('request_access_id',$post['id'])
