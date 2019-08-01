@@ -96,6 +96,15 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 </div>
 <?php
  } ?>
+
+<?php 
+	$query1 = "SELECT * from user_application_form where user_id = ".$_SESSION['user_id']."";
+	$result1 = mysqli_query($con_AWT,$query1);
+	$user_info = mysqli_fetch_object($result1);
+	echo "<pre>"; print_r($user_info);
+?>
+
+
 <div id="user_info_modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
