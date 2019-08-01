@@ -176,6 +176,13 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             </tr>
           </thead>
           <tbody class="table">
+            <?php // if (count(mysqli_fetch_array($result)) == 0) { ?>
+             <!--  <tr style="background-color: #B8DEE6">
+                <td colspan="4">
+                  <h3 class="text-center">No Request Found !</h3>
+                </td>
+              </tr> -->
+            <?php // }else if (count(mysqli_fetch_array($result)) > 0) { ?>
             <?php while ($row = mysqli_fetch_array($result)) { ?>
               <tr style="background-color: #B8DEE6">
                   <td style="border: none; width: 24%;">
@@ -206,7 +213,8 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                   ?>
                   <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo $expiry_date; ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
               </tr>
-            <?php } ?>
+            <?php } 
+            //} ?>
           </tbody>
         </table>
       </div>

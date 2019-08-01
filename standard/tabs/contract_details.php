@@ -1,5 +1,4 @@
 <?php
-
 include("../includes/header.php");
 include("../includes/top_nav.php");
 include("../includes/side_bar.php");
@@ -11,6 +10,19 @@ include("../functions/functions.php");
 $VendorID 			= $_SESSION['vendor_id'];
 $CertificationID 	= $_SESSION['certification_id'];
 $FirmID 			= $_SESSION['dbe_firm_id'];
+
+$query = "SELECT * from user_info_update where user_id = ".$_SESSION['user_id']."";
+$res = mysqli_query($con_AWT,$query);
+$row = mysqli_fetch_object($res);
+if (count($row) == 0) {
+	echo "<script>$(document).ready(function(){
+			$('#user_info_modal').modal({
+				modal: 'show',
+				backdrop: 'static', 
+				keyboard: false});
+			});</script>";
+}
+
 
 if($FirmID > 0){
 	
@@ -43,12 +55,34 @@ if($FirmID > 0){
 </div>
 <?php
  } ?>
+<div id="user_info_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
  
 <?php 
 include("../includes/footer.php");
  ?>
 <script>
+// $('#user_info_modal').modal({
+//     backdrop: 'static',
+//     keyboard: false
+// });
 
 $("#cont-detail-6-anc").click(function(){
 	  if($("#cont-detail-6-chev").hasClass('ace-icon fa fa-chevron-up')){
