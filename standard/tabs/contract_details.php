@@ -97,12 +97,6 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 <?php
  } ?>
 
-<?php 
-	$query1 = "SELECT * from user_application_form where user_id = ".$_SESSION['user_id']."";
-	$result1 = mysqli_query($con_AWT,$query1);
-	$user_info = mysqli_fetch_object($result1);
-?>
-
 
 <div id="user_info_modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -129,13 +123,13 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 	                  	<div class="row">
 						  <div class="col-md-12">
 						    <label for="company_name">Company Name:</label>
-						    <input type="text" class="form-control" name="company_name" id="company_name" required="" readonly="" value="<?php echo $user_info->company_name; ?>">
+						    <input type="text" class="form-control" name="company_name" id="company_name" required="" readonly="" value="Vision Plus">
 						    <div class="help-block with-errors"></div>
 						  </div>
-						  <div class="form-group col-md-12" >
-						  	<div class="row" style="background-color: #DCEDF4;">
+						  <div class="form-group col-md-12 correct-div">
+						  	<div class="row bg-correct">
 						  		<div class="col-md-4 ">
-						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-8">
 						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
@@ -143,15 +137,15 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  		</div>
 						  	</div>
 						  </div>
-						  <div class="form-group col-md-12">
+						  <div class="col-md-12">
 						    <label for="address">Address:</label>
-						    <input type="text" class="form-control" name="address" value="<?php echo $user_info->address; ?>" id="address">
+						    <input type="text" class="form-control" name="address" id="address">
 						    <div class="help-block with-errors"></div>
 						  </div>
-						  <div class="form-group col-md-12" style="background-color: #DCEDF4;">
-						  	<div class="row">
-						  		<div class="col-md-4">
-						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  <div class="form-group col-md-12 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-4 ">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-8">
 						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
@@ -161,23 +155,23 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  </div>
 						  <div class="form-group col-md-8">
 						    <label for="city">City:</label>
-						    <input type="text" class="form-control" name="city" value="<?php echo $user_info->city; ?>" id="city">
+						    <input type="text" class="form-control" name="city" id="city">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-2">
 						    <label for="state">State:</label>
-						    <input type="text" class="form-control" name="state" value="<?php echo $user_info->state; ?>" id="state">
+						    <input type="text" class="form-control" name="state" id="state">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-2">
 						    <label for="zip_code">Zip Code:</label>
-						    <input type="text" class="form-control" name="zip_code" value="<?php echo $user_info->zip_code; ?>" id="zip_code">
+						    <input type="text" class="form-control" name="zip_code" id="zip_code">
 						    <div class="help-block with-errors"></div>
 						  </div>
-						  <div class="form-group col-md-12" style="background-color: #DCEDF4;">
-						  	<div class="row">
-						  		<div class="col-md-4">
-						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  <div class="form-group col-md-12 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-4 ">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-8">
 						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
@@ -187,43 +181,131 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  </div>
 						  <div class="form-group col-md-8">
 						    <label for="website">Website:</label>
-						    <input type="text" class="form-control" name="website" value="<?php echo $user_info->website; ?>" id="website">
+						    <input type="text" class="form-control" name="website" id="website">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-4">
 						    <label for="phone">Phone:</label>
-						    <input type="text" class="form-control" name="phone" value="<?php echo $user_info->phone; ?>" id="phone">
+						    <input type="text" class="form-control" name="phone" id="phone">
 						    <div class="help-block with-errors"></div>
+						  </div>
+						  <div class="form-group col-md-8 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-6">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-6">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
+						  </div>
+						  <div class="form-group col-md-4 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-7">
+						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-5">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
 						  </div>
 						  <div class="form-group col-md-8">
 						    <label for="main_contact_name">Main Contact Name:</label>
-						    <input type="text" class="form-control" name="main_contact_name" value="<?php echo $user_info->main_contact_name; ?>" id="main_contact_name">
+						    <input type="text" class="form-control" name="main_contact_name" id="main_contact_name">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-4">
 						    <label for="alternate_contact_name">Alternate Contact Name:</label>
-						    <input type="text" class="form-control" name="alternate_contact_name" value="<?php echo $user_info->alternate_contact_name; ?>" id="alternate_contact_name">
+						    <input type="text" class="form-control" name="alternate_contact_name" id="alternate_contact_name">
 						    <div class="help-block with-errors"></div>
+						  </div>
+						  <div class="form-group col-md-8 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-6">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-6">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
+						  </div>
+						  <div class="form-group col-md-4 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-7">
+						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-5">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
 						  </div>
 						  <div class="form-group col-md-6">
 						    <label for="title1">Title:</label>
-						    <input type="text" class="form-control" name="title1" value="<?php echo $user_info->title1; ?>" id="title1">
+						    <input type="text" class="form-control" name="title1" id="title1">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-6">
 						    <label for="title2">Title:</label>
-						    <input type="text" class="form-control" name="title2" value="<?php echo $user_info->title2; ?>" id="title2">
+						    <input type="text" class="form-control" name="title2" id="title2">
 						    <div class="help-block with-errors"></div>
+						  </div>
+						  <div class="form-group col-md-6 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-7">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-5">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
+						  </div>
+						  <div class="form-group col-md-6 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-7">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-5">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
 						  </div>
 						  <div class="form-group col-md-6">
 						    <label for="email1">Email:</label>
-						    <input type="email" class="form-control" name="email1" value="<?php echo $user_info->email1; ?>" id="email1">
+						    <input type="email" class="form-control" name="email1" id="email1">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-6">
 						    <label for="email2">Email:</label>
-						    <input type="email" class="form-control" name="email2" value="<?php echo $user_info->email2; ?>" id="email2">
+						    <input type="email" class="form-control" name="email2" id="email2">
 						    <div class="help-block with-errors"></div>
+						  </div>
+						  <div class="form-group col-md-6 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-7">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-5">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
+						  </div>
+						  <div class="form-group col-md-6 correct-div">
+						  	<div class="row bg-correct">
+						  		<div class="col-md-7">
+						  			<label for="company_name" class="mt-15">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-5">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
 						  </div>
 						</div>
 	                </div>
@@ -401,9 +483,6 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 	            </div>
 	        </div>
     	</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 

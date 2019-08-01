@@ -112,3 +112,9 @@
 .w-80 {
   width: 80%;
 }
+.correct-div {
+  padding-left: 32px; padding-right: 32px;
+}
+.bg-correct {
+  background-color: #DCEDF4;
+}
