@@ -124,9 +124,9 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						    <input type="text" class="form-control" name="company_name" id="company_name" required="" readonly="" value="Vision Plus">
 						    <div class="help-block with-errors"></div>
 						  </div>
-						  <div class="form-group col-md-12" style="background-color: #DCEDF4;">
-						  	<div class="row">
-						  		<div class="col-md-4">
+						  <div class="form-group col-md-12" >
+						  	<div class="row" style="background-color: #DCEDF4;">
+						  		<div class="col-md-4 ">
 						  			<label for="company_name" class="mt-10">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-8">
@@ -139,6 +139,17 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						    <label for="address">Address:</label>
 						    <input type="text" class="form-control" name="address" id="address">
 						    <div class="help-block with-errors"></div>
+						  </div>
+						  <div class="form-group col-md-12" style="background-color: #DCEDF4;">
+						  	<div class="row">
+						  		<div class="col-md-4">
+						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-8">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
 						  </div>
 						  <div class="form-group col-md-8">
 						    <label for="city">City:</label>
@@ -154,6 +165,17 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						    <label for="zip_code">Zip Code:</label>
 						    <input type="text" class="form-control" name="zip_code" id="zip_code">
 						    <div class="help-block with-errors"></div>
+						  </div>
+						  <div class="form-group col-md-12" style="background-color: #DCEDF4;">
+						  	<div class="row">
+						  		<div class="col-md-4">
+						  			<label for="company_name" class="mt-10">Is this info correct?</label>
+						  		</div>
+						  		<div class="col-md-8">
+						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  		</div>
+						  	</div>
 						  </div>
 						  <div class="form-group col-md-8">
 						    <label for="website">Website:</label>
@@ -394,7 +416,7 @@ include("../includes/footer.php");
 //     keyboard: false
 // });
 $('#company_name_checkbox').click(function() {
-	$('#compan_name').removeAttr("disabled");
+	$('#company_name').removeAttr("readonly", false);
 });
 
 (function($) {
