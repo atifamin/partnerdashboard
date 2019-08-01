@@ -99,7 +99,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             </tr>
           </thead>
           <tbody>
-            <?php if (count($res1) == 0) { ?>
+            <?php if ($res1->num_rows == 0) { ?>
              <tr style="background-color: #B8DEE6">
                 <td colspan="4">
                   <h3 class="text-center">No Request Found !</h3>
@@ -107,6 +107,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
               </tr>
             <?php }else { ?>
             <?php while ($data = mysqli_fetch_array($res1)) { ?>
+              <?php print_r(count($data)); ?>
             <tr style="background-color: #31859D;">
               <td class="text-center" id="custom_table_style"><?php echo $data['bizvault_notification_title']; ?></td>
               <td class="text-center" id="custom_table_style"> <?php echo date("F d Y-g:i a",strtotime($data['bizvault_notification_date'])) ?></td>
@@ -146,7 +147,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             </tr>
           </thead>
           <tbody>
-            <?php if (count($res3) == 0) { ?>
+            <?php if ($res3->num_rows == 0) { ?>
              <tr style="background-color: #B8DEE6">
                 <td colspan="4">
                   <h3 class="text-center">No Request Found !</h3>
@@ -198,7 +199,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             </tr>
           </thead>
           <tbody class="table">
-            <?php if (count($res2) == 0) { ?>
+            <?php if ($res2->num_rows == 0) { ?>
              <tr style="background-color: #B8DEE6">
                 <td colspan="4">
                   <h3 class="text-center">No Request Found !</h3>
