@@ -77,32 +77,42 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   </footer>
 </div>
 
+<?php 
+  $q1 = "SELECT bn.* from bizvault_notification as bn, bizvault_files_and_folders as fff, user as u 
+        where u.user_id = bn.bizvault_notification_user_id AND fff.id = bn.bizvault_notification_filedoc_id";
+  $res1 = mysqli_query($con_MAIN,$q1);
+?>
+
 <div class="modal fade" id="notification_model">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border: 0;background-color: #1F487E">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
-        <h3 class="modal-title text-center" style="color: #ffff;">CLOUDBOX NOTIFICATIONS</h3>
+        <h3 class="modal-title text-center" style="color: #ffff;">bizVAULT™ Notifications</h3>
       </div>
       <div class="modal-body" style="padding: 0">
         <table class="table table-striped" id="tblGrid">
+          <thead>
+            <tr style="background-color: #0a274e">
+              <th class="text-center" style="color: #fff;font-size: 18px;">Notification Title</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Notification Date</th>
+            </tr>
+          </thead>
           <tbody>
+            <?php if (count($res1) == 0) { ?>
+             <tr style="background-color: #B8DEE6">
+                <td colspan="4">
+                  <h3 class="text-center">No Request Found !</h3>
+                </td>
+              </tr>
+            <?php }else { ?>
+            <?php while ($data = mysqli_fetch_array($res1)) { ?>
             <tr style="background-color: #31859D;">
-              <td class="text-center" id="custom_table_style">Notification Title</td>
-              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
+              <td class="text-center" id="custom_table_style"><?php echo $data['bizvault_notification_title']; ?></td>
+              <td class="text-center" id="custom_table_style"> <?php echo date("F d Y-g:i a",strtotime($data['bizvault_notification_date'])) ?></td>
             </tr>
-             <tr style="background-color: #1F5A68;">
-              <td class="text-center" id="custom_table_style">Notification Title</td>
-              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
-            </tr>
-            <tr style="background-color: #31859D;">
-              <td class="text-center" id="custom_table_style">Notification Title</td>
-              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
-            </tr>
-             <tr style="background-color: #1F5A68;">
-              <td class="text-center" id="custom_table_style">Notification Title</td>
-              <td class="text-center" id="custom_table_style"> Notification Date/Time</td>
-            </tr>
+            <?php } 
+            } ?>
           </tbody>
         </table>
       </div>
@@ -110,37 +120,48 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   </div>
 </div>
 
+<?php 
+  $q3 = "SELECT ba.*,u.user_fname,u.user_lname,fff.name from 
+        bizvault_activity as ba, user as u, bizvault_files_and_folders as fff
+        where u.user_id = ba.bizvault_activity_user_id AND fff.id = ba.bizvault_activity_user_filedoc_id";
+  $res3 = mysqli_query($con_MAIN,$q3);
+?>
+
 <div class="modal fade" id="access_activity_model">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border: 0;background-color: #1F487E">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
-        <h3 class="modal-title text-center" style="color: #ffff;">CLOUDBOX ACCESS ACTIVITY</h3>
+        <h3 class="modal-title text-center" style="color: #ffff;">bizVAULT Activity Status</h3>
       </div>
       
       <div class="modal-body" style="padding: 0">
         <table class="table table-striped">
+          <thead>
+            <tr style="background-color: #0a274e">
+              <th class="text-center" style="color: #fff;font-size: 18px;">Activity</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Name</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">File Name</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Activity Date</th>
+            </tr>
+          </thead>
           <tbody>
+            <?php if (count($res3) == 0) { ?>
+             <tr style="background-color: #B8DEE6">
+                <td colspan="4">
+                  <h3 class="text-center">No Request Found !</h3>
+                </td>
+              </tr>
+            <?php }else { ?>
+            <?php while ($row3 = mysqli_fetch_array($res3)) { ?>
             <tr style="background-color: #31859D;">
-              <td class="text-center" id="custom_table_style">Activity Type</td>
-              <td class="text-center" id="custom_table_style">User Name</td>
-              <td class="text-center" id="custom_table_style">Date/Time</td>
+              <td class="text-center" id="custom_table_style"><?php echo $row3['bizvault_activity_type']; ?></td>
+              <td class="text-center" id="custom_table_style"><?php echo $row3['user_fname']." ".$row3['user_lname']; ?></td>
+              <td class="text-center" id="custom_table_style"><?php echo $row3['name']; ?></td>
+              <td class="text-center" id="custom_table_style"><?php echo date('F-d-Y',strtotime($row3['bizvault_activity_date'])) ?></td>
             </tr>
-             <tr style="background-color: #1F5A68;">
-              <td class="text-center" id="custom_table_style">Activity Type</td>
-              <td class="text-center" id="custom_table_style">User Name</td>
-              <td class="text-center" id="custom_table_style">Date/Time</td>
-            </tr>
-            <tr style="background-color: #31859D;">
-              <td class="text-center" id="custom_table_style">Activity Type</td>
-              <td class="text-center" id="custom_table_style">User Name</td>
-              <td class="text-center" id="custom_table_style">Date/Time</td>
-            </tr>
-             <tr style="background-color: #1F5A68;">
-              <td class="text-center" id="custom_table_style">Activity Type</td>
-              <td class="text-center" id="custom_table_style">User Name</td>
-              <td class="text-center" id="custom_table_style">Date/Time</td>
-            </tr>
+            <?php } 
+            } ?>
           </tbody>
         </table>
       </div>
@@ -149,13 +170,14 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 </div>
 
 <?php
-    $query = "SELECT ra.*, u.user_id,u.user_fname,u.user_lname, u.user_pic, p.partner_name, fff.name as file_folder_name  
+    $q2 = "SELECT ga.*, u.user_id,u.user_fname,u.user_lname, u.user_pic, p.partner_name, fff.name as file_folder_name  
       FROM
-      request_access as ra, user as u, partner as p, bizvault_files_and_folders as fff
+      grant_access as ga, user as u, partner as p, bizvault_files_and_folders as fff
       WHERE
-      ra.request_access_user_id = u.user_id AND
-      u.partner_id = p.partner_id AND fff.id = ra.request_access_filedoc_id AND ra.request_access_status = 'pending' ";
-      $result = mysqli_query($con_MAIN,$query);
+      ga.grant_access_user_id = u.user_id AND
+      u.partner_id = p.partner_id AND fff.id = ga.grant_access_filedoc_id ";
+
+      $res2 = mysqli_query($con_MAIN,$q2);
       
 
 ?>
@@ -163,7 +185,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-white text-center" style="height: 60px; background-color: #1F487E; border: none;">
-        <h3 class="modal-title">CLOUDBOX ACCESS</h3>
+        <h3 class="modal-title">bizVAULT ACCESS </h3>
       </div>
       
         <table class="table">
@@ -176,14 +198,14 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             </tr>
           </thead>
           <tbody class="table">
-            <?php // if (count(mysqli_fetch_array($result)) == 0) { ?>
-             <!--  <tr style="background-color: #B8DEE6">
+            <?php if (count($res2) == 0) { ?>
+             <tr style="background-color: #B8DEE6">
                 <td colspan="4">
                   <h3 class="text-center">No Request Found !</h3>
                 </td>
-              </tr> -->
-            <?php // }else if (count(mysqli_fetch_array($result)) > 0) { ?>
-            <?php while ($row = mysqli_fetch_array($result)) { ?>
+              </tr>
+            <?php }else { ?>
+            <?php while ($row = mysqli_fetch_array($res2)) { ?>
               <tr style="background-color: #B8DEE6">
                   <td style="border: none; width: 24%;">
                     <div class="row">
@@ -201,20 +223,18 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                       </div>
                     </div>
                   </td>
-                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><?php echo $row['request_access_type']; ?></td>
+                  <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><?php echo $row['grant_access_type']; ?></td>
                   <td class="text-center" style="color: #45717A; border: none; font-size: 20px;"><?php echo $row['file_folder_name']; ?></td>
                   <?php 
-                    $expiry_date =  date('l, F d, Y',strtotime(date('Y-m-d').' + '.$row['request_access_length'].' Days'));
-
                     $current_date = time();
-                    $expiry_date1 = strtotime($expiry_date);
+                    $expiry_date1 = strtotime($row['grant_access_expiration_date']);
                     $datediff =  $expiry_date1 - $current_date;
                     $newDate = round($datediff / (60 * 60 * 24));
                   ?>
-                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo $expiry_date; ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo date('l, F d, Y',strtotime($row['grant_access_expiration_date'])); ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
               </tr>
             <?php } 
-            //} ?>
+            } ?>
           </tbody>
         </table>
       </div>
