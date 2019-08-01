@@ -3,7 +3,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
-    <a href="index2.html" class="logo" style="height: 57px;">
+    <a href="dashboard.php" class="logo" style="height: 57px;">
       <span class="logo-mini"><b>A</b>LT</span>
       <span class="logo-lg" style="margin-top:5px ;" ><b>AWT</b>-CEP</span>
     </a>
