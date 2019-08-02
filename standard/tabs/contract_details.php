@@ -97,9 +97,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 <?php
  } ?>
 
-
 <?php 
-	$query1 = "SELECT * from user_application_form where user_id = ".$_SESSION['user_id']."";
+	$query1 = "SELECT * from user_info_view where (id = ".$_SESSION['user_id']." AND trans_type='user_info') or (id = ".$_SESSION['dbe_firm_id']." AND trans_type='dbe') or (id = ".$_SESSION['certification_id']." AND trans_type='sbdvbe')";
 	$result1 = mysqli_query($con_AWT,$query1);
 	$user_info = mysqli_fetch_object($result1);
 ?>
