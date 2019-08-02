@@ -96,10 +96,10 @@
   </div>
   <div class="form-group col-md-4 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-7">
+  		<div class="col-md-8">
   			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
-  		<div class="col-md-5">
+  		<div class="col-md-4">
   			<label class="option"><input type="radio" name="phone_checkbox" id="phone" class="yes_condition" value="Yes" checked=""> Yes</label><br>
   			<label class="option"><input type="radio" name="phone_checkbox" id="phone" class="no_condition" value="No"> No</label>
   		</div>
@@ -128,10 +128,10 @@
   </div>
   <div class="form-group col-md-4 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-7">
+  		<div class="col-md-8">
   			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
-  		<div class="col-md-5">
+  		<div class="col-md-4">
   			<label class="option"><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="yes_condition" value="Yes" checked=""> Yes</label><br>
   			<label class="option"><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="no_condition" value="No"> No</label>
   		</div>
