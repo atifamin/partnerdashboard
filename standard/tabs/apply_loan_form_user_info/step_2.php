@@ -1,7 +1,7 @@
 <div class="row">
   	<div class="form-group col-md-8">
 	    <label for="business_structure">Business Structure:</label>
-	    <select class="form-control" name="business_structure" >
+	    <select class="form-control" name="business_structure" id="business_structure" disabled>
 	      <option value="<?php echo $user_info->business_structure; ?>" selected><?php echo $user_info->business_structure; ?></option>
 	      <option value="Sole Proprietor">Sole Proprietor</option>
 	      <option value="LLC - Limited Liability Company">LLC - Limited Liability Company</option>
@@ -13,7 +13,7 @@
   	</div>
   	<div class="form-group col-md-4">
 	    <label for="year_established">How Old Is Your Business:</label>
-	    <select class="form-control" name="year_established" >
+	    <select class="form-control" name="year_established" id="year_established" disabled>
 	      <option value="<?php echo $user_info->year_established; ?>" selected><?php echo $user_info->year_established; ?></option>
 	      <option value="Less Than 2 Years">Less Than 2 Years</option>
 	      <option value="3-5 Years">3-5 Years</option>
@@ -40,19 +40,19 @@
 	  			<label for="company_name" class="mt-5">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="year_established_checkbox" value="Yes" checked="" id="year_established" class="yes_condition">Yes</label><br>
+	  			<label><input type="radio" name="year_established_checkbox" id="year_established" class="no_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
   	<div class="form-group col-md-4">
 	    <label for="state_of_incorporation">State of Incorportation:</label>
-	    <input type="text" class="form-control" name="state_of_incorporation" id="state_of_incorporation" value="<?php echo $user_info->state_of_incorporation; ?>">
+	    <input type="text" class="form-control" name="state_of_incorporation" id="state_of_incorporation" value="<?php echo $user_info->state_of_incorporation; ?>" readonly>
 	    <div class="help-block with-errors"></div>
   	</div>
   	<div class="form-group col-md-8">
 	    <label for="federal_tax_id">Federal Tax ID#:</label>
-	    <input type="text" class="form-control" name="federal_tax_id" id="federal_tax_id" value="<?php echo $user_info->federal_tax_id; ?>">
+	    <input type="text" class="form-control" name="federal_tax" id="federal_tax" value="<?php echo $user_info->federal_tax_id; ?> " readonly>
 	    <div class="help-block with-errors"></div>
   	</div>
   	<div class="form-group col-md-4 correct-div">
@@ -61,8 +61,8 @@
 	  			<label for="company_name" class="mt-5">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" value="Yes" checked="" class="yes_condition" id="state_of_incorporation" name="state_of_incorporation_checkbox" selected>Yes</label><br>
+	  			<label><input type="radio" id="state_of_incorporation" name="state_of_incorporation_checkbox" class="no_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
@@ -72,8 +72,8 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-6">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" value="Yes" checked="" class="yes_condition" id="federal_tax" name="federal_tax_checkbox">Yes</label><br>
+	  			<label><input type="radio" name="federal_tax_checkbox" class="no_condition" id="federal_tax" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
@@ -92,8 +92,8 @@
   	</div>
   	<div class="form-group col-md-4">
 	    <label for="no_of_employees">No. of Employees:</label>
-	    <select class="form-control" name="no_of_employees" id="no_of_employees">
-	      <option value="<?php echo $user_info->no_of_employees; ?>" selected><?php echo $user_info->no_of_employees; ?></option>
+	    <select class="form-control" name="no_of_employees" id="no_of_employees" disabled>
+	      <option value="<?php echo $user_info->no_of_employees; ?>" selected ><?php echo $user_info->no_of_employees; ?></option>
 	      <option value="1-5">1-5</option>
 	      <option value="6-10">6-10</option>
 	      <option value="11-20">11-20</option>
@@ -112,8 +112,8 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-6">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
@@ -123,15 +123,15 @@
 	  			<label for="company_name" class="mt-5">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
   	<div class="form-group col-md-6">
 	    <label for="current_year_profit">Current Year Profit (Projected):</label>
-	    <select class="form-control" name="current_year_profit" id="current_year_profit">
-	      <option value="<?php echo $user_info->current_year_profit; ?>" selected><?php echo $user_info->current_year_profit; ?></option>
+	    <select class="form-control" name="current_year_profit" id="current_year_profit" disabled>
+	      <option value="<?php echo $user_info->current_year_profit; ?>" selected ><?php echo $user_info->current_year_profit; ?></option>
 	      <option value="I Lost Money">I Lost Money</option>
 	      <option value="I Made No Profit">I Made No Profit</option>
 	      <option value="$1K - $10K">$1K - $10K</option>
@@ -147,7 +147,7 @@
   	</div>
   	<div class="form-group col-md-6">
 	    <label for="last_year_profit">Last Year Profit:</label>
-	    <select class="form-control" name="last_year_profit" id="last_year_profit">
+	    <select class="form-control" name="last_year_profit" id="last_year_profit" disabled>
 	      <option value="<?php echo $user_info->last_year_profit; ?>" selected><?php echo $user_info->last_year_profit; ?></option>
 	      <option value="I Lost Money">I Lost Money</option>
 	      <option value="I Made No Profit">I Made No Profit</option>
@@ -168,8 +168,8 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
@@ -179,14 +179,14 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
   	<div class="form-group col-md-6">
 	    <label for="funding_amount">Funding Amount Requesting:</label>
-	    <select class="form-control" name="funding_amount" id="funding_amount">
+	    <select class="form-control" name="funding_amount" id="funding_amount" disabled>
 	      <option value="<?php echo $user_info->funding_amount; ?>" selected><?php echo $user_info->funding_amount; ?></option>
 	      <option value="$5K - $10K">$5K - $10K</option>
 	      <option value="$11K - $50K">$11K - $50K</option>
@@ -198,7 +198,7 @@
   	</div>
   	<div class="form-group col-md-6">
 	    <label for="use_of_funds">Use of Funds:</label>
-	    <select class="form-control" name="use_of_funds" id="use_of_funds">
+	    <select class="form-control" name="use_of_funds" id="use_of_funds" disabled>
 	      <option value="<?php echo $user_info->use_of_funds; ?>" selected><?php echo $user_info->use_of_funds; ?></option>
 	      <option value="Working Capital">Working Capital</option>
 	      <option value="Payroll">Payroll</option>
@@ -213,8 +213,8 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
@@ -224,14 +224,14 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-5">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
   	<div class="form-group col-md-12">
 	    <label for="currently_financed">How Currently Financed:</label>
-	    <select class="form-control" name="currently_financed" id="currently_financed">
+	    <select class="form-control" name="currently_financed" id="currently_financed" disabled>
 	      <option value="<?php echo $user_info->currently_financed; ?>" selected><?php echo $user_info->currently_financed; ?></option>
 	      <option value="Self Financed">Self Financed</option>
 	      <option value="Bank Loan/Line of Credit">Bank Loan/Line of Credit</option>
@@ -246,8 +246,8 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-8">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
@@ -278,9 +278,13 @@
 	  			<label for="company_name" class="mt-15">Is this info correct?</label>
 	  		</div>
 	  		<div class="col-md-8">
-	  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-	  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="Yes" checked="">Yes</label><br>
+	  			<label><input type="radio" name="company_name_checkbox" id="business_structure" class="yes_condition" value="No">No</label>
 	  		</div>
 	  	</div>
   	</div>
 </div>
+
+<script type="text/javascript">
+	
+</script>

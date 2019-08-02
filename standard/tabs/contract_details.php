@@ -105,7 +105,7 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 ?>
 
 <div id="user_info_modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
       <div class="modal-header text-center" style="background-color: #1F487C;">
@@ -354,11 +354,13 @@ include("../includes/footer.php");
 $('.no_condition').on("click",function(e) {
 	var name = $(this).attr('id');
 	$('input[name='+name+']').removeAttr('readonly',false);
+	$('#'+name+'').removeAttr('disabled',false);
 });
 
 $('.yes_condition').on("click",function(e) {
 	var name = $(this).attr('id');
 	$('input[name='+name+']').attr('readonly',true);
+	$('#'+name+'').attr('disabled',true);
 });
 
 (function($) {
