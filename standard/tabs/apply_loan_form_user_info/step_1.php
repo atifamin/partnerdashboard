@@ -53,7 +53,7 @@
   		</div>
   		<div class="col-md-6">
   			<label><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="No">No</label>
+  			<label><input type="radio" name="city_checkbox" id="city" class="no_condition" value="No">No</label>
   		</div>
   	</div>
   </div>
@@ -61,7 +61,7 @@
   	<div class="row bg-correct">
   		<div class="col-md-12">
   			<label><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="No">No</label>
+  			<label><input type="radio" name="state_checkbox" id="state" class="no_condition" value="No">No</label>
   		</div>
   	</div>
   </div>
@@ -69,7 +69,7 @@
   	<div class="row bg-correct">
   		<div class="col-md-12">
   			<label><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="No">No</label>
+  			<label><input type="radio" name="zip_code_checkbox" id="zip_code" class="no_condition" value="No">No</label>
   		</div>
   	</div>
   </div>

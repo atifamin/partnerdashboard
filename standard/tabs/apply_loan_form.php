@@ -97,6 +97,13 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
 <textarea name="bizVaultStatus" id="bizVaultStatus" cols="30" rows="10" style="display:none"><?php echo json_encode(bizVaultStatus($con_MAIN)); ?></textarea>
 <!-- Optional SmartWizard theme -->
 
+<?php 
+  $Tab2_Q2 = "SELECT * from user_info_update where user_id = ".$_SESSION['user_id']."";
+  $Tab2_Q2R = mysqli_query($con_MAIN,$Tab2_Q2) or die(mysqli_error());
+  $userDetail = mysqli_fetch_object($Tab2_Q2R);
+
+?>
+
 <div id="apply-load-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
