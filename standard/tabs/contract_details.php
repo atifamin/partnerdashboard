@@ -129,7 +129,7 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 	                  	<div class="row">
 						  <div class="col-md-12">
 						    <label for="company_name">Company Name:</label>
-						    <input type="text" class="form-control" name="company_name" id="company_name" required="" readonly="" value="<?php echo $user_info->company_name; ?>">
+						    <input type="text" class="form-control" name="company_name"  required="" readonly="" value="<?php echo $user_info->company_name; ?>">
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-12 correct-div">
@@ -138,14 +138,14 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-8">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="company_name_checkbox"  value="Yes" class="yes_condition" id="company_name" checked>Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" class="no_condition" id="company_name" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
 						  <div class="col-md-12">
 						    <label for="address">Address:</label>
-						    <input type="text" class="form-control" name="address" value="<?php echo $user_info->address; ?>"  id="address">
+						    <input type="text" class="form-control" name="address" value="<?php echo $user_info->address; ?>" readonly>
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-12 correct-div">
@@ -154,8 +154,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-8">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="address_checkbox" value="Yes" checked="" id="address" class="yes_condition">Yes</label><br>
+						  			<label><input type="radio" name="address_checkbox" id="address" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -201,8 +201,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-6">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="website_checkbox" id="website" class="yes_condition" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="website_checkbox" id="website" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -212,8 +212,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-10">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-5">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="phone_checkbox" id="phone" class="yes_condition" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="phone_checkbox" id="phone" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -224,7 +224,7 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  </div>
 						  <div class="form-group col-md-4">
 						    <label for="alternate_contact_name">Alternate Contact Name:</label>
-						    <input type="text" class="form-control" name="alternate_contact_name" value="<?php echo $user_info->alternate_contact_name; ?>" id="alternate_contact_name">
+						    <input type="text" class="form-control" name="alternate_contact_name" value="<?php echo $user_info->alternate_contact_name; ?>" >
 						    <div class="help-block with-errors"></div>
 						  </div>
 						  <div class="form-group col-md-8 correct-div">
@@ -233,8 +233,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-6">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="company_name_checkbox" id="main_contact_name" class="yes_condition" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="company_name_checkbox" id="main_contact_name" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -244,8 +244,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-10">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-5">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="yes_condition" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="yes_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -265,8 +265,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-5">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="title1_checkbox" value="Yes" id="title1" class="yes_condition" checked="">Yes</label><br>
+						  			<label><input type="radio" name="title1_checkbox" id="title1" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -276,8 +276,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-5">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="title2_checkbox" id="title2" class="yes_condition" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="title2_checkbox" id="title2" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -297,8 +297,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-5">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="email1_checkbox" id="email1" class="yes_condition" value="Yes" checked="">Yes</label><br>
+						  			<label><input type="radio" name="email1_checkbox" id="email1" class="no_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -308,8 +308,8 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 						  			<label for="company_name" class="mt-15">Is this info correct?</label>
 						  		</div>
 						  		<div class="col-md-5">
-						  			<label><input type="radio" name="company_name_checkbox" value="Yes" checked="">Yes</label><br>
-						  			<label><input type="radio" name="company_name_checkbox" id="company_name_checkbox" value="No">No</label>
+						  			<label><input type="radio" name="email2_checkbox" value="Yes" id="email2" class="yes_condition" checked="">Yes</label><br>
+						  			<label><input type="radio" name="email2_checkbox" id="email2" class="yes_condition" value="No">No</label>
 						  		</div>
 						  	</div>
 						  </div>
@@ -504,12 +504,14 @@ include("../includes/footer.php");
  ?>
 
 <script>
-// $('#user_info_modal').modal({
-//     backdrop: 'static',
-//     keyboard: false
-// });
-$('#company_name_checkbox').click(function() {
-	$('#company_name').removeAttr("readonly", false);
+$('.no_condition').on("click",function(e) {
+	var name = $(this).attr('id');
+	$('input[name='+name+']').removeAttr('readonly',false);
+});
+
+$('.yes_condition').on("click",function(e) {
+	var name = $(this).attr('id');
+	$('input[name='+name+']').attr('readonly',true);
 });
 
 (function($) {
