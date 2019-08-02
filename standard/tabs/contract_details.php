@@ -10,7 +10,7 @@ include("../functions/functions.php");
 <link href="../assets/smartWizard/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
 <link href="../assets/smartWizard/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
 <link href="../assets/smartWizard/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
-<link href="../plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
+<link href="../plugins/iCheck/all.css" rel="stylesheet" type="text/css"/>
 
 <?php include("../includes/stats.php") ?>
 <?php
@@ -109,7 +109,7 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 
     <div class="modal-content">
       <div class="modal-header text-center" style="background-color: #1F487C;">
-        <h4 class="modal-title text-white">CONGRATULATIONS!<br>We’ve successfully configured your dashboard<br>Please take a quick moment to confirm that<br>Your data records are accurate and up to date.</h4>
+        <h3 class="modal-title text-white">CONGRATULATIONS!<br>We’ve successfully configured your dashboard<br>Please take a quick moment to confirm that<br>Your data records are accurate and up to date.</h3>
       </div>
       <div class="modal-body">
       	<form action="apply_loan_form_user_info/loan_form_add_user_info.php" id="myForm-1" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
@@ -200,21 +200,14 @@ $(document).ready(function(){
             }
         }
     });
-    
-    var btnCancel = $('<button></button>').text('Cancel')
-    .addClass('btn btn-danger')
-    .on('click', function(){
-        $('#smartwizard_login').smartWizard("reset");
-        $('#user_info_modal').modal('hide');
-        $('#myForm-1').find("input, textarea").val("");
-    });
+
     // Smart Wizard
     $('#smartwizard_login').smartWizard({
       selected: 0,
       theme: 'dots',
       transitionEffect:'fade',
       toolbarSettings: {toolbarPosition: 'bottom',
-                        toolbarExtraButtons: [btnFinish, btnCancel]
+                        toolbarExtraButtons: [btnFinish]
                       },
       anchorSettings: {
                   markDoneStep: true, // add done css

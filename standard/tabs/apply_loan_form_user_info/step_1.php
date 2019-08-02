@@ -6,12 +6,12 @@
   </div>
   <div class="form-group col-md-12 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-4 ">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  		<div class="col-md-4">
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-8">
-  			<label><input type="radio" name="company_name1_checkbox"  value="Yes" class="yes_condition" id="company_name" checked>Yes</label><br>
-  			<label><input type="radio" name="company_name1_checkbox" class="no_condition" id="company_name" value="No">No</label>
+  			<label class="option"><input type="radio" name="company_name1_checkbox"  value="Yes" class="yes_condition" id="company_name" checked>  Yes</label><br>
+  			<label class="option"><input type="radio" name="company_name1_checkbox" class="no_condition" id="company_name" value="No">  No</label>
   		</div>
   	</div>
   </div>
@@ -23,11 +23,11 @@
   <div class="form-group col-md-12 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-4 ">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-8">
-  			<label><input type="radio" name="address_checkbox" value="Yes" checked="" id="address" class="yes_condition">Yes</label><br>
-  			<label><input type="radio" name="address_checkbox" id="address" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="address_checkbox" value="Yes" checked="" id="address" class="yes_condition"> Yes</label><br>
+  			<label class="option"><input type="radio" name="address_checkbox" id="address" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
@@ -49,27 +49,27 @@
   <div class="form-group col-md-8 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-6 ">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-6">
-  			<label><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-2 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-12">
-  			<label><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="No">No</label>
+  		<div class="col-md-10 offset-md-2">
+  			<label class="option"><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-2 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-12">
-  			<label><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="No">No</label>
+  		<div class="col-md-10 offset-md-2">
+  			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
@@ -86,22 +86,22 @@
   <div class="form-group col-md-8 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-6">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-6">
-  			<label><input type="radio" name="website_checkbox" id="website" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="website_checkbox" id="website" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="website_checkbox" id="website" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="website_checkbox" id="website" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-4 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-7">
-  			<label for="company_name" class="mt-10">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-5">
-  			<label><input type="radio" name="phone_checkbox" id="phone" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="phone_checkbox" id="phone" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="phone_checkbox" id="phone" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="phone_checkbox" id="phone" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
@@ -118,22 +118,22 @@
   <div class="form-group col-md-8 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-6">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-6">
-  			<label><input type="radio" name="main_contact_name_checkbox" id="main_contact_name" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="main_contact_name_checkbox" id="main_contact_name" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="main_contact_name_checkbox" id="main_contact_name" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="main_contact_name_checkbox" id="main_contact_name" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-4 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-7">
-  			<label for="company_name" class="mt-10">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-5">
-  			<label><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="alternate_contact_checkbox" id="alternate_contact_name" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
@@ -150,22 +150,22 @@
   <div class="form-group col-md-6 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-7">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-5">
-  			<label><input type="radio" name="title1_checkbox" value="Yes" id="title1" class="yes_condition" checked="">Yes</label><br>
-  			<label><input type="radio" name="title1_checkbox" id="title1" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="title1_checkbox" value="Yes" id="title1" class="yes_condition" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="title1_checkbox" id="title1" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-6 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-7">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-5">
-  			<label><input type="radio" name="title2_checkbox" id="title2" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="title2_checkbox" id="title2" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="title2_checkbox" id="title2" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="title2_checkbox" id="title2" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
@@ -182,22 +182,22 @@
   <div class="form-group col-md-6 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-7">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-5">
-  			<label><input type="radio" name="email1_checkbox" id="email1" class="yes_condition" value="Yes" checked="">Yes</label><br>
-  			<label><input type="radio" name="email1_checkbox" id="email1" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="email1_checkbox" id="email1" class="yes_condition" value="Yes" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="email1_checkbox" id="email1" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-6 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-7">
-  			<label for="company_name" class="mt-15">Is this info correct?</label>
+  			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-5">
-  			<label><input type="radio" name="email2_checkbox" value="Yes" id="email2" class="yes_condition" checked="">Yes</label><br>
-  			<label><input type="radio" name="email2_checkbox" id="email2" class="no_condition" value="No">No</label>
+  			<label class="option"><input type="radio" name="email2_checkbox" value="Yes" id="email2" class="yes_condition" checked=""> Yes</label><br>
+  			<label class="option"><input type="radio" name="email2_checkbox" id="email2" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
   </div>
