@@ -52,24 +52,24 @@
   			<label for="company_name" class="text-correct">Is this info correct?</label>
   		</div>
   		<div class="col-md-6">
-  			<label class="option"><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="Yes" checked=""> Yes</label><br>
-  			<label class="option"><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="No"> No</label>
+  			<label class="option"><input type="radio" name="city_checkbox" id="city" class="yes_condition" value="Yes" checked="">Yes</label><br>
+  			<label class="option"><input type="radio" name="city_checkbox" id="city" class="no_condition" value="No">No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-2 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-10 offset-md-2">
-  			<label class="option"><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="Yes" checked=""> Yes</label><br>
-  			<label class="option"><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="No"> No</label>
+  		<div class="col-md-12">
+  			<label class="option"><input type="radio" name="state_checkbox" id="state" class="yes_condition" value="Yes" checked="">Yes</label><br>
+  			<label class="option"><input type="radio" name="state_checkbox" id="state" class="no_condition" value="No">No</label>
   		</div>
   	</div>
   </div>
   <div class="form-group col-md-2 correct-div">
   	<div class="row bg-correct">
-  		<div class="col-md-10 offset-md-2">
-  			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="Yes" checked=""> Yes</label><br>
-  			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="No"> No</label>
+  		<div class="col-md-12">
+  			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="yes_condition" value="Yes" checked="">Yes</label><br>
+  			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="no_condition" value="No">No</label>
   		</div>
   	</div>
   </div>
