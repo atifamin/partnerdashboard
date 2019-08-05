@@ -43,6 +43,7 @@ if (count($row) == 0) {
 			});</script>";
 }
 
+
 if($FirmID > 0){
 	$CheckPrimes = 'SELECT COUNT(*) AS PrimeContractors FROM `prime_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
 	$CheckPrimesR = mysqli_query($con_AWT,$CheckPrimes);

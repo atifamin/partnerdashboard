@@ -49,7 +49,6 @@ function exec_sqlQuery($con, $q){
   $result = mysqli_query($con,$q);
   return $result;
 }
-
 function bizVaultStatus($con){
   $userData = $_SESSION;
   $gettingBasicFiles = exec_sqlQuery($con, "SELECT *
