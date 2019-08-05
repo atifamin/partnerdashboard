@@ -63,33 +63,19 @@
     <img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="110px">
     <div class="v-line-left"></div>
   </div>
-  <div class="col-md-2 text-center">
-    <div class="row text-center" style="background-color: #4E80C6; width: 130px;">
+  <div class="col-md-2">
+    <!-- <div class="row text-center" style="background-color: #4E80C6; width: 130px;">
       <div class="col-md-12">
         <span class="text-white">0</span>
         <span style="color: #A9D8F4"> FILES MISSING</span>
-      </div>
-    </div>
-    <div class="row text-center" style="background-color: #dd4b39; width: 130px;">
-      <div class="col-md-12">
-        <span class="text-white">FILES MISSING</span>
       </div>
     </div>
     <div class="row text-center" style="background-color: #8dea7b; width: 130px;">
       <div class="col-md-12">
         <span class="text-white">UPLOADED</span>
       </div>
-    </div>
-    <div class="row" style="background-color:#F2F2F2;padding:12% 0; width: 130px;" align="center">
-      <div class="col-md-12">
-        <div id="greencircle" data-percent="100" class="big green percircle animate gt50" style="background-color:unset;"><span>100%</span>
-          <div class="slice">
-            <div class="bar" style="transform: rotate(360deg);"></div>
-            <div class="fill"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div> -->
+    <img src="<?php echo base_url; ?>assets/img/progress.PNG" width="100px" height="75px">
   </div>
   <div class="col-md-3">
     <div class="v-line-right"></div>
