@@ -1,3 +1,30 @@
+<?php 
+function getBusiTypeByParent($QUERY, $CONN){
+  $QUERY_R = exec_sqlQuery($CONN, $QUERY);
+  $array = array();
+  while($Row = mysqli_fetch_array($QUERY_R)){
+    $type = new stdClass;
+    $type->id = $Row['id'];
+    $type->parent_id = $Row['parent_id'];
+    $type->company_id = $Row['company_id'];
+    $type->slug = $Row['slug'];
+    $type->name = $Row['name'];
+    $array[] = $type;
+  }
+  return $array;
+}
+$businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = 0", $con_MAIN);
+
+foreach($businesTypes as $key=>$val){
+  $businesTypes[$key]->sub = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = ".$val->id."", $con_MAIN);
+}
+
+function exec_sqlQuery($con, $q){
+  $result = mysqli_query($con,$q);
+  return $result;
+}
+?>
+
 <div class="row">
 	<div class="form-group col-md-8">
 	    <label for="business_structure">Business Structure:</label>
