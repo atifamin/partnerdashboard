@@ -42,7 +42,7 @@ if($FirmID > 0){
 	$CheckSubR = mysqli_query($con_AWT,$CheckSub);
 	$TotalSub = mysqli_fetch_assoc($CheckSubR);
 	$TotalSub = $TotalSub['SubContractors'];
-	 
+
 	if($TotalPrimes>0 && $TotalSub>0){
 		include "tab1/both_contractors.php";
 	}elseif($TotalPrimes>0){ 
@@ -115,27 +115,27 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 	        <div id="smartwizard_login">
 	            <ul>
 	              <li><a href="#step-01">Step 1<br />
-	                <small>Contact Information</small></a></li>
+	                <small>Business Information</small></a></li>
 	              <li><a href="#step-02">Step 2<br />
-	                <small>Company Profile</small></a></li>
+	                <small>Contact Information</small></a></li>
 	              <li><a href="#step-03">Step 3<br />
-	                <small>Finish</small></a></li>
+	                <small>Business Profile</small></a></li>
 	            </ul>
 	            <div>
 	              <div id="step-01">
-	                <h2>Contact Information</h2>
+	                <h2>Business Information</h2>
 	                <div id="form-step-00" role="form" data-toggle="validator">
 	                	<?php include("apply_loan_form_user_info/step_1.php"); ?>
 	                </div>
 	              </div>
 	              <div id="step-02">
-	                <h2>Company Profile</h2>
+	                <h2>Contact Information</h2>
 	                <div id="form-step-01" role="form" data-toggle="validator">
 	                	<?php include("apply_loan_form_user_info/step_2.php"); ?>
 	                </div>
 	              </div>
 	              <div id="step-03" class="">
-	                <h2>Terms and Conditions</h2>
+	                <h2>Business Profile</h2>
 	                <p> Terms and conditions: Keep your smile :) </p>
 	                <div id="form-step-03" role="form" data-toggle="validator">
 	                	<?php include("apply_loan_form_user_info/step_3.php"); ?>
@@ -161,7 +161,8 @@ include("../includes/footer.php");
 <script>
 $('.no_condition').on("click",function(e) {
 	var name = $(this).attr('id');
-	$('input[name='+name+']').removeAttr('readonly',false);
+	//$('input[name='+name+']').removeAttr('readonly',false);
+	$('#'+name+'').removeAttr('readonly',false);
 	$('#'+name+'').removeAttr('disabled',false);
 });
 

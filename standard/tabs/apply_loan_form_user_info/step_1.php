@@ -1,26 +1,15 @@
 <div class="row">
   <div class="col-md-12">
     <label for="company_name">Company Name:</label>
-    <input type="text" class="form-control" name="company_name"  required="" readonly="" value="<?php echo $user_info->company_name; ?>">
+    <input type="text" class="form-control" name="company_name" id="user_info_field" required="" readonly="" value="<?php echo $user_info->company_name; ?>">
     <div class="help-block with-errors"></div>
-  </div>
-  <div class="form-group col-md-12 correct-div">
-  	<div class="row bg-correct">
-  		<div class="col-md-4">
-  			<label for="company_name" class="text-correct">Is this info correct?</label>
-  		</div>
-  		<div class="col-md-8">
-  			<label class="option"><input type="radio" name="company_name1_checkbox"  value="Yes" class="yes_condition" id="company_name" checked>  Yes</label><br>
-  			<label class="option"><input type="radio" name="company_name1_checkbox" class="no_condition" id="company_name" value="No">  No</label>
-  		</div>
-  	</div>
   </div>
   <div class="col-md-12">
     <label for="address">Address:</label>
-    <input type="text" class="form-control" name="address" value="<?php echo $user_info->address; ?>" readonly>
+    <input type="text" class="form-control" name="address" id="user_info_field" value="<?php echo $user_info->address; ?>" readonly>
     <div class="help-block with-errors"></div>
   </div>
-  <div class="form-group col-md-12 correct-div">
+  <!-- <div class="form-group col-md-12 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-4 ">
   			<label for="company_name" class="text-correct">Is this info correct?</label>
@@ -30,23 +19,23 @@
   			<label class="option"><input type="radio" name="address_checkbox" id="address" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
-  </div>
+  </div> -->
   <div class="form-group col-md-8">
     <label for="city">City:</label>
-    <input type="text" class="form-control" name="city" value="<?php echo $user_info->city; ?>"  id="city" readonly="">
+    <input type="text" class="form-control" name="city" id="user_info_field" value="<?php echo $user_info->city; ?>"  id="city" readonly="">
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-2">
     <label for="state">State:</label>
-    <input type="text" class="form-control" name="state" value="<?php echo $user_info->state; ?>" id="state" readonly="">
+    <input type="text" class="form-control" name="state" id="user_info_field" value="<?php echo $user_info->state; ?>" id="state" readonly="">
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-2">
     <label for="zip_code">Zip Code:</label>
-    <input type="text" class="form-control" name="zip_code" value="<?php echo $user_info->zip_code; ?>" id="zip_code" readonly="">
+    <input type="text" class="form-control" name="zip_code" id="user_info_field" value="<?php echo $user_info->zip_code; ?>" id="zip_code" readonly="">
     <div class="help-block with-errors"></div>
   </div>
-  <div class="form-group col-md-8 correct-div">
+  <!-- <div class="form-group col-md-8 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-6 ">
   			<label for="company_name" class="text-correct">Is this info correct?</label>
@@ -72,18 +61,29 @@
   			<label class="option"><input type="radio" name="zip_code_checkbox" id="zip_code" class="no_condition" value="No">No</label>
   		</div>
   	</div>
-  </div>
+  </div> -->
   <div class="form-group col-md-8">
     <label for="website">Website:</label>
-    <input type="text" class="form-control" name="website" value="<?php echo $user_info->website; ?>" id="website" readonly="">
+    <input type="text" class="form-control" name="website" id="user_info_field" value="<?php echo $user_info->website; ?>" id="website" readonly="">
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-4">
     <label for="phone">Phone:</label>
-    <input type="text" class="form-control" name="phone" value="<?php echo $user_info->phone; ?>"  readonly="">
+    <input type="text" class="form-control" name="phone" id="user_info_field" value="<?php echo $user_info->phone; ?>"  readonly="">
     <div class="help-block with-errors"></div>
   </div>
-  <div class="form-group col-md-8 correct-div">
+  <div class="form-group col-md-12 correct-div">
+    <div class="row bg-correct">
+      <div class="col-md-4">
+        <label for="user_info_field" class="text-correct">Is this info correct?</label>
+      </div>
+      <div class="col-md-8">
+        <label class="option"><input type="radio" name="company_name1_checkbox"  value="Yes" class="yes_condition" id="user_info_field" checked>  Yes</label><br>
+        <label class="option"><input type="radio" name="company_name1_checkbox" class="no_condition" id="user_info_field" value="No">  No</label>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="form-group col-md-8 correct-div">
   	<div class="row bg-correct">
   		<div class="col-md-6">
   			<label for="company_name" class="text-correct">Is this info correct?</label>
@@ -200,5 +200,5 @@
   			<label class="option"><input type="radio" name="email2_checkbox" id="email2" class="no_condition" value="No"> No</label>
   		</div>
   	</div>
-  </div>
+  </div> -->
 </div>
