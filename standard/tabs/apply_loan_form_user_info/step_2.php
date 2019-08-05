@@ -1,5 +1,56 @@
 <div class="row">
-  	<div class="form-group col-md-8">
+	<div class="form-group col-md-8">
+    <label for="main_contact_name">Main Contact Name:</label>
+    <input type="text" class="form-control user_info_fields_2" name="main_contact_name" value="<?php echo $user_info->main_contact_name; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="alternate_contact_name">Alternate Contact Name:</label>
+    <input type="text" class="form-control user_info_fields_2" name="alternate_contact_name" value="<?php echo $user_info->alternate_contact_name; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="title1">Title:</label>
+    <input type="text" class="form-control user_info_fields_2" name="title1" value="<?php echo $user_info->title1; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="title2">Title:</label>
+    <input type="text" class="form-control user_info_fields_2" name="title2" value="<?php echo $user_info->title2; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="email1">Email:</label>
+    <input type="email" class="form-control user_info_fields_2" name="email1" value="<?php echo $user_info->email1; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="email2">Email:</label>
+    <input type="email" class="form-control user_info_fields_2" name="email2" value="<?php echo $user_info->email2; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="email1">Mobile Phone:</label>
+    <input type="number" class="form-control user_info_fields_2" name="mobile_phone1" value="<?php echo $user_info->mobile_phone1; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="email2">Mobile Phone:</label>
+    <input type="number" class="form-control user_info_fields_2" name="mobile_phone2" value="<?php echo $user_info->mobile_phone2; ?>" readonly="">
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group col-md-12 correct-div">
+    <div class="row bg-correct">
+      <div class="col-md-4">
+        <label for="step_2_checkbox" class="text-correct">Is this info correct?</label>
+      </div>
+      <div class="col-md-8">
+        <label class="option"><input type="radio" name="step_2_checkbox"  value="Yes" class="yes_step_2" id="company_name">  Yes</label><br>
+        <label class="option"><input type="radio" name="step_2_checkbox" class="no_step_2" id="company_name" value="No">  No</label>
+      </div>
+    </div>
+  </div>
+  	<!-- <div class="form-group col-md-8">
 	    <label for="business_structure">Business Structure:</label>
 	    <select class="form-control" name="business_structure" id="business_structure" disabled>
 	      <option value="<?php echo $user_info->business_structure; ?>" selected><?php echo $user_info->business_structure; ?></option>
@@ -319,7 +370,7 @@
 	  			<label class="option"><input type="radio" name="largest_client4_checkbox" id="largest_client4" class="no_condition" value="No"> No</label>
 	  		</div>
 	  	</div>
-  	</div>
+  	</div> -->
 
 </div>
 

@@ -108,7 +108,9 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 
     <div class="modal-content">
       <div class="modal-header text-center" style="background-color: #1F487C;">
-        <h3 class="modal-title text-white">CONGRATULATIONS!<br>We’ve successfully configured your dashboard<br>Please take a quick moment to confirm that<br>Your data records are accurate and up to date.</h3>
+        <h3 class="modal-title text-white" id="modal_heading">CONGRATULATIONS!<br>We’ve successfully configured your dashboard<br>Please take a quick moment to confirm that<br>Your data records are accurate and up to date.</h3>
+        <h3 class="modal-title text-white" id="step_3_modal_heading" style="display: none">Your California Procurement Marketplace Dashboard<br>
+        	IS NOW READY<br><span style="color:#d0ea3f">Please make a moment to complete your <br>Calofornia Certified Business Profile information</span></h3>
       </div>
       <div class="modal-body">
       	<form action="apply_loan_form_user_info/loan_form_add_user_info.php" id="myForm-1" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
@@ -136,7 +138,6 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 	              </div>
 	              <div id="step-03" class="">
 	                <h2>Business Profile</h2>
-	                <p> Terms and conditions: Keep your smile :) </p>
 	                <div id="form-step-03" role="form" data-toggle="validator">
 	                	<?php include("apply_loan_form_user_info/step_3.php"); ?>
 	                </div>
@@ -159,17 +160,37 @@ include("../includes/footer.php");
  ?>
 
 <script>
-$('.no_condition').on("click",function(e) {
-	var name = $(this).attr('id');
-	//$('input[name='+name+']').removeAttr('readonly',false);
-	$('#'+name+'').removeAttr('readonly',false);
-	$('#'+name+'').removeAttr('disabled',false);
+$('.no_step_1').on("click",function(e) {
+	$('.user_info_fields_1').removeAttr('readonly');
+});
+$('.yes_step_1').on("click",function(e) {
+	$('.user_info_fields_1').attr('readonly',true);
+});
+$('.no_step_2').on("click",function(e) {
+	$('.user_info_fields_2').removeAttr('readonly');
+});
+$('.yes_step_2').on("click",function(e) {
+	$('.user_info_fields_2').attr('readonly',true);
+});
+$('.no_step_3').on("click",function(e) {
+	$('.user_info_fields_3').removeAttr('readonly');
+	$('.user_info_fields_3').removeAttr('disabled');
+});
+$('.yes_step_3').on("click",function(e) {
+	$('.user_info_fields_3').attr('readonly',true);
+	$('.user_info_fields_3').attr('disabled',true);
 });
 
-$('.yes_condition').on("click",function(e) {
-	var name = $(this).attr('id');
-	$('input[name='+name+']').attr('readonly',true);
-	$('#'+name+'').attr('disabled',true);
+$(function() {
+    $('input').each(function() {
+        $.data(this, 'default', this.value);
+    }).css("color","gray")
+    .change(function() {
+    	if (!$.data(this, 'edited')) {
+            //this.value = "";
+            $(this).css("color","red");
+        }
+    })
 });
 
 (function($) {
@@ -183,6 +204,7 @@ $(document).ready(function(){
 	// Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')
+    .hide()
     .on('click', function(){
         if( !$(this).hasClass('disabled')){
             var elmForm = $("#myForm-1");
@@ -236,10 +258,14 @@ $(document).ready(function(){
 
     $("#smartwizard_login").on("showStep", function(e, anchorObject, stepNumber, stepDirection) {
         // Enable finish button only on last step
-        if(stepNumber == 6){
-            $('.btn-finish').removeClass('disabled');
+        if(stepNumber == 2){
+            $('.btn-info').show();
+            $('#step_3_modal_heading').show();
+            $('#modal_heading').hide();
         }else{
-            $('.btn-finish').addClass('disabled');
+            $('.btn-info').hide();
+            $('#step_3_modal_heading').hide();
+            $('#modal_heading').show();
         }
     });
 });
