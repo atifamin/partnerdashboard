@@ -3,7 +3,6 @@ include("../includes/header.php");
 include("../includes/top_nav.php");
 include("../includes/side_bar.php");
 include("../functions/functions.php"); 
-
 ?>
 
 <link href="../assets/smartWizard/css/smart_wizard.css" rel="stylesheet" type="text/css" />
@@ -11,6 +10,20 @@ include("../functions/functions.php");
 <link href="../assets/smartWizard/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
 <link href="../assets/smartWizard/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
 <link href="../plugins/iCheck/all.css" rel="stylesheet" type="text/css"/>
+<style>
+.form-group.has-error .help-block {
+	font-size: 12px;
+}
+#form-step-01{padding:2%;}
+#bottom-message{
+  position: absolute;
+  top: 130px;
+  z-index: 10000;
+}
+.dropdown-nested > .dropdown-nested-toggle{width:100%}
+.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-text{color:black;}
+.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-icon{float:right;margin-top: 8px;}
+</style>
 
 <?php include("../includes/stats.php") ?>
 <?php
@@ -30,9 +43,7 @@ if (count($row) == 0) {
 			});</script>";
 }
 
-
 if($FirmID > 0){
-	
 	$CheckPrimes = 'SELECT COUNT(*) AS PrimeContractors FROM `prime_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
 	$CheckPrimesR = mysqli_query($con_AWT,$CheckPrimes);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
@@ -55,40 +66,6 @@ if($FirmID > 0){
 	include "tab1/scpr_prime_contracts.php";
 }else{
 ?>
-
-<?php 
-function getBusiTypeByParent($QUERY, $CONN){
-  $QUERY_R = exec_sqlQuery($CONN, $QUERY);
-  $array = array();
-  while($Row = mysqli_fetch_array($QUERY_R)){
-    $type = new stdClass;
-    $type->id = $Row['id'];
-    $type->parent_id = $Row['parent_id'];
-    $type->company_id = $Row['company_id'];
-    $type->slug = $Row['slug'];
-    $type->name = $Row['name'];
-    $array[] = $type;
-  }
-  return $array;
-}
-$businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = 0", $con_AWT);
-?>
-
-<style>
-.form-group.has-error .help-block {
-	font-size: 12px;
-}
-#form-step-01{padding:2%;}
-#bottom-message{
-  position: absolute;
-  top: 130px;
-  z-index: 10000;
-}
-.dropdown-nested > .dropdown-nested-toggle{width:100%}
-.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-text{color:black;}
-.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-icon{float:right;margin-top: 8px;}
-</style>
-
 <div class="row">
 	<div class="col-sm-12">
 		<div class="alert alert-danger">There are no contracts</div>
@@ -96,6 +73,7 @@ $businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id
 </div>
 <?php
  } ?>
+
 
 <?php 
 	$query1 = "SELECT * from user_info_view where (id = ".$_SESSION['user_id']." AND trans_type='user_info') or (id = ".$_SESSION['dbe_firm_id']." AND trans_type='dbe') or (id = ".$_SESSION['certification_id']." AND trans_type='sbdvbe')";
