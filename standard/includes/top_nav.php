@@ -47,7 +47,7 @@
     </div>
      
 
-      <div class="nav-updates">
+      <!-- <div class="nav-updates">
            <div style="float: left; margin-top: 4px;">
                <small style="color:white;margin-left: 10px;">Your CloudBox Updates</small><br>
               <img style="width: 40px; margin-left: 20px;" src="<?php echo base_url; ?>assets/img/a3.png" alt="bizVault"><strong><span style="font-size: 10px; color: black">biz<span style="color: #adaebc;">Vault<SUP>TM</SUP></span></span></strong>
@@ -64,7 +64,7 @@
               <span>Messages</span>
             </a>   
            </div>       
-      </div>
+      </div> -->
   
 
 
