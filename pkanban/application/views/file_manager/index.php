@@ -4,9 +4,10 @@
 <div class="col-md-12 main-folder-area-title">
   <p><span><?php echo $folderType->bizvault_folder_category_type; ?></span></p>
 </div>
+<!-- User uploaded files, documents and records -->
 <?php foreach($folderType->folders as $key=>$subFolder){ ?>
-<?php // if($folderType->slug!="other"){ ?>
-<div class="col-md-12 folder bizvault_folder" completed="<?php // echo $subFolder->completedPercentage; ?>" missing="<?php // echo $subFolder->missingFiles; ?>" onclick="open_folder(<?php echo $subFolder->bizvault_default_folder_id; ?>)">
+<?php if($subFolder->bizvault_default_folder_slug != "User uploaded files, documents and records"){ ?>
+<div class="col-md-12 folder bizvault_folder" completed="<?php echo $subFolder->completedPercentage; ?>" missing="<?php echo $subFolder->missingFiles; ?>" onclick="open_folder(<?php echo $subFolder->bizvault_default_folder_id; ?>)">
   <div class="col-md-2 main-folder-area-icon" ><i class="fa fa-folder"></i></div>
   <div class="col-md-8 main-folder-area-content">
     <h3 contenteditable="false"><?php echo $subFolder->bizvault_default_folder_title_text; ?></h3>
@@ -15,17 +16,17 @@
     <?php } ?>
   </div>
 </div>
-<?php // } ?>
+<?php  } ?>
 <?php } ?>
-<!-- <?php // if($folderType->slug=="other"){ ?>
+<?php  if($subFolder->bizvault_default_folder_slug=="User uploaded files, documents and records"){ ?>
 <div class="col-md-12 folder" onclick="open_other_folder()">
   <div class="col-md-2 main-folder-area-icon" ><i class="fa fa-folder"></i></div>
   <div class="col-md-8 main-folder-area-content">
-    <h3 contenteditable="false">Other Files</h3>
-    <p>Updated 3 days ago by testOne 17.5MB</p>
+    <h3 contenteditable="false"><?php echo $subFolder->bizvault_default_folder_title_text; ?></h3>
+    <p><?php echo $subFolder->bizvault_default_folder_desription; ?></p>
   </div>
 </div>
-<?php // } ?> -->
+<?php  } ?>
 <?php endforeach; ?>
 
 <script type="text/javascript">

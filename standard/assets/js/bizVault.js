@@ -15,8 +15,8 @@ function load_other_folder(user_id, parent_id, folder_id){
     });
 }
 
-function load_folder(user_id, bizvault_files_and_folders_id, folder_id){
-    $.post(""+$pkanban_url+"file_manager/load_folder", {user_id:user_id, bizvault_files_and_folders_id:bizvault_files_and_folders_id, folder_id:folder_id}).done(function(e){
+function load_folder(user_id, folder_id){
+    $.post(""+$pkanban_url+"file_manager/load_folder", {user_id:user_id, folder_id:folder_id}).done(function(e){
         $("#main_content").html(e);
     });
 }

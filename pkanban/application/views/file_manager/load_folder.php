@@ -321,7 +321,7 @@ function formatSizeUnits($size, $precision = 2){
 
 <form id="file_upload_form" action="" method="post" enctype="multipart/form-data" style="display:none">
   <input type="file" name="file" id="file" size="20">
-  <input type="hidden" name="bizvault_files_and_folders_id">
+  <input type="hidden" name="bizvault_user_required_filelist_id">
   <input type="hidden" name="user_id">
   <input type="hidden" name="folder_id">
   <input type="hidden" name="redirect_url">
@@ -335,6 +335,7 @@ function formatSizeUnits($size, $precision = 2){
 </div>
 <script>
 //load_summary(<?php //echo $folder->completedPercentage; ?>, <?php //echo $folder->missingFiles; ?>);
+
 function choose_file(bizvault_user_required_filelist_id, user_id, folder_id){
   var url = $("#pkanban_url").val();
   var redirect_url = ""+$("#base_url").val()+"tabs/bizVault.php?folder="+folder_id+"";
@@ -360,7 +361,6 @@ function open_grant_access_modal(id) {
     $('#request_access_div').html(e);
     $('#grant-access-modal_1').modal('show');
   });
-  //$('#grant-access-modal-'+id+'').modal('show');
 }
 
 function grant_deny_request(id,val){

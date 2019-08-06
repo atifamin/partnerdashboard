@@ -4,10 +4,10 @@ include("../base_path.php");
 include("../../config/config_main.php");
 $id = $_GET['h'];
 
-$query = "SELECT * FROM bizvault_filedoc_list where id = ".$id."";
+$query = "SELECT * FROM bizvault_user_uploaded_required_file where bizvault_user_uploaded_required_file_id = ".$id."";
 $query_run = mysqli_query($con_MAIN,$query);
 $query_row = (object)mysqli_fetch_assoc($query_run);
-$filename = $query_row->file_name;
+$filename = $query_row->bizvault_user_uploaded_required_file_filename;
 $url = pkanban_url."uploads/temp/".$filename."";
 
 $fileNameArray = explode(".", $filename);
