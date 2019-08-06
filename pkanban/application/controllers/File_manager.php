@@ -350,6 +350,7 @@ class File_manager extends CI_Controller {
 
 	public function upload_predefied_file(){
 		$post = $this->input->post();
+		echo "<pre>"; print_r($post);exit;
 		$config['upload_path']          = './uploads/temp/';
 		if (!file_exists($config['upload_path'])) {
 			mkdir($config['upload_path'], 0777, true);
@@ -362,31 +363,31 @@ class File_manager extends CI_Controller {
 			//echo "<pre>"; print_r($error); exit;
 		}else{
 			$upload_data = array('upload_data' => $this->upload->data());
-			$data['parent_id'] = 0;
-			$data['type'] = 'file';
-			$data['bizvault_files_and_folders_id'] = $post['bizvault_files_and_folders_id'];
-			$data['user_id'] = $post['user_id'];
+			$data['bizvault_user_required_filelist_id'] = $post['bizvault_user_required_filelist_id'];
+			$data['bizvault_user_uploaded_required_file_user_id'] = $post['user_id'];
 			$data["name"] = $upload_data['upload_data']['orig_name'];
-			$data["file_name"] = $upload_data['upload_data']['file_name'];
-			$data["file_path"] = $upload_data['upload_data']['file_path'];
-			$data['file_type'] = $upload_data['upload_data']['file_type'];
-			$data["full_path"] = $upload_data['upload_data']['full_path'];
-			$data["file_extension"] = $upload_data['upload_data']['file_ext'];
+			$data["bizvault_user_uploaded_required_file_filename"] = $upload_data['upload_data']['file_name'];
+			$data["bizvault_user_uploaded_required_file_pathname"] = $upload_data['upload_data']['file_path'];
+			$data['bizvault_user_uploaded_required_file_type'] = $upload_data['upload_data']['file_type'];
+			$data["bizvault_user_uploaded_required_file_full_pathname"] = $upload_data['upload_data']['full_path'];
+			$data["bizvault_user_uploaded_required_file_extension"] = $upload_data['upload_data']['file_ext'];
 			$data["file_size"] = $upload_data['upload_data']['file_size'];
 			//echo "<pre>"; print_r($data); exit;
-			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_files_and_folders_id", $post['bizvault_files_and_folders_id'])->where("user_id", $post['user_id'])->get("bizvault_filedoc_list");
+			//$checkIfUploadedBefore = $this->partnerDB->where("bizvault_files_and_folders_id", $post['bizvault_files_and_folders_id'])->where("user_id", $post['user_id'])->get("bizvault_filedoc_list");
+			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_user_required_filelist_id", $post['bizvault_user_required_filelist_id'])->where("user_id", $post['user_id'])->get("bizvault_user_uploaded_required_file");
 			if($checkIfUploadedBefore->num_rows()>0){
 				$checkIfUploadedBefore = $checkIfUploadedBefore->row();
 				unlink($checkIfUploadedBefore->full_path);
 				$data["updated_at"] = date("Y-m-d H:i:s");
 				$data["updated_by"] = $post["user_id"];
-				$this->partnerDB->where("id", $checkIfUploadedBefore->id)->update("bizvault_filedoc_list", $data);
+				//$this->partnerDB->where("id", $checkIfUploadedBefore->id)->update("bizvault_filedoc_list", $data);
+				$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $checkIfUploadedBefore->bizvault_user_uploaded_required_file_id)->update("bizvault_user_uploaded_required_file", $data);
 			}else{
 				$data["created_at"] = date("Y-m-d H:i:s");
 				$data["created_by"] = $post["user_id"];
 				$data["updated_at"] = date("Y-m-d H:i:s");
 				$data["updated_by"] = $post["user_id"];
-				$this->partnerDB->insert("bizvault_filedoc_list", $data);
+				$this->partnerDB->insert("bizvault_user_uploaded_required_file", $data);
 			}
 			header('Location: '.$post['redirect_url'].'');
 		}

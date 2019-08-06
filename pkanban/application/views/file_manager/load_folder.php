@@ -334,11 +334,11 @@ function formatSizeUnits($size, $precision = 2){
   </div>
 </div>
 <script>
-load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
-function choose_file(bizvault_files_and_folders_id, user_id, folder_id){
+//load_summary(<?php //echo $folder->completedPercentage; ?>, <?php //echo $folder->missingFiles; ?>);
+function choose_file(bizvault_user_required_filelist_id, user_id, folder_id){
   var url = $("#pkanban_url").val();
   var redirect_url = ""+$("#base_url").val()+"tabs/bizVault.php?folder="+folder_id+"";
-  $("input[name=bizvault_files_and_folders_id]").val(bizvault_files_and_folders_id);
+  $("input[name=bizvault_user_required_filelist_id]").val(bizvault_user_required_filelist_id);
   $("input[name=user_id]").val(user_id);
   $("input[name=folder_id]").val(folder_id);
   $("input[name=redirect_url]").val(redirect_url);
