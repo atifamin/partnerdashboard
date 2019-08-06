@@ -115,10 +115,9 @@ function formatSizeUnits($size, $precision = 2){
     return round($size, $precision).$units[$i];
 }
 ?>
-
 <div class="row">
   <div class="col-md-5" style="padding-right: unset;">
-    <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text"><?php echo $folder->bizvault_default_folder_title_text; ?></strong></button>
+    <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text"><?php echo $folder->name; ?></strong></button>
   </div>
   <div class="col-md-7" style="padding-left: unset;">
     <hr class="new5">
@@ -144,15 +143,15 @@ function formatSizeUnits($size, $precision = 2){
           <div class="row" style="margin-right: 1%;margin-left: 1%;">
           <div class="col-md-1 file-cell">
           <?php if($val->uploaded==0){ ?>
-          <i class="far fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+          <i class="far fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->id; ?>, <?php echo $user_id; ?>, <?php echo $folder->id ?>)"></i>
           <?php }else{ ?>
-          <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+          <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->id; ?>, <?php echo $user_id; ?>, <?php echo $folder->id ?>)"></i>
           <?php } ?>
           </div>
-          <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
+          <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->name; ?></div>
           <div class="col-md-4 columnThird" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">
           <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px">STATUS</span> </div>
-          <?php if($val->uploaded == 0){ ?>
+          <?php if($val->uploaded==0){ ?>
           <div style="text-align: center;background-color:#FFC000"> <span style="font-size: 22px">PLEASE UPLOAD!</span></div>
           <?php }else{ ?>
           <div style="text-align: center;background-color:#8dea7b"> <span style="font-size: 22px">UPLOADED</span></div>
@@ -162,24 +161,24 @@ function formatSizeUnits($size, $precision = 2){
         </div>
         <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse">
           <div class="box-body">
-          <?php if($val->uploaded == 1){ ?>
+          <?php if($val->uploaded==1){ ?>
           <div class="row">
             <div class="col-md-offset-2 col-md-2" align="center">
-            <button type="button" class="btn btn-success btn-sm btn-block" onclick="view_file(<?php echo $val->file->bizvault_user_uploaded_required_file_id; ?>)">VIEW</button>
-            <button type="button" class="btn btn-danger btn-sm btn-block" onclick="delete_file(<?php echo $val->file->bizvault_user_uploaded_required_file_id; ?>)">DELETE</button>
+            <button type="button" class="btn btn-success btn-sm btn-block" onclick="view_file(<?php echo $val->file->id; ?>)">VIEW</button>
+            <button type="button" class="btn btn-danger btn-sm btn-block" onclick="delete_file(<?php echo $val->file->id; ?>)">DELETE</button>
             <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#grant-access-modal">GRANT ACCESS</button>
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>UPLOADED</strong></h2>
-            <h4><strong><?php echo date("d-m-Y", strtotime($val->file->bizvault_user_uploaded_required_file_upload_date)); ?></strong></h4>
+            <h4><strong><?php echo date("d-m-Y", strtotime($val->file->created_at)); ?></strong></h4>
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>FILE SIZE</strong></h2>
-            <h4><strong><?php //echo formatSizeUnits($val->file->file_size); ?></strong></h4>
+            <h4><strong><?php echo formatSizeUnits($val->file->file_size); ?></strong></h4>
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>FILE TYPE</strong></h2>
-            <h4><strong><?php echo $val->file->bizvault_user_uploaded_required_file_extension; ?></strong></h4>
+            <h4><strong><?php echo $val->file->file_extension; ?></strong></h4>
             </div>
           </div>
           <?php }else{ ?>

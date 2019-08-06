@@ -99,55 +99,45 @@ class File_manager extends CI_Controller {
 
 	public function load_folder(){
 		$post = $this->input->post();
-		//$post['folder_id']='5';
-		//$post['user_id']='5001';
-
-		//echo "<pre>"; print_r($post); exit;
-		$data['folder'] = $this->partnerDB->where("id", $post['folder_id'])->get("bizvault_files_and_folders")->row();
-		$data['folder']->files = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "file")->get("bizvault_files_and_folders")->result();
+		
+		//$data['folder'] = $this->partnerDB->where("id", $post['folder_id'])->get("bizvault_files_and_folders")->row();
+		$data['folder'] = $this->partnerDB->where("bizvault_default_folder_id", $post['folder_id'])->get("bizvault_default_folder_names")->row();
+		//$data['folder']->files = $this->partnerDB->where("parent_id", $data['folder']->id)->where("type", "file")->get("bizvault_files_and_folders")->result();
+		$data['folder']->files = $this->partnerDB->where("bizvault_user_required_filelist_folder_id", $data['folder']->bizvault_default_folder_id)->get("bizvault_user_required_filelist")->result();
 		foreach($data['folder']->files as $key=>$val):
 			$data['folder']->files[$key]->uploaded = 0;
-			$file = $this->partnerDB->where("user_id", $post['user_id'])->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+			//$file = $this->partnerDB->where("user_id", $post['user_id'])->where("bizvault_files_and_folders_id", $val->id)->get("bizvault_filedoc_list");
+			$file = $this->partnerDB->where("bizvault_user_uploaded_required_file_user_id", $post['user_id'])->where("bizvault_user_required_filelist_id", $val->bizvault_user_required_filelist_id)->get("bizvault_user_uploaded_required_file");
 			if($file->num_rows()>0){
 				$file = $file->row();
 				$data['folder']->files[$key]->uploaded = 1;
 				$data['folder']->files[$key]->file = $file;
 			}
 		endforeach;
-		$data['folder']->completedPercentage = $this->completedPercentage($post['folder_id'], $post['user_id']);
-		$data['folder']->missingFiles = $this->missingFiles($post['folder_id'], $post['user_id']);
+		//$data['folder']->completedPercentage = $this->completedPercentage($post['folder_id'], $post['user_id']);
+		//$data['folder']->missingFiles = $this->missingFiles($post['folder_id'], $post['user_id']);
 		$data['user_id'] = $post['user_id'];
-		//echo "<pre>"; print_r($data['folder']); exit;
-		$raw_query = 'SELECT request_access.*, user.user_id,user.user_fname,user.user_lname, user.user_pic, partner.partner_name	
-			FROM
-			request_access,user,partner
-			WHERE
-			request_access.request_access_user_id = user.user_id AND
-			user.partner_id = partner.partner_id AND request_access.request_access_status = "pending" AND
-			request_access.request_access_filedoc_id='. $data['folder']->id;
 
-		$data['access_request'] = $this->partnerDB->query($raw_query)->result();
+		// $raw_query = 'SELECT request_access.*, user.user_id,user.user_fname,user.user_lname, user.user_pic, partner.partner_name	
+		// 	FROM
+		// 	request_access,user,partner
+		// 	WHERE
+		// 	request_access.request_access_user_id = user.user_id AND
+		// 	user.partner_id = partner.partner_id AND request_access.request_access_status = "pending" AND
+		// 	request_access.request_access_filedoc_id='. $data['folder']->id;
 
-		$data['request_access_info'] = $this->partnerDB->SELECT('ra.*,u.user_fname,u.user_lname,u.user_pic,p.partner_name,fff.name as file_folder_name')
-												->from('request_access as ra')
-												->join('user as u','u.user_id = ra.request_access_user_id')
-												->join('partner as p','u.partner_id = p.partner_id')
-												->join('bizvault_files_and_folders as fff','fff.id = ra.request_access_filedoc_id')
-												->where('ra.request_access_filedoc_id',$data['folder']->id)
-												->where('ra.request_access_status', 'pending')
-												->get()->result();
-/*
+		// $data['access_request'] = $this->partnerDB->query($raw_query)->result();
 
+		// $data['request_access_info'] = $this->partnerDB->SELECT('ra.*,u.user_fname,u.user_lname,u.user_pic,p.partner_name,fff.name as file_folder_name')
+		// 										->from('request_access as ra')
+		// 										->join('user as u','u.user_id = ra.request_access_user_id')
+		// 										->join('partner as p','u.partner_id = p.partner_id')
+		// 										->join('bizvault_files_and_folders as fff','fff.id = ra.request_access_filedoc_id')
+		// 										->where('ra.request_access_filedoc_id',$data['folder']->id)
+		// 										->where('ra.request_access_status', 'pending')
+		// 										->get()->result();
 
-		$data['access_request'] = $this->partnerDB->select("request_access.request_access_id, request_access.request_access_type, request_access.request_access_timestamp, user.user_id,user.user_fname, request_access.request_access_length, user.user_lname, user.dbe_firm_id, dbe.`Firm/DBA&nbsp;Name`")
-							        ->from("request_access")
-							        ->join("user","request_access.request_access_user_id = user.user_id")
-							        ->join("dbe","user.dbe_firm_id = dbe.`Firm&nbsp;ID`")
-							        ->where("request_access.request_access_filedoc_id", $data['folder']->id)
-							        ->get()
-							        ->result();
-*/
-		//echo "<pre>"; print_r($data['access_request']); exit;
+	
 		$this->load->view("file_manager/load_folder", $data);
 	}
 
