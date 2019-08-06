@@ -142,16 +142,16 @@ class File_manager extends CI_Controller {
 
 	public function create_folder(){
 		$post = $this->input->post();
-		$insert["parent_id"] = $post["parent_id"];
-		$insert["type"] = $post["type"];
-		$insert["bizvault_files_and_folders_id"] = $post["bizvault_files_and_folders_id"];
-		$insert["user_id"] = $post["user_id"];
-		$insert["name"] = $post["folder_name"];
-		$insert['slug']	= $this->slug($post["folder_name"], "bizvault_filedoc_list");
-		$this->partnerDB->insert("bizvault_filedoc_list", $insert);
+		$insert["bizvault_user_other_sub_folder_parent_id"] = $post["parent_id"];
+		//$insert["type"] = $post["type"];
+		//$insert["bizvault_files_and_folders_id"] = $post["bizvault_files_and_folders_id"];
+		$insert["bizvault_user_other_sub_folder_user_id"] = $post["user_id"];
+		$insert["bizvault_user_other_sub_folder_title_text"] = $post["folder_name"];
+		$insert['bizvault_user_other_sub_folder_slug']	= $this->slug($post["folder_name"], "bizvault_user_other_sub_folder");
+		$this->partnerDB->insert("bizvault_user_other_sub_folder", $insert);
 		$folderId = $this->partnerDB->insert_id();
-		$folder = $this->partnerDB->where("id", $folderId)->get("bizvault_filedoc_list")->row();
-		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->id.'" folder_id="'.$folder->id.'"><div onclick="open_other_inner_folder('.$folder->id.',\''.$folder->slug.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_other_inner_folder('.$folder->id.',\''.$folder->slug.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->id.'" onblur="change_folder_name('.$folder->id.',$(this).html())" contenteditable="false">'.$folder->name.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
+		$folder = $this->partnerDB->where("bizvault_user_other_sub_folder_id", $folderId)->get("bizvault_user_other_sub_folder")->row();
+		$html = '<div class="col-md-12 folder"  id="folder_id_'.$folder->bizvault_user_other_sub_folder_id.'" folder_id="'.$folder->bizvault_user_other_sub_folder_id.'"><div onclick="open_other_inner_folder('.$folder->bizvault_user_other_sub_folder_id.',\''.$folder->bizvault_user_other_sub_folder_slug.'\')" class="col-md-2 main-folder-area-icon"><i class="fa fa-folder"></i></div><div onclick="open_other_inner_folder('.$folder->bizvault_user_other_sub_folder_id.',\''.$folder->bizvault_user_other_sub_folder_slug.'\')" class="col-md-8 main-folder-area-content"><h3 id="folder_'.$folder->bizvault_user_other_sub_folder_id.'" onblur="change_folder_name('.$folder->bizvault_user_other_sub_folder_id.',$(this).html())" contenteditable="false">'.$folder->bizvault_user_other_sub_folder_title_text.'</h3><p>Updated 3 days ago by testOne 17.5MB</p></div><div class="col-md-2"><span onclick="edit_folder('.$folder->bizvault_user_other_sub_folder_id.')" style="color:#488dc9;" ><i class="fa fa-edit"></i></span>&nbsp;&nbsp;&nbsp;<span onclick="remove_folder('.$folder->bizvault_user_other_sub_folder_id.')" style="color:red"><i class="fa fa-trash"></i></span></div></div>';
 		echo $html;
 		//$this->load_file_folders($post);
 		//$data['folder'] = $this->partnerDB->where("id", $folder_id)->get("bizvault_filedoc_list")->row();
@@ -260,7 +260,6 @@ class File_manager extends CI_Controller {
 
 	public function upload_file(){
 		$post = $this->input->post();
-		print_r($post);exit;
 		$filesCount = count($_FILES['files']['name']);
 		//print_r($filesCount);exit;
 		$last_id = array();
@@ -321,19 +320,19 @@ class File_manager extends CI_Controller {
 		if (empty($text)) return 'n-a';
 		
 		$result = $this->partnerDB
-				  ->where("slug", $text)
+				  ->where("bizvault_user_other_sub_folder_slug", $text)
 				  ->get($tblname)->row();
 		
 		if(!empty($result)){
-			$slug = $result->slug;
+			$slug = $result->bizvault_user_other_sub_folder_slug;
 			$result1 = $this->partnerDB->query("SELECT *
-			FROM bizvault_filedoc_list
-			WHERE slug LIKE '".$slug."-%'
-			ORDER BY slug DESC
+			FROM bizvault_user_other_sub_folder
+			WHERE bizvault_user_other_sub_folder_slug LIKE '".$slug."-%'
+			ORDER BY bizvault_user_other_sub_folder_slug DESC
 			LIMIT 1")->row();
 
 			if(!empty($result1)){
-				$counter = explode("-", $result1->slug);
+				$counter = explode("-", $result1->bizvault_user_other_sub_folder_slug);
 				$counter = end($counter);
 				$counter++;
 				$text = $text.'-'.($counter);
