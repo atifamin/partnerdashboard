@@ -19,19 +19,15 @@ class File_manager extends CI_Controller {
 	}
 
 	public function load_file_folders($data){
-		//$data['folderTypes'] = $this->partnerDB->where("type", "category")->get("bizvault_files_and_folders")->result();
-		$data['folderTypes'] = $this->partnerDB->get("bizvault_folder_categories")->result();
+		$data['folderTypes'] = $this->partnerDB->where("type", "category")->get("bizvault_files_and_folders")->result();
 		foreach($data['folderTypes'] as $key=>$val):
-			//$data['folderTypes'][$key]->folders = $this->partnerDB->where("parent_id", $val->id)->get("bizvault_files_and_folders");
-			$data['folderTypes'][$key]->folders = $this->partnerDB->where("bizvault_default_folder_category_id", $val->bizvault_folder_category_id)->get("bizvault_default_folder_names");
+			$data['folderTypes'][$key]->folders = $this->partnerDB->where("parent_id", $val->id)->get("bizvault_files_and_folders");
 			if($data['folderTypes'][$key]->folders->num_rows()>0){
 				$data['folderTypes'][$key]->folders = $data['folderTypes'][$key]->folders->result();
-				// foreach($data['folderTypes'][$key]->folders as $key1=>$val1){
-				// 	//$data['folderTypes'][$key]->folders[$key1]->completedPercentage = $this->completedPercentage($val1->id, $data['user_id']);
-				// 	$data['folderTypes'][$key]->folders[$key1]->completedPercentage = $this->completedPercentage($val1->bizvault_folder_category_id, $data['user_id']);
-				// 	//$data['folderTypes'][$key]->folders[$key1]->missingFiles = $this->missingFiles($val1->id, $data['user_id']);
-				// 	$data['folderTypes'][$key]->folders[$key1]->missingFiles = $this->missingFiles($val1->bizvault_folder_category_id, $data['user_id']);
-				// }
+				foreach($data['folderTypes'][$key]->folders as $key1=>$val1){
+					$data['folderTypes'][$key]->folders[$key1]->completedPercentage = $this->completedPercentage($val1->id, $data['user_id']);
+					$data['folderTypes'][$key]->folders[$key1]->missingFiles = $this->missingFiles($val1->id, $data['user_id']);
+				}
 			}
 		endforeach;
 		//echo "<pre>"; print_r($data); exit;
@@ -41,9 +37,7 @@ class File_manager extends CI_Controller {
 
 	public function completedPercentage($id, $user_id){
 		$percent = 0;
-		//$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders");
 		$totalPreFiles = $this->partnerDB->where("parent_id", $id)->where("type", "file")->get("bizvault_files_and_folders");
-		print_r($totalPreFiles);exit;
 		$totalFiles = $totalPreFiles->num_rows();
 		if($totalFiles>0){
 			$uploadedFiles = 0;
