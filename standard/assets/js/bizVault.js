@@ -15,31 +15,33 @@ function load_other_folder(user_id, parent_id, folder_id){
     });
 }
 
-function load_folder(user_id, bizvault_files_and_folders_id, folder_id){
-    $.post(""+$pkanban_url+"file_manager/load_folder", {user_id:user_id, bizvault_files_and_folders_id:bizvault_files_and_folders_id, folder_id:folder_id}).done(function(e){
+function load_folder(user_id, folder_id){
+    $.post(""+$pkanban_url+"file_manager/load_folder", {user_id:user_id, folder_id:folder_id}).done(function(e){
         $("#main_content").html(e);
     });
 }
 
 function create_folder(){
     var parent_id = $("#parent_id").val();
-    var bizvault_files_and_folders_id = $("#bizvault_files_and_folders_id").val();
+    //var bizvault_files_and_folders_id = $("#bizvault_files_and_folders_id").val();
     var user_id = $("#user_id").val();
     var folder_name = "NewFolder";
     var data = {
         parent_id       :   parent_id,
-        type            :   "folder",
-        bizvault_files_and_folders_id :   bizvault_files_and_folders_id,
+        //bizvault_files_and_folders_id :   bizvault_files_and_folders_id,
         user_id         :   user_id,
         folder_name     :   folder_name
     }
     $.post(""+$pkanban_url+"file_manager/create_folder",data).done(function(e){
+      console.log(e);
+    
         $("#no-content").remove();
         $("#folders_area").prepend(e);
     });
 }
 
 function open_other_inner_folder(folder_id, slug){
+  $("#parent_id").val(folder_id);
     var data = {
         folder_id:folder_id,
         slug:slug,

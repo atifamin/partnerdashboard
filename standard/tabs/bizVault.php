@@ -252,7 +252,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   <?php if(isset($_GET['type']) && $_GET['type']=="other_folder"){ ?>
     load_other_folder($user_id, $("#parent_id").val());
   <?php }elseif(isset($_GET['folder'])){ ?>
-    load_folder($user_id, $("#bizvault_files_and_folders_id").val(), '<?=$_GET['folder']?>');
+    load_folder($user_id,'<?=$_GET['folder']?>');
     $('#summary_preview').show();
   <?php }else{ ?>
     load_content($user_id);
