@@ -29,9 +29,9 @@
 <?php endforeach; ?>
 
 <script type="text/javascript">
-$('.bizvault_folder').hover(function(){
-  load_summary($(this).attr("completed"), $(this).attr("missing"));
-});
+// $('.bizvault_folder').hover(function(){
+//   //load_summary($(this).attr("completed"), $(this).attr("missing"));
+// });
 $(".bizvault_folder").on({
 	mouseenter: function(){
 		$('#summary_preview').show();

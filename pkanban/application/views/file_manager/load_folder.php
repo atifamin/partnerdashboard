@@ -115,7 +115,6 @@ function formatSizeUnits($size, $precision = 2){
     return round($size, $precision).$units[$i];
 }
 ?>
-
 <div class="row">
   <div class="col-md-5" style="padding-right: unset;">
     <button type="button" class="btn btn-sm btn-block btn-style" onclick="show_access()"><strong class="btn-text"><?php echo $folder->bizvault_default_folder_title_text; ?></strong></button>
@@ -306,7 +305,7 @@ function formatSizeUnits($size, $precision = 2){
   </div>
 </div>
 <script>
-// load_summary(<?php //echo $folder->completedPercentage; ?>, <?php //echo $folder->missingFiles; ?>);
+load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
 
 function choose_file(bizvault_user_required_filelist_id, user_id, folder_id){
   var url = $("#pkanban_url").val();

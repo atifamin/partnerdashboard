@@ -103,6 +103,8 @@ class File_manager extends CI_Controller {
 				$data['folder']->files[$key]->file = $file;
 			}
 		endforeach;
+		$data['folder']->completedPercentage = $this->completedPercentage($post['folder_id'], $post['user_id']);
+		$data['folder']->missingFiles = $this->missingFiles($post['folder_id'], $post['user_id']);
 		$data['user_id'] = $post['user_id'];
 
 		$raw_query = 'SELECT request_access.*, `user`.`user_id`,`user`.`user_fname`,`user`.`user_lname`, `user`.`user_pic`, `partner`.`partner_name`	
