@@ -78,8 +78,8 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 </div>
 
 <?php 
-  $q1 = "SELECT bn.* from bizvault_notification as bn, bizvault_files_and_folders as fff, user as u 
-        where u.user_id = bn.bizvault_notification_user_id AND fff.id = bn.bizvault_notification_filedoc_id";
+  $q1 = "SELECT bn.* from bizvault_notification as bn, bizvault_default_folder_names as bdfn, user as u 
+        where u.user_id = bn.bizvault_notification_user_id AND bdfn.bizvault_default_folder_id = bn.bizvault_notification_filedoc_id";
   $res1 = mysqli_query($con_MAIN,$q1);
 ?>
 
@@ -107,7 +107,6 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
               </tr>
             <?php }else { ?>
             <?php while ($data = mysqli_fetch_array($res1)) { ?>
-              <?php print_r(count($data)); ?>
             <tr style="background-color: #31859D;">
               <td class="text-center" id="custom_table_style"><?php echo $data['bizvault_notification_title']; ?></td>
               <td class="text-center" id="custom_table_style"> <?php echo date("F d Y-g:i a",strtotime($data['bizvault_notification_date'])) ?></td>
@@ -122,9 +121,9 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 </div>
 
 <?php 
-  $q3 = "SELECT ba.*,u.user_fname,u.user_lname,fff.name from 
-        bizvault_activity as ba, user as u, bizvault_files_and_folders as fff
-        where u.user_id = ba.bizvault_activity_user_id AND fff.id = ba.bizvault_activity_user_filedoc_id";
+  $q3 = "SELECT ba.*,u.user_fname,u.user_lname,bdfn.bizvault_default_folder_title_text from 
+        bizvault_activity as ba, user as u, bizvault_default_folder_names as bdfn
+        where u.user_id = ba.bizvault_activity_user_id AND bdfn.bizvault_default_folder_id = ba.bizvault_activity_user_filedoc_id";
   $res3 = mysqli_query($con_MAIN,$q3);
 ?>
 
@@ -158,7 +157,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
             <tr style="background-color: #31859D;">
               <td class="text-center" id="custom_table_style"><?php echo $row3['bizvault_activity_type']; ?></td>
               <td class="text-center" id="custom_table_style"><?php echo $row3['user_fname']." ".$row3['user_lname']; ?></td>
-              <td class="text-center" id="custom_table_style"><?php echo $row3['name']; ?></td>
+              <td class="text-center" id="custom_table_style"><?php echo $row3['bizvault_default_folder_title_text']; ?></td>
               <td class="text-center" id="custom_table_style"><?php echo date('F-d-Y',strtotime($row3['bizvault_activity_date'])) ?></td>
             </tr>
             <?php } 
@@ -171,12 +170,12 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 </div>
 
 <?php
-    $q2 = "SELECT ga.*, u.user_id,u.user_fname,u.user_lname, u.user_pic, p.partner_name, fff.name as file_folder_name  
+    $q2 = "SELECT ga.*, u.user_id,u.user_fname,u.user_lname, u.user_pic, p.partner_name, bdfn.bizvault_default_folder_title_text as file_folder_name  
       FROM
-      grant_access as ga, user as u, partner as p, bizvault_files_and_folders as fff
+      grant_access as ga, user as u, partner as p, bizvault_default_folder_names as bdfn
       WHERE
       ga.grant_access_user_id = u.user_id AND
-      u.partner_id = p.partner_id AND fff.id = ga.grant_access_filedoc_id ";
+      u.partner_id = p.partner_id AND bdfn.bizvault_default_folder_id = ga.grant_access_filedoc_id ";
 
       $res2 = mysqli_query($con_MAIN,$q2);
       

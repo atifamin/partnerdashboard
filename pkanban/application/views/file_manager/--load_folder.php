@@ -124,7 +124,6 @@ function formatSizeUnits($size, $precision = 2){
 </form>
 
 <script>
-load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
 function choose_file(bizvault_files_and_folders_id, user_id, folder_id){
   var url = $("#pkanban_url").val();
   var redirect_url = ""+$("#base_url").val()+"tabs/bizVault.php?folder="+folder_id+"";
