@@ -1,3 +1,5 @@
+<?php //print_r($_POST); ?>
+
 <?php
 $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?>
 <?php if($_FILE_NAME == "contract_details.php"){ 
@@ -14,7 +16,7 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	$VIDEO_R = mysqli_query($con_AWT,$VIDEO_QUERY) or die(mysqli_error()); 
 	$VIDEO_D =  mysqli_fetch_assoc($VIDEO_R);
 
-	//echo "<pre>";print_r($Tab1_Q1D);exit;
+	//echo "<pre>";print_r($Tab1_Q1D);
 
 
 	?>
@@ -41,23 +43,25 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	   </div> --> 
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
-        <table class="table table-hover modal-financing-table">
-          <tr>
-            <td id="l-height">Contract Number</td>
-            <td id="l-height"><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
-          </tr>
-          <tr>
-            <td id="l-height">Description</td>
-            <td id="l-height"><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
-          </tr>
-          <tr>
-            <td id="l-height">Location</td>
-            <td id="l-height"><strong><?php echo $Tab1_Q1D['dist_co_rte_pm']; ?></strong></td>
-          </tr> 
-		   <tr>
-			 <td id="l-height">Bid Win Date</td>
-			 <td id="l-height"><strong><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></strong></td>
-		   </tr>
+        <table class="table table-hover modal-financing-table" id="contract_details_table">
+        	<!-- <tbody>
+		        <tr>
+		            <td id="l-height">Contract Number</td>
+		            <td id="l-height"><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
+		        </tr>
+	          	<tr>
+		            <td id="l-height">Description</td>
+		            <td id="l-height"><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
+	          	</tr>
+	          	<tr>
+		            <td id="l-height">Location</td>
+		            <td id="l-height"><strong><?php echo $Tab1_Q1D['dist_co_rte_pm']; ?></strong></td>
+	          	</tr> 
+			   	<tr>
+					<td id="l-height">Bid Win Date</td>
+					<td id="l-height"><strong><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></strong></td>
+			   	</tr>
+		   	</tbody> -->
         </table>
       </div>
       <!-- /.box-body --> 
@@ -323,6 +327,7 @@ include("../includes/footer.php");
  ?>
 
 <script type="text/javascript">
+
 
 	function open_cycle_modal() {
 		$('#modal-img-cycle').modal('show');
