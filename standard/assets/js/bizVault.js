@@ -28,7 +28,6 @@ function create_folder(){
     var folder_name = "NewFolder";
     var data = {
         parent_id       :   parent_id,
-        //type            :   "folder",
         //bizvault_files_and_folders_id :   bizvault_files_and_folders_id,
         user_id         :   user_id,
         folder_name     :   folder_name
@@ -42,6 +41,7 @@ function create_folder(){
 }
 
 function open_other_inner_folder(folder_id, slug){
+  $("#parent_id").val(folder_id);
     var data = {
         folder_id:folder_id,
         slug:slug,
