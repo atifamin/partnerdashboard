@@ -4,13 +4,7 @@
 $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?>
 <?php if($_FILE_NAME == "contract_details.php"){ 
 	$FirmID = $_SESSION['dbe_firm_id'];
-	$Tab1_Q1 = 'SELECT *
-	FROM prime_contractor pc
-	JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-	WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
-	GROUP BY pc.contract_id ORDER BY pc.contract_id DESC';
-	$Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error());  
-	$Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R); 
+	
 
 	$VIDEO_QUERY = "select * from funding_video";
 	$VIDEO_R = mysqli_query($con_AWT,$VIDEO_QUERY) or die(mysqli_error()); 
@@ -43,25 +37,8 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	   </div> --> 
       <!-- /.box-header -->
       <div class="box-body table-responsive no-padding">
-        <table class="table table-hover modal-financing-table" id="contract_details_table">
-        	<!-- <tbody>
-		        <tr>
-		            <td id="l-height">Contract Number</td>
-		            <td id="l-height"><strong><?php echo $Tab1_Q1D['contract_number']; ?></strong></td>
-		        </tr>
-	          	<tr>
-		            <td id="l-height">Description</td>
-		            <td id="l-height"><strong><?php echo $Tab1_Q1D['description_of_work']; ?></strong></td>
-	          	</tr>
-	          	<tr>
-		            <td id="l-height">Location</td>
-		            <td id="l-height"><strong><?php echo $Tab1_Q1D['dist_co_rte_pm']; ?></strong></td>
-	          	</tr> 
-			   	<tr>
-					<td id="l-height">Bid Win Date</td>
-					<td id="l-height"><strong><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></strong></td>
-			   	</tr>
-		   	</tbody> -->
+        <table class="table table-hover modal-financing-table contract_details_table" id="">
+
         </table>
       </div>
       <!-- /.box-body --> 
@@ -327,7 +304,18 @@ include("../includes/footer.php");
  ?>
 
 <script type="text/javascript">
+	function getFinancing(id){
+		var base_url = "<?php echo base_url; ?>";
+		$.ajax({
+	      type: "POST",
+	      url: ""+base_url+"tabs/tab1/contract_detail.php",
+	      data: {id:id},
+	      success:function(data){
 
+	        $('.contract_details_table').html(data);
+	      }
+	    });
+	}
 
 	function open_cycle_modal() {
 		$('#modal-img-cycle').modal('show');

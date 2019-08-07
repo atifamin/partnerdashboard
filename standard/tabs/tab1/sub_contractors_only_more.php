@@ -72,7 +72,7 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 								<tr>
 								<td style="width:85px;"><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Contract <br> Amount</p></td>
 								<td style="width:85px;"><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
-								<td style="width:37%;"><a type="button" data-toggle="modal" data-target="#modal-default2"><img src="<?php echo base_url;  ?>assets/img/get_financing.PNG" style="cursor: pointer;width: 100%;height: 100%;margin-bottom: 5px;" alt="Get Financing"></a></td>
+								<td style="width:37%;"><a type="button" data-toggle="modal" data-target="#modal-default2"><img src="<?php echo base_url;  ?>assets/img/get_financing.PNG" style="cursor: pointer;width: 100%;height: 100%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancing(<?php echo $Tab1_Q1D['contract_id']; ?>)"></a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -109,7 +109,6 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
               </div>
 			  
               <div class="modal-footer" >
-                <button type="button" class="btn btn-danger pull-left" style="margin-top:10px;" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Close</button>
                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
               </div>
             </div>
@@ -118,6 +117,11 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
           <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
+
+
+<script type="text/javascript">
+	
+</script>
 	
 	
 	

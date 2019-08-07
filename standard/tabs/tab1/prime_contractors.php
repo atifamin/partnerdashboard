@@ -208,41 +208,41 @@ if($TotalRows>=2){
 </style>
 
 <div class="modal fade modal-scroll" id="modal-default">
-          <div class="modal-dialog" style="width:80%;">
-            <div class="modal-content">
-              <div class="modal-header bg-custom-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title text-white">CALIFORNIA CERTIFIED BUSINESS FASTFUND™ INVOICE FINANCING</h3>
-              </div>
-              <div class="modal-body">
-                <?php include "./financial_services.php"; ?>
-				
-              </div>
-			  
-              <div class="modal-footer" >
-                <!-- <button type="button" class="btn btn-danger pull-left" style="margin-top:10px;" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Close</button> -->
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-              </div>
-            </div>
-            <!-- /.modal-content -->
+  	<div class="modal-dialog" style="width:80%;">
+        <div class="modal-content">
+          <div class="modal-header bg-custom-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title text-white">CALIFORNIA CERTIFIED BUSINESS FASTFUND™ INVOICE FINANCING</h3>
           </div>
-          <!-- /.modal-dialog -->
+          <div class="modal-body">
+            <?php include "./financial_services.php"; ?>
+			
+          </div>
+		  
+          <div class="modal-footer" >
+            <!-- <button type="button" class="btn btn-danger pull-left" style="margin-top:10px;" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Close</button> -->
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
         </div>
-        <!-- /.modal -->
+        <!-- /.modal-content -->
+  	</div>
+      <!-- /.modal-dialog -->
+</div>
+    <!-- /.modal -->
 
 <script type="text/javascript">
 
-	function getFinancing(id) {
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url;?> tabs/tab1/contract_detail.php"
-			data: {id:id},
-			success:function(data){
-				$('#contract_details_table').html(data);
-			}
-		});
-	}
+	// function getFinancing(id) {
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "<?php  // echo base_url;?> tabs/tab1/contract_detail.php"
+	// 		data: {id:id},
+	// 		success:function(data){
+	// 			$('#contract_details_table').html(data);
+	// 		}
+	// 	});
+	// }
 
 $(document).ready(function(){
   $("#contractdetailsa").click(function(){

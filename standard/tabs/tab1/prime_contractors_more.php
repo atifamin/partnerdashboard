@@ -203,22 +203,22 @@ if(mysqli_num_rows($Tab1_Q1R_S)>0){
 	} ?>
 
 <script type="text/javascript">
-	function getFinancing(id){
-		var base_url = "<?php echo base_url; ?>";
-		$.ajax({
-	      type: "POST",
-	      url: ""+base_url+"tabs/tab1/contract_detail.php",
-	      data: {id:id},
-	      // cache: false,
-	      // contentType: false,
-	      // processData: false,
-	      success:function(data){
-	        $('#contract_details_table').html(data);
-	      }
-	    });
+	// function getFinancing(id){
+	// 	var base_url = "<?php // echo base_url; ?>";
+	// 	$.ajax({
+	//       type: "POST",
+	//       url: ""+base_url+"tabs/tab1/contract_detail.php",
+	//       data: {id:id},
+	//       // cache: false,
+	//       // contentType: false,
+	//       // processData: false,
+	//       success:function(data){
+	//         $('#contract_details_table').html(data);
+	//       }
+	//     });
 		// $.post(""+base_url+"tabs/financial_services.php", {id:id}).done(function(e){
   //       	console.log(e);
   //   	});
-  	}
+  	//}
 </script>
 	
