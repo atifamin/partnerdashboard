@@ -35,7 +35,7 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 							</tr>
 							<tr>
 								<td><strong>Description</strong></td>
-								<td><?php echo $Tab1_Q1D['description_of_work']; ?></td> 
+								<td><b class="dark-blue"><?php echo $Tab1_Q1D['description_of_work']; ?></b></td> 
 							</tr>
 							<tr>
 								<td><strong>Location</strong></td>
@@ -51,8 +51,8 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 							</tr> 
 
 							<tr>
-							<td><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Contract Amount</p></td>
-							<td><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
+							<td style="width:85px;"><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Contract <br> Amount</p></td>
+							<td style="width:85px;"><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
 							<td style="width:35%;"><a type="button" data-toggle="modal" data-target="#modal-default"><img src="<?php echo base_url;  ?>assets/img/get_financing.PNG" style="cursor: pointer;width: 100%;height: 100%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancing(<?php echo $Tab1_Q1D['contract_id']; ?>);" ></a></td>
 							</tr>
 						</tbody>

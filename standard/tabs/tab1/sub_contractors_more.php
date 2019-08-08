@@ -35,7 +35,7 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 							</tr>
 							<tr>
 								<td><strong>Description</strong></td>
-								<td><?php echo $Tab1_Q1D['description_of_work']; ?></td> 
+								<td><b class="dark-blue"><?php echo $Tab1_Q1D['description_of_work']; ?></b></td> 
 							</tr>
 							<tr>
 								<td><strong>Location</strong></td>

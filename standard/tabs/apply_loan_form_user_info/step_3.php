@@ -1,3 +1,9 @@
+<style>
+	.dropdown-nested{width:100%;}
+	.dropdown-nested > .dropdown-nested-toggle{width:100%}
+	.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-text{color:black;}
+	.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-icon{float:right;margin-top: 8px;}
+</style>
 
 
 <div class="row">
@@ -27,14 +33,10 @@
   	</div>
   	<div class="form-group col-md-8">
 	    <label for="type_of_business_login">Type of Business:</label>
-	    <select data-dropdown='{ "closeReset": false }' name="type_of_business_login" id="type_of_business_login">
-	      <?php foreach($businesTypes as $bKey=>$bVal): ?>
-	      <optgroup label="<?php echo $bVal->name; ?>">
-	        <?php foreach($bVal->sub as $b1Key=>$b1Val): ?>
-	        <option value="<?php echo $b1Val->id; ?>"><?php echo $b1Val->name; ?></option>
-	        <?php endforeach; ?>
-	      </optgroup>
-	      <?php endforeach; ?>
+	    <select class="form-control user_info_fields_3" name="type_of_business" id="year_established" disabled>
+	    	<?php foreach ($NAICSQREA as $key5 => $val5) { ?>
+	    	<option value="<?php echo $val5; ?>"><?php echo $val5; ?></option>
+	    	<?php } ?>
 	    </select>
 	    <div class="help-block with-errors"></div>
   	</div>

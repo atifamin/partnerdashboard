@@ -10,6 +10,8 @@ include("../functions/functions.php");
 <link href="../assets/smartWizard/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
 <link href="../assets/smartWizard/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
 <link href="../plugins/iCheck/all.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="<?PHP echo base_url; ?>bower_components/jquery.dropdown-master/css/dropdown.css" />
 <style>
 .form-group.has-error .help-block {
 	font-size: 12px;
@@ -20,12 +22,10 @@ include("../functions/functions.php");
   top: 130px;
   z-index: 10000;
 }
-.dropdown-nested > .dropdown-nested-toggle{width:100%}
-.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-text{color:black;}
-.dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-icon{float:right;margin-top: 8px;}
 </style>
 
 <?php include("../includes/stats.php") ?>
+
 <?php
 $VendorID 			= $_SESSION['vendor_id'];
 $CertificationID 	= $_SESSION['certification_id'];
@@ -67,6 +67,7 @@ if($FirmID > 0){
 	include "tab1/scpr_prime_contracts.php";
 }else{
 ?>
+
 <div class="row">
 	<div class="col-sm-12">
 		<div class="alert alert-danger">There are no contracts</div>
@@ -74,6 +75,21 @@ if($FirmID > 0){
 </div>
 <?php
  } ?>
+
+<?php 
+	$UserID = $_SESSION['user_id'];
+
+	$NAICS	= 	"SELECT dbe.`DBE NAICS` AS `naics`
+				FROM user
+				JOIN dbe ON dbe.`Firm ID` = user.dbe_firm_id
+				JOIN sbdvbe ON sbdvbe.`Certification ID` = user.certification_id
+				WHERE user.user_id = ".$UserID."";
+
+	$NAICSQ		= mysqli_query($con_AWT,$NAICS);
+	$NAICSQR	= mysqli_fetch_object($NAICSQ);
+	$NAICSQREA	= explode("; ",$NAICSQR->naics);
+	//echo "<pre>"; print_r($NAICSQR); exit;
+?>
 
 
 <?php 
@@ -130,10 +146,11 @@ if($FirmID > 0){
   </div>
 </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 <script src="../plugins/iCheck/icheck.min.js"></script>
 <script type="text/javascript" src="../assets/smartWizard/js/jquery.smartWizard.js"></script>
+
 <?php 
 include("../includes/footer.php");
  ?>
@@ -169,7 +186,7 @@ $(function() {
             //this.value = "";
             $(this).css("color","red");
         }
-    })
+    });
 });
 
 (function($) {
