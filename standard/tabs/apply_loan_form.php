@@ -51,12 +51,8 @@ function exec_sqlQuery($con, $q){
 }
 function bizVaultStatus($con){
   $userData = $_SESSION;
-  $gettingBasicFiles = exec_sqlQuery($con, "SELECT *
-  FROM bizvault_files_and_folders
-  WHERE parent_id = (
-  SELECT id
-  FROM bizvault_files_and_folders
-  WHERE slug = 'business_basic')");
+  $gettingBasicFiles = exec_sqlQuery($con, "SELECT b.* from bizvault_user_required_filelist AS b JOIN bizvault_default_folder_names AS n 
+    ON n.bizvault_default_folder_id = b.bizvault_user_required_filelist_folder_id AND n.bizvault_default_folder_slug = 'Basic Business Financiial Files and Documents typically requested'");
   
   $completed = "no";
   $percentage = 0;
@@ -64,7 +60,7 @@ function bizVaultStatus($con){
   $uploaded_files = 0;
 
   while($row = mysqli_fetch_array($gettingBasicFiles)){
-      $checkIfFileExists = exec_sqlQuery($con, "SELECT * FROM bizvault_filedoc_list WHERE bizvault_files_and_folders_id = ".$row['id']." AND user_id = ".$userData['user_id']."");
+      $checkIfFileExists = exec_sqlQuery($con, "SELECT * FROM bizvault_user_uploaded_required_file WHERE bizvault_user_required_filelist_id = ".$row['id']." AND bizvault_user_uploaded_required_file_user_id = ".$userData['user_id']."");
       if($checkIfFileExists->num_rows>0){
           $uploaded_files =+ $uploaded_files+1;
       }
@@ -133,29 +129,6 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
                   <?php include("apply_loan_form/step2.php"); ?>
                 </div>
               </div>
-              <!-- <div id="step-3">
-                <h2>Liabilities</h2>
-                <div id="form-step-2" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step3.php"); ?>
-                </div>
-              </div>
-              <div id="step-4">
-                <h2>Business Bank Account And Writing Instructions</h2>
-                <div id="form-step-3" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step4.php"); ?>
-                </div>
-              </div>
-              <div id="step-5">
-                <h2>Personal OR Business Referances (Provide Two)</h2>
-                <div id="form-step-4" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step5.php"); ?>
-                </div>
-              </div>
-              <div id="step-6">
-                <div id="form-step-5" role="form" data-toggle="validator">
-                  <?php //include("apply_loan_form/step6.php"); ?>
-                </div>
-              </div> -->
               <div id="step-3" class="">
                 <h2>Terms and Conditions</h2>
                 <?php include("apply_loan_form/step3.php"); ?>
@@ -164,10 +137,6 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
           </div>
         </form>
       </div>
-      <!-- <div class="modal-footer no-margin-top">
-          <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal"> <i class="ace-icon fa fa-times"></i> Close </button>
-          <button type="submit" class="btn btn-primary">Apply Loan</button>
-        </div> --> 
     </div>
   </div>
 </div>
@@ -270,17 +239,3 @@ $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
 });
 
 </script> 
-
-<!-- <script>
-	$("#apply_loan_form").on("submit", function(e){
-		e.preventDefault();
-		var task_title = $("#task_title").val();
-		var task_funding_amount_requested = $("#task_funding_amount_requested").val();
-		var task_todo = 0;
-		var task_container = 33;
-		var task_user = 1;
-		$.post("<?php echo pkanban_url; ?>ajax/save_task",{task_title:task_title, task_funding_amount_requested:task_funding_amount_requested, task_todo:task_todo, task_container:task_container, task_user:task_user}).done(function(e){
-			location.reload();
-		});
-	});
-</script> -->

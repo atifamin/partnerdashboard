@@ -63,8 +63,8 @@
   </div>
 
 <script>
-    $("#parent_id").val(<?php if(isset($folder)){echo $folder->id;}else{echo 0;} ?>);
-    $("#bizvault_files_and_folders_id").val(<?php if(isset($folder)){echo $folder->bizvault_files_and_folders_id;}else{echo $bizvault_files_and_folders_id;} ?>);
+    // $("#parent_id").val(<?php //if(isset($folder)){echo $folder->id;}else{echo 0;} ?>);
+    // $("#bizvault_files_and_folders_id").val(<?php //if(isset($folder)){echo $folder->bizvault_files_and_folders_id;}else{echo $bizvault_files_and_folders_id;} ?>);
 
   
  

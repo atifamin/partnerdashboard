@@ -145,16 +145,15 @@ class Home extends CI_Controller {
                                                 ->where('user.user_id' , $user_id)
                                                 ->get()->row();
 
-        $data['grant_access'] = $this->partnerDB->select('ga.*,bfl.full_path,u.user_pic,bff.name')
+        $data['grant_access'] = $this->partnerDB->select('ga.*,bfl.bizvault_user_uploaded_required_file_full_pathname as full_path,u.user_pic,bff.bizvault_user_required_filelist_filename as name')
                                         ->from('grant_access as ga')
-                                        ->join('bizvault_filedoc_list as bfl','ga.grant_access_filedoc_id = bfl.id','left')
+                                        ->join('bizvault_user_uploaded_required_file as bfl','ga.grant_access_filedoc_id = bfl.bizvault_user_uploaded_required_file_id','left')
                                         ->join('user as u','u.user_id = ga.grant_access_user_id','left')
-                                        ->join('bizvault_files_and_folders as bff','bfl.bizvault_files_and_folders_id = bff.id','left')
+                                        ->join('bizvault_user_required_filelist as bff','bfl.bizvault_user_required_filelist_id = bff.bizvault_user_required_filelist_id','left')
                                         ->where('ga.grant_access_user_id' , $user_id)
                                         ->where('ga.grant_access_expiration_date >', date('Y-m-d'))
                                         ->get()->result();
 
-        
         // if(count($data['tasks'])>0){
         //     echo "<pre>";
         //     foreach($data['tasks'] as  $key1=>$val1){
