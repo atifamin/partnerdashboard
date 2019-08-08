@@ -87,8 +87,7 @@ if($FirmID > 0){
 
 	$NAICSQ		= mysqli_query($con_AWT,$NAICS);
 	$NAICSQR	= mysqli_fetch_object($NAICSQ);
-	$NAICSQREA	= explode("; ",$NAICSQR->naics);
-	//echo "<pre>"; print_r($NAICSQR); exit;
+	$NAICSQREA	= explode(";",$NAICSQR->naics);
 ?>
 
 
