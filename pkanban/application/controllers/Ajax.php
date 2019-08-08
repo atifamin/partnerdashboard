@@ -792,21 +792,21 @@ class Ajax extends CI_Controller
 
     public function request_access_files(){
         $post = $this->input->post();
-        $business_detail = $this->partnerDB->where('slug','business_detailed')->get('bizvault_files_and_folders')->row();
-        $personel_detail = $this->partnerDB->where('slug','detailed_personal_financials')->get('bizvault_files_and_folders')->row();
+        $business_detail = $this->partnerDB->where('bizvault_default_folder_slug','Basic Business Financiial Files and Documents typically requested')->get('bizvault_default_folder_names')->row();
+        $personel_detail = $this->partnerDB->where('bizvault_default_folder_slug','Detailed Business Financiial Files and Documents typically requested')->get('bizvault_default_folder_names')->row();
         $personal_data['request_access_user_id'] = $post['user_id'];
         $personal_data['request_access_task_id'] = $post['task_id'];
         $personal_data['request_access_length'] = $post['access_length_personal'];
         $personal_data['request_access_type'] = $post['access_type_personal'];
         $personal_data['request_access_status'] = "PENDING";
-        $personal_data['request_access_filedoc_id'] = $personel_detail->id;
+        $personal_data['request_access_filedoc_id'] = $personel_detail->bizvault_default_folder_id;
 
         $business_data['request_access_user_id'] = $post['user_id'];
         $business_data['request_access_task_id'] = $post['task_id'];
         $business_data['request_access_length'] = $post['access_length_business'];
         $business_data['request_access_type'] = $post['access_type_business'];
         $business_data['request_access_status'] = "PENDING";
-        $business_data['request_access_filedoc_id'] = $business_detail->id;
+        $business_data['request_access_filedoc_id'] = $business_detail->bizvault_default_folder_id;
 
         if($business_data['request_access_length'] != null || $business_data['request_access_type'] != null) {
             $this->partnerDB->insert('request_access', $business_data);

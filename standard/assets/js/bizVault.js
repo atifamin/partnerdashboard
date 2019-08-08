@@ -23,12 +23,10 @@ function load_folder(user_id, folder_id){
 
 function create_folder(){
     var parent_id = $("#parent_id").val();
-    //var bizvault_files_and_folders_id = $("#bizvault_files_and_folders_id").val();
     var user_id = $("#user_id").val();
     var folder_name = "NewFolder";
     var data = {
         parent_id       :   parent_id,
-        //bizvault_files_and_folders_id :   bizvault_files_and_folders_id,
         user_id         :   user_id,
         folder_name     :   folder_name
     }
