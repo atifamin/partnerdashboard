@@ -34,9 +34,12 @@
   	<div class="form-group col-md-8">
 	    <label for="type_of_business_login">Type of Business:</label>
 	    <select class="form-control user_info_fields_3" name="type_of_business" id="year_established" disabled>
-	    	<?php foreach ($NAICSQREA as $key5 => $val5) { ?>
-	    	<option value="<?php echo $val5; ?>"><?php echo $val5; ?></option>
-	    	<?php } ?>
+	    	<?php foreach ($NAICSQREA as $key5 => $val5) { 
+	    		if(trim($val5)!=''){
+	    		?>
+	    	<option value="<?php echo trim($val5); ?>"><?php echo trim($val5); ?></option>
+	    	<?php } 
+	    } ?>
 	    </select>
 	    <div class="help-block with-errors"></div>
   	</div>
