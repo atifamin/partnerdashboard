@@ -157,7 +157,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
 
 $(document).ready(function(){
     var $bizVaultStatus = $("#bizVaultStatus").html();
-    $bizVaultStatus = JSON.parse($bizVaultStatus);
+    //$bizVaultStatus = JSON.parse($bizVaultStatus);
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')
