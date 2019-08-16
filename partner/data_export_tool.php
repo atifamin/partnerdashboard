@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php include "inc/head.php"; ?>
 <?php include "inc/header.php"; ?>
 <?php include "inc/asidebar.php"; ?>
