@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php include "inc/head.php"; ?>
 
 <link rel="stylesheet" href="assets/css/style.css">
