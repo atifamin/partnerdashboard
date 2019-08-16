@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../bower_components/percircle/dist/css/percircle.css">
 <style type="text/css">
   
 </style>
@@ -15,18 +16,33 @@
     <div class="v-line-left"></div>
   </div>
   <div class="col-md-2">
-    <div class="row text-center" style="background-color: #4E80C6; width: 130px;">
-      <div class="col-md-12" style="padding: 1px;">
-        <span class="text-white" style="font-size: 12px;">ALL BASIC FILES HAVE<br>BEEN UPLOADED</span>
+    <div class="row text-center" style="width: 130px;">
+      <div class="col-md-12" style="background-color: #4E80C6; padding: 1px;">
+          <span class="text-white" style="font-size: 13px;" >ALL BASIC FILES HAVE<br>BEEN UPLOADED</span>
       </div>
+      <div class="col-md-12" style="margin: 10px 0px 0px 10px">
+        <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset;">
+          <span>80%</span>
+          <div class="slice">
+            <div class="bar" style="transform: rotate(288deg);">
+            </div>
+            <div class="fill">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-12" style="background-color:#F2F2F2;padding:12% 0;">
+        <div id="greencircle" data-percent="40" class="big green" style="background-color:unset;">
+          <span>40%</span>
+        </div>
+      </div> -->
     </div>
-    <!-- <img src="<?php echo base_url; ?>assets/img/progress.PNG" width="100px" height="75px"> -->
   </div>
   <div class="col-md-3">
     <div class="v-line-right"></div>
-    <a href="" class="light-blue" data-toggle="modal" data-target="#notification_model_top"><i class="fa fa fa-clock-o icon-clock"></i>&nbsp&nbsp&nbspYour bizVAULT™ Notification</a><br><br>
-    <a href="" class="light-blue" data-toggle="modal" data-target="#activity_status_top"><i class="fa fa fa-heartbeat icon-hearbeat"></i>&nbsp&nbsp&nbspYour bizVAULT™ Activity Status</a><br><br>
-    <a href="" class="light-blue" data-toggle="modal" data-target="#access_top"><i class="fa fa-users icon-user"></i>&nbsp&nbsp&nbspYour bizVAULT™ Access Status</a>
+    <a href="" class="light-blue" data-toggle="modal" data-target="#notification_model_top"><i class="fa fa fa-clock-o icon-clock"></i>&nbsp&nbsp&nbsp<strong>Your bizVAULT™ Notification</strong></a><br><br>
+    <a href="" class="light-blue" data-toggle="modal" data-target="#activity_status_top"><i class="fa fa fa-heartbeat icon-hearbeat"></i>&nbsp&nbsp&nbsp<strong>Your bizVAULT™ Activity Status</strong></a><br><br>
+    <a href="" class="light-blue" data-toggle="modal" data-target="#access_top"><i class="fa fa-users icon-user"></i>&nbsp&nbsp&nbsp<strong>Your bizVAULT™ Access Status</strong></a>
   </div>
 </div>
 <div class="col-md-12">
@@ -266,3 +282,4 @@
     
   </div>
 </div>
+<script type="text/javascript" src="../bower_components/percircle/dist/js/percircle.js"></script>
