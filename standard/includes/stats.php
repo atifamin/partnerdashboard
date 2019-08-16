@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-2 bg-light-blue-1 text-center">
       <label class="mt-5">Your Private<br>bizVAULT™<br>Cloud Storage is<br>Ready</label><br>
-      <button type="button" class="btn btn-primary mb-10" style="height: 33px;"><label class="text-white font-13">CLICK HERE TO ACCESS</label></button>
+      <button type="button" class="btn mb-10" style="height: 33px; background-color: #31859E;"><label class="text-white font-13">CLICK HERE TO ACCESS</label></button>
   </div>
   <div class="col-md-3 text-center">
     <img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px" class="btn">
