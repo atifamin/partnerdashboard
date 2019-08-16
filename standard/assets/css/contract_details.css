@@ -131,55 +131,58 @@
   font-size: 16px;
   margin-top: 5px;
 }
-  .icon-clock {
-    background-color: #328DEE;
-    color: white;
-    width: 20px;
-    height: 20px;
-    padding-top: 3px;
-    padding-left: 3px;
-  }
-  .icon-hearbeat {
-    background-color: #328DEE;
-    color: white;
-    width: 20px;
-    height: 20px;
-    padding-top: 3px;
-    padding-left: 3px;
-  }
-  .icon-user {
-    background-color: #328DEE;
-    color: white;
-    width: 20px;
-    height: 20px;
-    padding-top: 3px;
-    padding-left: 1px;
-  }
-  .light-blue {
-    color: #328DEE;
-  }
-  .bg-light-blue-1 {
-    background-color: #93CCDD;
-  }
-  .m-6 {
-    margin: 6px;
-  }
-  .h-line {
-    border: 6px solid #DCEFF3;
-    border-radius: 2px;
-  }
-  .v-line-left {
-    border-left: 6px solid #DCEFF3;
-    height: 133px;
-    position: absolute;
-    left: 100%;
-    margin-left: -23px;
-    top: 0px;
-  }
-  .v-line-right {
-    border-left: 6px solid #DCEFF3;
-    height: 133px;
-    position: absolute;
-    margin-left: -50px;
-    top: 0px;
-  }
+.icon-clock {
+  background-color: #328DEE;
+  color: white;
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+.icon-hearbeat {
+  background-color: #328DEE;
+  color: white;
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+.icon-user {
+  background-color: #328DEE;
+  color: white;
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
+  padding-left: 1px;
+}
+.light-blue {
+  color: #328DEE;
+}
+.bg-light-blue-1 {
+  background-color: #93CCDD;
+}
+.m-6 {
+  margin: 6px;
+}
+.h-line {
+  border: 6px solid #DCEFF3;
+  border-radius: 2px;
+}
+.v-line-left {
+  border-left: 6px solid #DCEFF3;
+  height: 133px;
+  position: absolute;
+  left: 100%;
+  margin-left: -23px;
+  top: 0px;
+}
+.v-line-right {
+  border-left: 6px solid #DCEFF3;
+  height: 133px;
+  position: absolute;
+  margin-left: -50px;
+  top: 0px;
+}
+#b-none{
+  border: none;
+}

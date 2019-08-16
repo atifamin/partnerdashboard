@@ -11,7 +11,7 @@
       <button type="button" class="btn btn-primary mb-10" style="height: 33px;"><label class="text-white font-13">CLICK HERE TO ACCESS</label></button>
   </div>
   <div class="col-md-3 text-center">
-    <img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px">
+    <img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px" class="btn">
     <div class="v-line-left"></div>
   </div>
   <div class="col-md-2">
@@ -105,7 +105,28 @@
   </div>
   <!-- ./col --> 
 </div>
+<?php 
+  $q1 = "SELECT bn.* from bizvault_notification as bn, bizvault_default_folder_names as bdfn, user as u 
+        where u.user_id = bn.bizvault_notification_user_id AND bdfn.bizvault_default_folder_id = bn.bizvault_notification_filedoc_id";
+  $res1 = mysqli_query($con_MAIN,$q1);
+?>
 
+<?php 
+  $q3 = "SELECT ba.*,u.user_fname,u.user_lname,bdfn.bizvault_default_folder_title_text from 
+        bizvault_activity as ba, user as u, bizvault_default_folder_names as bdfn
+        where u.user_id = ba.bizvault_activity_user_id AND bdfn.bizvault_default_folder_id = ba.bizvault_activity_user_filedoc_id";
+  $res3 = mysqli_query($con_MAIN,$q3);
+?>
+
+<?php
+    $q2 = "SELECT ga.*, u.user_id,u.user_fname,u.user_lname, u.user_pic, p.partner_name, bdfn.bizvault_default_folder_title_text as file_folder_name  
+      FROM
+      grant_access as ga, user as u, partner as p, bizvault_default_folder_names as bdfn
+      WHERE
+      ga.grant_access_user_id = u.user_id AND
+      u.partner_id = p.partner_id AND bdfn.bizvault_default_folder_id = ga.grant_access_filedoc_id ";
+      $res2 = mysqli_query($con_MAIN,$q2);
+?>
 <div class="modal fade" id="notification_model_top">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -117,8 +138,8 @@
         <table class="table table-striped" id="tblGrid">
           <thead>
             <tr style="background-color: #0a274e">
-              <th class="text-center" style="color: #fff;font-size: 18px;">Notification Title</th>
-              <th class="text-center" style="color: #fff;font-size: 18px;">Notification Date</th>
+              <th class="text-center" style="color: #fff;font-size: 18px; border: none;">Notification Title</th>
+              <th class="text-center" style="color: #fff;font-size: 18px; border: none;">Notification Date</th>
             </tr>
           </thead>
           <tbody>
@@ -131,8 +152,8 @@
             <?php }else { ?>
             <?php while ($data = mysqli_fetch_array($res1)) { ?>
             <tr style="background-color: #31859D;">
-              <td class="text-center" id="custom_table_style"><?php echo $data['bizvault_notification_title']; ?></td>
-              <td class="text-center" id="custom_table_style"> <?php echo date("F d Y-g:i a",strtotime($data['bizvault_notification_date'])) ?></td>
+              <td class="text-center text-white" id="custom_table_style" style="border: none;"><?php echo $data['bizvault_notification_title']; ?></td>
+              <td class="text-center text-white" id="custom_table_style" style="border: none;"> <?php echo date("F d Y - g:i a",strtotime($data['bizvault_notification_date'])) ?></td>
             </tr>
             <?php } 
             } ?>
@@ -142,6 +163,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="activity_status_top">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -154,10 +176,10 @@
         <table class="table table-striped">
           <thead>
             <tr style="background-color: #0a274e">
-              <th class="text-center" style="color: #fff;font-size: 18px;">Activity</th>
-              <th class="text-center" style="color: #fff;font-size: 18px;">Name</th>
-              <th class="text-center" style="color: #fff;font-size: 18px;">File Name</th>
-              <th class="text-center" style="color: #fff;font-size: 18px;">Activity Date</th>
+              <th class="text-center" style="color: #fff;font-size: 18px; border: none;">Activity</th>
+              <th class="text-center" style="color: #fff;font-size: 18px; border: none;">Name</th>
+              <th class="text-center" style="color: #fff;font-size: 18px; border: none;">File Name</th>
+              <th class="text-center" style="color: #fff;font-size: 18px; border: none;">Activity Date</th>
             </tr>
           </thead>
           <tbody>
@@ -170,10 +192,10 @@
             <?php }else { ?>
             <?php while ($row3 = mysqli_fetch_array($res3)) { ?>
             <tr style="background-color: #31859D;">
-              <td class="text-center" id="custom_table_style"><?php echo $row3['bizvault_activity_type']; ?></td>
-              <td class="text-center" id="custom_table_style"><?php echo $row3['user_fname']." ".$row3['user_lname']; ?></td>
-              <td class="text-center" id="custom_table_style"><?php echo $row3['bizvault_default_folder_title_text']; ?></td>
-              <td class="text-center" id="custom_table_style"><?php echo date('F-d-Y',strtotime($row3['bizvault_activity_date'])) ?></td>
+              <td class="text-center text-white " id="custom_table_style" style="border: none;"><?php echo $row3['bizvault_activity_type']; ?></td>
+              <td class="text-center text-white " id="custom_table_style" style="border: none;"><?php echo $row3['user_fname']." ".$row3['user_lname']; ?></td>
+              <td class="text-center text-white " id="custom_table_style" style="border: none;"><?php echo $row3['bizvault_default_folder_title_text']; ?></td>
+              <td class="text-center text-white " id="custom_table_style" style="border: none;"><?php echo date('F-d-Y',strtotime($row3['bizvault_activity_date'])) ?></td>
             </tr>
             <?php } 
             } ?>
@@ -183,6 +205,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="access_top">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -193,7 +216,7 @@
         <table class="table">
           <thead style="background-color: #17375E;">
             <tr style="font-size: 20px;">
-              <th class="text-center text-white b-none" style="">User</th>
+              <th class="text-center text-white" style="border: none;">User</th>
               <th class="text-center text-white" style="border: none;">Access</th>
               <th class="text-center text-white" style="border: none;">File/Folder</th>
               <th class="text-center text-white" style="border: none;">Expires</th>
