@@ -12,7 +12,7 @@
       <button type="button" class="btn mb-10" style="height: 33px; background-color: #31859E;"><label class="text-white font-13">CLICK HERE TO ACCESS</label></button>
   </div>
   <div class="col-md-3 text-center">
-    <img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px" class="btn">
+    <button type="button" style="background-color: #ecf0f5; border: none;"><img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px" class=""></button>
     <div class="v-line-left"></div>
   </div>
   <div class="col-md-2">
