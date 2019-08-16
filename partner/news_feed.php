@@ -12,7 +12,7 @@ foreach($xml->entry as $entry)
 }
 */
 //get custom active news
-require_once ('config_news.php');
+require_once ('config/config_awt.php');
 // if (!isset($db))
 // {
 // 	include_once ("class.db.php");

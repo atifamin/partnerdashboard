@@ -8,7 +8,6 @@
 </style>
 <?php include "inc/header.php"; ?>
 <?php include "inc/asidebar.php"; ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,11 +38,10 @@
     <!-- Main content -->
 <section class="content">
                   
-                    <h3 class="page-title"> Your Key Performance Indicators</h3>                    
+                   <h3 class="page-title"> Your Key Performance Indicators</h3>                    
                     <!-- END PAGE HEADER-->
                     <!-- BEGIN DASHBOARD STATS 1-->
                     <?php include "includes/kpi.php"; ?>
-               
                     <div class="clearfix"></div>
                     <!-- END DASHBOARD STATS 1--> 
                     <div class="row">
