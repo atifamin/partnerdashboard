@@ -3,6 +3,7 @@
 <?php include "inc/asidebar.php"; ?>
 <style type="text/css">
 .nav-pills>li>a{
+
   border-radius: 10px;
   border-top: 3px solid transparent;
   color: #ffff;
@@ -16,6 +17,15 @@
   border: none;
   padding: 8px 30px 8px 30px;
 }
+
+.container-1 {
+  width: 100%;
+  position: absolute;
+  bottom: 15px;
+  right: -13px;
+  font-size: 20px;
+}
+
 </style>
 
 <div class="content-wrapper">
@@ -203,7 +213,7 @@
               </div>
               <div class="row" style="background-color: #122441 ">
                 <div class="col-md-12 text-center">
-                  <a href="#" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                 </div>
               </div>
             </div>
@@ -229,7 +239,7 @@
               </div>
               <div class="row" style="background-color: #122441 ">
                 <div class="col-md-12 text-center">
-                  <a href="#" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                 </div>
               </div>
             </div>
@@ -255,7 +265,7 @@
               </div>
               <div class="row" style="background-color: #122441 ">
                 <div class="col-md-12 text-center">
-                  <a href="#" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                 </div>
               </div>
             </div>
@@ -276,6 +286,62 @@
     <h4 class="widget-title lighter" style="font-size: 25px">
       Your Deal Flow Pipeline 
     </h4>
+  </div>
+</div>
+
+<div class="modal fade" id="bonding-request-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #1F487C; border-bottom: none;">
+        <div class="row">
+          <div class="col-md-5">
+            <span style="color: #92BA85;">BUSINESS<br>RATING<br>INDEX</span>
+          </div>
+          <div class="col-md-7">
+            <span class="font-20" style="color: #97b1d2;">CONTRACT SPONSOR: &nbsp;<b>CALTRANS</b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" style="background-color: #4A85BA;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row" style="margin: -5px 10px 30px;">
+              <div class="col-md-4" style="background-color: #DAE5F1; height: 60px;"><strong class="container-1">REQUEST TYPE:</strong></div>
+              <div class="col-md-8" style="background-color: #B7DDE8; height: 60px;"><strong class="container-1">BID, PERFORMANCE, PAYMENT</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row" style="margin: -5px 10px 30px;">
+              <div class="col-md-5" style="background-color: #DAE5F1;">
+                <div class="row">
+                  <div class="col-md-3" style="background-color: #2E8999"><span style="font-size: 30px; color: #C6D9F2;">13</span></div>
+                  <div class="col-md-9" style="background-color: #C6D9F2; height: 42px;"><span style="font-size: 18px; position: absolute; top: 8px; color: #1F487E;">YEARS IN BUSINESS</span></div>
+                </div>
+              </div>
+              <div class="col-md-4 col-md-offset-3" style="background-color: #B7DDE8;">
+                <div class="row text-center" style="background-color: #1F487E;">
+                  <div class="col-md-12">
+                    <span style="color: #C6D9F2; font-size: 19px;">INDUSTRY</span>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <span style="font-size: 19px; color: #1F487E;">CONSTRUCTION</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-12">
+            <button type="button" class="btn" style="background-color: #1F487C;"><span class="text-white font-20">MOVE TO PIPELINE</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

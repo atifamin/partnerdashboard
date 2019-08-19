@@ -44,3 +44,13 @@ ul.product_statistics_range li a.active{background:#DAE4F0;}
 #pageStatsRow > div > .small-box > .icon{right:unset;}
 
 #page_font_style{float: right;color: #ffff;font-size: 40px}
+
+.text-white {
+	color: white;
+}
+.text-center {
+	text-align: center;
+}
+.font-20 {
+	font-size: 20px;
+}

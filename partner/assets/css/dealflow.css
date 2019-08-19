@@ -1,0 +1,31 @@
+#bonding-request-modal-header {
+	background-color: #1F487C;
+	border-bottom: none;
+}
+
+.container {
+	width: 100%;
+	position: absolute;
+	bottom: 15px;
+	right: -13px;
+	font-size: 20px;
+}
+
+.bonding-request-modal-margin {
+	margin: -5px 10px 30px;
+}
+
+.industry {
+	color: #C6D9F2; 
+	font-size: 19px;
+}
+
+.industry-type {
+	font-size: 19px; 
+	color: #1F487E;
+}
+
+.bg-bonding-request-modal {
+	background-color: #4A85BA;
+}
+
