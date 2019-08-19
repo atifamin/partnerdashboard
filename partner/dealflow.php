@@ -1,32 +1,8 @@
 <?php include "inc/head.php"; ?>
 <?php include "inc/header.php"; ?>
 <?php include "inc/asidebar.php"; ?>
-<style type="text/css">
-.nav-pills>li>a{
 
-  border-radius: 10px;
-  border-top: 3px solid transparent;
-  color: #ffff;
-  font-size: 20px;
-  background-color:#C5BD96;
-  padding: 4px 25px 4px 25px;
-}
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
-  color: #fff;
-  background-color: #958953;
-  border: none;
-  padding: 8px 30px 8px 30px;
-}
-
-.container-1 {
-  width: 100%;
-  position: absolute;
-  bottom: 15px;
-  right: -13px;
-  font-size: 20px;
-}
-
-</style>
+<link rel="stylesheet" href="assets/css/dealflow.css">
 
 <div class="content-wrapper">
    <section class="content-header" style="background-color: #D8DBE0; height: 81px;">
@@ -292,7 +268,7 @@
 <div class="modal fade" id="bonding-request-modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #1F487C; border-bottom: none;">
+      <div class="modal-header" id="bonding-request-modal-header">
         <div class="row">
           <div class="col-md-5">
             <span style="color: #92BA85;">BUSINESS<br>RATING<br>INDEX</span>
@@ -302,10 +278,10 @@
           </div>
         </div>
       </div>
-      <div class="modal-body" style="background-color: #4A85BA;">
+      <div class="modal-body bg-bonding-request-modal">
         <div class="row">
           <div class="col-md-12">
-            <div class="row" style="margin: -5px 10px 30px;">
+            <div class="row bonding-request-modal-margin">
               <div class="col-md-4" style="background-color: #DAE5F1; height: 60px;"><strong class="container-1">REQUEST TYPE:</strong></div>
               <div class="col-md-8" style="background-color: #B7DDE8; height: 60px;"><strong class="container-1">BID, PERFORMANCE, PAYMENT</strong></div>
             </div>
@@ -313,22 +289,48 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="row" style="margin: -5px 10px 30px;">
-              <div class="col-md-5" style="background-color: #DAE5F1;">
-                <div class="row">
-                  <div class="col-md-3" style="background-color: #2E8999"><span style="font-size: 30px; color: #C6D9F2;">13</span></div>
-                  <div class="col-md-9" style="background-color: #C6D9F2; height: 42px;"><span style="font-size: 18px; position: absolute; top: 8px; color: #1F487E;">YEARS IN BUSINESS</span></div>
+            <div class="row bonding-request-modal-margin">
+              <div class="col-md-5">
+                <div class="row mb-20">
+                  <div class="col-md-3 bg-1" style=""><span class="number">13</span></div>
+                  <div class="col-md-9 bg-2"><span class="type">YEARS IN BUSINESS</span></div>
+                </div>
+                <div class="row mb-20">
+                  <div class="col-md-3 bg-1" style=""><span class="number">4</span></div>
+                  <div class="col-md-9 bg-2"><span class="type">PRIME CONTRACTS</span></div>
+                </div>
+                <div class="row mb-20">
+                  <div class="col-md-3 bg-1" style=""><span class="number">8</span></div>
+                  <div class="col-md-9 bg-2"><span class="type">SUB CONTRACTS</span></div>
                 </div>
               </div>
-              <div class="col-md-4 col-md-offset-3" style="background-color: #B7DDE8;">
-                <div class="row text-center" style="background-color: #1F487E;">
+              <div class="col-md-4 col-md-offset-3">
+                <div class="row mb-20">
                   <div class="col-md-12">
-                    <span style="color: #C6D9F2; font-size: 19px;">INDUSTRY</span>
+                    <div class="row text-center bg-3">
+                      <div class="col-md-12">
+                        <span class="industry">INDUSTRY</span>
+                      </div>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col-md-12 bg-4">
+                        <span class="industry-type">CONSTRUCTION</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="row text-center">
+                <div class="row mb-20">
                   <div class="col-md-12">
-                    <span style="font-size: 19px; color: #1F487E;">CONSTRUCTION</span>
+                    <div class="row text-center bg-3">
+                      <div class="col-md-12">
+                        <span class="industry">LICENCES</span>
+                      </div>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col-md-12 bg-4">
+                        <span class="industry-type">C-12<br>C-32<br>C-18</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
