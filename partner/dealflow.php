@@ -360,7 +360,9 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     <div class="modal-content">
       <div class="modal-header" id="bonding-request-modal-header">
         <div class="row">
-          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <img src="img/bonding_request.png">
+          </div>
           <div class="col-md-2">
             <span style="color: #99d265;">BUSINESS<br>RATING<br>INDEX</span>
           </div>
