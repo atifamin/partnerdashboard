@@ -275,8 +275,9 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     <div class="modal-content">
       <div class="modal-header" id="bonding-request-modal-header">
         <div class="row">
-          <div class="col-md-5">
-            <span style="color: #92BA85;">BUSINESS<br>RATING<br>INDEX</span>
+          <div class="col-md-3"></div>
+          <div class="col-md-2">
+            <span style="color: #99d265;">BUSINESS<br>RATING<br>INDEX</span>
           </div>
           <div class="col-md-7">
             <span class="font-20" style="color: #97b1d2;">CONTRACT SPONSOR: &nbsp;<b>CALTRANS</b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
@@ -344,14 +345,31 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
         </div>
         <div class="row text-center">
           <div class="col-md-12">
-            <button type="button" class="btn" style="background-color: #1F487C;"><span class="text-white font-20">MOVE TO PIPELINE</span></button>
+            <a href="javascript:;" onclick="confirm_br_modal()" type="button" class="btn" style="background-color: #1F487C;"><span class="text-white font-20">MOVE TO PIPELINE</span></a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<div class="modal fade" id="bonding_request_confirm_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="row" style="background-color: #4F81BC;border-radius: 20px;padding: 35px;">
+        <div class="col-md-12 text-center" style="margin-bottom: 20px">
+          <span style="color: #ffff;font-size: 18px">By Moving this Bond Request to your Deal Flow Pipeline you are indicating to the Business Owner that you are actively evaluating this Bond Request and will provide a formal decision on whether you will proceed within 48 hours. </span>
+        </div>
+        <div class="col-md-4 text-center">
+          <button class="btn" style="background-color: #26415F;color: #ffff;font-size: 15px">YES I AGREE</button>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+          <button class="btn" data-dismiss="modal" style="background-color: #9e292b;color: #ffff;font-size: 15px">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <iframe src = "https://cpm-stage1.pw/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
     Sorry your browser does not support inline frames.
 </iframe>
@@ -359,3 +377,9 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
 </section>  
 </div>
 <?php include "inc/footer.php"; ?>
+<script type="text/javascript">
+  function confirm_br_modal( ){
+    $('#bonding_request_confirm_modal').modal('show');
+    $('#bonding-request-modal').modal('hide');
+  }
+</script>
