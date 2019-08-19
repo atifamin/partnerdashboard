@@ -459,6 +459,12 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     </div>
   </div>
 </div>
+<div class="row" style="display: none;">
+  <div class="col-md-12" align="right">
+    <button class="btn btn-lg btn-md btn-refresh" style="background-color:  #4F81BC;border-radius: 15px" onclick="location.reload()" style="margin:1%;">NEW DEAL MOVED TO YOUR PIPELINE <br><span style="color: #d0ea7d">CLICK HERE TO REFRESH
+</span></button>
+  </div>
+</div>
 <iframe src = "https://cpm-stage1.pw/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
     Sorry your browser does not support inline frames.
 </iframe>
