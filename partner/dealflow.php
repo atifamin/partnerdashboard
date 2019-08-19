@@ -1,6 +1,23 @@
 <?php include "inc/head.php"; ?>
 <?php include "inc/header.php"; ?>
 <?php include "inc/asidebar.php"; ?>
+<style type="text/css">
+.nav-pills>li>a{
+  border-radius: 10px;
+  border-top: 3px solid transparent;
+  color: #ffff;
+  font-size: 20px;
+  background-color:#C5BD96;
+  padding: 4px 25px 4px 25px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+  color: #fff;
+  background-color: #958953;
+  border: none;
+  padding: 8px 30px 8px 30px;
+}
+</style>
+
 <div class="content-wrapper">
    <section class="content-header" style="background-color: #D8DBE0; height: 81px;">
       <?php 
@@ -84,9 +101,6 @@
                     
                   }
 
-                  
-                  
-
               ?>
     <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -106,7 +120,6 @@
           <div class="small-box" style="background-color:#E8505C;">
             <div class="inner">
               <h3 class="white">$<?php echo nice_number($r2->funding_amount,'format'); ?></h3>
-
               <p class="white">Total Deal Amount</p>
             </div>
             <div class="icon">
@@ -119,7 +132,6 @@
           <div class="small-box" style="background-color:#32C6D2;">
             <div class="inner">
               <h3 class="white"><?php echo number_format($r3->funding_close); ?></h3>
-
               <p class="white">Total Funded Deals</p>
             </div>
             <div class="icon">
@@ -150,30 +162,127 @@
   </div> 
  
 <div class="widget-box transparent">
-      <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
-        <h4 class="widget-title lighter" style="font-size: 20px">
-          NEWLY SUBMITTED BONDING REQUEST
-          <a href="#bonding_request" id="contractdetailsa" data-toggle="collapse"  aria-controls="bonding_request">
-          <i class="ace-icon fa fa-chevron-down pull-right" id="contractdetailsi" style="color:white;"></i>
-          </a>
-        </h4>
+  <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
+    <h4 class="widget-title lighter" style="font-size: 20px">
+      NEWLY SUBMITTED BONDING REQUEST
+      <a href="#bonding_request" id="contractdetailsa" data-toggle="collapse"  aria-controls="bonding_request">
+      <i class="ace-icon fa fa-chevron-down pull-right" id="contractdetailsi" style="color:white;"></i>
+      </a>
+    </h4>
+  </div>
+   
+  <div id="bonding_request" class="collapse ">
+    <div class="container" style="padding: 20px;width: 100%">
+      <ul class="nav nav-pills " >
+        <li class="active"><a data-toggle="pill" href="#today">TODAY</a></li>
+        <li><a data-toggle="pill" href="#this_week">THIS WEEK</a></li>
+        <li><a data-toggle="pill" href="#last_week">LAST WEEK</a></li>
+      </ul>
+      <div class="tab-content" style="background-color: #DED8C8">
+        <div id="today" class="tab-pane fade in active" >
+          <div class="row" style="padding: 40px">
+            <div class="col-md-4" style="width: 31%;margin: 0 10px">
+              <div class="row" style="background-color: #366090">
+                <div class="col-md-3">
+                  <img src="img/bonding_request.png" width="60px">
+                </div>
+                <div class="col-md-3 text-center" style="background-color: #5482BC">
+                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                </div>
+                <div class="col-md-6">
+                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+                </div>
+              </div>
+              <div class="row" style="background-color: #507FB9">
+                <div class="col-md-12">
+                  <div class="row" style="margin: 3px;">
+                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="background-color: #122441 ">
+                <div class="col-md-12 text-center">
+                  <a href="#" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" style="width: 31%;margin: 0 10px">
+              <div class="row" style="background-color: #366090">
+                <div class="col-md-3">
+                  <img src="img/bonding_request.png" width="60px">
+                </div>
+                <div class="col-md-3 text-center" style="background-color: #5482BC">
+                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                </div>
+                <div class="col-md-6">
+                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+                </div>
+              </div>
+              <div class="row" style="background-color: #507FB9">
+                <div class="col-md-12">
+                  <div class="row" style="margin: 3px;">
+                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="background-color: #122441 ">
+                <div class="col-md-12 text-center">
+                  <a href="#" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" style="width: 31%;margin: 0 10px">
+              <div class="row" style="background-color: #366090">
+                <div class="col-md-3">
+                  <img src="img/bonding_request.png" width="60px">
+                </div>
+                <div class="col-md-3 text-center" style="background-color: #5482BC">
+                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                </div>
+                <div class="col-md-6">
+                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+                </div>
+              </div>
+              <div class="row" style="background-color: #507FB9">
+                <div class="col-md-12">
+                  <div class="row" style="margin: 3px;">
+                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="background-color: #122441 ">
+                <div class="col-md-12 text-center">
+                  <a href="#" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-       
-      <div id="bonding_request" class="collapse ">
-        <div class="box-body table-responsive no-padding">
-          <p>some text here</p>
-         
+        <div id="this_week" class="tab-pane fade">
+          <p>This Week text</p>
+        </div>
+        <div id="last_week" class="tab-pane fade">
+          <p>Last week text</p>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="widget-box transparent">
+  <div class="widget-header widget-header-flat" style="background-color:#366090;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
+    <h4 class="widget-title lighter" style="font-size: 25px">
+      Your Deal Flow Pipeline 
+    </h4>
+  </div>
+</div>
 
+<iframe src = "https://cpm-stage1.pw/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+    Sorry your browser does not support inline frames.
+</iframe>
 
-  <iframe src = "https://cpm-stage1.pw/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
-      Sorry your browser does not support inline frames.
-  </iframe>
-    <!-- <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
-      Sorry your browser does not support inline frames.
-    </iframe> -->
 </section>  
 </div>
 <?php include "inc/footer.php"; ?>
