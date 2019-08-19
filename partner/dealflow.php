@@ -146,7 +146,10 @@
           </div>
         </div>                         
   </div> 
- 
+<?php 
+$query5 = "SELECT * from tasks where task_status = 'pending'";
+$res5 = mysqli_query($con_TaskBoard,$query5);
+?>
 <div class="widget-box transparent">
   <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
     <h4 class="widget-title lighter" style="font-size: 20px">
@@ -167,7 +170,35 @@
       <div class="tab-content" style="background-color: #DED8C8">
         <div id="today" class="tab-pane fade in active" >
           <div class="row" style="padding: 40px">
-            <div class="col-md-4" style="width: 31%;margin: 0 10px">
+            <?php while ($task_detail = mysqli_fetch_array($res5)) { ?>
+            <div class="col-md-4" style="width: 31%;margin: 5px 10px">
+              <div class="row" style="background-color: #366090">
+                <div class="col-md-3">
+                  <img src="img/bonding_request.png" width="60px">
+                </div>
+                <div class="col-md-3 text-center" style="background-color: #5482BC">
+                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                </div>
+                <div class="col-md-6">
+                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+                </div>
+              </div>
+              <div class="row" style="background-color: #507FB9">
+                <div class="col-md-12">
+                  <div class="row" style="margin: 3px;">
+                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="background-color: #122441 ">
+                <div class="col-md-12 text-center">
+                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+            <!-- <div class="col-md-4" style="width: 31%;margin: 0 10px">
               <div class="row" style="background-color: #366090">
                 <div class="col-md-3">
                   <img src="img/bonding_request.png" width="60px">
@@ -218,33 +249,7 @@
                   <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                 </div>
               </div>
-            </div>
-            <div class="col-md-4" style="width: 31%;margin: 0 10px">
-              <div class="row" style="background-color: #366090">
-                <div class="col-md-3">
-                  <img src="img/bonding_request.png" width="60px">
-                </div>
-                <div class="col-md-3 text-center" style="background-color: #5482BC">
-                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                </div>
-                <div class="col-md-6">
-                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                </div>
-              </div>
-              <div class="row" style="background-color: #507FB9">
-                <div class="col-md-12">
-                  <div class="row" style="margin: 3px;">
-                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="background-color: #122441 ">
-                <div class="col-md-12 text-center">
-                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
-                </div>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="this_week" class="tab-pane fade">
