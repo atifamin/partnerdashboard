@@ -8,12 +8,14 @@
         $q = 'select * from partner where `partner_id`= '.$partner_id.' ';
         $row = mysqli_query($con_MAIN,$q);
         $res = mysqli_fetch_object($row);
-        //rprint_r($partner_id);exit;
        ?> 
       <h1>
           <?php 
             echo $_SESSION['user_fname'].' '.$_SESSION['user_lname'];echo ":  Pipeline Deal Flow Key Performance Indicators";
           ?>
+          <?php
+ //echo "<pre>"; print_r($_SESSION); exit;
+ ?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fas fa-tachometer-alt"></i> Home</a></li>
@@ -146,12 +148,29 @@
           </div>
         </div>                         
   </div> 
- <?php
- //echo "<pre>"; print_r($_SESSION);
- ?>
-  <iframe src = "http://tbpinio.pw/cpmDev1/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+ 
+<div class="widget-box transparent">
+      <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
+        <h4 class="widget-title lighter" style="font-size: 20px">
+          NEWLY SUBMITTED BONDING REQUEST
+          <a href="#bonding_request" id="contractdetailsa" data-toggle="collapse"  aria-controls="bonding_request">
+          <i class="ace-icon fa fa-chevron-down pull-right" id="contractdetailsi" style="color:white;"></i>
+          </a>
+        </h4>
+        </div>
+       
+      <div id="bonding_request" class="collapse ">
+        <div class="box-body table-responsive no-padding">
+          <p>some text here</p>
+         
+        </div>
+      </div>
+    </div>
+
+
+  <iframe src = "https://cpm-stage1.pw/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
-    </iframe>
+  </iframe>
     <!-- <iframe src = "http://localhost/partnerdashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
       Sorry your browser does not support inline frames.
     </iframe> -->
