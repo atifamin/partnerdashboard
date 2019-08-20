@@ -594,7 +594,5 @@ function TimeFrequency($Frequency){
 	}
 	return $WHERE;
 }
-function bonding_request_submit(){
-	echo "chal gya";
-}
+
 ?>

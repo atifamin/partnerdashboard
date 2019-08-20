@@ -347,11 +347,11 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
           <span style="color: #ffff;font-size: 18px">By Moving this Bond Request to your Deal Flow Pipeline you are indicating to the Business Owner that you are actively evaluating this Bond Request and will provide a formal decision on whether you will proceed within 48 hours. </span>
         </div>
         <div class="col-md-4 text-center">
-          <a class="btn btn-agree"  onclick="bonding_request_submit()" style="font-size: 15px">YES I AGREE</a>
+          <a href="javascript:;" class="btn btn-agree" onclick="bonding_request_submit()" style="font-size: 15px;color: #ffff;">YES I AGREE</a>
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center">
-          <button class="btn btn-cancel-br" data-dismiss="modal"><span class="text-white">CANCEL</span></button>
+          <button class="btn btn-cancel-br" data-dismiss="modal" style="font-size: 15px"><span class="text-white">CANCEL</span></button>
         </div>
       </div>
     </div>
