@@ -4,13 +4,13 @@
   color: #ffff;
   font-size: 20px;
   background-color:#C5BD96;
-  padding: 4px 25px 4px 25px;
+  padding: 3px 25px 3px 25px;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
   color: #fff;
   background-color: #958953;
   border: none;
-  padding: 8px 30px 8px 30px;
+  padding: 6px 30px 6px 30px;
 }
 
 #bonding-request-modal-header {
@@ -71,5 +71,44 @@
 
 .bg-4 {
 	background-color: #B7DDE8;
+}
+.btn-agree{
+	background-color: #26415F;
+	color: #ffff;
+}
+.btn-cancel-br{
+	background-color: #9e292b;
+	color: #ffff;
+}
+.tab-row{
+	padding: 40px
+}
+.bg-5{
+	background-color: #366090
+}
+.bg-6{
+	background-color: #5482BC
+}
+.bg-7{
+	background-color: #507FB9
+}
+.bg-8{
+	background-color: #DAE5F1;
+	padding: 18px 0;
+}
+.bg-9{
+	background-color: #B7DDE8;
+	padding: 18px 0;
+}
+.bg-10{
+	background-color: #122441; 
+}
+.br-container{
+	padding: 20px;
+	width: 100%
+}
+.br-task{
+	width: 31%;
+	margin: 5px 10px
 }
 

@@ -149,8 +149,6 @@
 <?php 
 $query5 = "SELECT * from tasks where task_status = 'pending'";
 $res5 = mysqli_query($con_TaskBoard,$query5);
-//$row_count = mysqli_num_rows($res5);
-//echo"<pre>";print_r($row_count);exit();
 ?>
 <div class="widget-box transparent">
   <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
@@ -163,7 +161,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
   </div>
    
   <div id="bonding_request" class="collapse ">
-    <div class="container" style="padding: 20px;width: 100%">
+    <div class="container br-container">
       <ul class="nav nav-pills " >
         <li class="active"><a data-toggle="pill" href="#today">TODAY</a></li>
         <li><a data-toggle="pill" href="#this_week">THIS WEEK</a></li>
@@ -171,12 +169,12 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
       </ul>
       <div class="tab-content" style="background-color: #DED8C8">
         <div id="today" class="tab-pane fade in active" >
-          <div class="row" style="padding: 40px">
+          <div class="row tab-row">
             <?php
               while ($task_detail = mysqli_fetch_array($res5)) { 
                 if(count($task_detail) > 0 ) { ?>
-                <div class="col-md-4" style="width: 31%;margin: 5px 10px">
-                  <div class="row" style="background-color: #366090">
+                <div class="col-md-4 br-task">
+                  <div class="row bg-5">
                     <div class="col-md-3">
                       <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
                         <span>80%</span>
@@ -188,22 +186,22 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3 text-center" style="background-color: #5482BC">
+                    <div class="col-md-3 text-center bg-6">
                       <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
                       <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
                     </div>
                   </div>
-                  <div class="row" style="background-color: #507FB9">
+                  <div class="row bg-7">
                     <div class="col-md-12">
                       <div class="row" style="margin: 3px;">
-                        <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                        <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                        <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                        <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="background-color: #122441 ">
+                  <div class="row bg-10">
                     <div class="col-md-12 text-center">
                       <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                     </div>
@@ -216,66 +214,14 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                 </div>
               </div>
             <?php } } ?>
-            <!-- <div class="col-md-4" style="width: 31%;margin: 0 10px">
-              <div class="row" style="background-color: #366090">
-                <div class="col-md-3">
-                  <img src="img/bonding_request.png" width="60px">
-                </div>
-                <div class="col-md-3 text-center" style="background-color: #5482BC">
-                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                </div>
-                <div class="col-md-6">
-                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                </div>
-              </div>
-              <div class="row" style="background-color: #507FB9">
-                <div class="col-md-12">
-                  <div class="row" style="margin: 3px;">
-                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="background-color: #122441 ">
-                <div class="col-md-12 text-center">
-                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" style="width: 31%;margin: 0 10px">
-              <div class="row" style="background-color: #366090">
-                <div class="col-md-3">
-                  <img src="img/bonding_request.png" width="60px">
-                </div>
-                <div class="col-md-3 text-center" style="background-color: #5482BC">
-                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                </div>
-                <div class="col-md-6">
-                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                </div>
-              </div>
-              <div class="row" style="background-color: #507FB9">
-                <div class="col-md-12">
-                  <div class="row" style="margin: 3px;">
-                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="background-color: #122441 ">
-                <div class="col-md-12 text-center">
-                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
         <div id="this_week" class="tab-pane fade">
-          <div class="row" style="padding: 40px">
+          <div class="row tab-row">
             <?php  while ($task_detail = mysqli_fetch_array($res5)) { 
                 if(count($task_detail) > 0 ) { ?>
-                <div class="col-md-4" style="width: 31%;margin: 5px 10px">
-                  <div class="row" style="background-color: #366090">
+                <div class="col-md-4 br-task">
+                  <div class="row bg-5">
                     <div class="col-md-3">
                       <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
                         <span>80%</span>
@@ -287,22 +233,22 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3 text-center" style="background-color: #5482BC">
+                    <div class="col-md-3 text-center bg-6">
                       <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
                       <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
                     </div>
                   </div>
-                  <div class="row" style="background-color: #507FB9">
+                  <div class="row bg-7">
                     <div class="col-md-12">
                       <div class="row" style="margin: 3px;">
-                        <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                        <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                        <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                        <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="background-color: #122441 ">
+                  <div class="row bg-10">
                     <div class="col-md-12 text-center">
                       <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                     </div>
@@ -316,66 +262,14 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                 </div>
               </div>
             <?php } } ?>
-            <!-- <div class="col-md-4" style="width: 31%;margin: 0 10px">
-              <div class="row" style="background-color: #366090">
-                <div class="col-md-3">
-                  <img src="img/bonding_request.png" width="60px">
-                </div>
-                <div class="col-md-3 text-center" style="background-color: #5482BC">
-                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                </div>
-                <div class="col-md-6">
-                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                </div>
-              </div>
-              <div class="row" style="background-color: #507FB9">
-                <div class="col-md-12">
-                  <div class="row" style="margin: 3px;">
-                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="background-color: #122441 ">
-                <div class="col-md-12 text-center">
-                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" style="width: 31%;margin: 0 10px">
-              <div class="row" style="background-color: #366090">
-                <div class="col-md-3">
-                  <img src="img/bonding_request.png" width="60px">
-                </div>
-                <div class="col-md-3 text-center" style="background-color: #5482BC">
-                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                </div>
-                <div class="col-md-6">
-                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                </div>
-              </div>
-              <div class="row" style="background-color: #507FB9">
-                <div class="col-md-12">
-                  <div class="row" style="margin: 3px;">
-                    <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                    <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="background-color: #122441 ">
-                <div class="col-md-12 text-center">
-                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
         <div id="last_week" class="tab-pane fade">
-          <div class="row" style="padding: 40px">
+          <div class="row tab-row">
             <?php while ($task_detail = mysqli_fetch_array($res5)) { 
               if(count($task_detail) > 0 ) { ?>
-                <div class="col-md-4" style="width: 31%;margin: 5px 10px">
-                  <div class="row" style="background-color: #366090">
+                <div class="col-md-4 br-task">
+                  <div class="row bg-5">
                     <div class="col-md-3">
                       <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
                         <span>80%</span>
@@ -387,22 +281,22 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3 text-center" style="background-color: #5482BC">
+                    <div class="col-md-3 text-center bg-6">
                       <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
                       <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
                     </div>
                   </div>
-                  <div class="row" style="background-color: #507FB9">
+                  <div class="row bg-7">
                     <div class="col-md-12">
                       <div class="row" style="margin: 3px;">
-                        <div class="col-md-4 text-center" style="background-color: #DAE5F1;padding: 18px 0;"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                        <div class="col-md-8 text-center" style="background-color: #B7DDE8;padding: 18px 0;"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                        <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                        <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="background-color: #122441 ">
+                  <div class="row bg-10">
                     <div class="col-md-12 text-center">
                       <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                     </div>
@@ -529,11 +423,11 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
           <span style="color: #ffff;font-size: 18px">By Moving this Bond Request to your Deal Flow Pipeline you are indicating to the Business Owner that you are actively evaluating this Bond Request and will provide a formal decision on whether you will proceed within 48 hours. </span>
         </div>
         <div class="col-md-4 text-center">
-          <button class="btn" style="background-color: #26415F;color: #ffff;font-size: 15px">YES I AGREE</button>
+          <button class="btn btn-agree" style="font-size: 15px">YES I AGREE</button>
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center">
-          <button class="btn" data-dismiss="modal" style="background-color: #9e292b;color: #ffff;font-size: 15px">CANCEL</button>
+          <button class="btn btn-cancel-br" style="font-size: 15px" data-dismiss="modal">CANCEL</button>
         </div>
       </div>
     </div>
