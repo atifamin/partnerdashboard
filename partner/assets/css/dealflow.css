@@ -4,13 +4,13 @@
   color: #ffff;
   font-size: 20px;
   background-color:#C5BD96;
-  padding: 4px 25px 4px 25px;
+  padding: 3px 25px 3px 25px;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
   color: #fff;
   background-color: #958953;
   border: none;
-  padding: 8px 30px 8px 30px;
+  padding: 6px 30px 6px 30px;
 }
 
 #bonding-request-modal-header {
