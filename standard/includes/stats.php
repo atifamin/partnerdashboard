@@ -1,7 +1,28 @@
 <link rel="stylesheet" href="../bower_components/percircle/dist/css/percircle.css">
-<style type="text/css">
-  
-</style>
+
+
+<?php 
+$percent = 0;
+$q1 = "SELECT * from bizvault_user_required_filelist where bizvault_user_required_filelist_folder_id = 301";
+$totalPreFiles = mysqli_query($con_MAIN,$q1);
+$totalFiles = $totalPreFiles->num_rows;
+if($totalFiles>0){
+  $uploadedFiles = 0;
+  while($val = mysqli_fetch_array($totalPreFiles)){
+    $q2 = "SELECT * from bizvault_user_uploaded_required_file where bizvault_user_required_filelist_id = ".$val['bizvault_user_required_filelist_id']." and bizvault_user_uploaded_required_file_user_id = ".$_SESSION['user_id']."";
+    $file = mysqli_query($con_MAIN,$q2);
+    if($file->num_rows>0){
+      $file = mysqli_fetch_object($file);
+      $uploadedFiles = $uploadedFiles+1;
+    }
+  }
+  if($uploadedFiles>0){
+    $percent = ($uploadedFiles/$totalFiles)*100;
+    $percent = number_format($percent);
+  }
+}
+
+?>
 
 <div class="row">
   <div class="col-md-2 text-center">
@@ -21,10 +42,11 @@
           <span class="text-white" style="font-size: 13px;" >ALL BASIC FILES HAVE<br>BEEN UPLOADED</span>
       </div>
       <div class="col-md-12" style="margin: 10px 0px 0px 10px">
-        <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset;">
-          <span>80%</span>
+
+        <div id="greencircle" data-percent="<?php echo $percent; ?>" class="small green percircle animate gt50" style="background-color:unset;">
+          <span><?php echo $percent; ?>%</span>
           <div class="slice">
-            <div class="bar" style="transform: rotate(288deg);">
+            <div class="bar" style="<?php if(($percent) == '100') { ?> transform: rotate(360deg); <?php } else { ?> transform: rotate(260deg); <?php } ?>">
             </div>
             <div class="fill">
             </div>

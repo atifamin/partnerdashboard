@@ -187,7 +187,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                       </div>
                     </div>
                     <div class="col-md-3 text-center bg-6">
-                      <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                      <span class="clr-2" >BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
                       <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
@@ -234,7 +234,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                       </div>
                     </div>
                     <div class="col-md-3 text-center bg-6">
-                      <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                      <span class="clr-2" >BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
                       <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
@@ -282,7 +282,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                       </div>
                     </div>
                     <div class="col-md-3 text-center bg-6">
-                      <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                      <span class="clr-2" >BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
                       <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
@@ -329,7 +329,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
       <div class="modal-header" id="bonding-request-modal-header">
         <div class="row">
           <div class="col-md-2">
-            <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset;">
+            <div id="greencircle circle-style" data-percent="80" class="small green percircle animate gt50">
               <span>80%</span>
               <div class="slice">
                 <div class="bar" style="transform: rotate(288deg);">
@@ -339,11 +339,11 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
               </div>
             </div>
           </div>
-          <div class="col-md-2">
-            <span style="color: #99d265;">BUSINESS<br>RATING<br>INDEX</span>
+          <div class="col-md-2 bg-13">
+            <span class="clr-2">BUSINESS<br>RATING<br>INDEX</span>
           </div>
           <div class="col-md-7 col-md-offset-1">
-            <span class="font-20" style="color: #97b1d2;">CONTRACT SPONSOR: &nbsp;<b>CALTRANS</b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+            <span class="font-20 clr-1">CONTRACT SPONSOR: &nbsp;<b>CALTRANS</b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
           </div>
         </div>
       </div>
@@ -351,8 +351,8 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
         <div class="row">
           <div class="col-md-12">
             <div class="row bonding-request-modal-margin">
-              <div class="col-md-4" style="background-color: #DAE5F1; height: 60px;"><strong class="container-1">REQUEST TYPE:</strong></div>
-              <div class="col-md-8" style="background-color: #B7DDE8; height: 60px;"><strong class="container-1">BID, PERFORMANCE, PAYMENT</strong></div>
+              <div class="col-md-4 bg-11"><strong class="container-1">REQUEST TYPE:</strong></div>
+              <div class="col-md-8 bg-12"><strong class="container-1">BID, PERFORMANCE, PAYMENT</strong></div>
             </div>
           </div>
         </div>
@@ -408,7 +408,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
         </div>
         <div class="row text-center">
           <div class="col-md-12">
-            <a href="javascript:;" onclick="confirm_br_modal()" type="button" class="btn" style="background-color: #1F487C;"><span class="text-white font-20">MOVE TO PIPELINE</span></a>
+            <a href="javascript:;" onclick="confirm_br_modal()" type="button" class="btn bg-btn-pipeline"><span class="text-white font-20">MOVE TO PIPELINE</span></a>
           </div>
         </div>
       </div>
@@ -423,11 +423,11 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
           <span style="color: #ffff;font-size: 18px">By Moving this Bond Request to your Deal Flow Pipeline you are indicating to the Business Owner that you are actively evaluating this Bond Request and will provide a formal decision on whether you will proceed within 48 hours. </span>
         </div>
         <div class="col-md-4 text-center">
-          <button class="btn btn-agree" style="font-size: 15px">YES I AGREE</button>
+          <button class="btn btn-agree"><span class="text-white">YES I AGREE</span></button>
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center">
-          <button class="btn btn-cancel-br" style="font-size: 15px" data-dismiss="modal">CANCEL</button>
+          <button class="btn btn-cancel-br" data-dismiss="modal"><span class="text-white">CANCEL</span></button>
         </div>
       </div>
     </div>

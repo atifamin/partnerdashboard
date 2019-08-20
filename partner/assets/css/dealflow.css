@@ -1,16 +1,16 @@
-.nav-pills>li>a{
-  border-radius: 10px;
-  border-top: 3px solid transparent;
-  color: #ffff;
-  font-size: 20px;
-  background-color:#C5BD96;
-  padding: 3px 25px 3px 25px;
+.nav-pills>li>a {
+	border-radius: 10px;
+	border-top: 3px solid transparent;
+	color: #ffff;
+	font-size: 20px;
+	background-color:#C5BD96;
+	padding: 3px 25px 3px 25px;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
-  color: #fff;
-  background-color: #958953;
-  border: none;
-  padding: 6px 30px 6px 30px;
+	color: #fff;
+	background-color: #958953;
+	border: none;
+	padding: 6px 30px 6px 30px;
 }
 
 #bonding-request-modal-header {
@@ -72,43 +72,83 @@
 .bg-4 {
 	background-color: #B7DDE8;
 }
-.btn-agree{
-	background-color: #26415F;
-	color: #ffff;
-}
-.btn-cancel-br{
-	background-color: #9e292b;
-	color: #ffff;
-}
-.tab-row{
-	padding: 40px
-}
-.bg-5{
+
+.bg-5 {
 	background-color: #366090
 }
-.bg-6{
+
+.bg-6 {
 	background-color: #5482BC
 }
-.bg-7{
+
+.bg-7 {
 	background-color: #507FB9
 }
-.bg-8{
+
+.bg-8 {
 	background-color: #DAE5F1;
 	padding: 18px 0;
 }
-.bg-9{
+
+.bg-9 {
 	background-color: #B7DDE8;
 	padding: 18px 0;
 }
-.bg-10{
+
+.bg-10 {
 	background-color: #122441; 
 }
-.br-container{
+
+.bg-11 {
+	background-color: #DAE5F1; 
+	height: 60px;
+}
+
+.bg-12 {
+	background-color: #B7DDE8; 
+	height: 60px;
+}
+
+.bg-13 {
+	background-color: #4e82bd;
+    margin-top: 7px;
+    padding: 9px;
+}
+
+.btn-agree {
+	background-color: #26415F;
+	color: #ffff;
+	font-size: 15px
+}
+
+.btn-cancel-br {
+	background-color: #9e292b;
+	color: #ffff;
+	font-size: 15px;
+}
+
+.tab-row {
+	padding: 40px
+}
+
+.br-container {
 	padding: 20px;
 	width: 100%
 }
-.br-task{
+
+.br-task {
 	width: 31%;
 	margin: 5px 10px
 }
 
+.clr-1 {
+	color: #97b1d2;
+}
+
+.clr-2 {
+	color: #c9f675;
+}
+
+.bg-btn-pipeline {
+	background-color: #1F487C;
+}
