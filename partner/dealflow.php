@@ -3,7 +3,7 @@
 <?php include "inc/asidebar.php"; ?>
 
 <link rel="stylesheet" href="assets/css/dealflow.css">
-
+<link rel="stylesheet" href="assets/bower_components/percircle/dist/css/percircle.css">
 <div class="content-wrapper">
    <section class="content-header" style="background-color: #D8DBE0; height: 81px;">
       <?php 
@@ -178,7 +178,15 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                 <div class="col-md-4" style="width: 31%;margin: 5px 10px">
                   <div class="row" style="background-color: #366090">
                     <div class="col-md-3">
-                      <img src="img/bonding_request.png" width="60px">
+                      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
+                        <span>80%</span>
+                        <div class="slice">
+                          <div class="bar" style="transform: rotate(288deg);">
+                          </div>
+                          <div class="fill">
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-md-3 text-center" style="background-color: #5482BC">
                       <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
@@ -269,7 +277,15 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                 <div class="col-md-4" style="width: 31%;margin: 5px 10px">
                   <div class="row" style="background-color: #366090">
                     <div class="col-md-3">
-                      <img src="img/bonding_request.png" width="60px">
+                      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
+                        <span>80%</span>
+                        <div class="slice">
+                          <div class="bar" style="transform: rotate(288deg);">
+                          </div>
+                          <div class="fill">
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-md-3 text-center" style="background-color: #5482BC">
                       <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
@@ -361,7 +377,15 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                 <div class="col-md-4" style="width: 31%;margin: 5px 10px">
                   <div class="row" style="background-color: #366090">
                     <div class="col-md-3">
-                      <img src="img/bonding_request.png" width="60px">
+                      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
+                        <span>80%</span>
+                        <div class="slice">
+                          <div class="bar" style="transform: rotate(288deg);">
+                          </div>
+                          <div class="fill">
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-md-3 text-center" style="background-color: #5482BC">
                       <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
@@ -410,13 +434,21 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     <div class="modal-content">
       <div class="modal-header" id="bonding-request-modal-header">
         <div class="row">
-          <div class="col-md-3">
-            <img src="img/bonding_request.png">
+          <div class="col-md-2">
+            <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset;">
+              <span>80%</span>
+              <div class="slice">
+                <div class="bar" style="transform: rotate(288deg);">
+                </div>
+                <div class="fill">
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-md-2">
             <span style="color: #99d265;">BUSINESS<br>RATING<br>INDEX</span>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-7 col-md-offset-1">
             <span class="font-20" style="color: #97b1d2;">CONTRACT SPONSOR: &nbsp;<b>CALTRANS</b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
           </div>
         </div>
@@ -520,6 +552,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
 </section>  
 </div>
 <?php include "inc/footer.php"; ?>
+<script type="text/javascript" src="assets/bower_components/percircle/dist/js/percircle.js"></script>
 <script type="text/javascript">
   function confirm_br_modal( ){
     $('#bonding_request_confirm_modal').modal('show');
