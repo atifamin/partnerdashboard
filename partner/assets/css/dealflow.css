@@ -77,8 +77,9 @@
 	background-color: #366090
 }
 
-.bg-6 {
-	background-color: #5482BC
+.bg-6{
+	background-color: #5482BC;
+	padding-top: 5px;
 }
 
 .bg-7 {
@@ -133,7 +134,8 @@
 
 .br-container {
 	padding: 20px;
-	width: 100%
+	width: 100%;
+	background-color: #EEECE0;
 }
 
 .br-task {
