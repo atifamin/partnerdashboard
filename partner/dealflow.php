@@ -154,8 +154,8 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
   <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
     <h4 class="widget-title lighter" style="font-size: 20px">
       NEWLY SUBMITTED BONDING REQUEST
-      <a href="#bonding_request" id="contractdetailsa" data-toggle="collapse"  aria-controls="bonding_request">
-      <i class="ace-icon fa fa-chevron-down pull-right" id="contractdetailsi" style="color:white;"></i>
+      <a href="#bonding_request" id="bonding_requesta" data-toggle="collapse"  aria-controls="bonding_request">
+      <i class="ace-icon fa fa-chevron-up pull-right" id="bonding_requesti" style="color:white;"></i>
       </a>
     </h4>
   </div>
@@ -171,55 +171,8 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
         <div id="today" class="tab-pane fade in active" >
           <div class="row tab-row">
             <?php
-              while ($task_detail = mysqli_fetch_array($res5)) { 
-                if(count($task_detail) > 0 ) { ?>
-                <div class="col-md-4 br-task">
-                  <div class="row bg-5">
-                    <div class="col-md-3">
-                      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
-                        <span>80%</span>
-                        <div class="slice">
-                          <div class="bar" style="transform: rotate(288deg);">
-                          </div>
-                          <div class="fill">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 text-center bg-6">
-                      <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                    </div>
-                    <div class="col-md-6">
-                      <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                    </div>
-                  </div>
-                  <div class="row bg-7">
-                    <div class="col-md-12">
-                      <div class="row" style="margin: 3px;">
-                        <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                        <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row bg-10">
-                    <div class="col-md-12 text-center">
-                      <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
-                    </div>
-                  </div>
-                </div>
-              <?php }else { ?>
-              <div class="row text-center">
-                <div class="col-md-12">
-                  <h1>No Bonding Requests Found.</h1>
-                </div>
-              </div>
-            <?php } } ?>
-          </div>
-        </div>
-        <div id="this_week" class="tab-pane fade">
-          <div class="row tab-row">
-            <?php  while ($task_detail = mysqli_fetch_array($res5)) { 
-                if(count($task_detail) > 0 ) { ?>
+              if($res5->num_rows > 0 ) { 
+              while ($task_detail = mysqli_fetch_array($res5)) { ?>
                 <div class="col-md-4 br-task">
                   <div class="row bg-5">
                     <div class="col-md-3">
@@ -255,60 +208,99 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                   </div>
                 </div>
               <?php }
-            else { ?>
+              }else { ?>
               <div class="row text-center">
                 <div class="col-md-12">
                   <h1>No Bonding Requests Found.</h1>
                 </div>
               </div>
-            <?php } } ?>
+            <?php } ?>
+          </div>
+        </div>
+        <div id="this_week" class="tab-pane fade">
+          <div class="row tab-row">
+            <!-- <div class="col-md-4 br-task">
+              <div class="row bg-5">
+                <div class="col-md-3">
+                  <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
+                    <span>80%</span>
+                    <div class="slice">
+                      <div class="bar" style="transform: rotate(288deg);">
+                      </div>
+                      <div class="fill">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 text-center bg-6">
+                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                </div>
+                <div class="col-md-6">
+                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+                </div>
+              </div>
+              <div class="row bg-7">
+                <div class="col-md-12">
+                  <div class="row" style="margin: 3px;">
+                    <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                    <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row bg-10">
+                <div class="col-md-12 text-center">
+                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                </div>
+              </div>
+            </div> -->
+            <div class="row text-center">
+              <div class="col-md-12">
+                <h1>No Bonding Requests Found.</h1>
+              </div>
+            </div>
           </div>
         </div>
         <div id="last_week" class="tab-pane fade">
           <div class="row tab-row">
-            <?php while ($task_detail = mysqli_fetch_array($res5)) { 
-              if(count($task_detail) > 0 ) { ?>
-                <div class="col-md-4 br-task">
-                  <div class="row bg-5">
-                    <div class="col-md-3">
-                      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
-                        <span>80%</span>
-                        <div class="slice">
-                          <div class="bar" style="transform: rotate(288deg);">
-                          </div>
-                          <div class="fill">
-                          </div>
-                        </div>
+            <!-- <div class="col-md-4 br-task">
+              <div class="row bg-5">
+                <div class="col-md-3">
+                  <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
+                    <span>80%</span>
+                    <div class="slice">
+                      <div class="bar" style="transform: rotate(288deg);">
                       </div>
-                    </div>
-                    <div class="col-md-3 text-center bg-6">
-                      <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
-                    </div>
-                    <div class="col-md-6">
-                      <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
-                    </div>
-                  </div>
-                  <div class="row bg-7">
-                    <div class="col-md-12">
-                      <div class="row" style="margin: 3px;">
-                        <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
-                        <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                      <div class="fill">
                       </div>
-                    </div>
-                  </div>
-                  <div class="row bg-10">
-                    <div class="col-md-12 text-center">
-                      <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
                     </div>
                   </div>
                 </div>
-              <?php } else { ?>
-              <div class="row text-center">
-                <div class="col-md-12">
-                  <h1>No Bonding Requests Found.</h1>
+                <div class="col-md-3 text-center bg-6">
+                  <span style="color: #bcda95;">BUSINESS<br>RATING<br>INDEX</span>
+                </div>
+                <div class="col-md-6">
+                  <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
                 </div>
               </div>
-            <?php } } ?>
+              <div class="row bg-7">
+                <div class="col-md-12">
+                  <div class="row" style="margin: 3px;">
+                    <div class="col-md-4 text-center bg-8"><strong  style="font-size: 11px;">REQUEST TYPE:</strong></div>
+                    <div class="col-md-8 text-center bg-9"><strong  style="font-size: 11px;">BID, PERFORMANCE, PAYMENT</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row bg-10">
+                <div class="col-md-12 text-center">
+                  <a href="#" data-toggle="modal" data-target="#bonding-request-modal" style="color: #57b6e4;font-size: 28px;">CLICK HERE TO VIEW</a>
+                </div>
+              </div>
+            </div> -->
+            <div class="row text-center">
+              <div class="col-md-12">
+                <h1>No Bonding Requests Found.</h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -423,7 +415,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
           <span style="color: #ffff;font-size: 18px">By Moving this Bond Request to your Deal Flow Pipeline you are indicating to the Business Owner that you are actively evaluating this Bond Request and will provide a formal decision on whether you will proceed within 48 hours. </span>
         </div>
         <div class="col-md-4 text-center">
-          <button class="btn btn-agree" style="font-size: 15px">YES I AGREE</button>
+          <a class="btn btn-agree"  onclick="bonding_request_submit()" style="font-size: 15px">YES I AGREE</a>
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center">
@@ -433,7 +425,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     </div>
   </div>
 </div>
-<div class="row" style="display: none;">
+<div class="row" style="display: none;" id="reload_pipeline">
   <div class="col-md-12" align="right">
     <button class="btn btn-lg btn-md btn-refresh" style="background-color:  #4F81BC;border-radius: 15px" onclick="location.reload()" style="margin:1%;">NEW DEAL MOVED TO YOUR PIPELINE <br><span style="color: #d0ea7d">CLICK HERE TO REFRESH
 </span></button>
@@ -451,5 +443,20 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
   function confirm_br_modal( ){
     $('#bonding_request_confirm_modal').modal('show');
     $('#bonding-request-modal').modal('hide');
+  }
+  $('#bonding_requesta').click(function(){
+    if ($('#bonding_requesti').hasClass('ace-icon fa fa-chevron-up')) {
+      $('#bonding_requesti').removeClass('ace-icon fa fa-chevron-up');
+      $('#bonding_requesti').addClass('ace-icon fa fa-chevron-down');
+    }else{
+      $('#bonding_requesti').removeClass('ace-icon fa fa-chevron-down');
+      $('#bonding_requesti').addClass('ace-icon fa fa-chevron-up');
+    }
+  });
+  function bonding_request_submit(){
+    $.post("includes/bonding_request.php").done(function(e){
+      $('#bonding_request_confirm_modal').modal('hide');
+      $('#reload_pipeline').show();
+    });
   }
 </script>
