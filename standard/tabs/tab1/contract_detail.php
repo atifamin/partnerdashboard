@@ -52,6 +52,13 @@
     
   </div>
   <div class="col-lg-4 col-xs-12" align="center">
-    <div class="div-cont-amount"> <span class="container">$<?php echo number_format($Tab1_Q1RA['award_amount'],0); ?></span> </div>
+    <div class="div-cont-amount">
+      <div class="row" style="background-color: #201b11; margin: unset;">
+        <div class="col-md-12">
+          <span style="color: #868574; font-size: 18px;">CONTRACT AMOUNT</span>
+        </div>
+      </div>
+      <span class="container">$<?php echo number_format($Tab1_Q1RA['award_amount'],0); ?></span>
+    </div>
     
   </div>
