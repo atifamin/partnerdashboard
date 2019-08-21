@@ -4,21 +4,6 @@ include("../../base_path.php");
 include("../../../config/config_main.php");
 include("../../../config/config_taskboard.php");
 $data = $_POST;
-// $data['auth_name'] = json_encode($_POST['auth_name']);
-// $data['auth_title'] = json_encode($_POST['auth_title']);
-// $data['auth_phone'] = json_encode($_POST['auth_phone']);
-// $data['auth_home_address'] = json_encode($_POST['auth_home_address']);
-// $data['auth_city'] = json_encode($_POST['auth_city']);
-// $data['auth_state'] = json_encode($_POST['auth_state']);
-// $data['auth_zipcode'] = json_encode($_POST['auth_zipcode']);
-// $data['auth_email'] = json_encode($_POST['auth_email']);
-// $data['auth_ssn'] = json_encode($_POST['auth_ssn']);
-// $data['auth_dob'] = json_encode($_POST['auth_dob']);
-// $data['auth_signature'] = json_encode($_POST['auth_signature']);
-// $data['auth_date'] = json_encode($_POST['auth_date']);
-// //$data['auth_assets_held_trust'] = json_encode($_POST['auth_assets_held_trust']);
-// $data['auth_assets_held_trust'] = json_encode(array($_POST['auth_assets_held_trust1'], $_POST['auth_assets_held_trust3'], $_POST['auth_assets_held_trust3']));
-
 
 $task_title = $_POST['company_name']." - New Deal";
 $task_funding_amount_requested = $_POST['funding_amount'];
@@ -45,7 +30,7 @@ $data['task_id'] = $LastTask['task_id'];
 
 
 
-$InsertQuery = "INSERT INTO user_application_form (
+$InsertQuery = "INSERT INTO user_fastfund_form1 (
     `task_id`,
     `user_id`,
     `company_name`,
