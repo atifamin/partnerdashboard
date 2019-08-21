@@ -37,7 +37,7 @@
   </div>
   <div class="col-md-3 text-center">
     <div class="mt-10 mb-10">
-      <button type="button" class="btn custom-btn-1 mt-10"><span class="text-white font-25">CLICK HERE<br>TO GET<br>STARTED</span></button>
+      <a href="javascript:;" onclick="showofferboxpopupSurety(2,'Premium Surety Partner')" type="button" class="btn custom-btn-1 mt-10"><span class="text-white font-25">CLICK HERE<br>TO GET<br>STARTED</span></a>
     </div>
   </div>
 </div>

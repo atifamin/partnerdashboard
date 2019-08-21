@@ -34,6 +34,7 @@ class Home extends CI_Controller {
 	    if ($this->sec->ck() == false) {
 	        $this->activation();
         } else {
+
             $board = $this->db->query("SELECT * FROM boards WHERE board_id
                                             IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
                                             ORDER BY board_default DESC LIMIT 1");
