@@ -346,6 +346,13 @@ function showofferboxpopup(offerid,partnername){
     $("#apply-load-modal").modal("show");
   });
 }
+
+function showofferboxpopupSurety(offerid,partnername){
+  $.post("../tabs/apply_loan_form_surety.php").done(function(e){
+    $("#modalArea").html(e);
+    $("#apply-load-modal").modal("show");
+  });
+}
 function showentireconid(contractID){
 	$("#contractid_"+contractID).html(contractID);
 }

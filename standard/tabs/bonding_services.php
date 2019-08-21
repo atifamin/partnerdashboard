@@ -150,7 +150,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
   <div class="col-md-4 text-center">
     <div class="mt-30"><span class="font-30 color-1">SURETY BONDING
       <!-- $<?php // echo number_format($row->offer_amount_min); ?> - $<?php // echo number_format($row->offer_amount_max); ?> --></span> </div>
-	<a href="javascript:;" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10" style="background-color: #642524;"><span class="text-white">REQUEST BONDING</span></a>
+	<a href="javascript:;" onclick="showofferboxpopupSurety(2,'Premium Surety Partner')" class="btn mb-10 mt-10" style="background-color: #642524;"><span class="text-white">REQUEST BONDING</span></a>
     <div class="vl-bonding-services"></div>
   </div>
   <div class="col-md-5 text-center" style="padding: 1px;">
@@ -168,7 +168,7 @@ $Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
   </div>
   <div class="col-md-3 text-center">
     <div class="mt-10 mb-10">
-      <button type="button" class="btn custom-btn-1 mt-10"><span class="text-white font-25">CLICK HERE<br>TO GET<br>STARTED</span></button>
+      <a href="javascript:;" type="button" onclick="showofferboxpopupSurety(2,'Premium Surety Partner')" class="btn custom-btn-1 mt-10"><span class="text-white font-25">CLICK HERE<br>TO GET<br>STARTED</span></a>
     </div>
   </div>
 </div>
