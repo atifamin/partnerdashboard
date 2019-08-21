@@ -74,7 +74,6 @@ class Sec extends CI_Model
 
     public function get_task_content($task_id){
         $this->assignColorToFirms();
-
         $TD = $this->db->where("task_id", $task_id)->get("tasks");
         $task_detail = "";
         $user_detail = "";
@@ -88,7 +87,7 @@ class Sec extends CI_Model
         if($UD->num_rows()>0)
             $user_detail = $UD->row();
 
-        $DUAF = $this->partnerDB->where("task_id", $task_id)->get("user_application_form");
+        $DUAF = $this->partnerDB->where("task_id", $task_id)->get("user_fastfund_form1");
         if($DUAF->num_rows()>0)
             $dashboard_user_app_form = $DUAF->row();
         
@@ -143,7 +142,7 @@ class Sec extends CI_Model
     }
 
     public function check_form_exists($task_id){
-        $result = $this->partnerDB->where("task_id", $task_id)->get("user_application_form");
+        $result = $this->partnerDB->where("task_id", $task_id)->get("user_fastfund_form1");
         return $result->num_rows();
     }
 

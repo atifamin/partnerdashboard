@@ -113,7 +113,7 @@ class Home extends CI_Controller {
             list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
             $data['containers'][$key]['container_rgb'] = "$r,$g,$b";
 
-            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_status = 'complete' ORDER BY task_order ASC")->result_array();
+            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = 'Financing' ORDER BY task_order ASC")->result_array();
         }
 
         // Check resume work
@@ -154,24 +154,6 @@ class Home extends CI_Controller {
                                         ->where('ga.grant_access_expiration_date >', date('Y-m-d'))
                                         ->get()->result();
 
-        // if(count($data['tasks'])>0){
-        //     echo "<pre>";
-        //     foreach($data['tasks'] as  $key1=>$val1){
-        //         if(!isset($val1[0])){
-        //             unset($data['tasks'][$key1]);
-        //         }
-        //         if(isset($val1[0])){
-        //             $task1 = $val1[0];
-        //             $result = $this->partnerDB->where("task_id", $task1['task_id'])->get("user_application_form");
-        //             if($result->num_rows()<=0){
-        //                 unset($data['tasks'][$key1]);
-        //             }
-        //         }
-        //     }
-        // }
-        // print_r($data);
-        // exit;
-        //echo "<pre>"; print_r(count($data['tasks'])); exit;
         if ($this->sec->ck() == false) {
             $this->activation();
         } else {
