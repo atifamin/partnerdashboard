@@ -5,15 +5,11 @@
   background-color: #474628;
   height: 180px;
 }
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  color: #ACA588;
-  font-size: 50px;
+.div-cont-amount-bonding-services {
+  background-color: #49442b;
+  height: 180px;
 }
-.contact_amount {
+.container {
   position: absolute;
   top: 50%;
   left: 50%;
