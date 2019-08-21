@@ -34,6 +34,7 @@ class Home extends CI_Controller {
 	    if ($this->sec->ck() == false) {
 	        $this->activation();
         } else {
+
             $board = $this->db->query("SELECT * FROM boards WHERE board_id
                                             IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
                                             ORDER BY board_default DESC LIMIT 1");
@@ -113,7 +114,7 @@ class Home extends CI_Controller {
             list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
             $data['containers'][$key]['container_rgb'] = "$r,$g,$b";
 
-            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = 'Financing' ORDER BY task_order ASC")->result_array();
+            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = 'financing' ORDER BY task_order ASC")->result_array();
         }
 
         // Check resume work

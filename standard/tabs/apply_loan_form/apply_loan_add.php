@@ -4,18 +4,18 @@ include("../../base_path.php");
 include("../../../config/config_main.php");
 include("../../../config/config_taskboard.php");
 $data = $_POST;
-if ($data['task_type'] == "financing") {
 
 $task_title = $_POST['company_name']." - New Deal";
 $task_funding_amount_requested = $_POST['funding_amount'];
 $task_todo = 0;
 $task_container = 33;
 $task_user = 1;
+$task_type = $data['task_type'];
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, pkanban_url."ajax/save_task");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS,
-            "task_title=".$task_title."&task_funding_amount_requested=".$task_funding_amount_requested."&task_todo=".$task_todo."&task_container=".$task_container."&task_user=".$task_user."");
+            "task_title=".$task_title."&task_funding_amount_requested=".$task_funding_amount_requested."&task_todo=".$task_todo."&task_container=".$task_container."&task_user=".$task_user."&task_type=".$task_type."");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $server_output = curl_exec($ch);
 
@@ -28,7 +28,8 @@ $QueryRun = mysqli_query($con_TaskBoard,$Query);
 $LastTask = mysqli_fetch_assoc($QueryRun);
 
 $data['task_id'] = $LastTask['task_id'];
-
+if ($data['task_type'] == "financing") {
+    
 $InsertQuery = "INSERT INTO user_fastfund_form1 (
     `task_id`,
     `user_id`,
