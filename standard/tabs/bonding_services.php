@@ -1,20 +1,5 @@
-<div class="row">
-  <div class="col-lg-8 col-xs-12">
-    <div class="box"> 
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover modal-financing-table contract_details_table" id="">
-
-        </table>
-      </div>
-      <!-- /.box-body --> 
-    </div>
-    <!-- /.box --> 
-    
-  </div>
-  <div class="col-lg-4 col-xs-12" align="center">
-    <div class="div-cont-amount"> <span class="container">$757,000</span> </div>
-
-  </div>
+<div class="row contract_details_table">
+        
 </div>
 <div class="row cus-border mt-10">
   <div class="col-md-4 text-center">

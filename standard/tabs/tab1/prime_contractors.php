@@ -2,9 +2,9 @@
 <?php
 $Tab1_Q1 = 'SELECT *
 			FROM prime_contractor pc
-			JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-			WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
-			GROUP BY pc.contract_id ORDER BY pc.contract_id DESC';
+			WHERE pc.dbe_firm_id = '.$FirmID.'
+			ORDER BY pc.contract_id DESC';
+			
 $Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
 if(mysqli_num_rows($Tab1_Q1R)>0){
 	$Index = 1;

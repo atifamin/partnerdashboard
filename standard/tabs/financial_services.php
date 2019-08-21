@@ -19,40 +19,8 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	
 </style>
 
-<div class="row">
-  <div class="col-lg-8 col-xs-12">
-    <div class="box"> 
-      <!-- <div class="box-header">
-		 <h3 class="box-title">Responsive Hover Table</h3>
-
-		 <div class="box-tools">
-		   <div class="input-group input-group-sm" style="width: 150px;">
-			 <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-			 <div class="input-group-btn">
-			   <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-			 </div>
-		   </div>
-		 </div>
-	   </div> --> 
-      <!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover modal-financing-table contract_details_table" id="">
-
-        </table>
-      </div>
-      <!-- /.box-body --> 
-    </div>
-    <!-- /.box --> 
-    
-  </div>
-  <div class="col-lg-4 col-xs-12" align="center">
-    <div class="div-cont-amount"> <span class="container">$757,000</span> </div>
-    <!-- <video width="auto" controls style="width:100%">
-			<source src="<?php //echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-			Your browser does not support HTML5 video.
-		</video> --> 
-  </div>
+<div class="row contract_details_table">
+        
 </div>
 <?php } 
 if($_FILE_NAME != "contract_details.php"){

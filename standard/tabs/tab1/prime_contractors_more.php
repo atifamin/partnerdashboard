@@ -4,9 +4,8 @@ $chevron = "";
 $count = 1;
 $Tab1_Q1 = 'SELECT *
 			FROM prime_contractor pc
-			JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-			WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
-			GROUP BY pc.contract_id ORDER BY pc.contract_id DESC';
+			WHERE pc.dbe_firm_id = '.$FirmID.'
+			ORDER BY pc.contract_id DESC';
 $Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
 //echo "<pre>"; print_r(mysqli_fetch_array($Tab1_Q1R));
 if(mysqli_num_rows($Tab1_Q1R)>0){ 
@@ -76,6 +75,11 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 							<td style="width:85px;"><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Contract <br> Amount</p></td>
 							<td style="width:85px;"><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
 							<td style="width:35%;"><a type="button" data-toggle="modal" data-target="#modal-default"><img src="<?php echo base_url;  ?>assets/img/get_financing.PNG" style="cursor: pointer;width: 100%;height: 100%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancing(<?php echo $Tab1_Q1D['contract_id']; ?>)"></a></td>
+							</tr>
+							<tr>
+							<td style="width:85px;"><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Bonding <br> Requirement</p></td>
+							<td style="width:85px;"><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
+							<td style="width:35%;"><a type="button" data-toggle="modal" data-target="#modal-bonding-services"><img src="<?php echo base_url;  ?>assets/img/bonding_services.PNG" style="cursor: pointer;width: 100%;height: 50%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancing(<?php echo $Tab1_Q1D['contract_id']; ?>);" ></a></td>
 							</tr>
 						</tbody>
 					</table>

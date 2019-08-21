@@ -1,8 +1,7 @@
 <?php
 $Tab1_Q1 = 'SELECT *
 			FROM prime_contractor pc
-			JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-			WHERE pc.contract_number = sc.contract_number AND sc.dbe_firm_id = '.$FirmID.'
+			WHERE pc.dbe_firm_id = '.$FirmID.'
 			ORDER BY pc.contract_id DESC';
 $Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
 if(mysqli_num_rows($Tab1_Q1R)>0){
@@ -28,7 +27,7 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 
 						<tbody>
 							<tr>
-								<td><strong>Contractsbf,nafNumber</strong></td>
+								<td><strong>Contract Number</strong></td>
 								<td><b class="dark-blue"><?php echo $Tab1_Q1D['contract_number']; ?></b></td> 
 							</tr>
 							<tr>
@@ -48,9 +47,14 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 								<td><b class="dark-blue"><?php echo date('M d, Y',strtotime($Tab1_Q1D['award_date'])); ?></b></td> 
 							</tr> 
 							<tr>
-							<td><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Contract Amount</p></td>
+							<td><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Contract <br>Amount</p></td>
 							<td><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
 							<td><a type="button" data-toggle="modal" data-target="#modal-default1"><img src="<?php echo base_url;  ?>assets/img/get_financing.PNG" style="cursor: pointer;width: 100%;height: 100%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancing(<?php echo $Tab1_Q1D['contract_id']; ?>);"></a></td>
+							</tr>
+							<tr>
+							<td style="width:85px;"><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Bonding <br> Requirement</p></td>
+							<td style="width:85px;"><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($Tab1_Q1D['award_amount'],0); ?></p></td>
+							<td style="width:35%;"><a type="button" data-toggle="modal" data-target="#modal-bonding-services-sub-contractors-only"><img src="<?php echo base_url;  ?>assets/img/bonding_services.PNG" style="cursor: pointer;width: 100%;height: 50%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancing(<?php echo $Tab1_Q1D['contract_id']; ?>);" ></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -124,6 +128,22 @@ if($TotalRows>=2){
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+<div class="modal fade modal-scroll" id="modal-bonding-services-sub-contractors-only">
+  	<div class="modal-dialog" style="width:80%;">
+        <div class="modal-content">
+          <div class="modal-header bg-custom-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title text-white">CALIFORNIA CERTIFIED BUSINESS SURETY BONDING SERVICES</h3>
+          </div>
+          <div class="modal-body">
+            <?php include "./bonding_services.php"; ?>
+          </div>
+          <div class="modal-footer" >
+          </div>
+        </div>
+  	</div>
+</div>
 
 <script type="text/javascript">
 	// function getFinancing(id) {
