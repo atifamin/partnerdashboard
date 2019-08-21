@@ -62,6 +62,14 @@
   margin-left: -3px;
   top: 0px;
 }
+.vl-bonding-services {
+  border-left: 6px solid #31859c;
+  height: 139px;
+  position: absolute;
+  left: 100%;
+  margin-left: -3px;
+  top: 10px;
+}
 .cus-border {
   border: 2px solid; 
   border-color: #93ccdd;
@@ -93,6 +101,10 @@
    width: 130px; 
    height: 45px;
 }
+.custom-btn-1 {
+   background-color: #31859d;
+   border-radius: 14px;
+}
 .font-48 {
   font-size: 48px;
 }
@@ -104,6 +116,9 @@
 }
 .font-20 {
   font-size: 20px;
+}
+.font-17 {
+  font-size: 17px;
 }
 .font-13 {
   font-size: 13px;
