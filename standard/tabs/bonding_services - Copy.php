@@ -19,7 +19,7 @@
 <div class="row cus-border mt-10">
   <div class="col-md-4 text-center">
     <div class="mt-30"><span class="font-30 color-1">SURETY BONDING</span> </div>
-  <a href="javascript:;" onclick="showofferboxpopupSurety(2,'Premium Surety Partner')" class="btn mb-10 mt-10" style="background-color: #642524;"><span class="text-white">REQUEST BONDING</span></a>
+  <a href="javascript:;" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-10" style="background-color: #642524;"><span class="text-white">REQUEST BONDING</span></a>
     <div class="vl-bonding-services"></div>
   </div>
   <div class="col-md-5 text-center" style="padding: 1px;">
