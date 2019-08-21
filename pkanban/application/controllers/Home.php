@@ -113,7 +113,7 @@ class Home extends CI_Controller {
             list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
             $data['containers'][$key]['container_rgb'] = "$r,$g,$b";
 
-            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = 'Financing' ORDER BY task_order ASC")->result_array();
+            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = 'financing' ORDER BY task_order ASC")->result_array();
         }
 
         // Check resume work
