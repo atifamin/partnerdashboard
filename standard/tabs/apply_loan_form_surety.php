@@ -105,7 +105,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
       <div class="modal-body">
         <h1 style="text-align:center;"><strong>Surety Bonding Basic Application Form</strong></h1>
         <form action="apply_loan_form/apply_loan_add.php" id="myForm" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
-          <input type="hidden" name="task_type" value="bonding">
+          <input type="hidden" name="task_type" value="Surety Bonding">
           <!-- SmartWizard html -->
           <div id="smartwizard">
             <ul>

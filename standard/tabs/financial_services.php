@@ -10,9 +10,6 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	$VIDEO_R = mysqli_query($con_AWT,$VIDEO_QUERY) or die(mysqli_error()); 
 	$VIDEO_D =  mysqli_fetch_assoc($VIDEO_R);
 
-	//echo "<pre>";print_r($Tab1_Q1D);
-
-
 	?>
 
 <style type="text/css">

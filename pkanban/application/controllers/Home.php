@@ -93,6 +93,16 @@ class Home extends CI_Controller {
 
     public function board($board_id) {
         $user_id = $this->session->userdata('user_session')['user_id'];
+        $partner_id = $this->session->userdata('user_session')['partner_id'];
+
+        $partnerDetail = $this->partnerDB->where("partner_id", $partner_id)->get("partner")->row();
+
+        $partner_type = $partnerDetail->partner_service_type;
+        // if($partner_type=="Surety Bonding"){
+        //     $partner_type = "Bonding";
+        // }
+        //print_r($partner_type); exit;
+
         $data = array();
         $check_permission = $this->db->query("SELECT * FROM boards WHERE board_id
                                             IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
@@ -114,7 +124,8 @@ class Home extends CI_Controller {
             list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
             $data['containers'][$key]['container_rgb'] = "$r,$g,$b";
 
-            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = 'financing' ORDER BY task_order ASC")->result_array();
+            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' ORDER BY task_order ASC")->result_array();
+            //print_r($this->db->last_query()); exit;
         }
 
         // Check resume work
@@ -154,7 +165,15 @@ class Home extends CI_Controller {
                                         ->where('ga.grant_access_user_id' , $user_id)
                                         ->where('ga.grant_access_expiration_date >', date('Y-m-d'))
                                         ->get()->result();
+        
 
+        $data['partner_type'] = $partner_type;
+
+         $data['table_name'] = "user_fastfund_form1";
+        if($partner_type=="Surety Bonding")
+            $data['table_name'] = "user_suretybond_form1";
+
+        // echo "<pre>"; print_r($data['tasks']); exit;
         if ($this->sec->ck() == false) {
             $this->activation();
         } else {

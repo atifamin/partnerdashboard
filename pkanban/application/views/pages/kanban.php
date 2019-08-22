@@ -132,13 +132,13 @@
       <?php endif; ?>
     </div>
     <?php foreach ($data['tasks'][$container['container_id']] as $task):
-      $checkIfFormExists = $this->sec->check_form_exists($task['task_id']);
+      $checkIfFormExists = $this->sec->check_form_exists($task['task_id'], $data["table_name"]);
       if($checkIfFormExists>0){
     ?>
     <?php
     $this->load->model("Sec");
 
-    $DETAIL = $this->sec->get_task_content($task['task_id']);
+    $DETAIL = $this->sec->get_task_content($task['task_id'], $data["table_name"]);
     //echo "<pre>"; print_r($DETAIL['logo']);
     ?>
     <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>" onclick="assign_task_id(<?php echo $task['task_id']; ?>)">
