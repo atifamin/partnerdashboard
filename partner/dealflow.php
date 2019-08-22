@@ -253,7 +253,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
       <div class="modal-header" id="bonding-request-modal-header">
         <div class="row">
           <div class="col-md-2">
-            <div id="greencircle circle-style" data-percent="80" class="small green percircle animate gt50">
+            <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="margin: 7px 0 0 0;">
               <span>80%</span>
               <div class="slice">
                 <div class="bar" style="transform: rotate(288deg);">
