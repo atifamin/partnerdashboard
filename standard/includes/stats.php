@@ -46,7 +46,7 @@ if($totalFiles>0){
         <div id="greencircle" data-percent="<?php echo $percent; ?>" class="small green percircle animate gt50" style="background-color:unset;">
           <span><?php echo $percent; ?>%</span>
           <div class="slice">
-            <div class="bar" style="<?php if(($percent) == '100') { ?> transform: rotate(360deg); <?php } else { ?> transform: rotate(260deg); <?php } ?>">
+            <div class="bar">
             </div>
             <div class="fill">
             </div>
@@ -304,4 +304,4 @@ if($totalFiles>0){
     
   </div>
 </div>
-<script type="text/javascript" src="../bower_components/percircle/dist/js/percircle.js"></script>
+<script src="../bower_components/percircle/dist/js/percircle.js"></script>
