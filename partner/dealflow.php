@@ -147,7 +147,7 @@
         </div>                         
   </div> 
 <?php 
-$query5 = "SELECT * from tasks where task_type = 'Bonding'";
+$query5 = "SELECT * from tasks where task_type = 'Surety Bonding'";
 $res5 = mysqli_query($con_TaskBoard,$query5);
 ?>
 <div class="widget-box transparent">
