@@ -101,7 +101,7 @@ class Home extends CI_Controller {
         // if($partner_type=="Surety Bonding"){
         //     $partner_type = "Bonding";
         // }
-        //print_r($partner_type); exit;
+        
 
         $data = array();
         $check_permission = $this->db->query("SELECT * FROM boards WHERE board_id
@@ -123,9 +123,12 @@ class Home extends CI_Controller {
             $hex = unserialize(CONTAINER_COLORS)[$container['container_color']];
             list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
             $data['containers'][$key]['container_rgb'] = "$r,$g,$b";
-
-            $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' ORDER BY task_order ASC")->result_array();
-            //print_r($this->db->last_query()); exit;
+            if ($partner_type == "Finance") {
+              $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' ORDER BY task_order ASC")->result_array();  
+            }else{
+                $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' AND task_status = 'complete' ORDER BY task_order ASC")->result_array(); 
+            }
+            
         }
 
         // Check resume work
