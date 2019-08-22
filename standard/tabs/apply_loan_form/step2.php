@@ -23,11 +23,11 @@
     <label for="year_established">How Old Is Your Business:</label>
     <select class="form-control" name="year_established" id="year_established" required>
       <option value="<?php echo $userDetail->year_established; ?>" selected hidden><?php echo $userDetail->year_established; ?></option>
-      <option value="Less Than 2 Years">Less Than 2 Years</option>
-      <option value="3-5 Years">3-5 Years</option>
-      <option value="5-10 Years">5-10 Years</option>
-      <option value="10-20 Years">10-20 Years</option>
-      <option value="20+ Years">20+ Years</option>
+      <option value="2">Less Than 2 Years</option>
+      <option value="3-5">3-5 Years</option>
+      <option value="5-10">5-10 Years</option>
+      <option value="10-20">10-20 Years</option>
+      <option value="20+">20+ Years</option>
     </select>
     <div class="help-block with-errors"></div>
   </div>
