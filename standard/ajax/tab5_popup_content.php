@@ -4,7 +4,7 @@ $page_id = $_POST['suppserv_id'];
 
 
 $Q1 = 'SELECT * FROM suppserv WHERE `page_id` ='.$page_id.'';
-$Q1R = mysqli_query($con_PRMSUB,$Q1) or die(mysqli_error()); 
+$Q1R = mysqli_query($con_MAIN,$Q1) or die(mysqli_error()); 
 	$suppserv = mysqli_fetch_assoc($Q1R);
 ?> 
 <div class="row">
