@@ -45,12 +45,7 @@ if($totalFiles>0){
 
         <div id="greencircle" data-percent="<?php echo $percent; ?>" class="small green percircle animate gt50" style="background-color:unset;">
           <span><?php echo $percent; ?>%</span>
-          <div class="slice">
-            <div class="bar">
-            </div>
-            <div class="fill">
-            </div>
-          </div>
+         
         </div>
       </div>
       <!-- <div class="col-md-12" style="background-color:#F2F2F2;padding:12% 0;">
@@ -301,7 +296,9 @@ if($totalFiles>0){
           </tbody>
         </table>
       </div>
-    
   </div>
 </div>
 <script src="../bower_components/percircle/dist/js/percircle.js"></script>
+<script type="text/javascript">
+  $(function(){$("[id$='circle']").percircle();});
+</script>
