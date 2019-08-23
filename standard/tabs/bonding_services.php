@@ -47,7 +47,7 @@
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-    <button type="button" class="btn btn-block btn-lg bg-button mt-10" onclick="open_video_modal_bonding_services()">
+    <button type="button" class="btn btn-block btn-lg bg-button mt-10 mb-10" onclick="open_video_modal_bonding_services()">
       <span class="text-white font-13">California Certified Business FastFund</span>
       <br>
       <i class="fab fa-youtube mt-5 font-48"></i>
