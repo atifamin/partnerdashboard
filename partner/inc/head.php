@@ -1,9 +1,6 @@
 <?php session_start(); ?>
-<?php include "config/config_awt.php"; ?>
-<?php include "config/config_main.php"; ?>
-<?php include "config/config_prmsub.php"; ?>
-<?php include "config/config_scpr.php"; ?>
-<?php include "config/config_taskboard.php"; ?>
+<?php include "../../config/config_main.php"; ?>
+<?php include "../../config/config_taskboard.php"; ?>
 <?php include "functions/functions.php"; ?>
 
 <?php
