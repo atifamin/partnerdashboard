@@ -147,7 +147,7 @@
         </div>                         
   </div> 
 <?php 
-$query5 = "SELECT * from tasks where task_type = 'Surety Bonding' AND task_status = 'pending' AND task_date = CURDATE()";
+$query5 = "SELECT * from tasks where task_type = 'Surety Bonding' AND task_status = 'pending'";
 $res5 = mysqli_query($con_TaskBoard,$query5);
 //echo "<pre>"; print_r(mysqli_fetch_array($res5)); exit;
 ?>
