@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../config/config_main.php";
+include "../../config/config_main.php";
 $ConfirmationCode = $_POST['confirmationcode']; 
 
 $Query = "SELECT * FROM `onboard_user` WHERE `user_confirmation_code`='".$ConfirmationCode."'"; 

@@ -1,5 +1,5 @@
 <?php 
-include "../config/config_main.php";
+include "../../config/config_main.php";
 $partnerid = $_POST['partnerid'];
 
 $Q1 = 'SELECT `partner_description` FROM `partner` WHERE `partner_id`='.$partnerid.'';
