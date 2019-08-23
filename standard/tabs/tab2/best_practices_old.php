@@ -57,7 +57,7 @@ ul.paging li a.active{background:#95B3D7;}
 <div class="widget-body">
 			<?php
 				$Tab2_Q4 = 'SELECT `cfm_id`,`title`,`content_code` FROM `cfm` WHERE `type`="Best Practices"';
-				$Tab2_Q4R = mysqli_query($con_PRMSUB,$Tab2_Q4) or die(mysqli_error());
+				$Tab2_Q4R = mysqli_query($con_MAIN,$Tab2_Q4) or die(mysqli_error());
 				$Count = mysqli_num_rows($Tab2_Q4R);
 			?>
 				<div class="widget-main no-padding">
@@ -69,7 +69,7 @@ ul.paging li a.active{background:#95B3D7;}
 		
 				<?php
 					$Tab2_Q5 = 'SELECT `cfm_id`,`content_code` FROM `cfm` WHERE `type`="Best Practices" LIMIT 1';
-					$Tab2_Q5R = mysqli_query($con_PRMSUB,$Tab2_Q5) or die(mysqli_error());
+					$Tab2_Q5R = mysqli_query($con_MAIN,$Tab2_Q5) or die(mysqli_error());
 					$Tab2_Index5 = 1;
 					$Tab2_Q5D = mysqli_fetch_assoc($Tab2_Q5R);
 					$ContentCode = $Tab2_Q5D['content_code'];
@@ -94,7 +94,7 @@ ul.paging li a.active{background:#95B3D7;}
 				<!--<ul class="paging">
 					<?php
 						$Tab2_Q4 = 'SELECT `cfm_id` FROM `cfm` WHERE `type`="Best Practices"';
-						$Tab2_Q4R = mysqli_query($con_PRMSUB,$Tab2_Q4) or die(mysqli_error());
+						$Tab2_Q4R = mysqli_query($con_MAIN,$Tab2_Q4) or die(mysqli_error());
 						$Count = mysqli_num_rows($Tab2_Q4R); 
 						if($Count>0){
 							$Pagination = 1; 
@@ -113,7 +113,7 @@ ul.paging li a.active{background:#95B3D7;}
 				</ul>-->
 				<?php
 					$Tab2_Q4 = 'SELECT `cfm_id` FROM `cfm` WHERE `type`="Best Practices"';
-					$Tab2_Q4R = mysqli_query($con_PRMSUB,$Tab2_Q4) or die(mysqli_error());
+					$Tab2_Q4R = mysqli_query($con_MAIN,$Tab2_Q4) or die(mysqli_error());
 					$Count = mysqli_num_rows($Tab2_Q4R); 
 					if($Count>0){
 					echo paginate_three('', 1, $Count, 1);
@@ -127,7 +127,7 @@ ul.paging li a.active{background:#95B3D7;}
 				<div id="bestpractice_response_content">
 				<?php 
 					$Tab2_Q5 = 'SELECT * FROM `cfm` WHERE `type`="Best Practices" LIMIT 1';
-					$Tab2_Q5R = mysqli_query($con_PRMSUB,$Tab2_Q5) or die(mysqli_error());
+					$Tab2_Q5R = mysqli_query($con_MAIN,$Tab2_Q5) or die(mysqli_error());
 					$Tab2_Index5 = 1;
 					while($Tab2_Q5D = mysqli_fetch_assoc($Tab2_Q5R)){
 				?>

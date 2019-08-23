@@ -3,7 +3,7 @@ $Tab1_Q1 = 'SELECT *
 			FROM prime_contractor pc
 			JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
 			WHERE pc.contract_number = sc.contract_number AND sc.dbe_firm_id = '.$FirmID.'';
-$Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
+$Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
 if(mysqli_num_rows($Tab1_Q1R)>0){
 	while($Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R)){
 
