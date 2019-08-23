@@ -2,7 +2,7 @@
 <?php 
     $query8 = "SELECT u.business_index_rating,s.`Business Unit Name` as depart_name, s.`Contract Type` as contract_type, s.`PO Total` as po_total, us.type_of_business, us.year_established,us.task_id
     FROM user as u, scprs_main as s, user_suretybond_form1 as us 
-    WHERE u.user_id = us.user_id AND us.scprs_record_id = s.scprs_record_id AND us.task_id IN ('".$_POST['task_id']."')";
+    WHERE u.user_id = us.user_id AND us.`supplier ID` = s.scprs_record_id AND us.task_id IN ('".$_POST['task_id']."')";
     $res8 = mysqli_query($con_MAIN,$query8);
     $bonding_request_detail = mysqli_fetch_object($res8);
 ?>

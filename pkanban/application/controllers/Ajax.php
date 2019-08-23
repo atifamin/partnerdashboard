@@ -465,6 +465,7 @@ class Ajax extends CI_Controller
             unset($post['task_todo']);
             $post['task_user'] = $post['task_user'];
             $post['task_type'] = $post['task_type'];
+            // $post['task_date'] = date('Y-m-d');
             $post['task_status'] = 'pending';
 			if($this->session->userdata('user_session')){
             	$post['task_user'] = $this->session->userdata('user_session')['user_id'];
