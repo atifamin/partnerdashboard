@@ -2,14 +2,14 @@
 session_start();
 $UserID 			 = $_SESSION['user_id'];
 $PartnerID			 = $_SESSION['partner_id']; 
-include "../config/config_prmsub.php";
+include "../../config/config_main.php";
 $OfferBoxID = $_POST['offer_box_id'];
 $PartnerID = $_POST['partner_id']; 
 $Products = 'SELECT po.*, fin.*, ob.* FROM partner_offer po
 LEFT JOIN offer_box ob ON ob.partner_offer_id = po.partner_offer_id
 LEFT JOIN finserv fin ON fin.offer_id = po.partner_offer_id
 WHERE po.partner_id = '.$PartnerID.' AND fin.partner_id = '.$PartnerID.' AND ob.offer_box_id = '.$OfferBoxID.'';
-$ProductsR = mysqli_query($con_PRMSUB,$Products) or die(mysqli_error());
+$ProductsR = mysqli_query($con_MAIN,$Products) or die(mysqli_error());
 $Pro = mysqli_fetch_assoc($ProductsR);
 ?>
 <form id="updateofferform">

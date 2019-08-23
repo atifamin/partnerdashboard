@@ -1,5 +1,5 @@
 											<?php
-											include "../config/config_prmsub.php";
+											include "../../config/config_main.php";
 											include "../functions/functions.php";
 											 ?> 
 											<?php 
@@ -19,7 +19,7 @@
 												
 												
 												$Tab2_Q5 = 'SELECT * FROM `bidwin` WHERE `type`="Best Practices" '.$Limit.'';
-												$Tab2_Q5R = mysqli_query($con_PRMSUB,$Tab2_Q5) or die(mysqli_error());
+												$Tab2_Q5R = mysqli_query($con_MAIN,$Tab2_Q5) or die(mysqli_error());
 												$Tab2_Index5 = 1;
 												while($Tab2_Q5D = mysqli_fetch_assoc($Tab2_Q5R)){
 											?>

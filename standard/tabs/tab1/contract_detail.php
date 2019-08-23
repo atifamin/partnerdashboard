@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 
-<?php include("../../config/config_main.php"); ?> 
+<?php include("../../../config/config_main.php"); ?> 
 
 <?php 
 

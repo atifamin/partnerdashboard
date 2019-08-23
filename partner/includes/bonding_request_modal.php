@@ -1,4 +1,4 @@
-<?php include "../config/config_main.php"; ?>
+<?php include "../../config/config_main.php"; ?>
 <?php 
     $query8 = "SELECT u.business_index_rating,s.`Business Unit Name` as depart_name, s.`Contract Type` as contract_type, s.`PO Total` as po_total, us.type_of_business, us.year_established,us.task_id
     FROM user as u, scprs_main as s, user_suretybond_form1 as us 
