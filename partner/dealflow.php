@@ -147,8 +147,9 @@
         </div>                         
   </div> 
 <?php 
-$query5 = "SELECT * from tasks where task_type = 'Surety Bonding' and task_status = 'pending'";
+$query5 = "SELECT * from tasks where task_type = 'Surety Bonding' AND task_status = 'pending' AND task_date = CURDATE()";
 $res5 = mysqli_query($con_TaskBoard,$query5);
+//echo "<pre>"; print_r(mysqli_fetch_array($res5)); exit;
 ?>
 <div class="widget-box transparent">
   <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
@@ -288,7 +289,10 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
 </div>
 <?php include "inc/footer.php"; ?>
 <script type="text/javascript" src="assets/bower_components/percircle/dist/js/percircle.js"></script>
+
 <script type="text/javascript">
+$(function(){$("[id$='circle']").percircle();});
+
   function bonding_request_modal(task_id){
     $.post("includes/bonding_request_modal.php",{task_id:task_id}).done(function(e){
       $('#bonding-request-modal_'+task_id+'').modal('show');
@@ -296,7 +300,6 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     });
     
   }
-
   $('#bonding_requesta').click(function(){
     if ($('#bonding_requesti').hasClass('ace-icon fa fa-chevron-up')) {
       $('#bonding_requesti').removeClass('ace-icon fa fa-chevron-up');

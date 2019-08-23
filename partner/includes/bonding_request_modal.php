@@ -9,7 +9,7 @@
 <div class="modal-header" id="bonding-request-modal-header">
   <div class="row">
     <div class="col-md-2">
-      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="margin: 7px 0 0 0;">
+      <div id="greencircle" data-percent="<?php  echo $bonding_request_detail->business_index_rating; ?>" class="small green percircle animate gt50" style="margin: 7px 0 0 0;">
         <span><?php  echo $bonding_request_detail->business_index_rating; ?>%</span>
         <div class="slice">
           <div class="bar" style="transform: rotate(288deg);">
@@ -92,8 +92,8 @@
     </div>
   </div>
 </div>
-
 <script type="text/javascript">
+
   function confirm_br_modal(task_id){
     $('#bonding_request_confirm_modal_'+task_id+'').modal('show');
     $('#bonding-request-modal_'+task_id+'').modal('hide');
