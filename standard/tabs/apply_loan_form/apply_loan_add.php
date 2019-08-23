@@ -28,7 +28,7 @@ $QueryRun = mysqli_query($con_TaskBoard,$Query);
 $LastTask = mysqli_fetch_assoc($QueryRun);
 
 $data['task_id'] = $LastTask['task_id'];
-if ($data['task_type'] == "financing") {
+if ($data['task_type'] == "Finance") {
     
 $InsertQuery = "INSERT INTO user_fastfund_form1 (
     `task_id`,
