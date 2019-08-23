@@ -4,7 +4,7 @@ $Tab1_Q1 = 'SELECT *
 			JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
 			WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
 			GROUP BY pc.contract_id ORDER BY pc.contract_id DESC LIMIT 7 OFFSET 1';
-$Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
+$Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
 if(mysqli_num_rows($Tab1_Q1R)>0){ 
 	while($Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R)){
 
@@ -61,7 +61,7 @@ $Tab1_Q1_S = 'SELECT *
 			JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
 			WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
 			AND pc.contract_number="'.$Tab1_Q1D['contract_number'].'"';
-$Tab1_Q1R_S = mysqli_query($con_AWT,$Tab1_Q1_S) or die(mysqli_error());
+$Tab1_Q1R_S = mysqli_query($con_MAIN,$Tab1_Q1_S) or die(mysqli_error());
 if(mysqli_num_rows($Tab1_Q1R_S)>0){ 
 
 ?>								

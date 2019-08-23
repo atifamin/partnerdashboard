@@ -50,18 +50,18 @@ function userBusinessName(){
 // global $UserdID, $UserCertID, $UserFirmID;
 
 function cashFlowLast($Year){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$UserFirmID = $_SESSION['dbe_firm_id'];
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0){
 		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
-		$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
 		$Q_Sub = 'SELECT  SUM(subcontractor_amount) AS TotalAmount from sub_contractor  WHERE dbe_firm_id= '.$UserFirmID.'';
-		$CheckSubR = mysqli_query($con_AWT,$Q_Sub);
+		$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 		$TotalSub = mysqli_fetch_assoc($CheckSubR);
 		$TotalSub1 = $TotalSub['TotalAmount'];
 		//echo $TotalPrimes1.' '.$TotalSub1;
@@ -72,18 +72,18 @@ function cashFlowLast($Year){
 	return $Total;
 }
 function totalContractRevenue($Year){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$UserFirmID = $_SESSION['dbe_firm_id'];
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
 		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
-		$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
 		$Q_Sub = 'SELECT  SUM(subcontractor_amount) AS TotalAmount from sub_contractor  WHERE dbe_firm_id= '.$UserFirmID.'';
-		$CheckSubR = mysqli_query($con_AWT,$Q_Sub);
+		$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 		$TotalSub = mysqli_fetch_assoc($CheckSubR);
 		$TotalSub1 = $TotalSub['TotalAmount'];
 		
@@ -99,12 +99,12 @@ function totalContractRevenue($Year){
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
 		// Get AWT Records
 		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
-		$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
 		$Q_Sub = 'SELECT SUM(subcontractor_amount) AS TotalAmount from sub_contractor  WHERE dbe_firm_id= '.$UserFirmID.'';
-		$CheckSubR = mysqli_query($con_AWT,$Q_Sub);
+		$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 		$TotalSub = mysqli_fetch_assoc($CheckSubR);
 		$TotalSub1 = $TotalSub['TotalAmount'];
 		
@@ -120,7 +120,7 @@ function totalContractRevenue($Year){
 		}elseif($UserCertificationID>0){
 			$Check_Scpr = 'SELECT SUM(`Award Total`) AS TotalAmount from scprs  WHERE `Certification ID`= '.$UserCertificationID.'';
 		}
-		$CheckScprR = mysqli_query($con_SCPR,$Check_Scpr);
+		$CheckScprR = mysqli_query($con_MAIN,$Check_Scpr);
 		$TotalScpr = mysqli_fetch_assoc($CheckScprR);
 		$TotalScprS = $TotalScpr['TotalAmount'];
 		
@@ -134,7 +134,7 @@ function totalContractRevenue($Year){
 		}elseif($UserCertificationID>0){
 			$Check_Scpr = 'SELECT SUM(`Award Total`) AS TotalAmount from scprs  WHERE `Certification ID`= '.$UserCertificationID.'';
 		}
-		$CheckScprR = mysqli_query($con_SCPR,$Check_Scpr);
+		$CheckScprR = mysqli_query($con_MAIN,$Check_Scpr);
 		//print_r($CheckScprR);exit;
 		$TotalScpr = mysqli_fetch_assoc($CheckScprR);
 		$TotalScprS = $TotalScpr['TotalAmount'];
@@ -148,21 +148,21 @@ function totalContractRevenue($Year){
 }
 
 function thisYearTotalPrimeContracts($Year){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$UserFirmID = $_SESSION['dbe_firm_id'];
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
 	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from prime_contractor  WHERE dbe_firm_id = '.$UserFirmID.' AND YEAR(award_date ) = '.$Year.''; 
-	$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalPrimes1 = $TotalPrimes['TotalPrimeContracts'];
 	return $TotalPrimes1;
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
 		// Get AWT Records
 		$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from prime_contractor  WHERE dbe_firm_id = '.$UserFirmID.' AND YEAR(award_date ) = '.$Year.''; 
-		$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalPrimeContracts'];
 		//////////////
@@ -172,7 +172,7 @@ function thisYearTotalPrimeContracts($Year){
 		}elseif($UserCertificationID>0){
 			$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Transaction Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$Year.'-01-01" AND "'.$Year.'-12-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 		} 
-		$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+		$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 		$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 		$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		
@@ -182,7 +182,7 @@ function thisYearTotalPrimeContracts($Year){
 			}elseif($UserCertificationID>0){
 				$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Entered Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$Year.'-01-01" AND "'.$Year.'-12-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 			}  
-			$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+			$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 			$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 			$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		}
@@ -196,7 +196,7 @@ function thisYearTotalPrimeContracts($Year){
 		}elseif($UserCertificationID>0){
 			$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Transaction Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$Year.'-01-01" AND "'.$Year.'-12-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 		}  
-		$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+		$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 		$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 		//print_r($TotalSCPRs);exit;
 		$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
@@ -206,7 +206,7 @@ function thisYearTotalPrimeContracts($Year){
 			}elseif($UserCertificationID>0){
 				$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Entered Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$Year.'-01-01" AND "'.$Year.'-12-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 			}  
-			$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+			$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 			$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 			$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		}
@@ -218,13 +218,13 @@ function thisYearTotalPrimeContracts($Year){
 	}
 }
 function thisYearTotalSubContracts($Year){
-	global $con_AWT;
+	global $con_MAIN;
 	$UserFirmID = $_SESSION['dbe_firm_id'];
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0){
 	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalSubContracts from sub_contractor  WHERE dbe_firm_id = '.$UserFirmID.''; 
-	$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalSubs1 = $TotalPrimes['TotalSubContracts'];
 	return $TotalSubs1;
@@ -234,20 +234,20 @@ function thisYearTotalSubContracts($Year){
 }
 
 function newBusinessOpp(){ 
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$UserFirmID = $_SESSION['dbe_firm_id'];
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
 	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalOops  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND MONTH(bid_open_date) = '.date('m').''; 
-	$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalSubs1 = $TotalPrimes['TotalOops'];
 	return $TotalSubs1;
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
 		// Get AWT Records
 		$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalOops  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND MONTH(bid_open_date) = '.date('m').''; 
-		$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalSubs1 = $TotalPrimes['TotalOops'];
 		//////////////
@@ -259,7 +259,7 @@ function newBusinessOpp(){
 		}elseif($UserCertificationID>0){
 			$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Transaction Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$CurrentYear.'-'.$CurrentMonth.'-1" AND "'.$CurrentYear.'-'.$CurrentMonth.'-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 		}
-		$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+		$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 		$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 		$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		if($TotalSCPRs1 == 0){
@@ -268,7 +268,7 @@ function newBusinessOpp(){
 			}elseif($UserCertificationID>0){
 				$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Entered Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$CurrentYear.'-'.$CurrentMonth.'-1" AND "'.$CurrentYear.'-'.$CurrentMonth.'-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 			}
-			$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+			$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 			$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 			$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		}
@@ -285,7 +285,7 @@ function newBusinessOpp(){
 		}elseif($UserCertificationID>0){
 			$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Transaction Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$CurrentYear.'-'.$CurrentMonth.'-1" AND "'.$CurrentYear.'-'.$CurrentMonth.'-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 		}
-		$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+		$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 		$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 		$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		
@@ -295,7 +295,7 @@ function newBusinessOpp(){
 			}elseif($UserCertificationID>0){
 				$Check_Scpr = 'SELECT SUM(TotalContracts) TotalContracts FROM ( SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.' AND DATE_FORMAT(STR_TO_DATE(`Entered Date`,"%m/%d/%Y"),"%Y-%m-%d") BETWEEN "'.$CurrentYear.'-'.$CurrentMonth.'-1" AND "'.$CurrentYear.'-'.$CurrentMonth.'-31" GROUP BY `Purchase Order ID`, `Certification ID`, `Vendor ID` ) AS TotalContracts';
 			}
-			$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+			$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 			$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 			$TotalSCPRs1 = $TotalSCPRs['TotalContracts'];
 		}
@@ -310,25 +310,25 @@ function newBusinessOpp(){
 
 
 function totalTransactions($PurchaseOrderId){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$Check_Scpr = 'SELECT  COUNT(`Contract ID`) AS totalTransactions from scprs  WHERE `Purchase Order ID`= "'.$PurchaseOrderId.'"';
-	$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+	$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 	$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 	$TotalSCPRsC = $TotalSCPRs['totalTransactions'];
 	return $TotalSCPRsC;
 }
 function totalTransaction_Amount($PurchaseOrderId){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$Check_Scpr = 'SELECT  SUM(`PO Line Total`) AS totalTransactionAmount from scprs  WHERE `Purchase Order ID`= "'.$PurchaseOrderId.'"';
-	$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+	$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 	$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 	$TotalSCPRsC = $TotalSCPRs['totalTransactionAmount'];
 	return $TotalSCPRsC;
 }
 function awardTotal($PurchaseOrderId){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$Check_Scpr = 'SELECT  SUM(`Award Total`) AS awardTotal from scprs  WHERE `Purchase Order ID`= "'.$PurchaseOrderId.'"';
-	$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+	$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 	$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 	$TotalSCPRsC = $TotalSCPRs['awardTotal'];
 	return $TotalSCPRsC;
@@ -449,7 +449,7 @@ if($adjacents<=0) $adjacents = 4;
 }
 ////////////////////////////////////////////
 function bidWonLost(){
-	global $con_AWT, $con_SCPR, $con_MAIN;
+	global $con_MAIN;
 	$UserFirmID = $_SESSION['dbe_firm_id'];
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
@@ -458,7 +458,7 @@ function bidWonLost(){
 	// Get Prime COntracts
 	if($UserFirmID>0){
 	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from prime_contractor  WHERE dbe_firm_id = '.$UserFirmID.''; 
-	$CheckPrimesR = mysqli_query($con_AWT,$Q_Prime);
+	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalPrimesC = $TotalPrimes['TotalPrimeContracts'];
 	}else{
@@ -470,7 +470,7 @@ function bidWonLost(){
 	// Get Sub Contracts
 	if($UserFirmID>0){
 	$Q_Sub = 'SELECT  COUNT(contract_number) AS TotalSubContracts from sub_contractor  WHERE dbe_firm_id = '.$UserFirmID.''; 
-	$CheckSubR = mysqli_query($con_AWT,$Q_Sub);
+	$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 	$TotalSubs = mysqli_fetch_assoc($CheckSubR);
 	$TotalSubsC = $TotalSubs['TotalSubContracts'];
 	}else{
@@ -486,7 +486,7 @@ function bidWonLost(){
 	}elseif($UserCertificationID>0){
 		$Check_Scpr = 'SELECT  COUNT(`Contract ID`) AS TotalContracts from scprs  WHERE `Certification ID`= '.$UserCertificationID.'';
 	}
-	$CheckSCPrR = mysqli_query($con_SCPR,$Check_Scpr);
+	$CheckSCPrR = mysqli_query($con_MAIN,$Check_Scpr);
 	$TotalSCPRs = mysqli_fetch_assoc($CheckSCPrR);
 	$TotalSCPRsC = $TotalSCPRs['TotalContracts'];
 	}else{

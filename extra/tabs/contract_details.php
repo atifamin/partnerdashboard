@@ -14,12 +14,12 @@ $FirmID 			= $_SESSION['dbe_firm_id'];
 if($FirmID > 0){
 	
 	$CheckPrimes = 'SELECT COUNT(*) AS PrimeContractors FROM `prime_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
-	$CheckPrimesR = mysqli_query($con_AWT,$CheckPrimes);
+	$CheckPrimesR = mysqli_query($con_MAIN,$CheckPrimes);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalPrimes = $TotalPrimes['PrimeContractors'];
 	
 	$CheckSub = 'SELECT COUNT(*) AS SubContractors FROM `sub_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
-	$CheckSubR = mysqli_query($con_AWT,$CheckSub);
+	$CheckSubR = mysqli_query($con_MAIN,$CheckSub);
 	$TotalSub = mysqli_fetch_assoc($CheckSubR);
 	$TotalSub = $TotalSub['SubContractors'];
 	 

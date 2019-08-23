@@ -12,7 +12,7 @@ foreach($xml->entry as $entry)
 }
 */
 //get custom active news
-require_once ('config/config_awt.php');
+require_once ('config/config_main.php');
 // if (!isset($db))
 // {
 // 	include_once ("class.db.php");
@@ -22,7 +22,7 @@ require_once ('config/config_awt.php');
 
 $sql = "SELECT * , DATE_FORMAT(N.published_at,'%b %d %Y') as news_date FROM news AS N WHERE N.active = 1";
 //$result = $db->prepare($sql);
-$result = mysqli_query($con_AWT,$sql) or die(mysqli_error()); 
+$result = mysqli_query($con_MAIN,$sql) or die(mysqli_error()); 
 //echo "<pre>";print_r($result);exit;
 //if ($result->execute())
 if(mysqli_num_rows($result)>0)

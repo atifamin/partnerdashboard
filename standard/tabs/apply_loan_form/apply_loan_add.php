@@ -126,7 +126,6 @@ $InsertQuery = "INSERT INTO user_fastfund_form1 (
     `largest_client2`,
     `largest_client3`,
     `largest_client4`
-    
 ) VALUES (
     '".$data['task_id']."',
     '".$_SESSION['user_id']."',

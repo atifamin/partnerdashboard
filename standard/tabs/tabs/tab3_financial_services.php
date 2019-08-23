@@ -20,7 +20,7 @@ $Tab3_Q1 = 'SELECT po.*, uos.offer_text, uos.offer_up_to_amount FROM partner_off
 			LEFT JOIN user_offer_status uos ON uos.partner_offer_id = po.partner_offer_id
 			WHERE ('.$OfferCodes.') AND offer_score = '.$UserOfferScore.' GROUP BY po.partner_offer_id ';
 			
-$Tab3_Q1R = mysqli_query($con_PRMSUB,$Tab3_Q1) or die(mysqli_error());
+$Tab3_Q1R = mysqli_query($con_MAIN,$Tab3_Q1) or die(mysqli_error());
 if(mysqli_num_rows($Tab3_Q1R)>0){
 	while($OfferData = mysqli_fetch_assoc($Tab3_Q1R)){
 		
