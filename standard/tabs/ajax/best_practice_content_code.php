@@ -17,7 +17,7 @@ include "../../functions/functions.php";
 	}
 	
 	$Tab2_Q5 = 'SELECT `cfm_id`,`content_code` FROM `cfm` WHERE `type`="Best Practices" '.$Limit.'';
-	$Tab2_Q5R = mysqli_query($con_PRMSUB,$Tab2_Q5) or die(mysqli_error());
+	$Tab2_Q5R = mysqli_query($con_MAIN,$Tab2_Q5) or die(mysqli_error());
 	$Tab2_Index5 = 1;
 	$Tab2_Q5D = mysqli_fetch_assoc($Tab2_Q5R);
 	$ContentCode = $Tab2_Q5D['content_code'];
@@ -26,7 +26,7 @@ include "../../functions/functions.php";
 	$CFMid	 = $Tab2_Q5D['cfm_id'];
 	$UserID		 = $_SESSION['user_id'];
 	$Insert = "INSERT INTO `cfm_views`(`cfm_user_id`,`cfm_id`,`cfm_view_date`) VALUES ('".$UserID."','".$CFMid."','".date('Y-m-d H:i:s')."')";
-	$Tab2_Q5R = mysqli_query($con_PRMSUB,$Insert) or die(mysqli_error());
+	$Tab2_Q5R = mysqli_query($con_MAIN,$Insert) or die(mysqli_error());
 ?>
 <li class="tabpane_best_1"> 
 	<a><input <?php if(strpos($ContentCode,'GM') !== FALSE){echo 'checked="checked"';} ?> type="checkbox" class="" value="1" /> General Management</a>

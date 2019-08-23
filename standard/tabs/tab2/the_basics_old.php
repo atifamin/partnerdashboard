@@ -30,7 +30,7 @@
 				<div class="cfm-panel">
 				<?php
 					$Tab2_Q1 = 'SELECT cfm_id,title FROM `cfm` WHERE `type`="CFM101" LIMIT 6';
-					$Tab2_Q1R = mysqli_query($con_PRMSUB,$Tab2_Q1) or die(mysqli_error());
+					$Tab2_Q1R = mysqli_query($con_MAIN,$Tab2_Q1) or die(mysqli_error());
 					if(mysqli_num_rows($Tab2_Q1R)>0){
 						$IndexT2 = 1;
 						while($Tab2_Q1D = mysqli_fetch_array($Tab2_Q1R)){

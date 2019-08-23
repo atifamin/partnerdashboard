@@ -17,7 +17,7 @@
   //   WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$ContractID."'
   //   GROUP BY pc.contract_id ORDER BY pc.contract_id DESC";
 
-    $Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
+    $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
     $Tab1_Q1RA = mysqli_fetch_array($Tab1_Q1R);
 ?>
 <?php //echo "<pre>"; print_r($Tab1_Q1RA); ?>

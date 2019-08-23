@@ -5,7 +5,7 @@ if($CertificationID>0){
 }elseif($VendorID>0){
 	$Tab1_Q1 = 'SELECT * FROM `scprs` WHERE `Vendor ID`='.$VendorID.' GROUP BY `Purchase Order ID` ORDER BY scprs_record_id DESC LIMIT 100 OFFSET 1';
 }
-$Tab1_Q1R = mysqli_query($con_SCPR,$Tab1_Q1) or die(mysqli_error()); 
+$Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
 if(mysqli_num_rows($Tab1_Q1R)>0){ 
 	while($Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R)){
 

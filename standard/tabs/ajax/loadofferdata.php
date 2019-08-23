@@ -7,12 +7,12 @@ $OfferID = $_POST['offerid'];
 
 
 $InsQ = "INSERT INTO `offer_box_views`(`offer_box_user_id`,`offer_box_id`) VALUES('".$UserID."','".$OfferID."')";
-mysqli_query($con_PRMSUB,$InsQ) or die(mysqli_error());	
+mysqli_query($con_MAIN,$InsQ) or die(mysqli_error());	
 
 
 
 $Query = 'SELECT * FROM `offer_box` WHERE `offer_box_id`='.$OfferID.'';
-$QueryR = mysqli_query($con_PRMSUB,$Query);
+$QueryR = mysqli_query($con_MAIN,$Query);
 if(mysqli_num_rows($QueryR)>0){
 	$OfferData = mysqli_fetch_assoc($QueryR); 
 ?>

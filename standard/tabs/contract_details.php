@@ -32,7 +32,7 @@ $CertificationID 	= $_SESSION['certification_id'];
 $FirmID 			= $_SESSION['dbe_firm_id'];
 
 $query = "SELECT * from user_info_update where user_id = ".$_SESSION['user_id']."";
-$res = mysqli_query($con_AWT,$query);
+$res = mysqli_query($con_MAIN,$query);
 $row = mysqli_fetch_object($res);
 if (count($row) == 0) {
 	echo "<script>$(document).ready(function(){
@@ -46,12 +46,12 @@ if (count($row) == 0) {
 
 if($FirmID > 0){
 	$CheckPrimes = 'SELECT COUNT(*) AS PrimeContractors FROM `prime_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
-	$CheckPrimesR = mysqli_query($con_AWT,$CheckPrimes);
+	$CheckPrimesR = mysqli_query($con_MAIN,$CheckPrimes);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalPrimes = $TotalPrimes['PrimeContractors'];
 	
 	$CheckSub = 'SELECT COUNT(*) AS SubContractors FROM `sub_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
-	$CheckSubR = mysqli_query($con_AWT,$CheckSub);
+	$CheckSubR = mysqli_query($con_MAIN,$CheckSub);
 	$TotalSub = mysqli_fetch_assoc($CheckSubR);
 	$TotalSub = $TotalSub['SubContractors'];
 
@@ -85,7 +85,7 @@ if($FirmID > 0){
 				JOIN sbdvbe ON sbdvbe.`Certification ID` = user.certification_id
 				WHERE user.user_id = ".$UserID."";
 
-	$NAICSQ		= mysqli_query($con_AWT,$NAICS);
+	$NAICSQ		= mysqli_query($con_MAIN,$NAICS);
 	$NAICSQR	= mysqli_fetch_object($NAICSQ);
 	$NAICSQREA	= explode(";",$NAICSQR->naics);
 ?>
@@ -93,7 +93,7 @@ if($FirmID > 0){
 
 <?php 
 	$query1 = "SELECT * from user_info_view where (id = ".$_SESSION['user_id']." AND trans_type='user_info') or (id = ".$_SESSION['dbe_firm_id']." AND trans_type='dbe') or (id = ".$_SESSION['certification_id']." AND trans_type='sbdvbe')";
-	$result1 = mysqli_query($con_AWT,$query1);
+	$result1 = mysqli_query($con_MAIN,$query1);
 	$user_info = mysqli_fetch_object($result1);
 ?>
 

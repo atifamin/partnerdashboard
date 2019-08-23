@@ -2,7 +2,7 @@
 include "../../config/config_prmsub.php";
 $CFMID = $_POST['cfmid'];
 $Query = 'SELECT * FROM `cfm` WHERE `cfm_id`='.$CFMID.'';
-$QueryR = mysqli_query($con_PRMSUB,$Query);
+$QueryR = mysqli_query($con_MAIN,$Query);
 if(mysqli_num_rows($QueryR)>0){
 	$CFM_Data = mysqli_fetch_assoc($QueryR); 
 ?>

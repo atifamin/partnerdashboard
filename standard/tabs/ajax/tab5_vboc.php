@@ -9,7 +9,7 @@ $UserZipCode = $_POST['user_zip_code'];
 		$UserState = $County['results'][0]['address_components'][3]['long_name'];
 
 $Q1 = 'SELECT `page_id`, `page_name`, `page_group`, `page_location_zip` FROM suppserv WHERE `page_group`="VOC" AND `page_region_served` LIKE "%'.$UserState.'%"';
-$Q1R = mysqli_query($con_PRMSUB,$Q1) or die(mysqli_error());
+$Q1R = mysqli_query($con_MAIN,$Q1) or die(mysqli_error());
 if(mysqli_num_rows($Q1R)>0){
 	?> 
 <div class="row" style="max-height: 250px;overflow-y: scroll;">

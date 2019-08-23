@@ -6,7 +6,7 @@
 							<div class="widget-body">
 										<?php
 											$Tab2_Q4 = 'SELECT `bidwin_id`,`title`,`content_code` FROM `bidwin` WHERE `type`="Best Practices" GROUP BY `content_code`';
-											$Tab2_Q4R = mysqli_query($con_PRMSUB,$Tab2_Q4) or die(mysqli_error());
+											$Tab2_Q4R = mysqli_query($con_MAIN,$Tab2_Q4) or die(mysqli_error());
 											if(mysqli_num_rows($Tab2_Q4R)>0){
 										?>
 											<div class="widget-main no-padding">
@@ -27,7 +27,7 @@
 										<div class="tab-content no-padding" style="background:#95B3D7;min-height:200px;"> 
 											<?php
 												$Tab2_Q5 = 'SELECT * FROM `bidwin` WHERE `type`="Best Practices" GROUP BY `content_code`';
-												$Tab2_Q5R = mysqli_query($con_PRMSUB,$Tab2_Q5) or die(mysqli_error());
+												$Tab2_Q5R = mysqli_query($con_MAIN,$Tab2_Q5) or die(mysqli_error());
 												$Tab2_Index5 = 1;
 												while($Tab2_Q5D = mysqli_fetch_assoc($Tab2_Q5R)){
 											?> 

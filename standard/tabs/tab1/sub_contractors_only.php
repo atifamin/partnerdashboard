@@ -3,7 +3,7 @@ $Tab1_Q1 = 'SELECT *
 			FROM prime_contractor pc
 			WHERE pc.dbe_firm_id = '.$FirmID.'
 			ORDER BY pc.contract_id DESC';
-$Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error()); 
+$Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
 if(mysqli_num_rows($Tab1_Q1R)>0){
 	$Index = 1;
 	while($Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R)){

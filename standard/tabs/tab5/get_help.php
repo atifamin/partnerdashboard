@@ -47,7 +47,7 @@ border-right-color: transparent;
 		<div class="widget-body">
 		<?php
 			$Tab2_Q2 = 'SELECT `bidwin_id`,`title`,`content_code` FROM `bidwin` WHERE `type`="Get Help" GROUP BY `content_code`';
-			$Tab2_Q2R = mysqli_query($con_PRMSUB,$Tab2_Q2) or die(mysqli_error());
+			$Tab2_Q2R = mysqli_query($con_MAIN,$Tab2_Q2) or die(mysqli_error());
 			if(mysqli_num_rows($Tab2_Q2R)>0){
 		?>
 			<div class="widget-main no-padding">
@@ -71,7 +71,7 @@ border-right-color: transparent;
 		<div class="tab-content" style="min-height:197px;padding:0%;">
 			<?php
 				$Tab2_Q3 = 'SELECT * FROM `bidwin` WHERE `type`="Get Help" GROUP BY `content_code`';
-				$Tab2_Q3R = mysqli_query($con_PRMSUB,$Tab2_Q3) or die(mysqli_error());
+				$Tab2_Q3R = mysqli_query($con_MAIN,$Tab2_Q3) or die(mysqli_error());
 				$Tab2_Index2 = 1;
 				while($Tab2_Q3D = mysqli_fetch_assoc($Tab2_Q3R)){
 			?>

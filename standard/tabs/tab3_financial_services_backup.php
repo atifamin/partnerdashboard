@@ -15,7 +15,7 @@ FROM user_offer_status uos
 LEFT JOIN partner_offer pf ON pf.partner_offer_id=uos.partner_offer_id
 LEFT JOIN offer_box ob ON ob.offer_box_id = pf.offer_box_id
 WHERE uos.user_offer_score = '.$UserID.'';
-$Tab3_Q1R = mysqli_query($con_PRMSUB,$Tab3_Q1) or die(mysqli_error());
+$Tab3_Q1R = mysqli_query($con_MAIN,$Tab3_Q1) or die(mysqli_error());
 if(mysqli_num_rows($Tab3_Q1R)>0){
 	$UserData = mysqli_fetch_assoc($Tab3_Q1R);
 
@@ -74,7 +74,7 @@ FROM user_offer_status uos
 LEFT JOIN partner_offer pf ON pf.partner_offer_id=uos.partner_offer_id
 LEFT JOIN offer_box ob ON ob.offer_box_id = pf.offer_box_id
 WHERE uos.user_offer_score = '.$UserID.'';
-$Tab3_Q2R = mysqli_query($con_PRMSUB,$Tab3_Q2) or die(mysqli_error());
+$Tab3_Q2R = mysqli_query($con_MAIN,$Tab3_Q2) or die(mysqli_error());
 if(mysqli_num_rows($Tab3_Q2R)>0){
 	while($OfferData = mysqli_fetch_assoc($Tab3_Q2R)){
 

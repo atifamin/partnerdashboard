@@ -7,13 +7,13 @@ AND po.offer_score <= '.$UserOfferScore.'
 AND uos.offer_status_user_id = 1
 AND uos.user_minimum_score <= '.$UserOfferScore.'
 ';	 	
-$Tab3_Q1R = mysqli_query($con_PRMSUB,$Tab3_Q1) or die(mysqli_error());
+$Tab3_Q1R = mysqli_query($con_MAIN,$Tab3_Q1) or die(mysqli_error());
 if(mysqli_num_rows($Tab3_Q1R)>0){
 	while($OfferData = mysqli_fetch_assoc($Tab3_Q1R)){
 
 $PartnerOfferID = $OfferData['partner_offer_id'];
 $InsQ = "INSERT INTO `partner_offer_views`(`partner_offer_user_id`,`partner_offer_id`) VALUES('".$UserID."','".$PartnerOfferID."')";
-mysqli_query($con_PRMSUB,$InsQ) or die(mysqli_error());	
+mysqli_query($con_MAIN,$InsQ) or die(mysqli_error());	
 
 // Partner Data
 $Tab3_Q4 = 'SELECT * FROM `partner` WHERE `partner_id`='.$OfferData['partner_id'].'';
