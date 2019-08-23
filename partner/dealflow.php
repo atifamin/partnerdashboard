@@ -1,7 +1,6 @@
 <?php include "inc/head.php"; ?>
 <?php include "inc/header.php"; ?>
 <?php include "inc/asidebar.php"; ?>
-
 <link rel="stylesheet" href="assets/css/dealflow.css">
 <link rel="stylesheet" href="assets/bower_components/percircle/dist/css/percircle.css">
 <div class="content-wrapper">
@@ -146,10 +145,18 @@
           </div>
         </div>                         
   </div> 
+<!--   SELECT * FROM 
+user_suretybond_form1 AS form,
+tbpikbfe_taskboard.tasks AS tasks
+
+WHERE 
+form.task_id=tasks.task_id AND 
+user_id = '5006' -->
 <?php 
-$query5 = "SELECT * from tasks where task_type = 'Surety Bonding' AND task_status = 'pending'";
+$query5 = "SELECT us.task_id, u.business_index_rating, s.`Contract Type` AS contract_type,s.`PO Total` AS total
+FROM tasks,partnerdashboard.user_suretybond_form1 AS us,partnerdashboard.user AS u, partnerdashboard.scprs_main AS s
+where tasks.task_id = us.task_id and u.user_id = us.user_id and tasks.task_type = 'Surety Bonding' AND tasks.task_status = 'pending' AND us.`supplier ID` = s.scprs_record_id";
 $res5 = mysqli_query($con_TaskBoard,$query5);
-//echo "<pre>"; print_r(mysqli_fetch_array($res5)); exit;
 ?>
 <div class="widget-box transparent">
   <div class="widget-header widget-header-flat" style="background-color:#4A442C;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
@@ -160,7 +167,6 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
       </a>
     </h4>
   </div>
-   
   <div id="bonding_request" class="collapse ">
     <div class="container br-container">
       <ul class="nav nav-pills " >
@@ -179,10 +185,10 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                 <div class="col-md-4 br-task">
                   <div class="row bg-5">
                     <div class="col-md-3">
-                      <div id="greencircle" data-percent="80" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
-                        <span>80%</span>
+                      <div id="greencircle" data-percent="<?php echo $task_detail['business_index_rating']; ?>" class="small green percircle animate gt50" style="background-color:unset; font-size: 61px;">
+                        <span><?php echo $task_detail['business_index_rating']; ?>%</span>
                         <div class="slice">
-                          <div class="bar" style="transform: rotate(288deg);">
+                          <div class="bar" style="transform: rotate(300deg);">
                           </div>
                           <div class="fill">
                           </div>
@@ -193,7 +199,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                       <span class="clr-2" >BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
-                      <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PRIME</b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b>$2.8M</b></span>
+                      <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo $task_detail['contract_type']; ?></b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b><?php echo $task_detail['total']; ?></b></span>
                     </div>
                   </div>
                   <div class="row bg-7">
