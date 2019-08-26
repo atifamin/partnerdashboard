@@ -25,33 +25,33 @@ if($totalFiles>0){
 ?>
 
 <div class="row">
-  <div class="col-md-2 text-center" style="margin-right: 20px;">
+  <div class="col-md-2 col-lg-2 text-center" style="margin-right: 20px;">
     <img src="<?php echo base_url; ?>assets/img/bizVAULT-logo-trans.png" height="50px" class="mt-20">
     <a href="" class="s-inte" data-toggle="collapse" data-target=".bizvault-top-banner"><br>
       <span class="view_top_banner" id="click_view">CLICK HERE TO VIEW</span>
       <span class="close_top_banner d-none" id="click_close">CLICK HERE TO CLOSE</span>
     </a>
   </div>
-  <div class="col-md-2 bg-light-blue-1 text-center collapse bizvault-top-banner" style="padding: unset;">
+  <div class="col-md-2 col-lg-2 bg-light-blue-1 text-center collapse bizvault-top-banner" style="padding: unset;">
     <span>
       <label class="mt-5">Your Private<br>bizVAULT™<br>Cloud Storage is<br>Ready</label><br>
       <a href="" class="btn mb-10" style="height: 33px; background-color: #31859E;"><span class="text-white font-13">CLICK HERE TO ACCESS</span></a>
     </span>
   </div>
-  <div class="col-md-3 text-center collapse bizvault-top-banner">
+  <div class="col-md-3 col-lg-3 text-center collapse bizvault-top-banner">
     <button type="button" style="background-color: #ecf0f5; border: none;"><img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px" class=""></button>
-    <div class="v-line-left"></div>
+    <!-- <div class="v-line-left"></div> -->
   </div>
-  <div class="col-md-2 collapse bizvault-top-banner">
-    <div class="row text-center" style="width: 130px;">
+  <div class="col-md-2 col-lg-2 collapse bizvault-top-banner" style="margin-left: -19px;">
+    <div class="row text-center">
       <div class="col-md-12" style="background-color: #4E80C6; padding: 1px;">
           <span class="text-white" style="font-size: 13px;" >ALL BASIC FILES HAVE<br>BEEN UPLOADED</span>
       </div>
-      <div class="col-md-12" style="margin: 10px 0px 0px 10px">
-
+    </div>
+    <div class="row" style="border: 5px solid; border-bottom: unset; border-top: unset;border-color: #DCEFF3;">
+      <div class="col-md-12" style="margin: 10px 0px 0px 31px">
         <div id="greencircle" data-percent="<?php echo $percent; ?>" class="small green percircle animate gt50" style="background-color:unset;">
           <span><?php echo $percent; ?>%</span>
-         
         </div>
       </div>
       <!-- <div class="col-md-12" style="background-color:#F2F2F2;padding:12% 0;">
@@ -61,11 +61,11 @@ if($totalFiles>0){
       </div> -->
     </div>
   </div>
-  <div class="col-md-2 collapse bizvault-top-banner" style="margin-left: -20px;">
-    <div class="v-line-right"></div>
-    <button class="btn" data-toggle="modal" data-target="#notification_model_top"><i class="fa fa fa-clock-o icon-clock"></i>&nbsp&nbsp&nbsp<strong class="light-blue">Your bizVAULT™ Notification</strong></button>
-    <button class="btn mt-10" data-toggle="modal" data-target="#activity_status_top"><i class="fa fa fa-heartbeat icon-hearbeat"></i>&nbsp&nbsp&nbsp<strong class="light-blue">Your bizVAULT™ Activity Status</strong></button>
-    <button class="btn mt-10" data-toggle="modal" data-target="#access_top"><i class="fa fa-users icon-user"></i>&nbsp&nbsp&nbsp<strong class="light-blue">Your bizVAULT™ Access Status</strong></button>
+  <div class="col-md-2 col-lg-2 collapse bizvault-top-banner">
+    <!-- <div class="v-line-right"></div> -->
+    <button class="btn" style="width: 155%; text-align: left;" data-toggle="modal" data-target="#notification_model_top"><i class="fa fa fa-clock-o icon-clock"></i>&nbsp&nbsp&nbsp<strong class="light-blue" style="font-size: 1vw;">Your bizVAULT™ Notification</strong></button>
+    <button class="btn mt-10" style="width: 155%; text-align: left;" data-toggle="modal" data-target="#activity_status_top"><i class="fa fa fa-heartbeat icon-hearbeat"></i>&nbsp&nbsp&nbsp<strong class="light-blue" style="font-size: 1vw;">Your bizVAULT™ Activity Status</strong></button>
+    <button class="btn mt-10" style="width: 155%; text-align: left;" data-toggle="modal" data-target="#access_top"><i class="fa fa-users icon-user"></i>&nbsp&nbsp&nbsp<strong class="light-blue" style="font-size: 1vw;">Your bizVAULT™ Access Status</strong></button>
   </div>
 </div>
 <div class="col-md-12">
