@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../../base_path.php');
+include('../../../config/base_path.php');
 $UserID = $_SESSION['user_id'];
 include "../../../config/config_main.php";
 $OfferID = $_POST['offerid'];

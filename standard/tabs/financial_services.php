@@ -121,27 +121,30 @@ $Tab2_Q5R = mysqli_query($con_MAIN,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-5 text-center">
-    <table class="mt-20 color-2 w-70" align="center">
+  	<span class="mt-20" style="color: #905205;font-size: 15px;"><b>(UPON CONTRACT SPONSOR OR PRIME</b><br><b>CONTRACTOR'S PAYMENT OF INVOICE)</b></span>
+    <table class="color-2 w-80" align="center">
       <tr class="text-left">
-        <td>FINANCING TYPE:</td>
-        <td>CONTACT FINANCING</td>
+        <td class="custome_style_3"><b>FINANCING TYPE:</b></b></td>
+        <td class="custome_style_3"><b>CONTACT FINANCING</b></td>
       </tr>
       <tr class="text-left">
-        <td>APPLICATION FEE:</td>
-        <td>$150.00 (One Time Fee)</td>
+        <td class="custome_style_3"><b>FINANCING COST:</b></td>
+        <td class="custome_style_3"><b>1.5% to 2.5% PER MONTH</b></td>
       </tr>
       <tr class="text-left">
-        <td>INTEREST RATE:</td>
-        <td>1% PER MONTH</td>
-        <!-- <td><?php // echo number_format($row->offer_rate_min); ?>% - <?php // echo number_format($row->offer_rate_max); ?>%</td> -->
+        <td class="custome_style_3"><b>PAYMENT TERM:</b></td>
+        <td class="custome_style_3"><b>UP TO 3 MONTHS</b></td>
+        <!-- <td class="custome_style_3"><?php // echo number_format($row->offer_rate_min); ?>% - <?php // echo number_format($row->offer_rate_max); ?>%</td> -->
       </tr>
       <tr class="text-left">
-        <td>REPAYMENT TERM:</td>
-        <td>1-3 MONTHS </td>
+        <td class="custome_style_3"><b>PREPAYMENT PENALTY:</b></td>
+        <td class="custome_style_3"><b>NONE</b></td>
         <!-- <td><?php //echo number_format($row->offer_term_min); ?> - <?php // echo number_format($row->offer_term_max); ?> Months</td> -->
       </tr>
     </table>
-    <span class="color-2">(UPON PAYMENT OF SUBMITTED INVOICE)</span>
+    <span class="custome_style_3"><b>APPLICATION FEE:</b></span>
+    <br>
+    <span class="custome_style_3"><b>One Time Fee from $350 to $1,500</b><br><b>(Depending on Size and Complexity))</b></span>
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
@@ -166,10 +169,14 @@ $Tab2_Q5R = mysqli_query($con_MAIN,$Insert) or die(mysqli_error());
 			<div class="vl"></div>
 		</div> -->
   <div class="col-md-5 text-center">
-    <div class="mt-10"> <span class="mt-10 font-25 color-3">Contract and Invoice Financing<br>
-      Solutions for your  California<br>
-      Certified Business</span> </div>
-    <div class="vl"></div>
+    <div class="mt-10"> <span class="mt-10 custome_style"><b>FINANCING PROVIDED BY NETWORK</b><br>
+      <b>OF PRIVATE AND PUBLIC PARTNERS</b></span> 
+    <br>
+      <span class="custome_style_1"><b>Contract and Invoice Financing<b></span>
+      <br>
+      <span class="custome_style_2"><i><b>Solution for your california Certified Business</b></i></span>
+  	</div>
+    <div class="vl-1" style="margin-top: 10px;"></div>
   </div>
   <div class="col-md-3 text-center">
   	<button type="button" class="btn btn-lg bg-button mt-10" onclick="open_video_modal()">

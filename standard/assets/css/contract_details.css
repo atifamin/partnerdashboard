@@ -52,7 +52,7 @@
 }
 .vl {
   border-left: 6px solid #31859c;
-  height: 120px;
+  height: 160px;
   position: absolute;
   left: 100%;
   margin-left: -3px;
@@ -203,4 +203,22 @@
 }
 .d-none {
   display: none;
+}
+.custome_style{
+  font-size: 16px;
+  font-family: inherit;
+  color: #232e65
+}
+.custome_style_1{
+  font-size: 30px;
+  color: #ef7f20
+}
+.custome_style_2{
+  font-size: 20px;
+  color: #09799c;
+  font-family: auto;
+}
+.custome_style_3{
+  color: #232e65;
+  font-size: 15px;
 }

@@ -1,5 +1,5 @@
 <?php
-require_once "base_path.php";
+require_once "../config/base_path.php";
 //if(isset($_GET['Logout=Yes'])){session_destroy();}
 //if($_SESSION['user_level'] != ''){header("Location: index.php");exit;}
  ?>

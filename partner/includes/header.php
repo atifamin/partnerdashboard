@@ -6,7 +6,7 @@
 	    include "base_path.php";
     }else{
       include "../../config/config_main.php";
-	     include "../../base_path.php";
+	     include "../../config/base_path.php";
       } 
     //check user role
   if(strtolower($_SESSION['user_type']) != 'standard'){

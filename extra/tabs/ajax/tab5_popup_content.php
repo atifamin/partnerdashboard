@@ -1,6 +1,6 @@
 <?php 
 include "../../config/config_prmsub.php";
-include "../../base_path.php";
+include "../../config/base_path.php";
 $page_id = $_POST['suppserv_id'];
 
 

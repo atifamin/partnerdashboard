@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("base_path.php");
+include("../config/base_path.php");
 /* Attempt to connect to MySQL database */
 $mysqli =  mysqli_connect("localhost","norcom_cpmDev1","UxIn940OoxiPvt","norcom_cpm-main");
 

@@ -2,7 +2,7 @@
 session_start();
 include("../config/config_main.php");
 require_once("includes/functions.php");
-include('../base_path.php');
+include('../config/base_path.php');
 /* Attempt to connect to MySQL database */
 $mysqli =  mysqli_connect("localhost","norcom_cpmDev1","UxIn940OoxiPvt","norcom_cpm-main");
 //$user_id=$_SESSION['id'];

@@ -1,4 +1,4 @@
-<?php include('base_path.php'); ?>
+<?php include('../config/base_path.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
