@@ -156,7 +156,6 @@
   width: 20px;
   height: 20px;
   padding-top: 3px;
-  padding-left: 3px;
 }
 .icon-hearbeat {
   background-color: #328DEE;
@@ -164,7 +163,6 @@
   width: 20px;
   height: 20px;
   padding-top: 3px;
-  padding-left: 3px;
 }
 .icon-user {
   background-color: #328DEE;
@@ -172,7 +170,6 @@
   width: 20px;
   height: 20px;
   padding-top: 3px;
-  padding-left: 1px;
 }
 .light-blue {
   color: #328DEE;
@@ -192,16 +189,19 @@
   height: 133px;
   position: absolute;
   left: 100%;
-  margin-left: -23px;
+  margin-left: -15px;
   top: 0px;
 }
 .v-line-right {
   border-left: 6px solid #DCEFF3;
   height: 133px;
   position: absolute;
-  margin-left: -50px;
+  margin-left: -40px;
   top: 0px;
 }
-#b-none{
+#b-none {
   border: none;
+}
+.d-none {
+  display: none;
 }
