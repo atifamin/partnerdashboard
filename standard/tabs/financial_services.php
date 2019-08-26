@@ -16,9 +16,9 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 	
 </style>
 
-<div class="row contract_details_table">
+<!-- <div class="row contract_details_table">
         
-</div>
+</div> -->
 <?php } 
 if($_FILE_NAME != "contract_details.php"){
 include("../includes/header.php");
@@ -111,7 +111,7 @@ $Tab2_Q5R = mysqli_query($con_MAIN,$Insert) or die(mysqli_error());
 
 
 
-<div class="row cus-border mt-10">
+<div class="row cus-border">
   <div class="col-md-4 text-center">
     <div class="mt-10"> <span class="font-30 color-1">Contract Financing<br>
     	$5,000 - $100,000
@@ -145,13 +145,11 @@ $Tab2_Q5R = mysqli_query($con_MAIN,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-    <div class="mt-10 mb-10"> <strong class="color-1 font-25">PRE-PAYMENT<br>
-      PENELTY?</strong><br>
-      <button type="button" class="btn custom-btn mt-10"><strong class="text-white font-25">NO</strong></button>
+      <button type="button" class="btn custom-btn mt-10"><span class="text-white font-25">CLICK HERE<br>TO GET<br>STARTED</span></button>
     </div>
   </div>
 </div>
-<div class="row mt-10 cus-border">
+<div class="row mt-10 cus-border" style="margin: unset;">
   <div class="col-md-4 text-center mt-10 mb-10">
     <div class="col-md-12 mb-10 text-white">
       <div class="bg-1"><span class="font-20">YOUR bizVAULT Status</span></div>
@@ -174,7 +172,7 @@ $Tab2_Q5R = mysqli_query($con_MAIN,$Insert) or die(mysqli_error());
     <div class="vl"></div>
   </div>
   <div class="col-md-3 text-center">
-  	<button type="button" class="btn btn-block btn-lg bg-button mt-10" onclick="open_video_modal()">
+  	<button type="button" class="btn btn-lg bg-button mt-10" onclick="open_video_modal()">
   		<span class="text-white font-13">California Certified Business FastFund</span>
   		<br>
   		<i class="fab fa-youtube mt-5 font-48"></i>
