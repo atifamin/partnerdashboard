@@ -1,5 +1,5 @@
 <?php 
-include "../config/config_prmsub.php";
+include "../../config/config_main.php";
 $UserZipCode = $_POST['user_zip_code'];
 	$URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='.$UserZipCode.'&sensor=true';
 		$result     = file_get_contents($URL);

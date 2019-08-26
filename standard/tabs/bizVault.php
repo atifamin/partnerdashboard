@@ -1,5 +1,5 @@
 <?php
-include("../config/config_main.php");
+include("../../config/config_main.php");
 ?>
 <?php
 include("../includes/header.php");

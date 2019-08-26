@@ -1,6 +1,6 @@
 <?php 
-include "../../config/config_prmsub.php";
-include "../../base_path.php";
+include "../../../config/config_main.php";
+include "../../../base_path.php";
 $UserZipCode = '90001'; //$_POST['user_zip_code'];
 
 $Q1 = 'SELECT `page_id`, `page_name`, `page_location_zip` FROM suppserv WHERE `page_group` = "SCORE"';

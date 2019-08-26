@@ -1,5 +1,5 @@
 <?php
-include "../../config/config_prmsub.php";
+include "../../../config/config_main.php";
 $CFMID = $_POST['cfmid'];
 $Query = 'SELECT * FROM `cfm` WHERE `cfm_id`='.$CFMID.'';
 $QueryR = mysqli_query($con_MAIN,$Query);

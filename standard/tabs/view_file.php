@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../base_path.php");
+include("../../base_path.php");
 include("../../config/config_main.php");
 $id = $_GET['h'];
 

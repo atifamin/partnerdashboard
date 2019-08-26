@@ -32,7 +32,7 @@
 </style>
 <!-- Include SmartWizard CSS -->
 <?php session_start(); ?>
-<?php include("../config/config_main.php"); ?>
+<?php include("../../config/config_main.php"); ?>
 <?php
 
 function exec_sqlQuery($con, $q){

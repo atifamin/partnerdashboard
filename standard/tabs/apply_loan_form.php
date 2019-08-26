@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php
-include("../config/config_main.php");
-include('../base_path.php');
+include("../../config/config_main.php");
+include('../../base_path.php');
 ?>
 <link href="../assets/smartWizard/css/smart_wizard.css" rel="stylesheet" type="text/css" />
 <link href="../assets/smartWizard/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />

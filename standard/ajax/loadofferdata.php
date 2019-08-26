@@ -1,7 +1,7 @@
 <?php
 session_start();
 $UserID = $_SESSION['user_id'];
-include "../config/config_prmsub.php";
+include "../../config/config_main.php";
 $OfferID = $_POST['offerid'];
 
 

@@ -1,5 +1,5 @@
 											<?php
-											include "../config/config_prmsub.php";
+											include "../../config/config_main.php";
 											include "../functions/functions.php";
 											 ?> 
 											<?php 

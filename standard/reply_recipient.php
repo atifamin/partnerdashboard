@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config/config_main.php");
+include("../config/config_main.php");
 /* Attempt to connect to MySQL database */
 $con=mysqli_connect("localhost","norcom_cpmDev1","UxIn940OoxiPvt","norcom_cpm-main");
 // Check connection

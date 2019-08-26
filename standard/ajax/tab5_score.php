@@ -1,5 +1,5 @@
 <?php 
-include "../config/config_prmsub.php";
+include "../../config/config_main.php";
 $UserZipCode = $_POST['user_zip_code'];
 
 $Q1 = 'SELECT `page_id`, `page_name`, `page_location_zip` FROM suppserv WHERE `page_group` = "SCORE"';

@@ -1,5 +1,5 @@
 <?php 
-include("./config/config_main.php");
+include("../../config/config_main.php");
 
 function exec_sqlQuery($q){
     $con=mysqli_connect("localhost","norcom_cpmDev1","UxIn940OoxiPvt","norcom_cpm-main");
