@@ -98,8 +98,23 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
   $userDetail = mysqli_fetch_object($Tab2_Q2R);
 
 ?>
-
+<?php 
+  $Tab3_Q3 = "SELECT * from user_fastfund_form1 where user_id = ".$_SESSION['user_id']."";
+  $Tab3_Q3R = mysqli_query($con_MAIN,$Tab3_Q3);
+  $fastFundForm_data = mysqli_fetch_object($Tab3_Q3R);
+?>
 <div id="apply-load-modal" class="modal fade" tabindex="-1">
+  <?php if (isset($fastFundForm_data->user_id) == $_SESSION['user_id']) { ?>
+    <div class="modal-dialog">
+
+      <div class="modal-content" style="border-radius: 40px;border: 3px solid #a1c0d6;background-color: #DCE6F2">
+        <div class="modal-body">
+          <h1 class="text-center" style="color: #406DA1"><b>NOTICE</b></h1>
+          <p class="text-center" style="color: #436496;font-size: 22px;">It appears you have already <br>submitted a request for <b>FastFund Financing</b> for <br>Contract Number XXXXX on [<?php echo date('Y-m-d' ,strtotime($fastFundForm_data->created_at)); ?> ]. <br>Please Contact us if you have questions or if you are <br>in need of additional financing</p>
+        </div>
+      </div>
+    </div>
+  <?php }else{ ?>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
@@ -139,6 +154,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
       </div>
     </div>
   </div>
+  <?php } ?>
 </div>
 <!-- <script src="../bower_components/jquery/dist/jquery.min.js"></script> -->
 <!-- Include jQuery Validator plugin --> 
