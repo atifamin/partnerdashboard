@@ -12,7 +12,7 @@
     
         <?php
                       $TopSectorQ = 'SELECT * FROM `scprs` ORDER BY `Award Total` ASC LIMIT 5';
-                      $TopSectorQR = mysqli_query($con_SCPR,$TopSectorQ);
+                      $TopSectorQR = mysqli_query($con_MAIN,$TopSectorQ);
                       if(mysqli_num_rows($TopSectorQR)>0){
                         while($TopSectors = mysqli_fetch_assoc($TopSectorQR)){
                           $DepartmentName = $TopSectors['Business Unit Name'];

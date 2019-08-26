@@ -2,17 +2,11 @@
 <?php $fileName =  basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?>
 <?php 
       if($fileName == "dashboard.php"){
-      include "config/config_awt.php"; 
-      include "config/config_main.php"; 
-      include "config/config_prmsub.php"; 
-      include "config/config_scpr.php";
+      include "config/config_main.php";
 	    include "base_path.php";
     }else{
-      include "../config/config_awt.php"; 
-      include "../config/config_main.php"; 
-      include "../config/config_prmsub.php"; 
-      include "../config/config_scpr.php";
-	     include "../base_path.php";
+      include "../../config/config_main.php";
+	     include "../../base_path.php";
       } 
     //check user role
   if(strtolower($_SESSION['user_type']) != 'standard'){

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../config/config_main.php";
+include "../../config/config_main.php";
 $UserID = $_POST['userid'];
 $Email = $_POST['email'];
 $Password = $_POST['password']; 

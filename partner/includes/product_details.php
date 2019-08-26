@@ -11,7 +11,7 @@ $Products = 'SELECT po.*, fin.*, ob.* FROM partner_offer po
 LEFT JOIN offer_box ob ON ob.partner_offer_id = po.partner_offer_id
 LEFT JOIN finserv fin ON fin.offer_id = po.partner_offer_id
 WHERE po.partner_id = '.$PartnerID.' AND fin.partner_id = '.$PartnerID.'';
-$ProductsR = mysqli_query($con_PRMSUB,$Products) or die(mysqli_error());
+$ProductsR = mysqli_query($con_MAIN,$Products) or die(mysqli_error());
 if(mysqli_num_rows($ProductsR)>0){
 while($ProData = mysqli_fetch_assoc($ProductsR)){
 		$BG1 = 'border-color:#DCE6F2 !important;background:#DCE6F2 !important;';
