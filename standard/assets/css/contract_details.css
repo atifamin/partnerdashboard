@@ -155,6 +155,7 @@
   width: 20px;
   height: 20px;
   padding-top: 3px;
+  padding-left: 3px;
 }
 .icon-hearbeat {
   background-color: #328DEE;
@@ -162,11 +163,12 @@
   width: 20px;
   height: 20px;
   padding-top: 3px;
+  padding-left: 3px;
 }
 .icon-user {
   background-color: #328DEE;
   color: white;
-  width: 20px;
+  width: 19px;
   height: 20px;
   padding-top: 3px;
 }
