@@ -1,9 +1,9 @@
 <?php 
-include "../config/config_prmsub.php";
+include "../../config/config_main.php";
 $UserZipCode = $_POST['user_zip_code'];
 
 $Q1 = 'SELECT `page_id`, `page_name`, `page_location_zip` FROM suppserv WHERE `page_group` = "SCORE"';
-$Q1R = mysqli_query($con_PRMSUB,$Q1) or die(mysqli_error());
+$Q1R = mysqli_query($con_MAIN,$Q1) or die(mysqli_error());
 if(mysqli_num_rows($Q1R)>0){
 	while($dis = mysqli_fetch_assoc($Q1R)){
 		$ScoreZipCode = $dis['page_location_zip'];

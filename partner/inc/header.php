@@ -1,4 +1,4 @@
-<?php include "config/config_main.php"; ?>
+<?php include "../../config/config_main.php"; ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
