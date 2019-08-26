@@ -1,4 +1,10 @@
 <?php session_start(); ?>
+<?php
+// if(!$_SESSION){
+//   //exit;
+//   header('Location: ../../../index.php');
+// }
+?>
 <?php $fileName =  basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?>
 <?php
     if($fileName == "dashboard.php"){
@@ -9,9 +15,12 @@
 	     include "../../config/base_path.php";
       } 
     //check user role
-  if(strtolower($_SESSION['user_type']) != 'standard'){
+  if(!$_SESSION){
+    header('Location: ../../login.php');
+  }elseif(strtolower($_SESSION['user_type']) != 'standard'){
       header('Location: ../partner/dashboard.php');
   }
+
 	$UserCertficationID = $_SESSION['certification_id'];
 	$Q_Sub = 'SELECT  `Legal Business Name` AS BusinessName from sbdvbe  WHERE `Certification ID`= '.$UserCertficationID.'';
 	$Q_SubR = mysqli_query($con_MAIN,$Q_Sub);

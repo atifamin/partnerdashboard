@@ -1,6 +1,6 @@
 <?php session_start(); ?>
-<?php include "../../config/config_main.php"; ?>
-<?php include "../../config/config_taskboard.php"; ?>
+<?php include "../config/config_main.php"; ?>
+<?php include "../config/config_taskboard.php"; ?>
 <?php include "functions/functions.php"; ?>
 
 <?php
@@ -13,7 +13,9 @@
 
 <?php
   //check user role
-  if(strtolower($_SESSION['user_type']) != 'partner'){
+  if(!$_SESSION){
+    header('Location: ../login.php');
+  }elseif(strtolower($_SESSION['user_type']) != 'partner'){
       header('Location: ../standard/dashboard.php');
   }
   

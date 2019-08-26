@@ -1,4 +1,4 @@
-<?php include "../../config/config_main.php"; ?>
+<?php include "../config/config_main.php"; ?>
 <?php
   $query = 'select * from user where user_id = "'.$_SESSION['user_id'].'" ';
   $res = mysqli_query($con_MAIN,$query);
