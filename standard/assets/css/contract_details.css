@@ -101,9 +101,8 @@
   background-color: #768B47;
 }
 .custom-btn {
-   background-color: #507FC7; 
-   width: 130px; 
-   height: 45px;
+   background-color: #e46c0b; 
+   border-radius: 10px;
 }
 .custom-btn-1 {
    background-color: #31859d;
