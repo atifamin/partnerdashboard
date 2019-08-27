@@ -23,7 +23,7 @@
 .text-white {
   color: white;
 }
-.mt-5 {
+.custome_style_1 {
   margin-top: 5px;
 }
 .mt-10 {
@@ -52,19 +52,19 @@
 }
 .vl {
   border-left: 6px solid #31859c;
-  height: 160px;
+  height: 177px;
   position: absolute;
   left: 100%;
   margin-left: -3px;
-  top: 10px;
+  top: 7px;
 }
 .vl-1 {
   border-left: 6px solid #31859c;
-  height: 120px;
+  height: 138px;
   position: absolute;
   left: 100%;
   margin-left: -3px;
-  top: 0px;
+  top: -1px;
 }
 .vl-bonding-services {
   border-left: 6px solid #31859c;
@@ -83,7 +83,7 @@
   border-radius: 2px;
 }
 .color-1 {
-  color: #31859c;
+  color: #237d92;
 }
 .color-2 {
   color: #5F898C;
@@ -110,6 +110,9 @@
 }
 .font-48 {
   font-size: 48px;
+}
+.font-35 {
+  font-size: 35px;
 }
 .font-30 {
   font-size: 30px;
@@ -223,4 +226,4 @@
 .custome_style_3{
   color: #232e65;
   font-size: 15px;
-}
+} 
