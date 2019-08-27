@@ -81,10 +81,9 @@ function bizVaultStatus($con){
 
 $FirmID = $_SESSION['dbe_firm_id'];
 $Tab1_Q1 = 'SELECT *
-FROM prime_contractor pc
-JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
-GROUP BY pc.contract_id ORDER BY pc.contract_id DESC';
+      FROM prime_contractor pc
+      WHERE pc.dbe_firm_id = '.$FirmID.'
+      ORDER BY pc.contract_id DESC';
 $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error());  
 $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R); 
 
