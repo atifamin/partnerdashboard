@@ -141,13 +141,17 @@ function formatSizeUnits($size, $precision = 2){
         <div class="box-header with-border">
           <!-- <h4 class="box-title">  Collapsible Group Item #1  </h4> -->
           <div class="row" style="margin-right: 1%;margin-left: 1%;">
-          <div class="col-md-1 file-cell">
           <?php if($val->uploaded==0){ ?>
-          <i class="far fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+            <div class="col-md-1 file-cell" style="padding: unset;">
+              <div style="background-color: #4f81bd; padding: 4px 0 0px 0;">
+                <img src="<?php echo base_url(). "images/missing_file_icon.PNG";?>" height="51px;" width="57px;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)">
+              </div>
+            </div>
           <?php }else{ ?>
-          <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+            <div class="col-md-1 file-cell">
+              <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+            </div>
           <?php } ?>
-          </div>
           <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
           <div class="col-md-4 columnThird" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">
           <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px">STATUS</span> </div>

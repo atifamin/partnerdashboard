@@ -34,11 +34,11 @@ $('.bizvault_folder').hover(function(){
   load_summary($(this).attr("completed"), $(this).attr("missing"));
 });
 $(".bizvault_folder").on({
-	mouseenter: function(){
-		$('#summary_preview').show();
-	}, 
-	mouseleave: function(){
-		$('#summary_preview').hide();
-	},
+  mouseenter: function(){
+    $('#summary_preview').show();
+  }, 
+  mouseleave: function(){
+    $('#summary_preview').hide();
+  },
 });
 </script>
