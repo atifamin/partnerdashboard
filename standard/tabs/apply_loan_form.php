@@ -110,7 +110,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
       <div class="modal-content" style="border-radius: 40px;border: 3px solid #a1c0d6;background-color: #DCE6F2">
         <div class="modal-body">
           <h1 class="text-center" style="color: #406DA1"><b>NOTICE</b></h1>
-          <p class="text-center" style="color: #436496;font-size: 22px;">It appears you have already <br>submitted a request for <b>FastFund Financing</b> for <br>Contract Number XXXXX on [<?php echo date('Y-m-d' ,strtotime($fastFundForm_data->created_at)); ?> ]. <br>Please Contact us if you have questions or if you are <br>in need of additional financing</p>
+          <p class="text-center" style="color: #436496;font-size: 22px;">It appears you have already <br>submitted a request for <b>FastFund Financing</b> for <br>Contract Number <?php echo $fastFundForm_data->funding_contract_number; ?> on [<?php echo date('Y-m-d' ,strtotime($fastFundForm_data->fastform_app_submittal_date)); ?> ]. <br>Please Contact us if you have questions or if you are <br>in need of additional financing</p>
         </div>
       </div>
     </div>
