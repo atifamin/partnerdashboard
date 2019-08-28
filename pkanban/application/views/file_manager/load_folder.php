@@ -1,15 +1,15 @@
 
 <style type="text/css">
 .file-header {
-	background-color: #1E345D;
-	color: #B7DDE8;
-	padding: 5px;
-	font-size: 24px;
+  background-color: #1E345D;
+  color: #B7DDE8;
+  padding: 5px;
+  font-size: 24px;
 }
 .file-cell {
-	background-color: #B7DDE8;
-	font-size: 24px;
-	text-align: center;
+  background-color: #B7DDE8;
+  font-size: 24px;
+  text-align: center;
   color: #123A5A;
   padding: 1.1% 0;
 }
@@ -99,6 +99,22 @@
 
 }
 
+#progress {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+#progress-bar {
+  width: 10%;
+  height: 30px;
+  background-color: #4f81bd;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  border-radius: 10px;
+}
+
 </style>
 
 <?php //echo "<pre>"; print_r($access_request); exit; ?>
@@ -141,26 +157,44 @@ function formatSizeUnits($size, $precision = 2){
         <div class="box-header with-border">
           <!-- <h4 class="box-title">  Collapsible Group Item #1  </h4> -->
           <div class="row" style="margin-right: 1%;margin-left: 1%;">
-          <?php if($val->uploaded==0){ ?>
-            <div class="col-md-1 file-cell" style="padding: unset;">
-              <div style="background-color: #4f81bd; padding: 4px 0 0px 0;">
-                <img src="<?php echo base_url(). "images/missing_file_icon.PNG";?>" height="51px;" width="57px;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)">
+
+            <?php if($val->uploaded==0){ ?>
+              <div class="col-md-1 file-cell" style="padding: unset;">
+                <div style="background-color: #4f81bd; padding: 4px 0 0px 0;">
+                  <img src="<?php echo base_url(). "images/missing_file_icon.PNG";?>" height="51px;" width="57px;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)">
+                </div>
+              </div>
+            <?php }else{ ?>
+              <div class="col-md-1 file-cell">
+                <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+              </div>
+            <?php } ?>
+            <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
+            <div class="col-md-4 columnThird">
+              <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">STATUS</span> </div>
+              <?php if($val->uploaded==0){ ?>
+                <div style="text-align: center;background-color:#FFC000"> <span style="font-size: 22px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">PLEASE UPLOAD!</span></div>
+                <div class="mt-10 text-white text-center" style="background-color: #4f81bd;" data-toggle="collapse" data-target="#file_explanation<?php echo $key; ?>">
+                  <span class="font-20">Don't Have This Document?<br>CLICK HERE</span>
+                </div>
+              <?php }else{ ?>
+                <div style="text-align: center;background-color:#8dea7b"> <span style="font-size: 22px" data-toggle="collapse" data-parent="#accordion" href="  #collapse<?php echo $key; ?>">UPLOADED</span></div>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+        <div id="file_explanation<?php echo $key; ?>" class="collapse">
+          <div class="row" style=" margin-right: 2%; margin-left: 2%;">
+            <div class="col-md-1"></div>
+            <div class="col-md-6" style="margin:0 3%;"></div>
+            <div class="col-md-4">
+              <div style="background-color: #b7dde8; padding: 5px 0px 5px 5px;">
+                <input type="radio" name="document" value=""> I dont know what this document is<br>
+                <input type="radio" name="document" value=""> I am working on getting this document<br>
+                <input type="radio" name="document" value=""> I am waiting for my accountant to get this document<br>
+                <input type="radio" name="document" value=""> Other<br>
               </div>
             </div>
-          <?php }else{ ?>
-            <div class="col-md-1 file-cell">
-              <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
-            </div>
-          <?php } ?>
-          <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
-          <div class="col-md-4 columnThird" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">
-          <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px">STATUS</span> </div>
-          <?php if($val->uploaded == 0){ ?>
-          <div style="text-align: center;background-color:#FFC000"> <span style="font-size: 22px">PLEASE UPLOAD!</span></div>
-          <?php }else{ ?>
-          <div style="text-align: center;background-color:#8dea7b"> <span style="font-size: 22px">UPLOADED</span></div>
-          <?php } ?>
-          </div>
           </div>
         </div>
         <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse">
@@ -186,9 +220,29 @@ function formatSizeUnits($size, $precision = 2){
             </div>
           </div>
           <?php }else{ ?>
-          <div class="row"><div class="col-md-12" style="padding:2% 0;text-align:center;"><p><i>No File Uploaded Yet</i></p></div></div>
-          <?php } ?>
-          </div>
+            <div id="row-progrss-bar" style="display: none;">
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 text-center" style="background-color: #9bbb59;">
+                  <h3>UPLOADING[FILE NAME]</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="padding:2% 0;text-align:center;">
+                  <div id="progress">
+                    <div id="progress-bar">10%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row text-center" id="row-no-file">
+              <div class="col-md-12">
+                <p><i>No File Uploaded Yet</i></p>
+              </div>
+            </div>
+            <?php } ?>
+            </div>
         </div>
       </div>
       <?php endforeach; endif; ?>
@@ -308,50 +362,82 @@ function formatSizeUnits($size, $precision = 2){
     </div>
   </div>
 </div>
-<script>
-load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
 
-function choose_file(bizvault_user_required_filelist_id, user_id, folder_id){
-  var url = $("#pkanban_url").val();
-  var redirect_url = ""+$("#base_url").val()+"tabs/bizVault.php?folder="+folder_id+"";
-  $("input[name=bizvault_user_required_filelist_id]").val(bizvault_user_required_filelist_id);
-  $("input[name=user_id]").val(user_id);
-  $("input[name=folder_id]").val(folder_id);
-  $("input[name=redirect_url]").val(redirect_url);
-  $("#file_upload_form").attr("action", url+'file_manager/upload_predefied_file');
-  $("#file").click();
-}
+<script type="text/javascript">
 
-$("#file").on("change", function(){
-  $("#file_upload_form").submit();
-});
+  function progress_bar() {
+    var elem = document.getElementById("progress-bar");   
+    var width = 10;
+    var id = setInterval(frame, 30);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+      } else {
+        width++; 
+        elem.style.width = width + '%'; 
+        elem.innerHTML = width * 1  + '%';
+      }
+    }
+  }
 
-function show_access() {
-  $(".access-div").toggle();
-}
+  load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
 
-function open_grant_access_modal(id) {
-  var url = $("#pkanban_url").val();
-  $.post(""+url+"file_manager/open_grant_access_modal",{id:id}).done(function(e){
-    $('#request_access_div').html(e);
-    $('#grant-access-modal_1').modal('show');
+  function choose_file(bizvault_user_required_filelist_id, user_id, folder_id){
+    var url = $("#pkanban_url").val();
+    var redirect_url = ""+$("#base_url").val()+"tabs/bizVault.php?folder="+folder_id+"";
+    $("input[name=bizvault_user_required_filelist_id]").val(bizvault_user_required_filelist_id);
+    $("input[name=user_id]").val(user_id);
+    $("input[name=folder_id]").val(folder_id);
+    $("input[name=redirect_url]").val(redirect_url);
+    $("#file_upload_form").attr("action", url+'file_manager/upload_predefied_file');
+    $("#file").click();
+  }
+
+  $("#file").on("change", function(){
+    $("#file_upload_form").submit();
+    // $("#row-progrss-bar").show();
+    // $("#row-no-file").hide();
+    // var elem = document.getElementById("progress-bar");   
+    // var width = 10;
+    // var id = setInterval(frame, 10);
+    // function frame() {
+    //   if (width >= 100) {
+    //     clearInterval(id);
+    //     $("#file_upload_form").submit();
+    //   } else {
+    //     width++; 
+    //     elem.style.width = width + '%'; 
+    //     elem.innerHTML = width * 1  + '%';
+    //   }
+    // }
   });
-}
 
-function grant_deny_request(id,val){
-  var url = $("#pkanban_url").val();
-  var type = $("#type").val();
-  var length = $("#length").val();
-  var task_id = $("#task_id").val();
-  var folder_id = $("#folder_id").val();
-  $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val,type:type,length:length,task_id:task_id,folder_id:folder_id}).done(function(e){
-    alert("Request "+val+" Successfully !");
-    location.reload();
-  });
-}
-function close_model(id){
-  $("#grant-access-modal_1").modal('hide');
-}
+  function show_access() {
+    $(".access-div").toggle();
+  }
+
+  function open_grant_access_modal(id) {
+    var url = $("#pkanban_url").val();
+    $.post(""+url+"file_manager/open_grant_access_modal",{id:id}).done(function(e){
+      $('#request_access_div').html(e);
+      $('#grant-access-modal_1').modal('show');
+    });
+  }
+
+  function grant_deny_request(id,val){
+    var url = $("#pkanban_url").val();
+    var type = $("#type").val();
+    var length = $("#length").val();
+    var task_id = $("#task_id").val();
+    var folder_id = $("#folder_id").val();
+    $.post(""+url+"file_manager/grant_deny_request", {id:id,val:val,type:type,length:length,task_id:task_id,folder_id:folder_id}).done(function(e){
+      alert("Request "+val+" Successfully !");
+      location.reload();
+    });
+  }
+  function close_model(id){
+    $("#grant-access-modal_1").modal('hide');
+  }
 // function hoverForAccess(id) {
 
 //   $('#access-given').show();
