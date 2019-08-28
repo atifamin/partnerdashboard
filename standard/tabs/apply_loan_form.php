@@ -80,10 +80,10 @@ function bizVaultStatus($con){
 
 
 $FirmID = $_SESSION['dbe_firm_id'];
-$Tab1_Q1 = 'SELECT *
+$Tab1_Q1 = "SELECT *
       FROM prime_contractor pc
-      WHERE pc.dbe_firm_id = '.$FirmID.'
-      ORDER BY pc.contract_id DESC';
+      WHERE pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$_POST['contract_id']."'
+      ORDER BY pc.contract_id DESC";
 $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error());  
 $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R); 
 
@@ -129,6 +129,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
                 <small>Company Profile</small></a></li>
               <li><a href="#step-3">Step 3<br />
                 <small>Finish</small></a></li>
+                <!-- <li><button class="btn btn-success">Completed</button></li> -->
             </ul>
             <div>
               <div id="step-1">

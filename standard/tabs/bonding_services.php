@@ -1,31 +1,7 @@
-<div class="row contract_details_table">
-        
+<div class="contract_details_table">
+  
 </div>
-<div class="row cus-border mt-10">
-  <div class="col-md-4 text-center">
-    <div class="mt-30"><span class="font-30 color-1">SURETY BONDING</span> </div>
-  <a href="javascript:;" onclick="showofferboxpopupSurety(2,'Premium Surety Partner')" class="btn mb-10 mt-10" style="background-color: #642524;"><span class="text-white">REQUEST BONDING</span></a>
-    <div class="vl-bonding-services"></div>
-  </div>
-  <div class="col-md-5 text-center" style="padding: 1px;">
-    <div class="color-2">
-      <strong class="font-25">SURETY BONDING SERVICES</strong><br>
-      <strong style="font-style: italic;">
-        Offering a wide range of services including: <br>
-        Big Bonds <br>
-        Performance Bonds <br>
-        Payement Bonds <br>
-        Maintenance Bonds
-      </strong>
-    </div><br>
-    <div class="vl-bonding-services"></div>
-  </div>
-  <div class="col-md-3 text-center">
-    <div class="mt-10 mb-10">
-      <a href="javascript:;" onclick="showofferboxpopupSurety(2,'Premium Surety Partner')" type="button" class="btn custom-btn-1 mt-10"><span class="text-white font-25">CLICK HERE<br>TO GET<br>STARTED</span></a>
-    </div>
-  </div>
-</div>
+
 <div class="row mt-10 cus-border">
   <div class="col-md-4 text-center mt-10 mb-10">
     <div class="col-md-12 mb-10 text-white">
@@ -66,6 +42,18 @@
 </div>
 
 <script type="text/javascript">
+  function getFinancingSurety(id){
+    var base_url = "<?php echo base_url; ?>";
+    $.ajax({
+        type: "POST",
+        url: ""+base_url+"tabs/tab1/contract_detail_surety.php",
+        data: {id:id},
+        success:function(data){
+
+          $('.contract_details_table').html(data);
+        }
+      });
+  }
 
   function open_video_modal_bonding_services() {
     $('#modal-video-bonding-services').modal('show');
