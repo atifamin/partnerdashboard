@@ -166,10 +166,14 @@ function formatSizeUnits($size, $precision = 2){
               </div>
             <?php }else{ ?>
               <div class="col-md-1 file-cell">
-                <i class="fa fa-file" style="color: #FBD5B5;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"></i>
+                <i class="fa fa-file" style="color: #FBD5B5;"></i>
               </div>
             <?php } ?>
-            <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
+            <?php if($val->uploaded==0){ ?>
+              <div class="col-md-6 file-cell columnSecond" style="margin:0 3%;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
+            <?php }else{ ?>
+              <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
+            <?php } ?>
             <div class="col-md-4 columnThird">
               <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">STATUS</span> </div>
               <?php if($val->uploaded==0){ ?>
@@ -188,11 +192,15 @@ function formatSizeUnits($size, $precision = 2){
             <div class="col-md-1"></div>
             <div class="col-md-6" style="margin:0 3%;"></div>
             <div class="col-md-4">
-              <div style="background-color: #b7dde8; padding: 5px 0px 5px 5px;">
+              <div style="background-color: #b7dde8; padding: 5px 5px 5px 5px;">
                 <input type="radio" name="document" value=""> I dont know what this document is<br>
                 <input type="radio" name="document" value=""> I am working on getting this document<br>
                 <input type="radio" name="document" value=""> I am waiting for my accountant to get this document<br>
                 <input type="radio" name="document" value=""> Other<br>
+                <input type="text" class="form-control mt-5" name="other" id="" value="">
+                <div class="text-center">
+                  <button type="button" class="btn mt-5">Submit</button>
+                </div>
               </div>
             </div>
           </div>
