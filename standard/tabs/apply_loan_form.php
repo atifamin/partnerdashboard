@@ -23,7 +23,7 @@ include('../../config/base_path.php');
 .sw-theme-dots > ul.step-anchor:before {
   width: 40%
 }
-.btn-steps{
+.btn-steps {
   background-color: #789538;
   color: #ffff;
   font-size: 19px;
@@ -139,7 +139,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
                 <small>Company Profile</small></a></li>
               <li><a href="#step-3">Step 3<br />
                 <small>Finish</small></a></li>
-                <li><button class="btn btn-steps">COMPLETED</button></li>
+                <li><span class="btn btn-steps" style="color: white;">COMPLETED</span></li>
             </ul>
             <div>
               <div id="step-1">
