@@ -119,7 +119,7 @@
       <span class="mt-10 custome_style"><b>FINANCING PROVIDED BY NETWORK</b><br>
       <b>OF PRIVATE AND PUBLIC PARTNERS</b></span><br>
       <span class="custome_style_1"><b>Contract and Invoice Financing</b></span><br>
-      <span class="custome_style_2"><i><b>Solution for your california Certified Business</b></i></span>
+      <span class="custome_style_2" style="font-family: inherit;"><i><b>Solution for your California Certified Business</b></i></span>
     </div>
     <div class="vl-1" style="margin-top: 10px;"></div>
   </div>
