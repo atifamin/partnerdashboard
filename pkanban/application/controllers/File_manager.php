@@ -319,6 +319,11 @@ class File_manager extends CI_Controller {
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('file')){
 			$error_msg = "File type not Correct only upload ".$file_detail->bizvault_user_required_filelist_extension." files here!";
+
+			setcookie("error_image_loading", $error_msg, time()+10, "/");
+			//$_SESSION["error_image_loading"] = "Test Message";
+			//$this->session->set_userdata("error_image_loading", "Testing Messag 1e");
+			//$this->session->set_flashdata("error_image_loading", "Test Message");
 			header('Location: '.$post['redirect_url'].'');
 
 		}else{

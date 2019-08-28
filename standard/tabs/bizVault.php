@@ -21,11 +21,17 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" id="user_id">
 <input type="hidden" value="0" id="parent_id">
 <input type="hidden" value="<?php echo $parent_id; ?>" id="bizvault_files_and_folders_id">
+
 <div class="row main-area">
   <header class="logo-area" >
     <div class="row" id="company_logo_content"></div>
   </header>
   <section class="bizVaultSection">
+    <?php if(isset($_COOKIE["error_image_loading"])) { ?>
+      <div class="alert alert-danger" role="alert">
+        <?php echo $_COOKIE["error_image_loading"]; ?>
+      </div>
+    <?php } ?>
     <?php include("bizVault/side-bar.php");?>
     <article class="bizVaultArticle">
     <div class="row" style="display:none" id="progress-row">

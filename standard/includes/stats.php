@@ -36,7 +36,7 @@ if($totalFiles>0){
   <div class="col-md-2 col-lg-2 bg-light-blue-1 text-center collapse bizvault-top-banner" style="padding: unset;">
     <span>
       <label class="mt-5">Your Private<br>bizVAULT™<br>Cloud Storage is<br>Ready</label><br>
-      <a href="<?php echo base_url;?>tabs/bizVAULT.php" class="btn mb-10" style="height: 33px; background-color: #31859E;"><span class="text-white font-13">CLICK HERE TO ACCESS</span></a>
+      <a href="<?php echo base_url;?>tabs/bizVault.php" class="btn mb-10" style="height: 33px; background-color: #31859E;"><span class="text-white font-13">CLICK HERE TO ACCESS</span></a>
     </span>
   </div>
   <div class="col-md-3 col-lg-3 text-center collapse bizvault-top-banner">
