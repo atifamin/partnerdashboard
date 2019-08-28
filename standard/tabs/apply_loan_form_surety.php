@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+
 <?php
 include("../../config/config_main.php");
 include('../../config/base_path.php');
@@ -19,6 +20,16 @@ include('../../config/base_path.php');
   position: absolute;
   top: 130px;
   z-index: 10000;
+}
+.sw-theme-dots > ul.step-anchor:before {
+  width: 40%
+}
+.btn-steps{
+  background-color: #789538;
+  color: #ffff;
+  font-size: 19px;
+  border-radius: 7px;
+  margin: 50px 0px 0px 22px;
 }
 </style>
 <!-- Include SmartWizard CSS -->
@@ -80,10 +91,10 @@ function bizVaultStatus($con){
 
 
 $FirmID = $_SESSION['dbe_firm_id'];
-$Tab1_Q1 = 'SELECT *
+$Tab1_Q1 = "SELECT *
       FROM prime_contractor pc
-      WHERE pc.dbe_firm_id = '.$FirmID.'
-      ORDER BY pc.contract_id DESC';
+      WHERE pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$_POST['contract_id']."'
+      ORDER BY pc.contract_id DESC";
 $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error());  
 $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R); 
 
@@ -114,6 +125,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
                 <small>Company Profile</small></a></li>
               <li><a href="#step-3">Step 3<br />
                 <small>Finish</small></a></li>
+              <li><button class="btn btn-steps">COMPLETED</button></li>
             </ul>
             <div>
               <div id="step-1">
@@ -160,6 +172,7 @@ $(document).ready(function(){
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')
+    .hide()
     .on('click', function(){
         if( !$(this).hasClass('disabled')){
             var elmForm = $("#myForm");
@@ -220,10 +233,11 @@ $(document).ready(function(){
 
     $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection) {
         // Enable finish button only on last step
-        if(stepNumber == 6){
-            $('.btn-finish').removeClass('disabled');
+        if(stepNumber == 2){
+          $('.btn-info').show();
+          $('.btn-finish').removeClass('disabled');
         }else{
-            $('.btn-finish').addClass('disabled');
+          $('.btn-finish').addClass('disabled');
         }
     });
     

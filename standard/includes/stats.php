@@ -250,6 +250,7 @@ if($totalFiles>0){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-white text-center" style="height: 60px; background-color: #1F487E; border: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
         <h3 class="modal-title">bizVAULT ACCESS </h3>
       </div>
       
@@ -296,7 +297,14 @@ if($totalFiles>0){
                     $datediff =  $expiry_date1 - $current_date;
                     $newDate = round($datediff / (60 * 60 * 24));
                   ?>
+                  <?php 
+                    if ($newDate <= 0) { ?>
+                  <td class="text-center" style="border: none;"><span style="color: red;">EXPIRED ON <br><strong><?php echo date('l, F d, Y',strtotime($row['grant_access_expiration_date'])); ?></strong></span><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
+                  <?php 
+                    }else{ ?>
                   <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo date('l, F d, Y',strtotime($row['grant_access_expiration_date'])); ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
+                  <?php 
+                    } ?>
               </tr>
             <?php } 
             } ?>

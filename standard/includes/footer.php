@@ -340,15 +340,15 @@ function show_cfm101(cfmid,cfmtitle){
 //     $("#modal-table").modal("show");
 // 	});
 // }
-function showofferboxpopup(offerid,partnername){
-  $.post("../tabs/apply_loan_form.php").done(function(e){
+function showofferboxpopup(offerid,partnername,contract_id){
+  $.post("../tabs/apply_loan_form.php",{contract_id:contract_id}).done(function(e){
     $("#modalArea").html(e);
     $("#apply-load-modal").modal("show");
   });
 }
 
-function showofferboxpopupSurety(offerid,partnername){
-  $.post("../tabs/apply_loan_form_surety.php").done(function(e){
+function showofferboxpopupSurety(offerid,partnername,contract_id){
+  $.post("../tabs/apply_loan_form_surety.php",{contract_id:contract_id}).done(function(e){
     $("#modalArea").html(e);
     $("#apply-load-modal").modal("show");
   });
