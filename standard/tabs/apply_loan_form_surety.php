@@ -29,7 +29,7 @@ include('../../config/base_path.php');
   color: #ffff;
   font-size: 19px;
   border-radius: 7px;
-  margin: 50px 0px 0px 20px;
+  margin: 50px 0px 0px 22px;
 }
 </style>
 <!-- Include SmartWizard CSS -->
