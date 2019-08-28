@@ -78,13 +78,14 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
 </div>
 
 <?php 
-  $q1 = "SELECT bn.* from bizvault_notification as bn, bizvault_default_folder_names as bdfn, user as u 
-        where u.user_id = bn.bizvault_notification_user_id AND bdfn.bizvault_default_folder_id = bn.bizvault_notification_filedoc_id";
+  $q1 = "SELECT bn.*, u.user_fname,u.user_lname, bdfn.bizvault_default_folder_title_text 
+  from bizvault_notification as bn, bizvault_default_folder_names as bdfn, user as u 
+        where u.user_id = bn.bizvault_notification_inititiated_user_id AND bdfn.bizvault_default_folder_id = bn.bizvault_notification_filedoc_id";
   $res1 = mysqli_query($con_MAIN,$q1);
 ?>
 
 <div class="modal fade" id="notification_model">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header" style="border: 0;background-color: #1F487E">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
@@ -95,7 +96,10 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           <thead>
             <tr style="background-color: #0a274e">
               <th class="text-center" style="color: #fff;font-size: 18px;">Notification Title</th>
-              <th class="text-center" style="color: #fff;font-size: 18px;">Notification Date</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Requested By User</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Notification Type</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Filename</th>
+              <th class="text-center" style="color: #fff;font-size: 18px;">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -107,9 +111,12 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
               </tr>
             <?php }else { ?>
             <?php while ($data = mysqli_fetch_array($res1)) { ?>
-            <tr style="background-color: #31859D;">
+            <tr style="background-color: #31859D;border-bottom: 2px solid #1f487e;">
               <td class="text-center" id="custom_table_style"><?php echo $data['bizvault_notification_title']; ?></td>
-              <td class="text-center" id="custom_table_style"> <?php echo date("F d Y-g:i a",strtotime($data['bizvault_notification_date'])) ?></td>
+              <td class="text-center" id="custom_table_style"> <?php echo $data['user_fname']." ".$data['user_lname']; ?></td>
+              <td class="text-center" id="custom_table_style"> <?php echo $data['bizvault_notification_type']; ?></td>
+              <td class="text-center" id="custom_table_style"> <?php echo $data['bizvault_default_folder_title_text']; ?></td>
+              <td class="text-center" id="custom_table_style"> <?php echo date("F d Y",strtotime($data['bizvault_notification_date'])) ?></td>
             </tr>
             <?php } 
             } ?>
@@ -185,6 +192,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-white text-center" style="height: 60px; background-color: #1F487E; border: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ffff">×</button>
         <h3 class="modal-title">bizVAULT ACCESS </h3>
       </div>
       
@@ -231,7 +239,14 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
                     $datediff =  $expiry_date1 - $current_date;
                     $newDate = round($datediff / (60 * 60 * 24));
                   ?>
+                  <?php 
+                    if ($newDate <= 0) { ?>
+                  <td class="text-center" style="border: none;"><span style="color: red;">EXPIRED ON <br><strong><?php echo date('l, F d, Y',strtotime($row['grant_access_expiration_date'])); ?></strong></span><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
+                  <?php 
+                    }else{ ?>
                   <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo date('l, F d, Y',strtotime($row['grant_access_expiration_date'])); ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em><br><em style="color: #5EB2D5; font-size: 10px;">Click here to change Expiration Date</em></td>
+                  <?php 
+                    } ?>
               </tr>
             <?php } 
             } ?>

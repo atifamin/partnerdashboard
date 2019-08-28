@@ -309,10 +309,18 @@ class File_manager extends CI_Controller {
 		if (!file_exists($config['upload_path'])) {
 			mkdir($config['upload_path'], 0777, true);
 		}
-		$config['allowed_types']        = '*';
+		$file_detail = $this->partnerDB->where('bizvault_user_required_filelist_id', $post['bizvault_user_required_filelist_id'])->get('bizvault_user_required_filelist')->row();
+		if($file_detail->bizvault_user_required_filelist_extension != Null){
+			$config['allowed_types'] = strtolower($file_detail->bizvault_user_required_filelist_extension);
+		}
+		else{
+			$config['allowed_types'] = '*';
+		}
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('file')){
+			$error_msg = "File type not Correct only upload ".$file_detail->bizvault_user_required_filelist_extension." files here!";
 			header('Location: '.$post['redirect_url'].'');
+
 		}else{
 			$upload_data = array('upload_data' => $this->upload->data());
 			$data['bizvault_user_required_filelist_id'] = $post['bizvault_user_required_filelist_id'];
