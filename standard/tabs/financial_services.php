@@ -100,7 +100,7 @@
 <div class="row cus-border">
   <div class="col-md-4 text-center">
     <div class="mt-20">
-      <span class="font-35 color-1">Contract Financing<br>$25,000 - $5000,000</span>
+      <span class="font-35 color-1">Contract Financing<br>$25,000 - $5,000,000</span>
     </div>
     <a href="javascript:;" onclick="showofferboxpopup(2,'Basic Partner')" class="btn mb-10 mt-5 bg-button" style="padding: 3px 20px 3px 20px;"><span class="text-white font-25">REQUEST FINANCING</span></a>
     <div class="vl"></div>
