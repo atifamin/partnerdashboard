@@ -160,6 +160,7 @@ $(document).ready(function(){
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')
+    .hide()
     .on('click', function(){
         if( !$(this).hasClass('disabled')){
             var elmForm = $("#myForm");
@@ -220,10 +221,11 @@ $(document).ready(function(){
 
     $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection) {
         // Enable finish button only on last step
-        if(stepNumber == 6){
-            $('.btn-finish').removeClass('disabled');
+        if(stepNumber == 2){
+          $('.btn-info').show();
+          $('.btn-finish').removeClass('disabled');
         }else{
-            $('.btn-finish').addClass('disabled');
+          $('.btn-finish').addClass('disabled');
         }
     });
     
