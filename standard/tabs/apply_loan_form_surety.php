@@ -21,6 +21,16 @@ include('../../config/base_path.php');
   top: 130px;
   z-index: 10000;
 }
+.sw-theme-dots > ul.step-anchor:before {
+  width: 40%
+}
+.btn-steps{
+  background-color: #789538;
+  color: #ffff;
+  font-size: 19px;
+  border-radius: 7px;
+  margin: 50px 0px 0px 20px;
+}
 </style>
 <!-- Include SmartWizard CSS -->
 
@@ -115,6 +125,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
                 <small>Company Profile</small></a></li>
               <li><a href="#step-3">Step 3<br />
                 <small>Finish</small></a></li>
+              <li><button class="btn btn-steps">COMPLETED</button></li>
             </ul>
             <div>
               <div id="step-1">
