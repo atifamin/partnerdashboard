@@ -59,8 +59,7 @@
           <span style="color: #868574; font-size: 18px;">CONTRACT AMOUNT</span>
         </div>
       </div>
-      <?php $award_amount = (10 / 100) * $Tab1_Q1RA['award_amount']; ?>
-      <span class="container">$<?php echo number_format($award_amount,0); ?></span>
+      <span class="container">$<?php echo number_format($Tab1_Q1RA['award_amount'],0); ?></span>
     </div>
     
   </div>
