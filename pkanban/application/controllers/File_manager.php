@@ -321,7 +321,7 @@ class File_manager extends CI_Controller {
 		if ( ! $this->upload->do_upload('file')){
 			$error_msg = "File type not Correct only upload ".$file_detail->bizvault_user_required_filelist_extension." files here!";
 
-			setcookie("error_image_loading", $error_msg, time()+1, "/");
+			setcookie("error_image_loading", $error_msg, time()+15, "/");
 			//$_SESSION["error_image_loading"] = "Test Message";
 			//$this->session->set_userdata("error_image_loading", "Testing Messag 1e");
 			//$this->session->set_flashdata("error_image_loading", "Test Message");
@@ -357,7 +357,9 @@ class File_manager extends CI_Controller {
 
 	public function delete_file($id){
 		$file = $this->partnerDB->where("bizvault_user_uploaded_required_file_id", $id)->get("bizvault_user_uploaded_required_file")->row();
-		unlink($file->bizvault_user_uploaded_required_file_full_pathname);
+		if (is_file($file->bizvault_user_uploaded_required_file_full_pathname)) {
+			unlink($file->bizvault_user_uploaded_required_file_full_pathname);
+		}
 		$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $id)->delete("bizvault_user_uploaded_required_file");
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
