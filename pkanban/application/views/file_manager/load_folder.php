@@ -100,19 +100,12 @@
 }
 
 #progress {
-  width: 100%;
-  background-color: #ddd;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 #progress-bar {
-  width: 10%;
-  height: 30px;
-  background-color: #4f81bd;
-  text-align: center;
-  line-height: 30px;
-  color: white;
-  border-radius: 10px;
+  width: 5%; 
+  border-radius: 5px;
 }
 
 </style>
@@ -152,7 +145,7 @@ function formatSizeUnits($size, $precision = 2){
     <div class="box-group" id="accordion">
       <?php if(count($folder->files)>0): ?>
       <?php foreach($folder->files as $key=>$val): ?>
-      <div class="panel box box-primary">
+      <div class="panel box box-primary" id="panel_row_<?php echo $val->bizvault_user_required_filelist_id; ?>">
         
         <div class="box-header with-border">
           <!-- <h4 class="box-title">  Collapsible Group Item #1  </h4> -->
@@ -193,14 +186,19 @@ function formatSizeUnits($size, $precision = 2){
             <div class="col-md-6" style="margin:0 3%;"></div>
             <div class="col-md-4">
               <div style="background-color: #b7dde8; padding: 5px 5px 5px 5px;">
-                <input type="radio" name="document" value=""> I dont know what this document is<br>
-                <input type="radio" name="document" value=""> I am working on getting this document<br>
-                <input type="radio" name="document" value=""> I am waiting for my accountant to get this document<br>
-                <input type="radio" name="document" value=""> Other<br>
-                <input type="text" class="form-control mt-5" name="other" id="" value="">
-                <div class="text-center">
-                  <button type="button" class="btn mt-5">Submit</button>
-                </div>
+                <form id="file_upload_explanation_<?php echo $val->bizvault_user_required_filelist_id; ?>"  method="post">
+                  <input type="hidden" name="file_id" value="<?php echo $val->bizvault_user_required_filelist_id; ?>">
+                  <input type="hidden" name="folder_id" value="<?php echo $val->bizvault_user_required_filelist_folder_id; ?>">
+                  <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                  <input type="radio" name="document" value="I dont know what this document is" required=""> I dont know what this document is<br>
+                  <input type="radio" name="document" value="I am working on getting this document" required=""> I am working on getting this document<br>
+                  <input type="radio" name="document" value="I am waiting for my accountant to get this document" required=""> I am waiting for my accountant to get this document<br>
+                  <input type="radio" name="document" onclick="display_other_textbox(<?php echo $val->bizvault_user_required_filelist_id; ?>)" id="other_radio" value="other" required=""> Other<br>
+                  <input type="text" class="form-control mt-5" id="other_text_<?php echo $val->bizvault_user_required_filelist_id; ?>" name="other_detail" style="display: none;">
+                  <div class="text-center">
+                      <button type="submit" class="btn mt-5" onclick="file_upload_explanation(<?php echo $val->bizvault_user_required_filelist_id; ?>)">Submit</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -228,22 +226,6 @@ function formatSizeUnits($size, $precision = 2){
             </div>
           </div>
           <?php }else{ ?>
-            <div id="row-progrss-bar" style="display: none;">
-              <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10 text-center" style="background-color: #9bbb59;">
-                  <h3>UPLOADING[FILE NAME]</h3>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10" style="padding:2% 0;text-align:center;">
-                  <div id="progress">
-                    <div id="progress-bar">10%</div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="row text-center" id="row-no-file">
               <div class="col-md-12">
                 <p><i>No File Uploaded Yet</i></p>
@@ -251,6 +233,17 @@ function formatSizeUnits($size, $precision = 2){
             </div>
             <?php } ?>
             </div>
+        </div>
+
+        <div class="row" style="background-color:#d2d0d0; margin-right: 6%; margin-left: 2%; display: none;" id="panel_row_progress_<?php echo $val->bizvault_user_required_filelist_id; ?>">
+          <div class="col-md-12 text-center" style="background-color: #9bbb59;">
+            <h3>UPLOADING[FILE NAME]</h3>
+          </div>
+          <div class="col-md-12" style="padding: 10px 10px 0px 10px;">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </div>
         </div>
       </div>
       <?php endforeach; endif; ?>
@@ -372,6 +365,27 @@ function formatSizeUnits($size, $precision = 2){
 </div>
 
 <script type="text/javascript">
+  function file_upload_explanation(id){
+    var url = $("#pkanban_url").val();
+    var formData = new FormData($('#file_upload_explanation_'+id+'')[0]);
+    $.ajax({
+        type: "POST",
+        processData: false,
+        contentType: false,
+        cache: false,
+        url: ""+url+"file_manager/file_explanation",
+        data: formData,
+        success: function(data){
+          //console.log(data);
+          location.reload();
+        }
+    });
+  }
+  // $("#file_upload_explanation").on("submit",function(e){
+  //   alert(); return false;
+  //   e.preventDefault();
+    
+  // });
 
   function progress_bar() {
     var elem = document.getElementById("progress-bar");   
@@ -401,8 +415,48 @@ function formatSizeUnits($size, $precision = 2){
     $("#file").click();
   }
 
+  function upload_file_and_form(formData){
+    //var formData = new FormData($("#actionItemForm")[0]);
+    $.ajax({
+        url: "<?php echo site_url("file_manager/upload_predefied_file"); ?>",
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,                         
+        type: 'post',
+        success: function(e){
+          
+        },
+        async: true,
+        xhr: function () {
+          var id = $("input[name=bizvault_user_required_filelist_id]").val();
+          console.log(id);
+          //var fileName = $("#file")[0].files[0].name;
+          var xhr = new window.XMLHttpRequest();
+          //Upload Progress
+          xhr.upload.addEventListener("progress", function (evt) {
+            if (evt.lengthComputable) {
+              var percentComplete = (evt.loaded / evt.total) * 100; $('div.progress > div.progress-bar-upload').css({ "width": percentComplete + "%" });
+              $("#panel_row_progress_"+id+"").show().find(".progress-bar").css("width", ""+percentComplete+"%").text(""+percentComplete+"%");
+              //$("#panel_row_"+id+"").append('<div id="panel_row_progress_'+id+'" class="row" style="padding:10px;background-color:lightgrey;"><div class="col-md-12" style="padding:10px;background-color:green;text-align:center;">'+fileName+'</div><div class="col-md-12"><div class="progress"><div class="progress-bar" role="progressbar" style="width: '+percentComplete+'%;" aria-valuenow="'+percentComplete+'" aria-valuemin="0" aria-valuemax="100">'+percentComplete+'%</div></div><div></div>');
+              if(percentComplete==100){
+                setTimeout(function(){
+                  $("#panel_row_progress_"+id+"").hide();
+                  location.reload()
+                }, 2000);
+              }
+            }
+          }, false);
+          return xhr;
+        },
+    });
+  }
+
   $("#file").on("change", function(){
-    $("#file_upload_form").submit();
+    var formData = new FormData($("#file_upload_form")[0]);
+    upload_file_and_form(formData);
+    //$("#file_upload_form").submit();
     // $("#row-progrss-bar").show();
     // $("#row-no-file").hide();
     // var elem = document.getElementById("progress-bar");   
@@ -445,6 +499,14 @@ function formatSizeUnits($size, $precision = 2){
   }
   function close_model(id){
     $("#grant-access-modal_1").modal('hide');
+  }
+
+  function display_other_textbox(id){
+    //alert(id);
+    $('#other_text_'+id+'').show();
+    // if ($('#other_text').val() == ""){
+    //         alert('Please complete the field');
+    //     }
   }
 // function hoverForAccess(id) {
 

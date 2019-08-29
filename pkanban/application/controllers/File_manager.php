@@ -309,6 +309,7 @@ class File_manager extends CI_Controller {
 		if (!file_exists($config['upload_path'])) {
 			mkdir($config['upload_path'], 0777, true);
 		}
+		
 		$file_detail = $this->partnerDB->where('bizvault_user_required_filelist_id', $post['bizvault_user_required_filelist_id'])->get('bizvault_user_required_filelist')->row();
 		if($file_detail->bizvault_user_required_filelist_extension != Null){
 			$config['allowed_types'] = strtolower($file_detail->bizvault_user_required_filelist_extension);
@@ -392,5 +393,20 @@ class File_manager extends CI_Controller {
 							->where('request_access_id',$post['id'])
 							->update('request_access');
 		}
+	}
+
+	public function file_explanation() {
+		$post = $this->input->post();
+		// print_r($post); exit;
+		$data['bizvault_user_required_filelist_id'] = $post['file_id'];
+		$data['bizvault_user_uploaded_required_default_file_parent_folder_id'] = $post['folder_id'];
+		$data['bizvault_user_uploaded_required_file_user_id'] = $post['user_id'];
+		if ($post['document'] == 'other') {
+			$data['bizvault_user_uploaded_required_file_file_explanation'] = $post['other_detail'];
+		}else{
+			$data['bizvault_user_uploaded_required_file_file_explanation'] = $post['document'];
+		}
+		$this->partnerDB->insert("bizvault_user_uploaded_required_file",$data);
+		
 	}
 }
