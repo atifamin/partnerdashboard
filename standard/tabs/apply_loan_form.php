@@ -68,9 +68,8 @@ function bizVaultStatus($con){
   $percentage = 0;
   $total_files = $gettingBasicFiles->num_rows;
   $uploaded_files = 0;
-
   while($row = mysqli_fetch_array($gettingBasicFiles)){
-      $checkIfFileExists = exec_sqlQuery($con, "SELECT * FROM bizvault_user_uploaded_required_file WHERE bizvault_user_required_filelist_id = ".$row['id']." AND bizvault_user_uploaded_required_file_user_id = ".$userData['user_id']."");
+      $checkIfFileExists = exec_sqlQuery($con, "SELECT * FROM bizvault_user_uploaded_required_file WHERE bizvault_user_required_filelist_id = ".$row['bizvault_user_required_filelist_id']." AND bizvault_user_uploaded_required_file_user_id = ".$userData['user_id']."");
       if($checkIfFileExists->num_rows>0){
           $uploaded_files =+ $uploaded_files+1;
       }
@@ -183,7 +182,8 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
 
 $(document).ready(function(){
     var $bizVaultStatus = $("#bizVaultStatus").html();
-    //$bizVaultStatus = JSON.parse($bizVaultStatus);
+    console.log($bizVaultStatus);
+    $bizVaultStatus = JSON.parse($bizVaultStatus);
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')

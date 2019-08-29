@@ -290,7 +290,7 @@ function formatSizeUnits($size, $precision = 2){
                 </td>
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->request_access_type; ?></td>
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->file_folder_name; ?></td>
-                <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>
+                <!-- <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>
                 <?php $expiry_date =  date('l, F d, Y',strtotime($info->request_access_timestamp.' + '.$info->request_access_length.' Days'));
                 echo $expiry_date; ?>
                 </strong></span><br>
@@ -301,7 +301,22 @@ function formatSizeUnits($size, $precision = 2){
                   $newDate = round($datediff / (60 * 60 * 24));
                 ?>
                 <em class="text-red">(Expires in <?php echo $newDate; ?> Day)</em>
-                </td>
+                </td> -->
+                <?php 
+                    $current_date = time();
+                    $expiry_date =  date('l, F d, Y',strtotime($info->request_access_timestamp.' + '.$info->request_access_length.' Days'));
+                    $expiry_date1 = strtotime($expiry_date);
+                    $datediff =  $expiry_date1 - $current_date;
+                    $newDate = round($datediff / (60 * 60 * 24));
+                  ?>
+                  <?php 
+                    if ($newDate <= 0) { ?>
+                  <td class="text-center" style="border: none;"><span style="color: red;">EXPIRED ON <br><strong><?php echo date('l, F d, Y',strtotime($expiry_date)); ?></strong></span></td>
+                  <?php 
+                    }else{ ?>
+                  <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong><?php echo $expiry_date; ?></strong></span><br><em style=" color: red;">(Expires in <?php echo $newDate; ?> Day)</em></td>
+                  <?php 
+                    } ?>
               </tr>
             <?php }
                 } ?>

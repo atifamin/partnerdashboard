@@ -28,7 +28,10 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
   </header>
   <section class="bizVaultSection">
     <?php if(isset($_COOKIE["error_image_loading"])) { ?>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger text-center" role="alert" style="margin: 0 70px;font-size: 18px">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <?php echo $_COOKIE["error_image_loading"]; ?>
       </div>
     <?php } ?>
