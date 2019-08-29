@@ -236,8 +236,8 @@ function formatSizeUnits($size, $precision = 2){
         </div>
 
         <div class="row" style="background-color:#d2d0d0; margin-right: 6%; margin-left: 2%; display: none;" id="panel_row_progress_<?php echo $val->bizvault_user_required_filelist_id; ?>">
-          <div class="col-md-12 text-center" style="background-color: #9bbb59;">
-            <h3>UPLOADING[FILE NAME]</h3>
+          <div class="col-md-12 text-center uploading-file" style="background-color: #9bbb59;">
+            <h3>UPLOADING</h3>
           </div>
           <div class="col-md-12" style="padding: 10px 10px 0px 10px;">
             <div class="progress">
@@ -381,20 +381,34 @@ function formatSizeUnits($size, $precision = 2){
 
 <script type="text/javascript">
   function file_upload_explanation(id){
-    var url = $("#pkanban_url").val();
-    var formData = new FormData($('#file_upload_explanation_'+id+'')[0]);
-    $.ajax({
-        type: "POST",
-        processData: false,
-        contentType: false,
-        cache: false,
-        url: ""+url+"file_manager/file_explanation",
-        data: formData,
-        success: function(data){
-          //console.log(data);
-          location.reload();
-        }
-    });
+    if ($('#other_text_'+id+'').is(':visible')) {
+      alert('Please complete the field');
+      preventDefault();
+      return false;
+    } else {
+        var url = $("#pkanban_url").val();
+        var formData = new FormData($('#file_upload_explanation_'+id+'')[0]);
+        $.ajax({
+            type: "POST",
+            processData: false,
+            contentType: false,
+            cache: false,
+            url: ""+url+"file_manager/file_explanation",
+            data: formData,
+            success: function(data){
+              //console.log(data);
+              location.reload();
+            }
+        });
+      }
+  }
+
+  function display_other_textbox(id){
+    //alert(id);
+    $('#other_text_'+id+'').show();
+    // if ($('#other_text_'+id+'').val() == ""){
+    //   alert('Please complete the field');
+    // }
   }
   // $("#file_upload_explanation").on("submit",function(e){
   //   alert(); return false;
@@ -402,20 +416,20 @@ function formatSizeUnits($size, $precision = 2){
     
   // });
 
-  function progress_bar() {
-    var elem = document.getElementById("progress-bar");   
-    var width = 10;
-    var id = setInterval(frame, 30);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-      } else {
-        width++; 
-        elem.style.width = width + '%'; 
-        elem.innerHTML = width * 1  + '%';
-      }
-    }
-  }
+  // function progress_bar() {
+  //   var elem = document.getElementById("progress-bar");   
+  //   var width = 10;
+  //   var id = setInterval(frame, 30);
+  //   function frame() {
+  //     if (width >= 100) {
+  //       clearInterval(id);
+  //     } else {
+  //       width++; 
+  //       elem.style.width = width + '%'; 
+  //       elem.innerHTML = width * 1  + '%';
+  //     }
+  //   }
+  // }
 
   load_summary(<?php echo $folder->completedPercentage; ?>, <?php echo $folder->missingFiles; ?>);
 
@@ -447,12 +461,14 @@ function formatSizeUnits($size, $precision = 2){
         xhr: function () {
           var id = $("input[name=bizvault_user_required_filelist_id]").val();
           console.log(id);
-          //var fileName = $("#file")[0].files[0].name;
+          var fileName = $("#file")[0].files[0].name;
           var xhr = new window.XMLHttpRequest();
           //Upload Progress
           xhr.upload.addEventListener("progress", function (evt) {
             if (evt.lengthComputable) {
-              var percentComplete = (evt.loaded / evt.total) * 100; $('div.progress > div.progress-bar-upload').css({ "width": percentComplete + "%" });
+              var percentComplete = (evt.loaded / evt.total) * 100; 
+              $('div.progress > div.progress-bar-upload').css({ "width": percentComplete + "%" });
+              $('.uploading-file h3').html("Uploading["+fileName+"]");
               $("#panel_row_progress_"+id+"").show().find(".progress-bar").css("width", ""+percentComplete+"%").text(""+percentComplete+"%");
               //$("#panel_row_"+id+"").append('<div id="panel_row_progress_'+id+'" class="row" style="padding:10px;background-color:lightgrey;"><div class="col-md-12" style="padding:10px;background-color:green;text-align:center;">'+fileName+'</div><div class="col-md-12"><div class="progress"><div class="progress-bar" role="progressbar" style="width: '+percentComplete+'%;" aria-valuenow="'+percentComplete+'" aria-valuemin="0" aria-valuemax="100">'+percentComplete+'%</div></div><div></div>');
               if(percentComplete==100){
@@ -471,22 +487,6 @@ function formatSizeUnits($size, $precision = 2){
   $("#file").on("change", function(){
     var formData = new FormData($("#file_upload_form")[0]);
     upload_file_and_form(formData);
-    //$("#file_upload_form").submit();
-    // $("#row-progrss-bar").show();
-    // $("#row-no-file").hide();
-    // var elem = document.getElementById("progress-bar");   
-    // var width = 10;
-    // var id = setInterval(frame, 10);
-    // function frame() {
-    //   if (width >= 100) {
-    //     clearInterval(id);
-    //     $("#file_upload_form").submit();
-    //   } else {
-    //     width++; 
-    //     elem.style.width = width + '%'; 
-    //     elem.innerHTML = width * 1  + '%';
-    //   }
-    // }
   });
 
   function show_access() {
@@ -516,13 +516,6 @@ function formatSizeUnits($size, $precision = 2){
     $("#grant-access-modal_1").modal('hide');
   }
 
-  function display_other_textbox(id){
-    //alert(id);
-    $('#other_text_'+id+'').show();
-    // if ($('#other_text').val() == ""){
-    //         alert('Please complete the field');
-    //     }
-  }
 // function hoverForAccess(id) {
 
 //   $('#access-given').show();
