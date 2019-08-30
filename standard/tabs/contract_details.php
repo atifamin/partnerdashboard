@@ -99,7 +99,6 @@ if($FirmID > 0){
 
 <div id="user_info_modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
-
     <div class="modal-content">
       <div class="modal-header text-center" style="background-color: #1F487C;">
         <h3 class="modal-title text-white" id="modal_heading">CONGRATULATIONS!<br>We’ve successfully configured your dashboard<br>Please take a quick moment to confirm that<br>Your data records are accurate and up to date.</h3>

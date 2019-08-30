@@ -11,7 +11,28 @@ $LastTask = mysqli_fetch_assoc($QueryRun);
 
 $data['task_id'] = $LastTask['task_id'];
 
-$Query = "INSERT INTO user_info_update (
+if (!isset($_POST['business_structure'])) {
+	$data['business_structure'] = NULL;
+}
+if (!isset($_POST['year_established'])) {
+	$data['year_established'] = NULL;
+}
+if (!isset($_POST['type_of_business'])) {
+	$data['type_of_business'] = NULL;
+}
+if (!isset($_POST['no_of_employees'])) {
+	$data['no_of_employees'] = NULL;
+}
+if (!isset($_POST['current_year_profit'])) {
+	$data['current_year_profit'] = NULL;
+}
+if (!isset($_POST['last_year_profit'])) {
+	$data['last_year_profit'] = NULL;
+}
+$company_name = mysqli_real_escape_string($con_MAIN, $_POST['company_name']);
+$address = mysqli_real_escape_string($con_MAIN, $_POST['address']);
+
+$Query = "INSERT INTO `user_info_update` (
 			`task_id`,
 		    `user_id`,
 		    `company_name`,
@@ -32,14 +53,10 @@ $Query = "INSERT INTO user_info_update (
 		    `business_structure`,
 		    `year_established`,
 		    `state_of_incorporation`,
-		    `federal_tax_id`,
 		    `type_of_business`,
 		    `no_of_employees`,
 		    `current_year_profit`,
 		    `last_year_profit`,
-		    `funding_amount`,
-		    `use_of_funds`,
-		    `currently_financed`,
 		    `largest_client1`,
 		    `largest_client2`,
 		    `largest_client3`,
@@ -49,8 +66,8 @@ $Query = "INSERT INTO user_info_update (
 
 			'".$data['task_id']."',
 		    '".$_SESSION['user_id']."',
-		    '".$data['company_name']."',
-		    '".$data["address"]."',
+		    '".$company_name."',
+		    '".$address."',
 		    '".$data['city']."',
 		    '".$data["state"]."',
 		    '".$data['zip_code']."',
@@ -67,20 +84,18 @@ $Query = "INSERT INTO user_info_update (
 		    '".$data['business_structure']."',
 		    '".$data['year_established']."',
 		    '".$data['state_of_incorporation']."',
-		    '".$data['federal_tax_id']."',
 		    '".$data['type_of_business']."',
 		    '".$data['no_of_employees']."',
 		    '".$data['current_year_profit']."',
 		    '".$data['last_year_profit']."',
-		    '".$data['funding_amount']."',
-		    '".$data['use_of_funds']."',
-		    '".$data['currently_financed']."',
 		    '".$data['largest_client1']."',
 		    '".$data['largest_client2']."',
 		    '".$data['largest_client3']."',
 		    '".$data['largest_client4']."'
 			)";
-			mysqli_query($con_MAIN,$Query);
+			// echo "<pre>"; print_r($Query);exit;
+			mysqli_query($con_MAIN,$Query)  or die(mysqli_error($con_MAIN));
+
 			header("Location: ".base_url."tabs/contract_details.php");
 
 ?>
