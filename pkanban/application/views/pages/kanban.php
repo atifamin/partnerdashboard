@@ -295,9 +295,9 @@
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab_edit"><?php echo e('Edit Deal', true); ?></a> </li>
           <li><a data-toggle="tab" href="#tab_attachments"><?php echo e('Attachments', true); ?></a></li>
-          <?php if ($this->session->userdata['user_session']['user_id'] == 5001) { ?>
+          <?php //if ($this->session->userdata['user_session']['user_id'] == 5001) { ?>
           <li><a data-toggle="tab" href="#tab_bizvault_files_document"><?php echo e('bizVAULT™ Files and Documents', true); ?></a></li>
-        <?php } ?>
+        <?php //} ?>
           <li><a data-toggle="tab" href="#tab_periods"><?php echo e('Working periods', true); ?></a></li>
         </ul>
         <div class="tab-content bck">
