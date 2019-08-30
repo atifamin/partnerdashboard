@@ -27,6 +27,7 @@ include("../functions/functions.php");
 <?php include("../includes/stats.php") ?>
 
 <?php
+//echo "<pre>"; print_r($_SESSION); exit;
 $VendorID 			= $_SESSION['vendor_id'];
 $CertificationID 	= $_SESSION['certification_id'];
 $FirmID 			= $_SESSION['dbe_firm_id'];
@@ -54,6 +55,9 @@ if($FirmID > 0){
 	$CheckSubR = mysqli_query($con_MAIN,$CheckSub);
 	$TotalSub = mysqli_fetch_assoc($CheckSubR);
 	$TotalSub = $TotalSub['SubContractors'];
+
+
+	//echo "<pre>"; print_r($TotalPrimes." ".$TotalSub); exit;
 
 	if($TotalPrimes>0 && $TotalSub>0){
 		include "tab1/both_contractors.php";

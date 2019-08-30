@@ -57,7 +57,7 @@
                   WHERE containers.container_name="Funding Closed" AND tasks.task_container=containers.container_id AND containers.container_board=boards_users.board_id AND
                   boards_users.user_id=users.user_id AND 
                   tasks.task_archived=0 AND users.user_id='.$_SESSION["user_id"];
-//echo $query3;exit;
+                  //echo $query3;exit;
                   $res3= mysqli_query($con_TaskBoard,$query3);
                   $r3= mysqli_fetch_object($res3);
                   //echo"<pre>";print_r($r3);exit();
@@ -163,7 +163,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
     <h4 class="widget-title lighter" style="font-size: 20px">
       NEWLY SUBMITTED BONDING REQUEST
       <a href="#bonding_request" id="bonding_requesta" data-toggle="collapse"  aria-controls="bonding_request">
-      <i class="ace-icon fa fa-chevron-up pull-right" id="bonding_requesti" style="color:white;"></i>
+      <i class="ace-icon fa fa-chevron-down pull-right" id="bonding_requesti" style="color:white;"></i>
       </a>
     </h4>
   </div>
@@ -307,12 +307,12 @@ $(function(){$("[id$='circle']").percircle();});
     
   }
   $('#bonding_requesta').click(function(){
-    if ($('#bonding_requesti').hasClass('ace-icon fa fa-chevron-up')) {
-      $('#bonding_requesti').removeClass('ace-icon fa fa-chevron-up');
-      $('#bonding_requesti').addClass('ace-icon fa fa-chevron-down');
-    }else{
+    if ($('#bonding_requesti').hasClass('ace-icon fa fa-chevron-down')) {
       $('#bonding_requesti').removeClass('ace-icon fa fa-chevron-down');
       $('#bonding_requesti').addClass('ace-icon fa fa-chevron-up');
+    }else{
+      $('#bonding_requesti').removeClass('ace-icon fa fa-chevron-up');
+      $('#bonding_requesti').addClass('ace-icon fa fa-chevron-down');
     }
   });
   function bonding_request_submit(task_id){
