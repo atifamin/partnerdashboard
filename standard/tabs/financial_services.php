@@ -1,5 +1,5 @@
 <?php
-
+ // echo "<pre>"; print_r($_SESSION);
   $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); 
 
   if($_FILE_NAME == "contract_details.php"){ 
