@@ -39,6 +39,7 @@ class Home extends CI_Controller {
                                             IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
                                             ORDER BY board_default DESC LIMIT 1");
             if ($board->num_rows() > 0) {
+                $this->session->set_userdata('board_id', $board->row()->board_id);
                 $this->board($board->row()->board_id);
             } else {
                 $this->no_permissions();
@@ -92,17 +93,20 @@ class Home extends CI_Controller {
     }
 
     public function board($board_id) {
+        
+
         $user_id = $this->session->userdata('user_session')['user_id'];
         $partner_id = $this->session->userdata('user_session')['partner_id'];
 
         $partnerDetail = $this->partnerDB->where("partner_id", $partner_id)->get("partner")->row();
 
         $partner_type = $partnerDetail->partner_service_type;
+
         // if($partner_type=="Surety Bonding"){
         //     $partner_type = "Bonding";
         // }
         
-
+        $this->session->set_userdata('partner_type', $partner_type);
         $data = array();
         $check_permission = $this->db->query("SELECT * FROM boards WHERE board_id
                                             IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
@@ -115,6 +119,7 @@ class Home extends CI_Controller {
         }
 
         $data['board_id'] = $board_id;
+        
         $data['containers'] = $this->db->query("SELECT * FROM containers WHERE container_board = '$board_id' ORDER BY container_order ASC")->result_array();
 
 

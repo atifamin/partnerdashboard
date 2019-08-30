@@ -81,7 +81,12 @@ function get_datetimepicker_format()
 }
 function get_container_total($container_id){
     $CI = &get_instance();  //get instance, access the CI superobject
-    $query = $CI->db->query("SELECT SUM(task_funding_amount_requested) AS total FROM tasks WHERE task_container=$container_id");
+    //print_r($CI->session->userdata('partner_type'));exit;
+    $partner_type = $CI->session->userdata('partner_type');
+    $boardId = $CI->session->userdata('board_id');
+    
+    
+    $query = $CI->db->query("SELECT SUM(task_funding_amount_requested) AS total FROM tasks, user_fastfund_form1 ff WHERE tasks.task_id=ff.task_id AND task_type='".$partner_type."' AND task_container=$container_id");
     $data =  $query->result_array()[0];
     return $data['total'];
 }
