@@ -196,7 +196,7 @@ function formatSizeUnits($size, $precision = 2){
                   <input type="radio" name="document" onclick="display_other_textbox(<?php echo $val->bizvault_user_required_filelist_id; ?>)" id="other_radio" value="other" required=""> Other<br>
                   <input type="text" class="form-control mt-5" id="other_text_<?php echo $val->bizvault_user_required_filelist_id; ?>" name="other_detail" style="display: none;">
                   <div class="text-center">
-                      <button type="submit" class="btn mt-5" onclick="file_upload_explanation(<?php echo $val->bizvault_user_required_filelist_id; ?>)">Submit</button>
+                      <button type="button" class="btn mt-5" onclick="file_upload_explanation(<?php echo $val->bizvault_user_required_filelist_id; ?>)">Submit</button>
                   </div>
                 </form>
               </div>
@@ -381,34 +381,25 @@ function formatSizeUnits($size, $precision = 2){
 
 <script type="text/javascript">
   function file_upload_explanation(id){
-    if ($('#other_text_'+id+'').is(':visible')) {
-      alert('Please complete the field');
-      preventDefault();
-      return false;
-    } else {
-        var url = $("#pkanban_url").val();
-        var formData = new FormData($('#file_upload_explanation_'+id+'')[0]);
-        $.ajax({
-            type: "POST",
-            processData: false,
-            contentType: false,
-            cache: false,
-            url: ""+url+"file_manager/file_explanation",
-            data: formData,
-            success: function(data){
-              //console.log(data);
-              location.reload();
-            }
-        });
-      }
+    var url = $("#pkanban_url").val();
+    var formData = new FormData($('#file_upload_explanation_'+id+'')[0]);
+    $.ajax({
+        type: "POST",
+        processData: false,
+        contentType: false,
+        cache: false,
+        url: ""+url+"file_manager/file_explanation",
+        data: formData,
+        success: function(data){
+          //console.log(data);
+          location.reload();
+        }
+    });
   }
 
   function display_other_textbox(id){
     //alert(id);
-    $('#other_text_'+id+'').show();
-    // if ($('#other_text_'+id+'').val() == ""){
-    //   alert('Please complete the field');
-    // }
+    $('#other_text_'+id+'').show();    
   }
   // $("#file_upload_explanation").on("submit",function(e){
   //   alert(); return false;
