@@ -11,7 +11,7 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 	while($Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R)){
 
 ?>							
-<div class="row">
+<div class="row" style="background-color: white;">
 	<div class="col-sm-12" style="padding-top: 25px;">
 		<div class="widget-box transparent <?php if($Index!=1){echo 'collapsed';}?>" >
 			<div class="widget-header widget-header-flat" style="background-color:#337ab7;color:white;padding:5px;border-style:solid;border-color:#d2d6de;margin-bottom: 5px;">
