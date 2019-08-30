@@ -133,19 +133,22 @@
     </div>
     <?php foreach ($data['tasks'][$container['container_id']] as $task):
       $checkIfFormExists = $this->sec->check_form_exists($task['task_id'], $data["table_name"]);
+      //print_r($data);exit;
+      //print_r($task);
       if($checkIfFormExists>0){
     ?>
     <?php
     $this->load->model("Sec");
 
     $DETAIL = $this->sec->get_task_content($task['task_id'], $data["table_name"]);
-    //echo "<pre>"; print_r($DETAIL['logo']);
+    
     ?>
     <div class="portlet task_element" <?php if ($task['task_color']): ?>style="border-left: solid 4px <?php echo unserialize(TASK_COLORS)[$task['task_color']]; ?>;<?php endif; ?>" id="<?php echo $task['task_id']; ?>" onclick="assign_task_id(<?php echo $task['task_id']; ?>)">
       <div class="portlet-border"></div>
        <div class="portlet-header" style="padding-right:0px;padding-left:0px;min-height:100px;">
         <div >
           <div class="col-md-12" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+            
             <div class="col-md-3" style="padding: 0px;background-color: #<?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm_Color'];} else{echo "000000";} ?>;border-right: 5px solid white;height: 55px;text-align: center;line-height: 3.6;color:white;font-weight:900;"><?php echo $DETAIL['logo']; ?></div>
             <div class="col-md-9" style="padding:0px;">
               <p style="font-size:12px;background-color:#4f81bd;padding:2%;padding-right:5%;color:white;white-space:nowrap;overflow:hidden;"><?php if($DETAIL['dashboard_user']->dbe_firm_id!=0){echo $DETAIL['dashboard_firm']['Firm/DBA Name'];}else{echo "N/A";} ?> </p>
@@ -195,9 +198,14 @@
   </div>
 </div>
 <div class="board-footer hidden-xs" style="background-color:<?php echo unserialize(NAVBAR_COLORS)[$data['configs']['conf_navbar_color']]; ?>;"> <!-- <span><?php echo e('pKanban', false); ?> v<?php echo $this->config->item('version'); ?></span> <span class="separator">|</span> -->
+
   <?php foreach ($data['containers'] as $container): ?>
   <span class="col-title"><?php echo $container['container_name']; ?></span> <span
-            style="color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"> <?php echo count($data['tasks'][$container['container_id']]); ?> </span> <span class="separator">|</span>
+            style="color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;">
+             <?php echo count($data['tasks'][$container['container_id']]); 
+             // echo '<pre>';
+             // print_r($data['tasks'][$container['container_id']]);
+            ?> </span> <span class="separator">|</span>
   <?php endforeach; ?>
   <!-- <span class="board-time-spent"><?php //echo e('TIME SPENT ON THIS BOARD', true); ?> <strong><?php //echo $data['board_time_spent_active']; ?></strong> (<?php //echo $data['board_time_spent_archived']; ?> Archived task)</span>--> </div>
 
