@@ -26,7 +26,6 @@ $server_output = json_decode($server_output);
 $Query = "select * from tasks order by task_id DESC limit 1";
 $QueryRun = mysqli_query($con_TaskBoard,$Query);
 $LastTask = mysqli_fetch_assoc($QueryRun);
-
 $data['task_id'] = $LastTask['task_id'];
 if ($data['task_type'] == "Finance") {
     
@@ -98,6 +97,8 @@ $InsertQuery = "INSERT INTO user_fastfund_form1 (
     $InsertQuery = "INSERT INTO user_suretybond_form1 (
     `task_id`,
     `user_id`,
+    `contract_id`,
+    `bonding_contract_number`,
     `company_name`,
     `address`,
     `city`,
@@ -129,6 +130,8 @@ $InsertQuery = "INSERT INTO user_fastfund_form1 (
 ) VALUES (
     '".$data['task_id']."',
     '".$_SESSION['user_id']."',
+    '".$data['contract_id']."',
+    '".$data['contract_number']."',
     '".$data['company_name']."',
     '".$data["address"]."',
     '".$data['city']."',
@@ -159,7 +162,7 @@ $InsertQuery = "INSERT INTO user_fastfund_form1 (
     '".$data['largest_client4']."'
 )";
 }
-mysqli_query($con_MAIN,$InsertQuery);
+mysqli_query($con_MAIN,$InsertQuery) or die(mysqli_error($con_MAIN));
 header("Location: ".base_url."tabs/contract_details.php");
 
 ?>

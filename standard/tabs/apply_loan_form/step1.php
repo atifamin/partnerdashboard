@@ -65,13 +65,13 @@
     <div class="help-block with-errors"></div>
   </div>
 </div>
-
+<input type="hidden" name="contract_id" value="<?=$Tab1_Q1D['contract_id']; ?>">
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
       <label for="contractnumber" class="col-sm-4 control-label">Contract Number</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="contractnumber" disabled value="<?=$Tab1_Q1D['contract_number']?>">
+        <input type="text" class="form-control" id="contractnumber" name="contract_number" readonly="" value="<?=$Tab1_Q1D['contract_number']?>">
       </div>
     </div><br><br>
     <div class="form-group">

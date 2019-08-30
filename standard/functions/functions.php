@@ -77,6 +77,7 @@ function totalContractRevenue($Year){
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
+
 		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
@@ -97,9 +98,10 @@ function totalContractRevenue($Year){
 			return $Total;
 		}
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
-		// Get AWT Records
-		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
+		
+		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.'';
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
+
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
