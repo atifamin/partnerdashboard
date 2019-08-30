@@ -60,7 +60,7 @@ if(mysqli_num_rows($Tab1_Q1R)>0){
 								$award_amount = (10 / 100) * $Tab1_Q1D['award_amount'];
 							?>
 							<td style="width:85px;"><p style="font-size:40px;font-weight:600;color:grey;text-align:center;">Bonding <br> Requirement</p></td>
-							<td style="width:85px;"><p style="color:#12afdae0;font-size:35px;text-align:center;margin-top:10%;">$<?php echo number_format($award_amount,0); ?></p></td>
+							<td style="width:85px;"><p style="color:#2f64ac;font-size:35px;text-align:center;margin-top:10%; font-weight: 600;">$<?php echo number_format($award_amount,0); ?></p></td>
 							<td style="width:35%;"><a type="button" data-toggle="modal" data-target="#modal-bonding-services"><img src="<?php echo base_url;  ?>assets/img/bonding_services.PNG" style="cursor: pointer;width: 100%;height: 50%;margin-bottom: 5px;" alt="Get Financing" onclick="getFinancingSurety(<?php echo $Tab1_Q1D['contract_id']; ?>);" ></a></td>
 							</tr>
 						</tbody>
