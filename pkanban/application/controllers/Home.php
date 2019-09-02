@@ -34,10 +34,11 @@ class Home extends CI_Controller {
 	    if ($this->sec->ck() == false) {
 	        $this->activation();
         } else {
-
-            $board = $this->db->query("SELECT * FROM boards WHERE board_id
-                                            IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
-                                            ORDER BY board_default DESC LIMIT 1");
+            $partner_id = $this->session->userdata('user_session')['partner_id'];
+            // $board = $this->db->query("SELECT * FROM boards WHERE board_id
+            //                                 IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
+            //                                 ORDER BY board_default DESC LIMIT 1");
+            $board = $this->db->query("SELECT * FROM boards WHERE board_partner_id=".$partner_id."");
             if ($board->num_rows() > 0) {
                 $this->session->set_userdata('board_id', $board->row()->board_id);
                 $this->board($board->row()->board_id);
@@ -94,18 +95,11 @@ class Home extends CI_Controller {
 
     public function board($board_id) {
         
-
         $user_id = $this->session->userdata('user_session')['user_id'];
         $partner_id = $this->session->userdata('user_session')['partner_id'];
-
         $partnerDetail = $this->partnerDB->where("partner_id", $partner_id)->get("partner")->row();
-
         $partner_type = $partnerDetail->partner_service_type;
 
-        // if($partner_type=="Surety Bonding"){
-        //     $partner_type = "Bonding";
-        // }
-        
         $this->session->set_userdata('partner_type', $partner_type);
         $data = array();
         $check_permission = $this->db->query("SELECT * FROM boards WHERE board_id
@@ -131,7 +125,7 @@ class Home extends CI_Controller {
             if ($partner_type == "Finance") {
               $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' ORDER BY task_order ASC")->result_array();  
             }else{
-                $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' AND task_status = 'complete' ORDER BY task_order ASC")->result_array(); 
+                $data['tasks'][$container['container_id']] = $this->db->query("SELECT * FROM tasks WHERE task_container = '{$container['container_id']}' AND task_archived = 0 AND task_type = '".$partner_type."' AND task_status = 'complete' ORDER BY task_order ASC")->result_array();
             }
             
         }

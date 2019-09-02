@@ -133,7 +133,8 @@
     </div>
     <?php foreach ($data['tasks'][$container['container_id']] as $task):
       $checkIfFormExists = $this->sec->check_form_exists($task['task_id'], $data["table_name"]);
-      //print_r($data);exit;
+
+      
       //print_r($task);
       if($checkIfFormExists>0){
     ?>
@@ -167,22 +168,35 @@
           </div>
         </div>
         <div class="col-md-12" style="padding: 0px;margin-top:5%;">
-          <div class="col-md-3"> <a href="javascript:;toggleShowDescription(<?php echo $task['task_id']; ?>)" style="color:black;"><i class="fa fa-chevron-down"></i></a> </div>
+          <?php if ($data["table_name"] == 'user_fastfund_form1') { ?>
+          <div class="col-md-3"> <a href="javascript:;toggleShowDescription(<?php echo $task['task_id']; ?>)" style="color:black;"><i class="fa fa-chevron-down"></i></a> 
+          </div>
           <div class="col-md-9" style="padding:0px;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
-            <div class="col-md-6" style="background-color:#ebf1de;color:#77933c;padding-right: 2px;padding-left: 2px;text-align: center;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
-              <?php if ($data["table_name"] == 'user_fastfund_form1') { ?>
+              <div class="col-md-6" style="background-color:#ebf1de;color:#77933c;padding-right: 2px;padding-left: 2px;text-align: center;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
                 <p style="font-size:10px;margin-bottom:0px;min-height: 30px;">FUNDING AMOUNT</p>
-              <?php }else{ ?>
-                <p style="font-size:10px;margin-bottom:0px;min-height: 30px;">BONDING AMOUNT</p>
-              <?php } ?>
-            </div>
-            <div class="col-md-6" style="background-color:#77933c;color:#ebf1de;padding-right: 2px;padding-left: 2px;text-align: center;">
-              <p style="font-size:14px;margin-bottom:0px;min-height: 30px;line-height: 2;"><?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); }else{echo "0";} ?></p>
-            </div>
+              </div>
+              <div class="col-md-6" style="background-color:#77933c;color:#ebf1de;padding-right: 2px;padding-left: 2px;text-align: center;">
+                <p style="font-size:14px;margin-bottom:0px;min-height: 30px;line-height: 2;"><?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); }else{echo "0";} ?></p>
+              </div>
           </div>
           <div class="col-md-12" style="padding:2%;padding-top:5%;display:none;" id="description_<?php echo $task['task_id']; ?>">
           <b><?php echo $task['task_title']; ?></b><br>
-          <?php if(empty($task['task_description'])){echo "<p style='font-size:10px;text-align:center;'>No Comment Available.</p>";}else{echo $task['task_description'];} ?></div>
+          <?php if(empty($task['task_description'])){echo "<p style='font-size:10px;text-align:center;'>No Comment Available.</p>";}else{echo $task['task_description'];} ?>
+          </div>
+          <?php }else{ ?>
+            <div class="col-md-6" style="color:#8C8C69;padding: 0 2px;text-align: center;" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+              <p style="font-size:10px;margin-bottom:0px;"><b>CONTRACT AMOUNT</b></p>
+            </div>
+            <div class="col-md-6" style="background-color:#33859A;color:#ebf1de;padding: 0 2px;text-align: center;">
+              <p style="font-size:14px;margin-bottom:0px;line-height: 2;">$2.3M</p>
+            </div>
+            <div class="col-md-6" style="color:#8C8C69;padding: 0 2px;text-align: center;margin-top: 6px" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
+              <p style="font-size:10px;margin:0px;"><b>BONDING AMOUNT</b></p>
+            </div>
+            <div class="col-md-6" style="background-color:#1C4A81;color:#ebf1de;padding: 0 2px;text-align: center;margin-top: 6px">
+              <p style="font-size:14px;margin:0px;line-height: 2;">$230K</p>
+            </div>
+          <?php } ?>
         </div>
       </div> 
       
@@ -291,10 +305,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-        <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: <span class="task_header"></span> <span style="float:right;margin-right:20px;display:none;" id="loan_amount_span">Funding Amount
+        <?php if ($data["table_name"] == 'user_fastfund_form1') { ?>
+          <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: <span class="task_header"></span> <span style="float:right;margin-right:20px;display:none;" id="loan_amount_span">Funding Amount
           <label class="label label-success" style="background-color:#ebf1de;color:#4f622f;"></label>
-          </span> </h4>
-        <small><?php echo e('Created by', true); ?>: <span class="task_user_name"></span></small> </div>
+          </span> 
+        </h4>
+        <?php }else{ ?>
+          <h4 class="modal-title" id="exampleModalLabel"><?php echo e('Deal', true); ?>: <span class="task_header"></span> 
+          </h4>
+          <div class="row">
+            <span style="float:right;margin-right:20px;font-size: 17px;color: #8C8C69" id="">CONTRACT AMOUNT
+              <label class="label label-success" style="background-color:#33859A;color:#ebf1de">$2.3M</label>
+            </span>
+          </div>
+            <div class="row" style="margin-top: 8px">
+              <span style="float:right;margin-right:20px;font-size: 17px;color: #8C8C69" id="">BOND AMOUNT
+              <label class="label label-success" style="background-color:#1C4A81;color:#ebf1de">$230K</label>
+            </span> 
+            </div>
+            
+        <?php }?>
+        <small><?php echo e('Created by', true); ?>: <span class="task_user_name"></span></small> 
+      </div>
       <div class="modal-body">
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tab_edit"><?php echo e('Edit Deal', true); ?></a> </li>

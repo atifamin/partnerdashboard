@@ -33,7 +33,7 @@
     <table class="color-2 w-80" align="center">
       <tr class="text-left">
         <td class="custome_style_3"><b>FINANCING TYPE:</b></td>
-        <td class="custome_style_3"><b>CONTACT FINANCING</b></td>
+        <td class="custome_style_3"><b>CONTRACT FINANCING</b></td>
       </tr>
       <tr class="text-left">
         <td class="custome_style_3"><b>FINANCING COST:</b></td>

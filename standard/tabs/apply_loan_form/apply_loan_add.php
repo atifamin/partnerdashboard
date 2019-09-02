@@ -8,7 +8,11 @@ $data = $_POST;
 $task_title = $_POST['company_name']." - New Deal";
 $task_funding_amount_requested = $_POST['funding_amount'];
 $task_todo = 0;
-$task_container = 33;
+if ($data['task_type'] == "Finance") {
+    $task_container = 33;
+}else{
+    $task_container = 45;
+}
 $task_user = 1;
 $task_type = $data['task_type'];
 $ch = curl_init();

@@ -1,8 +1,11 @@
 <?php include "../../config/config_main.php"; ?>
 <?php 
-    $query8 = "SELECT u.business_index_rating,s.`Business Unit Name` as depart_name, s.`Contract Type` as contract_type, s.`PO Total` as po_total, us.type_of_business, us.year_established,us.task_id
-    FROM user as u, scprs_main as s, user_suretybond_form1 as us 
-    WHERE u.user_id = us.user_id AND us.`supplier ID` = s.scprs_record_id AND us.task_id IN ('".$_POST['task_id']."')";
+    $query8 = "SELECT u.business_index_rating,us.task_id,sr.*
+    FROM user AS u, user_suretybond_form1 as us, user_suretybonding_request AS sr
+    WHERE u.user_id = us.user_id AND u.user_id = sr.bonding_request_user_id AND us.task_id IN ('".$_POST['task_id']."')";
+    // $query8 = "SELECT u.business_index_rating,s.`Business Unit Name` as depart_name, s.`Contract Type` as contract_type, s.`PO Total` as po_total, us.type_of_business, us.year_established,us.task_id
+    // FROM user as u, scprs_main as s, user_suretybond_form1 as us 
+    // WHERE u.user_id = us.user_id AND us.`supplier ID` = s.scprs_record_id AND us.task_id IN ('".$_POST['task_id']."')";
     $res8 = mysqli_query($con_MAIN,$query8);
     $bonding_request_detail = mysqli_fetch_object($res8);
 ?>
@@ -23,7 +26,7 @@
       <span class="clr-2">BUSINESS<br>RATING<br>INDEX</span>
     </div>
     <div class="col-md-7 col-md-offset-1"> 
-      <span class="font-20 clr-1">CONTRACT SPONSOR: &nbsp;<b><?php  echo $bonding_request_detail->depart_name; ?></b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><?php  echo $bonding_request_detail->contract_type; ?></b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b><?php  echo $bonding_request_detail->po_total; ?></b></span>
+      <span class="font-20 clr-1">CONTRACT SPONSOR: &nbsp;<b><?php  echo $bonding_request_detail->bonding_request_contract_sponosor; ?></b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><?php  echo $bonding_request_detail->bonding_request_contract_type; ?></b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b><?php  echo $bonding_request_detail->bonding_request_contract_amount; ?></b></span>
     </div>
   </div>
 </div>
@@ -41,15 +44,15 @@
       <div class="row bonding-request-modal-margin">
         <div class="col-md-6">
           <div class="row mb-20">
-            <div class="col-md-4 bg-1" style=""><span class="number"><?php  echo $bonding_request_detail->year_established; ?></span></div>
-            <div class="col-md-8 bg-2"><span class="type">YEARS IN BUSINESS</span></div>
+            <div class="col-md-3 bg-1" style=""><span class="number"><?php  echo $bonding_request_detail->bonding_requestor_years_in_business; ?></span></div>
+            <div class="col-md-9 bg-2"><span class="type">YEARS IN BUSINESS</span></div>
           </div>
           <div class="row mb-20">
-            <div class="col-md-3 bg-1" style=""><span class="number">4</span></div>
+            <div class="col-md-3 bg-1" style=""><span class="number"><?php echo $bonding_request_detail->bonding_requestor_total_prime_contracts; ?></span></div>
             <div class="col-md-9 bg-2"><span class="type">PRIME CONTRACTS</span></div>
           </div>
           <div class="row mb-20">
-            <div class="col-md-3 bg-1" style=""><span class="number">8</span></div>
+            <div class="col-md-3 bg-1" style=""><span class="number"><?php echo $bonding_request_detail->bonding_requestor_total_subcontrats; ?></span></div>
             <div class="col-md-9 bg-2"><span class="type">SUB CONTRACTS</span></div>
           </div>
         </div>
@@ -63,7 +66,7 @@
               </div>
               <div class="row text-center">
                 <div class="col-md-12 bg-4">
-                  <span class="industry-type"><?php  echo $bonding_request_detail->type_of_business; ?></span>
+                  <span class="industry-type"><?php  echo $bonding_request_detail->bonding_requestor_industry; ?></span>
                 </div>
               </div>
             </div>
@@ -77,7 +80,14 @@
               </div>
               <div class="row text-center">
                 <div class="col-md-12 bg-4">
-                  <span class="industry-type">C-12<br>C-32<br>C-18</span>
+                <?php 
+                  $licenses = explode(',', $bonding_request_detail->bonding_requestor_licenses);
+                    foreach ($licenses as $license) { ?>
+                    <span class="industry-type">
+                      <?php echo $license; ?>
+                      <br>
+                    </span>
+                  <?php } ?>
                 </div>
               </div>
             </div>

@@ -1,6 +1,7 @@
 <?php include "inc/head.php"; ?>
 <?php include "inc/header.php"; ?>
 <?php include "inc/asidebar.php"; ?>
+<?php include "../config/base_path.php"; ?>
 <link rel="stylesheet" href="assets/css/dealflow.css">
 <link rel="stylesheet" href="assets/bower_components/percircle/dist/css/percircle.css">
 <div class="content-wrapper">
@@ -152,10 +153,11 @@ tbpikbfe_taskboard.tasks AS tasks
 WHERE 
 form.task_id=tasks.task_id AND 
 user_id = '5006' -->
+
 <?php 
-$query5 = "SELECT us.task_id, u.business_index_rating, s.`Contract Type` AS contract_type,s.`PO Total` AS total
-FROM tasks,partnerdashboard.user_suretybond_form1 AS us,partnerdashboard.user AS u, partnerdashboard.scprs_main AS s
-where tasks.task_id = us.task_id and u.user_id = us.user_id and tasks.task_type = 'Surety Bonding' AND tasks.task_status = 'pending' AND us.`supplier ID` = s.scprs_record_id";
+$query5 = "SELECT us.task_id, u.business_index_rating,sr.*
+FROM tasks,partnerdashboard.user_suretybond_form1 AS us,partnerdashboard.user AS u,partnerdashboard.user_suretybonding_request AS sr
+where tasks.task_id = us.task_id and u.user_id = us.user_id and tasks.task_type = 'Surety Bonding' AND tasks.task_status = 'pending' AND u.user_id = sr.bonding_request_user_id";
 $res5 = mysqli_query($con_TaskBoard,$query5);
 ?>
 <div class="widget-box transparent">
@@ -199,7 +201,7 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
                       <span class="clr-2" >BUSINESS<br>RATING<br>INDEX</span>
                     </div>
                     <div class="col-md-6">
-                      <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo $task_detail['contract_type']; ?></b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b><?php echo $task_detail['total']; ?></b></span>
+                      <span style="color: #97b1d2; font-size: 11px;">CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo $task_detail['bonding_request_contract_type']; ?></b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b><?php echo $task_detail['bonding_request_contract_amount']; ?></b></span>
                     </div>
                   </div>
                   <div class="row bg-7">
@@ -287,7 +289,8 @@ $res5 = mysqli_query($con_TaskBoard,$query5);
 </span></button>
   </div>
 </div>
-<iframe src = "https://cpm-stage1.pw/dashboard/pkanban/access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
+
+<iframe src = "<?php echo pkanban_url; ?>access/login_auto?user_id=<?php echo $_SESSION['user_id'];?>" width = "100%" height = "900px">
     Sorry your browser does not support inline frames.
 </iframe>
 
