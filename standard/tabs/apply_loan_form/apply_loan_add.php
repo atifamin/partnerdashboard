@@ -5,7 +5,7 @@ include("../../../config/config_main.php");
 include("../../../config/config_taskboard.php");
 $data = $_POST;
 $task_title = $_POST['company_name']." - New Deal";
-$task_funding_amount_requested = $_POST['funding_amount'];
+$task_funding_amount_requested = str_replace(',', '', $_POST['funding_amount']);
 $task_todo = 0;
 if ($data['task_type'] == "Finance") {
     $task_container = 33;

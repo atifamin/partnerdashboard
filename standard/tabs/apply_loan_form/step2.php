@@ -4,6 +4,55 @@
 .dropdown-nested > .dropdown-nested-toggle{width:100%}
 .dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-text{color:black;}
 .dropdown-nested > .dropdown-nested-toggle > .dropdown-nested-icon{float:right;margin-top: 8px;}
+[data-tip] {position:relative;}
+[data-tip]:before {
+    content:'';
+    display:none;
+    content:'';
+    display:none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #1a1a1a;
+    position:absolute;
+    top:30px;
+    left:35px;
+    z-index:8;
+    font-size:0;
+    line-height:0;
+    width:0;
+    height:0;
+    position:absolute;
+    top:55px;
+    left:35px;
+    z-index:8;
+    font-size:0;
+    line-height:0;
+    width:0;
+    height:0;
+}
+[data-tip]:after {
+    display:none;
+    content:attr(data-tip);
+    position:absolute;
+    top:60px;
+    left:13px;
+    padding:5px 8px;
+    background:#1a1a1a;
+    color:#ffff;
+    z-index:9;
+    font-size: 1em;
+    height:25px;
+    line-height:18px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    white-space:nowrap;
+    word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+    display:block;
+}
 </style>
 <div class="row">
   <div class="form-group col-md-8">
@@ -103,17 +152,17 @@
       <option value="$10M+">$10M+</option>
     </select>
   </div>
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6" data-tip="Use only numbers and commas - For Example: 350,000">
     <label for="funding_amount">Funding Amount Requesting:</label>
-    <!-- <input type="text" class="form-control" name="funding_amount" id="funding_amount" required> -->
-    <select class="form-control" name="funding_amount" id="funding_amount" required>
-      <option value="<?php echo $userDetail->funding_amount; ?>" selected hidden><?php echo $userDetail->funding_amount; ?></option>
+    <input type="text" class="form-control" name="funding_amount" id="funding_amount" value="<?php echo $userDetail->funding_amount; ?>" required>
+    <!-- <select class="form-control" name="funding_amount" id="funding_amount" required>
+      <option value="<?php //echo $userDetail->funding_amount; ?>" selected hidden><?php //echo $userDetail->funding_amount; ?></option>
       <option value="$5K - $10K">$5K - $10K</option>
       <option value="$11K - $50K">$11K - $50K</option>
       <option value="$51K - $100K">$51K - $100K</option>
       <option value="$101K - $250K">$101K - $250K</option>
       <option value="$250K+">$250K+</option>
-    </select>
+    </select> -->
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
