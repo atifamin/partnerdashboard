@@ -35,10 +35,9 @@
 
 <div class="modal fade text-center" id="modal-video-bonding-services">
   <video class="mt-10" width="80%" controls="">
-          <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
-          Your browser does not support HTML5 video. 
-    </video>
-  <!-- /.modal-dialog -->
+    <source src="<?php echo base_url.$VIDEO_D['video_url_path']; ?>" type="video/mp4">
+      Your browser does not support HTML5 video. 
+  </video>
 </div>
 
 <script type="text/javascript">
@@ -59,5 +58,8 @@
     $('#modal-video-bonding-services').modal('show');
     $('#modal-default').scrollTop(0);
   }
+  $('#modal-video-bonding-services').on('hidden.bs.modal', function (e) {
+    $('video').trigger('pause');
+  });
 
 </script>

@@ -3,6 +3,7 @@ $Host	= 'localhost';
 $User	= 'root';
 $Pass	= '';
 $DB		= 'partnerdashboard';
+$db_name = $DB;
 
 $con_MAIN = mysqli_connect($Host,$User,$Pass);
 if(!$con_MAIN){echo 'Server Not Connect!';exit;}

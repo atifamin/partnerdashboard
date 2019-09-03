@@ -23,51 +23,48 @@
 <section class="content">
   <div class="row" id="pageStatsRow">
                   <?php 
-                  
-                  $query1= 'SELECT COUNT(*) as total_deals 
-                            FROM 
-                            tasks,users,containers,boards_users
+                  $query1= 'SELECT COUNT(*) as total_deals FROM 
+                            tasks,containers,boards
                             WHERE 
                             tasks.task_container=containers.container_id AND
-                            containers.container_board=boards_users.board_id AND
-                            boards_users.user_id=users.user_id AND 
-                            tasks.task_archived=0 AND  users.user_id='.$_SESSION["user_id"];
+                            containers.container_board=boards.board_id AND
+                            tasks.task_archived=0 AND tasks.task_status="complete" 
+                            AND boards.board_partner_id='.$_SESSION["partner_id"];
                   $res1= mysqli_query($con_TaskBoard,$query1);
                   $r = mysqli_fetch_object($res1);
                   //echo"<pre>";print_r($res1);exit();
 
                   $query2='SELECT SUM(task_funding_amount_requested) AS funding_amount 
                             FROM 
-                            tasks,users,containers,boards_users 
+                            tasks,containers,boards 
                             WHERE 
                             tasks.task_container=containers.container_id AND
-                            containers.container_board=boards_users.board_id AND
-                            boards_users.user_id=users.user_id AND 
-                            tasks.task_archived=0 AND users.user_id='.$_SESSION["user_id"];
+                            containers.container_board=boards.board_id AND
+                            tasks.task_archived=0 AND tasks.task_status="complete"
+                            AND boards.board_partner_id='.$_SESSION["partner_id"];
                   $res2= mysqli_query($con_TaskBoard,$query2);
                   $r2 = mysqli_fetch_object($res2);
                   //echo"<pre>";print_r($r2);exit();
                   $query3='SELECT COUNT(*) AS funding_close 
                   FROM 
-                  tasks,users,containers,boards_users 
-                  WHERE containers.container_name="Funding Closed" AND tasks.task_container=containers.container_id AND containers.container_board=boards_users.board_id AND
-                  boards_users.user_id=users.user_id AND 
-                  tasks.task_archived=0 AND users.user_id='.$_SESSION["user_id"];
-//echo $query3;exit;
+                  tasks,containers,boards 
+                  WHERE containers.container_name="Funding Closed" AND tasks.task_container=containers.container_id AND containers.container_board=boards.board_id AND 
+                  tasks.task_archived=0 AND tasks.task_status="complete" AND boards.board_partner_id='.$_SESSION["partner_id"];
+                  //echo $query3;exit;
                   $res3= mysqli_query($con_TaskBoard,$query3);
                   $r3= mysqli_fetch_object($res3);
                   //echo"<pre>";print_r($r3);exit();
 
                   $query4='SELECT COUNT(*) AS funding_denied 
                             FROM 
-                            tasks,users,containers,boards_users 
+                            tasks,containers,boards 
                             WHERE 
                             containers.container_name in ("Funding Denied","Funded Denied") 
                             AND tasks.task_container=containers.container_id 
-                            AND containers.container_board=boards_users.board_id 
-                            AND boards_users.user_id=users.user_id 
+                            AND containers.container_board=boards.board_id 
                             AND tasks.task_archived=0 
-                            AND users.user_id='.$_SESSION["user_id"];
+                            AND tasks.task_status="complete"
+                            AND boards.board_partner_id='.$_SESSION["partner_id"];
                   $res4= mysqli_query($con_TaskBoard,$query4);
                   // echo"<pre>";print_r($query4);exit();
 
@@ -81,6 +78,7 @@
                     $result4 .= "%";
                     
                   }
+
               ?>
     <div class="col-lg-3 col-xs-6">
           <!-- small box -->

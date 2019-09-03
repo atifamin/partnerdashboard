@@ -4,13 +4,13 @@ include("../../../config/base_path.php");
 include("../../../config/config_main.php");
 include("../../../config/config_taskboard.php");
 $data = $_POST;
-
 $task_title = $_POST['company_name']." - New Deal";
 $task_funding_amount_requested = $_POST['funding_amount'];
 $task_todo = 0;
 if ($data['task_type'] == "Finance") {
     $task_container = 33;
 }else{
+    $task_contract_amount_requested = $_POST['contract_amount'];
     $task_container = 45;
 }
 $task_user = 1;
@@ -19,7 +19,7 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, pkanban_url."ajax/save_task");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS,
-            "task_title=".$task_title."&task_funding_amount_requested=".$task_funding_amount_requested."&task_todo=".$task_todo."&task_container=".$task_container."&task_user=".$task_user."&task_type=".$task_type."");
+            "task_title=".$task_title."&task_funding_amount_requested=".$task_funding_amount_requested."&task_todo=".$task_todo."&task_container=".$task_container."&task_user=".$task_user."&task_type=".$task_type."&task_contract_amount_requested=".$task_contract_amount_requested."");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $server_output = curl_exec($ch);
 

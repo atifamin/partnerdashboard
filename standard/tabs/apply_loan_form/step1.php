@@ -74,10 +74,11 @@
         <input type="text" class="form-control" id="contractnumber" name="contract_number" readonly="" value="<?=$Tab1_Q1D['contract_number']?>">
       </div>
     </div><br><br>
+    <input type="hidden" name="contract_amount" value="<?php echo $Tab1_Q1D['award_amount']; ?>">
     <div class="form-group">
       <label for="contractamount" class="col-sm-4 control-label">Contract Amount</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="contractamount" disabled value="<?='$'.number_format($Tab1_Q1D['award_amount'])?>">
+        <input type="text" class="form-control" id="contractamount" readonly="" value="<?='$'.number_format($Tab1_Q1D['award_amount'])?>">
       </div>
     </div><br><br>
     <div class="form-group">

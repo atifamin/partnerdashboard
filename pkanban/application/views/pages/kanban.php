@@ -188,13 +188,13 @@
               <p style="font-size:10px;margin-bottom:0px;"><b>CONTRACT AMOUNT</b></p>
             </div>
             <div class="col-md-6" style="background-color:#33859A;color:#ebf1de;padding: 0 2px;text-align: center;">
-              <p style="font-size:14px;margin-bottom:0px;line-height: 2;">$2.3M</p>
+              <p style="font-size:14px;margin-bottom:0px;line-height: 2;"><?php if($task['task_contract_amount_requested']!=0){ echo '$' .nice_number($task['task_contract_amount_requested'],'format'); }else{echo "0";} ?></p>
             </div>
             <div class="col-md-6" style="color:#8C8C69;padding: 0 2px;text-align: center;margin-top: 6px" id="<?php echo $task['task_id']; ?>" data-toggle="modal" data-target="#editTaskModal" data-task_id="<?php echo $task['task_id']; ?>">
               <p style="font-size:10px;margin:0px;"><b>BONDING AMOUNT</b></p>
             </div>
             <div class="col-md-6" style="background-color:#1C4A81;color:#ebf1de;padding: 0 2px;text-align: center;margin-top: 6px">
-              <p style="font-size:14px;margin:0px;line-height: 2;">$230K</p>
+              <p style="font-size:14px;margin:0px;line-height: 2;"><?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); }else{echo "0";} ?></p>
             </div>
           <?php } ?>
         </div>
@@ -315,12 +315,12 @@
           </h4>
           <div class="row">
             <span style="float:right;margin-right:20px;font-size: 17px;color: #8C8C69" id="">CONTRACT AMOUNT
-              <label class="label label-success" style="background-color:#33859A;color:#ebf1de">$2.3M</label>
+              <label class="label label-success" style="background-color:#33859A;color:#ebf1de"><?php if($task['task_contract_amount_requested']!=0){ echo '$' .nice_number($task['task_contract_amount_requested'],'format'); }else{echo "0";} ?></label>
             </span>
           </div>
             <div class="row" style="margin-top: 8px">
               <span style="float:right;margin-right:20px;font-size: 17px;color: #8C8C69" id="">BOND AMOUNT
-              <label class="label label-success" style="background-color:#1C4A81;color:#ebf1de">$230K</label>
+              <label class="label label-success" style="background-color:#1C4A81;color:#ebf1de"><?php if($task['task_funding_amount_requested']!=0){ echo '$' .nice_number($task['task_funding_amount_requested'],'format'); }else{echo "0";} ?></label>
             </span> 
             </div>
             

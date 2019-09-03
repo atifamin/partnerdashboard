@@ -26,7 +26,10 @@
       <span class="clr-2">BUSINESS<br>RATING<br>INDEX</span>
     </div>
     <div class="col-md-7 col-md-offset-1"> 
-      <span class="font-20 clr-1">CONTRACT SPONSOR: &nbsp;<b><?php  echo $bonding_request_detail->bonding_request_contract_sponosor; ?></b><br>CONTRACT TYPE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><?php  echo $bonding_request_detail->bonding_request_contract_type; ?></b><br>CONTRACT AMOUNT: &nbsp;&nbsp;<b><?php  echo $bonding_request_detail->bonding_request_contract_amount; ?></b></span>
+      <span class="font-20 clr-1">CONTRACT SPONSOR:<b style="margin-left: 3%;
+"><?php  echo $bonding_request_detail->bonding_request_contract_sponosor; ?></b><br>CONTRACT TYPE: <b style="margin-left: 15%;
+"><?php  echo $bonding_request_detail->bonding_request_contract_type; ?></b><br>CONTRACT AMOUNT: <b style="margin-left: 4%;
+"><?php  echo $bonding_request_detail->bonding_request_contract_amount; ?></b></span>
     </div>
   </div>
 </div>
