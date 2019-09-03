@@ -42,7 +42,6 @@
     AND uos.offer_status_user_id = '.$UserID.'
     AND uos.user_minimum_score <= '.$UserOfferScore.'
     ';    
-
     $Tab3_Q1R = mysqli_query($con_MAIN,$Tab3_Q1) or die(mysqli_error());
     if(mysqli_num_rows($Tab3_Q1R)>0){
       while($OfferData = mysqli_fetch_assoc($Tab3_Q1R)){

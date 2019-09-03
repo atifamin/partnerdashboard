@@ -8,6 +8,7 @@ $task_title = $_POST['company_name']." - New Deal";
 $task_funding_amount_requested = str_replace(',', '', $_POST['funding_amount']);
 $task_todo = 0;
 if ($data['task_type'] == "Finance") {
+    $task_contract_amount_requested = 0;
     $task_container = 33;
 }else{
     $task_contract_amount_requested = $_POST['contract_amount'];
