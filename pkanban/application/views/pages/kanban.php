@@ -115,6 +115,7 @@
   <?php endif; ?>
   <?php $numItems = count($data['containers']);
     $i = 0; ?>
+
   <?php foreach ($data['containers'] as $container): ?>
   <?php $division = round(12 / $numItems, 0, PHP_ROUND_HALF_DOWN); ?>
   <?php if ($numItems == 7) $division = 1; ?>
@@ -123,19 +124,12 @@
   <div class="column sortable col-md-<?php echo $column_value; ?>" rel="<?php echo $container['container_id']; ?>" style="background-color:<?php echo "rgba({$container['container_rgb']}, {$data['configs']['conf_background_opacity']})"; ?>;">
     <div class="column-header-total" style="background-color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"> <?php echo '$'.number_format(get_container_total($container['container_id'])) ; ?> </div>
     <div class="column-header nodrag" style="background-color:<?php echo unserialize(CONTAINER_COLORS)[$container['container_color']]; ?>;"><?php echo $container['container_name']; ?>
-      <?php if ($this->session->userdata('user_session')['user_permissions'] <= 10): ?>
-      <!-- <img src="<?php echo base_url(); ?>images/plus_icon.png" class="plus_button"
-       data-toggle="modal"
-       data-target="#addTaskModal"
-       data-container_name="<?php echo $container['container_name']; ?>"
-       data-container_id="<?php echo $container['container_id']; ?>"/> -->
-      <?php endif; ?>
+      
     </div>
+    
     <?php foreach ($data['tasks'][$container['container_id']] as $task):
       $checkIfFormExists = $this->sec->check_form_exists($task['task_id'], $data["table_name"]);
-
       
-      //print_r($task);
       if($checkIfFormExists>0){
     ?>
     <?php

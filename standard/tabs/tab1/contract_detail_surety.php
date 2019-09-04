@@ -11,11 +11,6 @@
       FROM prime_contractor pc
       WHERE pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$ContractID."'
       ORDER BY pc.contract_id DESC";
-  // $Tab1_Q1 = "SELECT pc.contract_number, pc.description_of_work, pc.dist_co_rte_pm, pc.award_date
-  //   FROM prime_contractor pc
-  //   JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-  //   WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$ContractID."'
-  //   GROUP BY pc.contract_id ORDER BY pc.contract_id DESC";
 
     $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
     $Tab1_Q1RA = mysqli_fetch_array($Tab1_Q1R);
@@ -61,7 +56,17 @@
       </div>
       <span class="container">$<?php echo number_format($Tab1_Q1RA['award_amount'],0); ?></span>
     </div>
-    
+  </div>
+  <div class="col-lg-4 col-xs-12" align="center" style="margin-top: 8px">
+    <div class="div-cont-amount1">
+      <div class="row" style="background-color: #163967; margin: unset;">
+        <div class="col-md-12">
+          <span style="color: #AAC3C9; font-size: 18px;">BONDING REQUIREMENT</span>
+        </div>
+      </div>
+      <?php $award_amount = (10 / 100) * $Tab1_Q1RA['award_amount']; ?>
+      <span class="container1">$<?php echo number_format($award_amount,0); ?></span>
+    </div>
   </div>
 </div>
 <div class="row cus-border mt-10">

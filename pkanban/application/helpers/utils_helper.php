@@ -80,13 +80,30 @@ function get_datetimepicker_format()
     return $converted;
 }
 function get_container_total($container_id){
-    $CI = &get_instance();  //get instance, access the CI superobject
-    //print_r($CI->session->userdata('partner_type'));exit;
+    $CI = &get_instance();
     $partner_type = $CI->session->userdata('partner_type');
     $boardId = $CI->session->userdata('board_id');
+
+    // $query = $CI->db->query("SELECT SUM(task_funding_amount_requested + task_contract_amount_requested) AS total FROM tasks
+    //     WHERE task_id='".$task_id."' AND task_type='".$partner_type."' AND task_container='".$container_id."'");
+    $query = $CI->db->query("SELECT SUM(total) as total
+                    FROM ( 
+                        SELECT task_funding_amount_requested AS total 
+                        FROM
+                        tasks,partnerdashboard.user_fastfund_form1 ff 
+                        WHERE tasks.task_id = ff.task_id 
+                        AND task_type = '".$partner_type."' 
+                        AND task_container = '".$container_id."' 
+                  
+                    UNION
+
+                        SELECT task_funding_amount_requested AS total 
+                        FROM
+                        tasks,partnerdashboard.user_suretybond_form1 ff 
+                        WHERE tasks.task_id = ff.task_id
+                        AND task_type = '".$partner_type."' 
+                        AND task_container = '".$container_id."' ) AS tbl");
     
-    
-    $query = $CI->db->query("SELECT SUM(task_funding_amount_requested) AS total FROM tasks, partnerdashboard.user_fastfund_form1 ff WHERE tasks.task_id=ff.task_id AND task_type='".$partner_type."' AND task_container=$container_id");
     $data =  $query->result_array()[0];
     return $data['total'];
 }

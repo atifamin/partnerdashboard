@@ -35,9 +35,7 @@ class Home extends CI_Controller {
 	        $this->activation();
         } else {
             $partner_id = $this->session->userdata('user_session')['partner_id'];
-            // $board = $this->db->query("SELECT * FROM boards WHERE board_id
-            //                                 IN (SELECT board_id FROM boards_users WHERE user_id = '{$this->session->userdata('user_session')['user_id']}')
-            //                                 ORDER BY board_default DESC LIMIT 1");
+
             $board = $this->db->query("SELECT * FROM boards WHERE board_partner_id=".$partner_id."");
             if ($board->num_rows() > 0) {
                 $this->session->set_userdata('board_id', $board->row()->board_id);
@@ -114,9 +112,8 @@ class Home extends CI_Controller {
 
         $data['board_id'] = $board_id;
         
-        $data['containers'] = $this->db->query("SELECT * FROM containers WHERE container_board = '$board_id' ORDER BY container_order ASC")->result_array();
-
-
+        $data['containers'] = $this->db->query("SELECT * FROM containers WHERE container_board = '".$board_id."' ORDER BY container_order ASC")->result_array();
+        
         foreach ($data['containers'] as $key => $container) {
             // Convert hex in rgb for background
             $hex = unserialize(CONTAINER_COLORS)[$container['container_color']];

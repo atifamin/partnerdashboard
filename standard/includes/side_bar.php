@@ -62,7 +62,7 @@
                 </div>
             </div>
             </a> </li>
-        <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="sidebar-li <?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>"> <a href="<?php echo base_url; ?>tabs/financial_services.php">
+        <li  style="border-style:solid;border-color:#d8dbdf80;border-top:none;" class="sidebar-li <?php if( $_FILE_NAME == "financial_services.php"){echo "active";} ?>"> <a href="<?php echo base_url; ?>tabs/financial_service.php">
             <div class="sidebar-menu-desc"> <img src="<?php echo base_url; ?>assets/img/c1.png" style="width:40px;"> <b>FINANCIAL SERVICES</b>
             <p style="margin-left:21%;"> ACCESS TO CAPITAL</p>
             </div>

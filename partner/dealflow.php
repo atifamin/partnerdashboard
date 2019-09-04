@@ -53,7 +53,7 @@
                   $query3='SELECT COUNT(*) AS funding_close 
                   FROM 
                   tasks,containers,boards 
-                  WHERE containers.container_name="Funding Closed" AND tasks.task_container=containers.container_id AND containers.container_board=boards.board_id AND 
+                  WHERE containers.container_name IN ("Bond Issued","Funding Closed") AND tasks.task_container=containers.container_id AND containers.container_board=boards.board_id AND 
                   tasks.task_archived=0 AND tasks.task_status="complete" AND boards.board_partner_id='.$_SESSION["partner_id"];
                   //echo $query3;exit;
                   $res3= mysqli_query($con_TaskBoard,$query3);
@@ -64,7 +64,7 @@
                             FROM 
                             tasks,containers,boards 
                             WHERE 
-                            containers.container_name in ("Funding Denied","Funded Denied") 
+                            containers.container_name in ("Funding Request Denied","Bond Request Declined") 
                             AND tasks.task_container=containers.container_id 
                             AND containers.container_board=boards.board_id 
                             AND tasks.task_archived=0 

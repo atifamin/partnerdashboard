@@ -3,7 +3,11 @@
 }
 .div-cont-amount {
   background-color: #474628;
-  height: 180px;
+  height: 120px;
+}
+.div-cont-amount1 {
+  background-color: #4D83BD;
+  height: 90px;
 }
 .div-cont-amount-bonding-services {
   background-color: #49442b;
@@ -15,7 +19,15 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   color: #ACA588;
-  font-size: 50px;
+  font-size: 45px;
+}
+.container1 {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #BDD7DC;
+  font-size: 45px;
 }
 #l-height {
       line-height: 0.428571;
