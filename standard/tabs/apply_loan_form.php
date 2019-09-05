@@ -172,7 +172,7 @@ $Tab1_Q1D = mysqli_fetch_array($Tab1_Q1R);
 <script src="../plugins/iCheck/icheck.min.js"></script>
 <!-- Include SmartWizard JavaScript source --> 
 <script type="text/javascript" src="../assets/smartWizard/js/jquery.smartWizard.js"></script>
-<script src="<?PHP echo base_url; ?>bower_components/jquery.dropdown-master/js/jquery.dropdown.js"></script>
+<!-- <script src="<?PHP echo base_url; ?>bower_components/jquery.dropdown-master/js/jquery.dropdown.js"></script> -->
 <script type="text/javascript">
 (function($) {
   $(function() {

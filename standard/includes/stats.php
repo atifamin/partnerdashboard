@@ -146,15 +146,16 @@ if($totalFiles>0){
   <!-- ./col --> 
 </div>
 <?php 
-  $q1 = "SELECT bn.* from bizvault_notification as bn, bizvault_default_folder_names as bdfn, user as u 
-        where u.user_id = bn.bizvault_notification_user_id AND bdfn.bizvault_default_folder_id = bn.bizvault_notification_filedoc_id";
+  $q1 = "SELECT bn.*, u.user_fname,u.user_lname, bdfn.bizvault_default_folder_title_text 
+  from bizvault_notification as bn, bizvault_default_folder_names as bdfn, user as u 
+        where u.user_id = bn.bizvault_notification_user_id AND bdfn.bizvault_default_folder_id = bn.bizvault_notification_filedoc_id AND u.user_id = '".$_SESSION['user_id']."'";
   $res1 = mysqli_query($con_MAIN,$q1);
 ?>
 
 <?php 
   $q3 = "SELECT ba.*,u.user_fname,u.user_lname,bdfn.bizvault_default_folder_title_text from 
         bizvault_activity as ba, user as u, bizvault_default_folder_names as bdfn
-        where u.user_id = ba.bizvault_activity_user_id AND bdfn.bizvault_default_folder_id = ba.bizvault_activity_user_filedoc_id";
+        where ba.bizvault_activity_user_id = u.user_id AND bdfn.bizvault_default_folder_id = ba.bizvault_activity_user_filedoc_id AND ba.bizvault_activity_action_user_id = '".$_SESSION['user_id']."'";
   $res3 = mysqli_query($con_MAIN,$q3);
 ?>
 
@@ -163,7 +164,7 @@ if($totalFiles>0){
       FROM
       grant_access as ga, user as u, partner as p, bizvault_default_folder_names as bdfn
       WHERE
-      ga.grant_access_user_id = u.user_id AND
+      ga.grant_access_user_id = '".$_SESSION['user_id']."' AND
       u.partner_id = p.partner_id AND bdfn.bizvault_default_folder_id = ga.grant_access_filedoc_id ";
       $res2 = mysqli_query($con_MAIN,$q2);
 ?>

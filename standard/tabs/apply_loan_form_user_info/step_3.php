@@ -31,18 +31,27 @@
 	    </select>
 	    <div class="help-block with-errors"></div>
   	</div>
+  	<?php
+  		// foreach($businesTypes as $bKey=>$bVal):
+  		// 	foreach($bVal->sub as $b1Key=>$b1Val):
+  		// 		echo "<pre>"; print_r($b1Val);
+  		// 		endforeach;
+  		// 		endforeach;
+  	 ?>
   	<div class="form-group col-md-8">
-	    <label for="type_of_business_login">Type of Business:</label>
-	    <select class="form-control user_info_fields_3" name="type_of_business" id="year_established" disabled>
-	    	<?php foreach ($NAICSQREA as $key5 => $val5) { 
-	    		if(trim($val5)!=''){
-	    		?>
-	    	<option value="<?php echo trim($val5); ?>"><?php echo trim($val5); ?></option>
-	    	<?php } 
-	    } ?>
-	    </select>
-	    <div class="help-block with-errors"></div>
+    	<label for="type_of_business">Type of Business:</label>
+    	<select data-dropdown='{ "closeReset": false }' name="type_of_business" id="type_of_business1" class="type_of_business1">
+      	<?php foreach($businesTypes as $bKey=>$bVal): ?>
+      		<optgroup label="<?php echo $bVal->name; ?>">
+        	<?php foreach($bVal->sub as $b1Key=>$b1Val): ?>
+        	<option value="<?php echo $b1Val->id; ?>"><?php echo $b1Val->name; ?></option>
+        	<?php endforeach; ?>
+      		</optgroup>
+      		<?php endforeach; ?>
+    	</select>
+    	<div class="help-block with-errors"></div>
   	</div>
+
   	<div class="form-group col-md-4">
 	    <label for="no_of_employees"> No. of Employees:</label>
 	    <select class="form-control user_info_fields_3" name="no_of_employees" id="no_of_employees" disabled>
@@ -59,6 +68,54 @@
 	    </select>
 	    <div class="help-block with-errors"></div>
   	</div>
+  	<div class="d-none">
+  	<div class="form-group col-md-12 correct-div">
+	    <div class="row" style="background-color: #D7D6FF">
+	      	<div class="col-md-8">
+	       		<label for="has_existing_suretybond_broker-agent" class="text-correct">Do You Currently Have Existing Surety Bonding Agent/Broker?</label>
+	      	</div>
+	      	<div class="col-md-4">
+	        	<label class="option"><input type="radio" name="has_existing_suretybond_broker-agent"  value="1" checked="">  Yes</label><br>
+	        	<label class="option"><input type="radio" name="has_existing_suretybond_broker-agent"  value="0">  No</label>
+	      	</div>
+	    </div>
+  	</div>
+  	<div class="form-group col-md-6">
+	    <label for="suretybond_amount">Surety Bond Amount:</label>
+	    <input type="number" class="form-control" name="suretybond_amount" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	 <div class="form-group col-md-6">
+	    <label for="surtybond_broker-agent_contact_fname">Surety Bond Broker-Agent Contact First Name:</label>
+	    <input type="text" class="form-control" name="surtybond_broker-agent_contact_fname" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	 <div class="form-group col-md-6">
+	    <label for="suretybond_broker-agent_company_name">Surety Bond Broker-Agent Company Name:</label>
+	    <input type="text" class="form-control" name="suretybond_broker-agent_company_name" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	 <div class="form-group col-md-6">
+	    <label for="surtybond_broker-agent_contact_lname">Surety Bond Broker-Agent Contact Last Name:</label>
+	    <input type="text" class="form-control" name="surtybond_broker-agent_contact_lname" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	 <div class="form-group col-md-6">
+	    <label for="suretybond_broker-agent_company_website">Surety Bond Broker-Agent Company Website:</label>
+	    <input type="text" class="form-control" name="suretybond_broker-agent_company_website" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	 <div class="form-group col-md-6">
+	    <label for="surtybond_broker-agent_contact_phone">Surety Bond Broker-Agent  Phone:</label>
+	    <input type="text" class="form-control" name="surtybond_broker-agent_contact_phone" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	 <div class="form-group col-md-6">
+	    <label for="suretybond_broker-agent_company_phone">Surety Bond Broker-Agent Company Phone:</label>
+	    <input type="text" class="form-control" name="suretybond_broker-agent_company_phone" value="" >
+	    <div class="help-block with-errors"></div>
+	 </div>
+	</div>
   	<div class="form-group col-md-4 col-md-offset-8">
 	    <label for="state_of_incorporation">State of Incorportation:</label>
 	    <input type="text" class="form-control user_info_fields_3" name="state_of_incorporation" id="state_of_incorporation" value="<?php echo $user_info->state_of_incorporation; ?>" readonly>
@@ -131,3 +188,28 @@
 	    </div>
   	</div>
 </div>
+<script type="text/javascript">
+	// $('#last_year_profit').on('select','select', function() {
+ //        alert('The option with value ' + $(this).val());
+ //    });
+ $(document).ready(function(){  
+$('#type_of_business1').change(function(){
+    var selectedValue = $(this).val();
+    alert(selectedValue);
+});
+});
+ //    $(document).ready(function(){  
+	// 	$('#type_of_business1').change(function(){
+	// 		alert('o chal ja');
+	// 	    // var selectedValue = $(this).val();
+	// 	    // if (selectedValue === "1"){
+	// 	    //     $("#maindivv").load("iteratemonths.php");
+	// 	    // }
+	// 	});
+	// });
+// function businesTypeId(){
+// 	alert();
+// 	var s = document.getElementById('type_of_business1');
+// 	alert(s.value);
+// }
+</script>

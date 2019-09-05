@@ -34,15 +34,11 @@ $FirmID 			= $_SESSION['dbe_firm_id'];
 
 $query = "SELECT * from user_info_update where user_id = ".$_SESSION['user_id']."";
 $res = mysqli_query($con_MAIN,$query);
-$row = mysqli_fetch_object($res);
-if (count($row) == 0) {
-	echo "<script>$(document).ready(function(){
-			$('#user_info_modal').modal({
-				modal: 'show',
-				backdrop: 'static', 
-				keyboard: false});
-			});</script>";
-}
+$user_info_update_data = mysqli_fetch_object($res);
+// if (count($row) == 0) {
+// 	echo "<script>$(document).ready(function(){
+// 			$('#user_info_modal').modal('show');}); alert();</script>";
+// }
 
 if($FirmID > 0){
 	$CheckPrimes = 'SELECT COUNT(*) AS PrimeContractors FROM `prime_contractor` WHERE `dbe_firm_id` ='.$FirmID.'';
@@ -56,7 +52,6 @@ if($FirmID > 0){
 	$TotalSub = $TotalSub['SubContractors'];
 
 
-	//echo "<pre>"; print_r($TotalPrimes." ".$TotalSub); exit;
 
 	if($TotalPrimes>0 && $TotalSub>0){
 		include "tab1/both_contractors.php";
@@ -80,26 +75,38 @@ if($FirmID > 0){
  } ?>
 
 <?php 
-	$UserID = $_SESSION['user_id'];
-
-	$NAICS	= 	"SELECT dbe.`DBE NAICS` AS `naics`
-				FROM user
-				JOIN dbe ON dbe.`Firm ID` = user.dbe_firm_id
-				JOIN sbdvbe ON sbdvbe.`Certification ID` = user.certification_id
-				WHERE user.user_id = ".$UserID."";
-
-	$NAICSQ		= mysqli_query($con_MAIN,$NAICS);
-	$NAICSQR	= mysqli_fetch_object($NAICSQ);
-	$NAICSQREA	= explode(";",$NAICSQR->naics);
-?>
-
-
-<?php 
 	$query1 = "SELECT * from user_info_view where (id = ".$_SESSION['user_id']." AND trans_type='user_info') or (id = ".$_SESSION['dbe_firm_id']." AND trans_type='dbe') or (id = ".$_SESSION['certification_id']." AND trans_type='sbdvbe')";
 	$result1 = mysqli_query($con_MAIN,$query1);
 	$user_info = mysqli_fetch_object($result1);
 ?>
 
+
+<?php 
+function getBusiTypeByParent($QUERY, $CONN){
+  $QUERY_R = exec_sqlQuery1($CONN, $QUERY);
+  $array = array();
+  while($Row = mysqli_fetch_array($QUERY_R)){
+    $type = new stdClass;
+    $type->id = $Row['id'];
+    $type->parent_id = $Row['parent_id'];
+    $type->company_id = $Row['company_id'];
+    $type->slug = $Row['slug'];
+    $type->name = $Row['name'];
+    $array[] = $type;
+  }
+  return $array;
+}
+$businesTypes = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = 0", $con_MAIN);
+
+foreach($businesTypes as $key=>$val){
+  $businesTypes[$key]->sub = getBusiTypeByParent("SELECT * FROM business_type WHERE parent_id = ".$val->id."", $con_MAIN);
+}
+function exec_sqlQuery1($con, $q){
+  $result = mysqli_query($con,$q);
+  return $result;
+}
+?>
+<input type="hidden" id="first_time_user_info" value="<?php echo count($user_info_update_data); ?>">
 <div id="user_info_modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -152,11 +159,16 @@ if($FirmID > 0){
 <script src="../plugins/iCheck/icheck.min.js"></script>
 <script type="text/javascript" src="../assets/smartWizard/js/jquery.smartWizard.js"></script>
 
+
+
 <?php 
 include("../includes/footer.php");
  ?>
 
-<script>
+ <script type="text/javascript">
+
+
+
 $('.no_step_1').on("click",function(e) {
 	$('.user_info_fields_1').removeAttr('readonly');
 });
@@ -190,11 +202,6 @@ $(function() {
     });
 });
 
-(function($) {
-  $(function() {
-    $('#type_of_business_login').dropdown();
-  });
-}(jQuery));
 
 $(document).ready(function(){
 	//alert();    
@@ -299,4 +306,18 @@ $("#cont-detail-6-anc").click(function(){
 	
 	?>
 
+</script>
+
+<script src="<?php echo base_url; ?>bower_components/jquery.dropdown-master/js/jquery.dropdown.js"></script>
+<script type="text/javascript">
+$('#type_of_business1').dropdown();
+$(document).ready(function(){
+  if($("#first_time_user_info").val()==0){
+    $('#user_info_modal').modal(
+      {modal: 'show',
+      backdrop: 'static', 
+      keyboard: false
+    });
+  }
+});
 </script>

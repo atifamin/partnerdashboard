@@ -214,11 +214,11 @@ function formatSizeUnits($size, $precision = 2){
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>UPLOADED</strong></h2>
-            <h4><strong><?php echo date("d-m-Y", strtotime($val->file->bizvault_user_uploaded_required_file_upload_date)); ?></strong></h4>
+            <h4><strong><?php echo date("m-d-Y", strtotime($val->file->bizvault_user_uploaded_required_file_upload_date)); ?></strong></h4>
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>FILE SIZE</strong></h2>
-            <h4><strong><?php //echo formatSizeUnits($val->file->file_size); ?></strong></h4>
+            <h4><strong><?php echo formatSizeUnits($val->file->bizvault_user_uploaded_required_file_size); ?></strong></h4>
             </div>
             <div class="col-md-2" align="center">
             <h2><strong>FILE TYPE</strong></h2>

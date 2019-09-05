@@ -36,32 +36,32 @@
   </div>
   <div class="form-group col-md-8">
     <label for="main_contact_name">Main Contact Name:</label>
-    <input type="text" class="form-control" name="main_contact_name" id="main_contact_name" value="<?php echo $userDetail->main_contact_name; ?>" required>
+    <input type="text" class="form-control" name="main_contact_name" id="main_contact_name" value="<?php echo $userDetail->main_contact_fname." ".$userDetail->main_contact_lname; ?>" required>
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-4">
     <label for="alternate_contact_name">Alternate Contact Name:</label>
-    <input type="text" class="form-control" name="alternate_contact_name" value="<?php echo $userDetail->alternate_contact_name; ?>" id="alternate_contact_name" required>
+    <input type="text" class="form-control" name="alternate_contact_name" value="<?php echo $userDetail->alternate_contact_fname." ".$userDetail->alternate_contact_lname; ?>" id="alternate_contact_name" required>
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="title1">Title:</label>
-    <input type="text" class="form-control" name="title1" id="title1" value="<?php echo $userDetail->title1; ?>" required>
+    <input type="text" class="form-control" name="title1" id="title1" value="<?php echo $userDetail->main_contact_title; ?>" required>
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="title2">Title:</label>
-    <input type="text" class="form-control" name="title2" id="title2" value="<?php echo $userDetail->title2; ?>" required>
+    <input type="text" class="form-control" name="title2" id="title2" value="<?php echo $userDetail->alternate_contract_title; ?>" required>
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="email1">Email:</label>
-    <input type="email" class="form-control" name="email1" id="email1" value="<?php echo $userDetail->email1; ?>" required>
+    <input type="email" class="form-control" name="email1" id="email1" value="<?php echo $userDetail->main_contact_email; ?>" required>
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="email2">Email:</label>
-    <input type="email" class="form-control" name="email2" id="email2" value="<?php echo $userDetail->email2; ?>" required>
+    <input type="email" class="form-control" name="email2" id="email2" value="<?php echo $userDetail->alternate_contract_email; ?>" required>
     <div class="help-block with-errors"></div>
   </div>
 </div>

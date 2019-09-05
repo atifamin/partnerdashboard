@@ -337,7 +337,7 @@ class File_manager extends CI_Controller {
 			$data['bizvault_user_uploaded_required_file_type'] = $upload_data['upload_data']['file_type'];
 			$data["bizvault_user_uploaded_required_file_full_pathname"] = $upload_data['upload_data']['full_path'];
 			$data["bizvault_user_uploaded_required_file_extension"] = $upload_data['upload_data']['file_ext'];
-			//$data["file_size"] = $upload_data['upload_data']['file_size'];
+			$data["bizvault_user_uploaded_required_file_size"] = $upload_data['upload_data']['file_size'];
 			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_user_required_filelist_id", $post['bizvault_user_required_filelist_id'])->where("bizvault_user_uploaded_required_file_user_id", $post['user_id'])->get("bizvault_user_uploaded_required_file");
 			if($checkIfUploadedBefore->num_rows()>0){
 				$checkIfUploadedBefore = $checkIfUploadedBefore->row();

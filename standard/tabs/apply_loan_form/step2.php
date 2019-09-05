@@ -89,6 +89,7 @@
     <input type="text" class="form-control" name="federal_tax_id" id="federal_tax_id" value="<?php echo $userDetail->federal_tax_id; ?>" required>
     <div class="help-block with-errors"></div>
   </div>
+  <?php //echo "<pre>"; print_r($businesTypes); ?>
   <div class="form-group col-md-8">
     <label for="type_of_business">Type of Business:</label>
     <select data-dropdown='{ "closeReset": false }' name="type_of_business" id="type_of_business"  >
@@ -154,7 +155,7 @@
   </div>
   <div class="form-group col-md-6" data-tip="Use only numbers and commas - For Example: 350,000">
     <label for="funding_amount">Funding Amount Requesting:</label>
-    <input type="text" class="form-control" name="funding_amount" id="funding_amount" value="<?php echo $userDetail->funding_amount; ?>" required>
+    <input type="text" class="form-control" name="funding_amount" id="funding_amount" value="<?php echo $userDetail->financing_amount; ?>" required>
     <!-- <select class="form-control" name="funding_amount" id="funding_amount" required>
       <option value="<?php //echo $userDetail->funding_amount; ?>" selected hidden><?php //echo $userDetail->funding_amount; ?></option>
       <option value="$5K - $10K">$5K - $10K</option>
@@ -181,7 +182,7 @@
     <label for="currently_financed">How Currently Financed:</label>
     <!-- <input type="text" class="form-control" name="currently_financed" id="currently_financed" required> -->
     <select class="form-control" name="currently_financed" id="currently_financed" required>
-      <option value="<?php echo $userDetail->currently_financed; ?>" selected hidden><?php echo $userDetail->currently_financed; ?></option>
+      <option value="<?php echo $userDetail->amount_currently_financed; ?>" selected hidden><?php echo $userDetail->amount_currently_financed; ?></option>
       <option value="Self Financed">Self Financed</option>
       <option value="Bank Loan/Line of Credit">Bank Loan/Line of Credit</option>
       <option value="Owner Equity">Owner Equity</option>

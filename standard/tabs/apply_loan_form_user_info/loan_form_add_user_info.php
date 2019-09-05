@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include("../../../config/base_path.php");
@@ -42,14 +43,16 @@ $Query = "INSERT INTO `user_info_update` (
 		    `zip_code`,
 		    `website`,
 		    `phone`,
-		    `main_contact_name`,
-		    `alternate_contact_name`,
-		    `title1`,
-		    `title2`,
-		    `email1`,
-		    `email2`,
-		    `mobile_phone1`,
-		    `mobile_phone2`,
+		    `main_contact_fname`,
+		    `main_contact_lname`,
+		    `alternate_contact_fname`,
+		    `alternate_contact_lname`,
+		    `main_contact_title`,
+		    `alternate_contract_title`,
+		    `main_contact_email`,
+		    `alternate_contract_email`,
+		    `main_contract_mobile_phone`,
+		    `alternate_contract_mobile_phone`,
 		    `business_structure`,
 		    `year_established`,
 		    `state_of_incorporation`,
@@ -60,7 +63,15 @@ $Query = "INSERT INTO `user_info_update` (
 		    `largest_client1`,
 		    `largest_client2`,
 		    `largest_client3`,
-		    `largest_client4`
+		    `largest_client4`,
+		    `has_existing_suretybond_broker-agent`,
+		    `suretybond_amount`,
+		    `suretybond_broker-agent_company_name`,
+		    `suretybond_broker-agent_company_website`,
+		    `suretybond_broker-agent_company_phone`,
+		    `surtybond_broker-agent_contact_fname`,
+		    `surtybond_broker-agent_contact_lname`,
+		    `surtybond_broker-agent_contact_phone`
 
 		    ) VALUES(
 
@@ -73,14 +84,16 @@ $Query = "INSERT INTO `user_info_update` (
 		    '".$data['zip_code']."',
 		    '".$data['website']."',
 		    '".$data['phone']."',
-		    '".$data['main_contact_name']."',
-		    '".$data['alternate_contact_name']."',
-		    '".$data['title1']."',
-		    '".$data['title2']."',
-		    '".$data['email1']."',
-		    '".$data['email2']."',
-		    '".$data['mobile_phone1']."',
-		    '".$data['mobile_phone2']."',
+		    '".$data['main_contact_fname']."',
+		    '".$data['main_contact_lname']."',
+		    '".$data['alternate_contact_fname']."',
+		    '".$data['alternate_contact_lname']."',
+		    '".$data['main_contact_title']."',
+		    '".$data['alternate_contract_title']."',
+		    '".$data['main_contact_email']."',
+		    '".$data['alternate_contract_email']."',
+		    '".$data['main_contract_mobile_phone']."',
+		    '".$data['alternate_contract_mobile_phone']."',
 		    '".$data['business_structure']."',
 		    '".$data['year_established']."',
 		    '".$data['state_of_incorporation']."',
@@ -91,9 +104,16 @@ $Query = "INSERT INTO `user_info_update` (
 		    '".$data['largest_client1']."',
 		    '".$data['largest_client2']."',
 		    '".$data['largest_client3']."',
-		    '".$data['largest_client4']."'
+		    '".$data['largest_client4']."',
+		    '".$data['has_existing_suretybond_broker-agent']."',
+		    '".$data['suretybond_amount']."',
+		    '".$data['suretybond_broker-agent_company_name']."',
+		    '".$data['suretybond_broker-agent_company_website']."',
+		    '".$data['suretybond_broker-agent_company_phone']."',
+		    '".$data['surtybond_broker-agent_contact_fname']."',
+		    '".$data['surtybond_broker-agent_contact_lname']."',
+		    '".$data['surtybond_broker-agent_contact_phone']."'
 			)";
-			// echo "<pre>"; print_r($Query);exit;
 			mysqli_query($con_MAIN,$Query)  or die(mysqli_error($con_MAIN));
 
 			header("Location: ".base_url."tabs/contract_details.php");
