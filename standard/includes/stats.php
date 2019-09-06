@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="../bower_components/percircle/dist/css/percircle.css">
 
-<?php //echo base_url; exit;?>
-
 <?php 
 $percent = 0;
 $q1 = "SELECT * from bizvault_user_required_filelist where bizvault_user_required_filelist_folder_id = 301";
@@ -332,4 +330,5 @@ if($totalFiles>0){
     $('#click_close').hide();
     $('#click_view').show();
   });
+
 </script>

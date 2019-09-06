@@ -123,6 +123,34 @@ function formatSizeUnits($size, $precision = 2){
     }
     return round($size, $precision).$units[$i];
 }
+function fileIconExt($extension){
+  $ext = strtolower($extension);
+  if ($ext == '.pdf') {
+    echo base_url(). "images/missing_file_icon.PNG";
+  }else if ($ext == '.png'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.doc' || $ext == '.docx'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.jpg'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.xls' || $ext == '.xlsx'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.gif'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.txt'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.ppt' || $ext == '.pptx'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.odp'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.ods'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.odt'){
+    echo base_url(). "images/delete.png";
+  }else if ($ext == '.rtf'){
+    echo base_url(). "images/delete.png";
+  }
+}
 ?>
 <div class="row">
   <div class="col-md-5" style="padding-right: unset;">
@@ -148,10 +176,9 @@ function formatSizeUnits($size, $precision = 2){
       <div class="panel box box-primary" id="panel_row_<?php echo $val->bizvault_user_required_filelist_id; ?>">
         
         <div class="box-header with-border">
-          <!-- <h4 class="box-title">  Collapsible Group Item #1  </h4> -->
           <div class="row" style="margin-right: 1%;margin-left: 1%;">
 
-            <?php if($val->uploaded==0){ ?>
+            <?php if($val->uploaded==0 || ($val->uploaded==1 && $val->file->bizvault_user_uploaded_required_file_filename == NULL)){ ?>
               <div class="col-md-1 file-cell" style="padding: unset;">
                 <div style="background-color: #4f81bd; padding: 4px 0 0px 0;">
                   <img src="<?php echo base_url(). "images/missing_file_icon.PNG";?>" height="51px;" width="57px;" onclick="choose_file(<?php echo $val->bizvault_user_required_filelist_id; ?>, <?php echo $user_id; ?>, <?php echo $folder->bizvault_default_folder_id ?>)">
@@ -167,17 +194,35 @@ function formatSizeUnits($size, $precision = 2){
             <?php }else{ ?>
               <div class="col-md-6 file-cell columnSecond" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" style="margin:0 3%;"><?php echo $val->bizvault_user_required_filelist_filename; ?></div>
             <?php } ?>
+            <?php if($val->uploaded==0){ ?>
             <div class="col-md-4 columnThird">
               <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">STATUS</span> </div>
-              <?php if($val->uploaded==0){ ?>
+              
                 <div style="text-align: center;background-color:#FFC000"> <span style="font-size: 22px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">PLEASE UPLOAD!</span></div>
                 <div class="mt-10 text-white text-center" style="background-color: #4f81bd;" data-toggle="collapse" data-target="#file_explanation<?php echo $key; ?>">
                   <span class="font-20">Don't Have This Document?<br>CLICK HERE</span>
                 </div>
-              <?php }else{ ?>
+              </div>
+              <?php }elseif ($val->uploaded==1 && $val->file->bizvault_user_uploaded_required_file_filename != NULL) { ?>
+              <div class="col-md-3 columnThird">
+              <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">STATUS</span> </div>
                 <div style="text-align: center;background-color:#8dea7b"> <span style="font-size: 22px" data-toggle="collapse" data-parent="#accordion" href="  #collapse<?php echo $key; ?>">UPLOADED</span></div>
+              </div>
+                <div class="col-md-1 text-center" style="padding: 0;width: 10%">
+                  <img src="<?php echo base_url(). "images/lockunlock.gif";?>" height="51px;" width="57px;">
+                  <marquee direction="left" scrolldelay="200" style="color: #e74609;">Secure and Ecrypted</marquee>
+                  <!-- <span style="color: #e74609;">Secure and Ecrypted</span> -->
+                </div>
+              <?php }else{ ?>
+              <div class="col-md-4 columnThird">
+              <div style="background-color:#4AACC9;text-align: center;"> <span style="color: #ffff;font-size: 18px" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>">STATUS</span> </div>
+                <div style="text-align: center;background-color:#FFC000"> <span style="font-size: 22px" data-toggle="collapse" data-parent="#accordion" href="  #collapse<?php echo $key; ?>">UPLOAD PENDING</span></div>
+                <div class="mt-10 text-white text-center" style="background-color: #4f81bd;">
+                  <span class="font-20"><?php echo $val->file->bizvault_user_uploaded_required_file_file_explanation; ?></span>
+                </div>
+                </div>
               <?php } ?>
-            </div>
+            
           </div>
         </div>
         <div id="file_explanation<?php echo $key; ?>" class="collapse">
@@ -205,9 +250,9 @@ function formatSizeUnits($size, $precision = 2){
         </div>
         <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse">
           <div class="box-body">
-          <?php if($val->uploaded == 1){ ?>
+          <?php if($val->uploaded == 1 && $val->file->bizvault_user_uploaded_required_file_filename != NULL){ ?>
           <div class="row">
-            <div class="col-md-offset-2 col-md-2" align="center">
+            <div class="col-md-offset-1 col-md-2" align="center">
             <button type="button" class="btn btn-success btn-sm btn-block" onclick="view_file(<?php echo $val->file->bizvault_user_uploaded_required_file_id; ?>)">VIEW</button>
             <button type="button" class="btn btn-danger btn-sm btn-block" onclick="delete_file(<?php echo $val->file->bizvault_user_uploaded_required_file_id; ?>)">DELETE</button>
             <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#grant-access-modal">GRANT ACCESS</button>
@@ -223,6 +268,9 @@ function formatSizeUnits($size, $precision = 2){
             <div class="col-md-2" align="center">
             <h2><strong>FILE TYPE</strong></h2>
             <h4><strong><?php echo $val->file->bizvault_user_uploaded_required_file_extension; ?></strong></h4>
+            </div>
+            <div class="col-md-2" style="margin-top: 1%">
+            <img src="<?php echo fileIconExt($val->file->bizvault_user_uploaded_required_file_extension); ?>" height="60px;" width="57px;">
             </div>
           </div>
           <?php }else{ ?>
@@ -290,18 +338,6 @@ function formatSizeUnits($size, $precision = 2){
                 </td>
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->request_access_type; ?></td>
                 <td class="text-center cus-td" style="border: none;" ><?php echo $info->file_folder_name; ?></td>
-                <!-- <td class="text-center" style="border: none;"><span style="color: #45717A;"><strong>
-                <?php $expiry_date =  date('l, F d, Y',strtotime($info->request_access_timestamp.' + '.$info->request_access_length.' Days'));
-                echo $expiry_date; ?>
-                </strong></span><br>
-                <?php
-                  $current_date = time();
-                  $expiry_date1 = strtotime($expiry_date);
-                  $datediff =  $expiry_date1 - $current_date;
-                  $newDate = round($datediff / (60 * 60 * 24));
-                ?>
-                <em class="text-red">(Expires in <?php echo $newDate; ?> Day)</em>
-                </td> -->
                 <?php 
                     $current_date = time();
                     $expiry_date =  date('l, F d, Y',strtotime($info->request_access_timestamp.' + '.$info->request_access_length.' Days'));
@@ -446,7 +482,8 @@ function formatSizeUnits($size, $precision = 2){
         data: formData,                         
         type: 'post',
         success: function(e){
-          
+          console.log(e);
+          return false;
         },
         async: true,
         xhr: function () {

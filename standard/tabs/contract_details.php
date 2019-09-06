@@ -307,10 +307,24 @@ $("#cont-detail-6-anc").click(function(){
 	?>
 
 </script>
+<!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script> -->
 
 <script src="<?php echo base_url; ?>bower_components/jquery.dropdown-master/js/jquery.dropdown.js"></script>
 <script type="text/javascript">
-$('#type_of_business1').dropdown();
+//$.noConflict();
+$('#type_of_business12').dropdown();
+$('#type_of_business12').on('dropdown.select',function(e,item, previous, self ){
+  var id = $(this).val();
+  if (id >= 32 && id <= 41) {
+    $('#surety_div').show();  
+  }else{
+    $('#surety_div').hide();
+  }
+});
+
 $(document).ready(function(){
   if($("#first_time_user_info").val()==0){
     $('#user_info_modal').modal(

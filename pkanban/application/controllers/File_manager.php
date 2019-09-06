@@ -322,9 +322,7 @@ class File_manager extends CI_Controller {
 			$error_msg = "File type not Correct only upload ".$file_detail->bizvault_user_required_filelist_extension." files here!";
 
 			setcookie("error_image_loading", $error_msg, time()+15, "/");
-			//$_SESSION["error_image_loading"] = "Test Message";
-			//$this->session->set_userdata("error_image_loading", "Testing Messag 1e");
-			//$this->session->set_flashdata("error_image_loading", "Test Message");
+
 			header('Location: '.$post['redirect_url'].'');
 
 		}else{
@@ -339,18 +337,21 @@ class File_manager extends CI_Controller {
 			$data["bizvault_user_uploaded_required_file_extension"] = $upload_data['upload_data']['file_ext'];
 			$data["bizvault_user_uploaded_required_file_size"] = $upload_data['upload_data']['file_size'];
 			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_user_required_filelist_id", $post['bizvault_user_required_filelist_id'])->where("bizvault_user_uploaded_required_file_user_id", $post['user_id'])->get("bizvault_user_uploaded_required_file");
+
 			if($checkIfUploadedBefore->num_rows()>0){
+
 				$checkIfUploadedBefore = $checkIfUploadedBefore->row();
-				unlink($checkIfUploadedBefore->full_path);
-				$data["updated_at"] = date("Y-m-d H:i:s");
-				$data["updated_by"] = $post["user_id"];
+
+				//unlink($checkIfUploadedBefore->full_path);
+				// $data["updated_at"] = date("Y-m-d H:i:s");
+				// $data["updated_by"] = $post["user_id"];
 				$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $checkIfUploadedBefore->bizvault_user_uploaded_required_file_id)->update("bizvault_user_uploaded_required_file", $data);
 			}else{
 				$data["bizvault_user_uploaded_required_file_upload_date"] = date("Y-m-d H:i:s");
 				
 				$this->partnerDB->insert("bizvault_user_uploaded_required_file", $data);
 			}
-			header('Location: '.$post['redirect_url'].'');
+			//header('Location: '.$post['redirect_url'].'');
 		}
 		
 	}

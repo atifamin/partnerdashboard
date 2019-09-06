@@ -33,14 +33,12 @@
   	</div>
   	<?php
   		// foreach($businesTypes as $bKey=>$bVal):
-  		// 	foreach($bVal->sub as $b1Key=>$b1Val):
-  		// 		echo "<pre>"; print_r($b1Val);
-  		// 		endforeach;
+  		// 	echo "<pre>"; print_r($bVal);
   		// 		endforeach;
   	 ?>
   	<div class="form-group col-md-8">
     	<label for="type_of_business">Type of Business:</label>
-    	<select data-dropdown='{ "closeReset": false }' name="type_of_business" id="type_of_business1" class="type_of_business1">
+    	<select data-dropdown='{ "closeReset": false }' name="type_of_business" id="type_of_business12">
       	<?php foreach($businesTypes as $bKey=>$bVal): ?>
       		<optgroup label="<?php echo $bVal->name; ?>">
         	<?php foreach($bVal->sub as $b1Key=>$b1Val): ?>
@@ -68,7 +66,7 @@
 	    </select>
 	    <div class="help-block with-errors"></div>
   	</div>
-  	<div class="d-none">
+  	<div class="d-none" id="surety_div">
   	<div class="form-group col-md-12 correct-div">
 	    <div class="row" style="background-color: #D7D6FF">
 	      	<div class="col-md-8">
@@ -189,27 +187,5 @@
   	</div>
 </div>
 <script type="text/javascript">
-	// $('#last_year_profit').on('select','select', function() {
- //        alert('The option with value ' + $(this).val());
- //    });
- $(document).ready(function(){  
-$('#type_of_business1').change(function(){
-    var selectedValue = $(this).val();
-    alert(selectedValue);
-});
-});
- //    $(document).ready(function(){  
-	// 	$('#type_of_business1').change(function(){
-	// 		alert('o chal ja');
-	// 	    // var selectedValue = $(this).val();
-	// 	    // if (selectedValue === "1"){
-	// 	    //     $("#maindivv").load("iteratemonths.php");
-	// 	    // }
-	// 	});
-	// });
-// function businesTypeId(){
-// 	alert();
-// 	var s = document.getElementById('type_of_business1');
-// 	alert(s.value);
-// }
+
 </script>

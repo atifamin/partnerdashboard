@@ -3208,58 +3208,58 @@
 	var classes = {
 
 		// Dropdown
-		dropdown:		'dropdown-nested',
-		overlay:		'dropdown-nested-overlay',
+		dropdown:		'dropdown',
+		overlay:		'dropdown-overlay',
 
 		// Menu
-		menuMain:		'dropdown-nested-menu-main',
-		menuOpen:		'dropdown-nested-menu-open',
+		menuMain:		'dropdown-menu-main',
+		menuOpen:		'dropdown-menu-open',
 
-		menuWrapper:	'dropdown-nested-menu-wrapper',
-		menuContainer:	'dropdown-nested-menu-container',
-		menuObject:		'dropdown-nested-menu',
-		menuMask:		'dropdown-nested-mask',
+		menuWrapper:	'dropdown-menu-wrapper',
+		menuContainer:	'dropdown-menu-container',
+		menuObject:		'dropdown-menu',
+		menuMask:		'dropdown-mask',
 
-		menuHeader: 	'dropdown-nested-header',
-		menuTitle:		'dropdown-nested-title',
+		menuHeader: 	'dropdown-header',
+		menuTitle:		'dropdown-title',
 
-		menuList:		'dropdown-nested-list',
-		menuItem:		'dropdown-nested-item',
-		menuLink:		'dropdown-nested-link',
-		menuText:		'dropdown-nested-text',
-		menuParent:		'dropdown-nested-parent',
+		menuList:		'dropdown-list',
+		menuItem:		'dropdown-item',
+		menuLink:		'dropdown-link',
+		menuText:		'dropdown-text',
+		menuParent:		'dropdown-parent',
 
-		menuDivider:	'dropdown-nested-divider',
-		menuLabel:		'dropdown-nested-label',
+		menuDivider:	'dropdown-divider',
+		menuLabel:		'dropdown-label',
 
 		// Toggle
-		toggleButton:	'dropdown-nested-toggle',
-		toggleText:		'dropdown-nested-text',
-		toggleIcon:		'dropdown-nested-icon',
+		toggleButton:	'dropdown-toggle',
+		toggleText:		'dropdown-text',
+		toggleIcon:		'dropdown-icon',
 
 		// Close
-		closeButton:	'dropdown-nested-close',
-		closeText:		'dropdown-nested-text',
-		closeIcon:		'dropdown-nested-icon',
+		closeButton:	'dropdown-close',
+		closeText:		'dropdown-text',
+		closeIcon:		'dropdown-icon',
 
 		// Back
-		backButton:		'dropdown-nested-back',
-		backText:		'dropdown-nested-text',
-		backIcon:		'dropdown-nested-icon',
+		backButton:		'dropdown-back',
+		backText:		'dropdown-text',
+		backIcon:		'dropdown-icon',
 
 		// States
-		open:			'dropdown-nested-open',
-		opening:		'dropdown-nested-opening',
-		closing:		'dropdown-nested-closing',
-		focused:		'dropdown-nested-focused',
-		animating:		'dropdown-nested-animating',
-		resizing:		'dropdown-nested-resizing',
-		selected:		'dropdown-nested-selected',
-		selectedParent:	'dropdown-nested-parent-selected',
+		open:			'dropdown-open',
+		opening:		'dropdown-opening',
+		closing:		'dropdown-closing',
+		focused:		'dropdown-focused',
+		animating:		'dropdown-animating',
+		resizing:		'dropdown-resizing',
+		selected:		'dropdown-selected',
+		selectedParent:	'dropdown-parent-selected',
 
 		// Position
-		above:			'dropdown-nested-above',
-		below:			'dropdown-nested-below'
+		above:			'dropdown-above',
+		below:			'dropdown-below'
 
 	};
 
