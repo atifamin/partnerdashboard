@@ -126,29 +126,35 @@ function formatSizeUnits($size, $precision = 2){
 function fileIconExt($extension){
   $ext = strtolower($extension);
   if ($ext == '.pdf') {
-    echo base_url(). "images/missing_file_icon.PNG";
+    echo base_url(). "images/pdf_icon.jpg";
   }else if ($ext == '.png'){
-    echo base_url(). "images/delete.png";
-  }else if ($ext == '.doc' || $ext == '.docx'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/png_icon.jpg";
+  }else if ($ext == '.doc'){
+    echo base_url(). "images/doc_icon.jpg";
+  }else if ($ext == '.docx'){
+    echo base_url(). "images/docx_icon.jpg";
   }else if ($ext == '.jpg'){
-    echo base_url(). "images/delete.png";
-  }else if ($ext == '.xls' || $ext == '.xlsx'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/jpg_icon.jpg";
+  }else if ($ext == '.xlsx'){
+    echo base_url(). "images/xlsx_icon.jpg";
+  }else if ($ext == '.xls'){
+    echo base_url(). "images/xls_icon.jpg";
   }else if ($ext == '.gif'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/gif_icon.jpg";
   }else if ($ext == '.txt'){
-    echo base_url(). "images/delete.png";
-  }else if ($ext == '.ppt' || $ext == '.pptx'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/delete.jpg";
+  }else if ($ext == '.ppt'){
+    echo base_url(). "images/ppt_icon.jpg";
+  }else if ($ext == '.pptx'){
+    echo base_url(). "images/pptx_icon.jpg";
   }else if ($ext == '.odp'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/odp_icon.jpg";
   }else if ($ext == '.ods'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/ods_icon.jpg";
   }else if ($ext == '.odt'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/odt_icon.jpg";
   }else if ($ext == '.rtf'){
-    echo base_url(). "images/delete.png";
+    echo base_url(). "images/rtf_icon.jpg";
   }
 }
 ?>
@@ -210,7 +216,7 @@ function fileIconExt($extension){
               </div>
                 <div class="col-md-1 text-center" style="padding: 0;width: 10%">
                   <img src="<?php echo base_url(). "images/lockunlock.gif";?>" height="51px;" width="57px;">
-                  <marquee direction="left" scrolldelay="200" style="color: #e74609;">Secure and Ecrypted</marquee>
+                  <marquee direction="left" scrollamount="5" style="color: #e74609;">Secure and Ecrypted</marquee>
                   <!-- <span style="color: #e74609;">Secure and Ecrypted</span> -->
                 </div>
               <?php }else{ ?>
@@ -270,7 +276,7 @@ function fileIconExt($extension){
             <h4><strong><?php echo $val->file->bizvault_user_uploaded_required_file_extension; ?></strong></h4>
             </div>
             <div class="col-md-2" style="margin-top: 1%">
-            <img src="<?php echo fileIconExt($val->file->bizvault_user_uploaded_required_file_extension); ?>" height="60px;" width="57px;">
+            <img src="<?php echo fileIconExt($val->file->bizvault_user_uploaded_required_file_extension); ?>" height="75px;" width="65px;">
             </div>
           </div>
           <?php }else{ ?>

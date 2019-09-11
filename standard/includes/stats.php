@@ -21,7 +21,28 @@ if($totalFiles>0){
   }
 }
 
+$percent1 = 0;
+$q3 = "SELECT * from bizvault_user_required_filelist where bizvault_user_required_filelist_folder_id = 303";
+$totalPreFiles1 = mysqli_query($con_MAIN,$q3);
+$totalFiles1 = $totalPreFiles1->num_rows;
+if($totalFiles1>0){
+  $uploadedFiles1 = 0;
+  while($val1 = mysqli_fetch_array($totalPreFiles1)){
+    $q4 = "SELECT * from bizvault_user_uploaded_required_file where bizvault_user_required_filelist_id = ".$val1['bizvault_user_required_filelist_id']." and bizvault_user_uploaded_required_file_user_id = ".$_SESSION['user_id']."";
+    $file1 = mysqli_query($con_MAIN,$q4);
+    if($file1->num_rows>0){
+      $file1 = mysqli_fetch_object($file1);
+      $uploadedFiles1 = $uploadedFiles1+1;
+    }
+  }
+  if($uploadedFiles1>0){
+    $percent1 = ($uploadedFiles1/$totalFiles1)*100;
+    $percent1 = number_format($percent1);
+  }
+}
+$totalBasic = ($percent + $percent1)/2 ;
 ?>
+
 
 <div class="row">
   <div class="col-md-2 col-lg-2 text-center" style="margin-right: 20px;">
@@ -39,7 +60,6 @@ if($totalFiles>0){
   </div>
   <div class="col-md-3 col-lg-3 text-center collapse bizvault-top-banner">
     <button type="button" style="background-color: #ecf0f5; border: none;"><img src="<?php echo base_url; ?>assets/img/bizvault_video_tour-large.png" width="200px" class=""></button>
-    <!-- <div class="v-line-left"></div> -->
   </div>
   <div class="col-md-2 col-lg-2 collapse bizvault-top-banner" style="margin-left: -19px;">
     <div class="row text-center">
@@ -49,15 +69,10 @@ if($totalFiles>0){
     </div>
     <div class="row" style="border: 5px solid; border-bottom: unset; border-top: unset;border-color: #DCEFF3;">
       <div class="col-md-12" style="margin: 10px 0px 0px 31px">
-        <div id="greencircle" data-percent="<?php echo $percent; ?>" class="small green percircle animate gt50" style="background-color:unset;">
-          <span><?php echo $percent; ?>%</span>
+        <div id="greencircle" data-percent="<?php echo $totalBasic; ?>" class="small green percircle animate gt50" style="background-color:unset;">
+          <span><?php echo $totalBasic; ?>%</span>
         </div>
       </div>
-      <!-- <div class="col-md-12" style="background-color:#F2F2F2;padding:12% 0;">
-        <div id="greencircle" data-percent="40" class="big green" style="background-color:unset;">
-          <span>40%</span>
-        </div>
-      </div> -->
     </div>
   </div>
   <div class="col-md-2 col-lg-2 collapse bizvault-top-banner">

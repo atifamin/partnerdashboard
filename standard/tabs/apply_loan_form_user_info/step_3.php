@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="form-group col-md-8">
 	    <label for="business_structure">Business Structure:</label>
-	    <select class="form-control user_info_fields_3" name="business_structure" id="business_structure" disabled>
+	    <select class="form-control user_info_fields_3" name="business_structure" id="business_structure" disabled required>
 	      <option value="<?php echo $user_info->business_structure; ?>" selected><?php echo $user_info->business_structure; ?></option>
 	      <option value="Sole Proprietor">Sole Proprietor</option>
 	      <option value="LLC - Limited Liability Company">LLC - Limited Liability Company</option>
@@ -21,7 +21,7 @@
   	</div>
   	<div class="form-group col-md-4">
 	    <label for="year_established">How Old Is Your Business:</label>
-	    <select class="form-control user_info_fields_3" name="year_established" id="year_established" disabled>
+	    <select class="form-control user_info_fields_3" name="year_established" id="year_established" disabled required>
 	      <option value="<?php echo $user_info->year_established; ?>" selected><?php echo $user_info->year_established; ?></option>
 	      <option value="Less Than 2 Years">Less Than 2 Years</option>
 	      <option value="3-5 Years">3-5 Years</option>
@@ -52,7 +52,7 @@
 
   	<div class="form-group col-md-4">
 	    <label for="no_of_employees"> No. of Employees:</label>
-	    <select class="form-control user_info_fields_3" name="no_of_employees" id="no_of_employees" disabled>
+	    <select class="form-control user_info_fields_3" name="no_of_employees" id="no_of_employees" disabled required>
 	      <option value="<?php echo $user_info->no_of_employees; ?>" selected ><?php echo $user_info->no_of_employees; ?></option>
 	      <option value="1-5">1-5</option>
 	      <option value="6-10">6-10</option>
@@ -116,12 +116,12 @@
 	</div>
   	<div class="form-group col-md-4 col-md-offset-8">
 	    <label for="state_of_incorporation">State of Incorportation:</label>
-	    <input type="text" class="form-control user_info_fields_3" name="state_of_incorporation" id="state_of_incorporation" value="<?php echo $user_info->state_of_incorporation; ?>" readonly>
+	    <input type="text" class="form-control user_info_fields_3" name="state_of_incorporation" id="state_of_incorporation" value="<?php echo $user_info->state_of_incorporation; ?>" readonly required>
 	    <div class="help-block with-errors"></div>
   	</div>
 	<div class="form-group col-md-6">
 	    <label for="current_year_profit">Current Year Profit (Projected):</label>
-	    <select class="form-control user_info_fields_3" name="current_year_profit" id="current_year_profit" disabled>
+	    <select class="form-control user_info_fields_3" name="current_year_profit" id="current_year_profit" disabled required>
 	      <option value="<?php echo $user_info->current_year_profit; ?>" selected ><?php echo $user_info->current_year_profit; ?></option>
 	      <option value="I Lost Money">I Lost Money</option>
 	      <option value="I Made No Profit">I Made No Profit</option>
@@ -138,7 +138,7 @@
   	</div>
   	<div class="form-group col-md-6">
 	    <label for="last_year_profit">Last Year Profit:</label>
-	    <select class="form-control user_info_fields_3" name="last_year_profit" id="last_year_profit" disabled>
+	    <select class="form-control user_info_fields_3" name="last_year_profit" id="last_year_profit" disabled required>
 	      <option value="<?php echo $user_info->last_year_profit; ?>" selected><?php echo $user_info->last_year_profit; ?></option>
 	      <option value="I Lost Money">I Lost Money</option>
 	      <option value="I Made No Profit">I Made No Profit</option>
@@ -157,19 +157,19 @@
 	    <label for="largest_client1">Four Largest Clients:</label>
 	    <div class="row">
 	      	<div class="col-md-6">
-	        	<input type="text" class="form-control user_info_fields_3" name="largest_client1" id="largest_client1" value="<?php echo $user_info->largest_client1; ?>" readonly>
+	        	<input type="text" class="form-control user_info_fields_3" name="largest_client1" id="largest_client1" value="<?php echo $user_info->largest_client1; ?>" readonly required>
 	        	<div class="help-block with-errors"></div>
 	      	</div>
 	      	<div class="col-md-6">
-	        	<input type="text" class="form-control user_info_fields_3" name="largest_client2" id="largest_client2" value="<?php echo $user_info->largest_client2; ?>" readonly>
+	        	<input type="text" class="form-control user_info_fields_3" name="largest_client2" id="largest_client2" value="<?php echo $user_info->largest_client2; ?>" readonly required>
 	        	<div class="help-block with-errors"></div>
 	     	</div>
 	      	<div class="col-md-6">
-	        	<input type="text" class="form-control user_info_fields_3" name="largest_client3" id="largest_client3" value="<?php echo $user_info->largest_client3; ?>" readonly>
+	        	<input type="text" class="form-control user_info_fields_3" name="largest_client3" id="largest_client3" value="<?php echo $user_info->largest_client3; ?>" readonly required>
 	        	<div class="help-block with-errors"></div>
 	      	</div>
 	      	<div class="col-md-6">
-	       		<input type="text" class="form-control user_info_fields_3" name="largest_client4" id="largest_client4" value="<?php echo $user_info->largest_client4; ?>" readonly>
+	       		<input type="text" class="form-control user_info_fields_3" name="largest_client4" id="largest_client4" value="<?php echo $user_info->largest_client4; ?>" readonly required>
 	        	<div class="help-block with-errors"></div>
 	      	</div>
 	  	</div>

@@ -170,24 +170,30 @@ include("../includes/footer.php");
 
 
 $('.no_step_1').on("click",function(e) {
-	$('.user_info_fields_1').removeAttr('readonly');
+  $('.user_info_fields_1').removeAttr('readonly');
+	$('.user_info_fields_1').attr('required');
 });
 $('.yes_step_1').on("click",function(e) {
-	$('.user_info_fields_1').attr('readonly',true);
+  $('.user_info_fields_1').attr('readonly',true);
+	$('.user_info_fields_1').removeAttr('required',true);
 });
 $('.no_step_2').on("click",function(e) {
-	$('.user_info_fields_2').removeAttr('readonly');
+  $('.user_info_fields_2').removeAttr('readonly');
+	$('.user_info_fields_2').attr('required');
 });
 $('.yes_step_2').on("click",function(e) {
-	$('.user_info_fields_2').attr('readonly',true);
+  $('.user_info_fields_2').attr('readonly',true);
+	$('.user_info_fields_2').removeAttr('required',true);
 });
 $('.no_step_3').on("click",function(e) {
 	$('.user_info_fields_3').removeAttr('readonly');
-	$('.user_info_fields_3').removeAttr('disabled');
+  $('.user_info_fields_3').removeAttr('disabled');
+	$('.user_info_fields_3').attr('required');
 });
 $('.yes_step_3').on("click",function(e) {
 	$('.user_info_fields_3').attr('readonly',true);
-	$('.user_info_fields_3').attr('disabled',true);
+  $('.user_info_fields_3').attr('disabled',true);
+	$('.user_info_fields_3').removeAttr('required',true);
 });
 
 $(function() {
