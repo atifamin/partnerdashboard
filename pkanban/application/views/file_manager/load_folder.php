@@ -142,7 +142,7 @@ function fileIconExt($extension){
   }else if ($ext == '.gif'){
     echo base_url(). "images/gif_icon.jpg";
   }else if ($ext == '.txt'){
-    echo base_url(). "images/delete.jpg";
+    echo base_url(). "images/txt_icon.jpg";
   }else if ($ext == '.ppt'){
     echo base_url(). "images/ppt_icon.jpg";
   }else if ($ext == '.pptx'){

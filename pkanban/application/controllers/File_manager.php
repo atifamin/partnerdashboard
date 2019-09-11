@@ -46,7 +46,9 @@ class File_manager extends CI_Controller {
 		if($totalFiles>0){
 			$uploadedFiles = 0;
 			foreach($totalPreFiles->result() as $key=>$val){
-				$file = $this->partnerDB->where("bizvault_user_required_filelist_id", $val->bizvault_user_required_filelist_id)->where('bizvault_user_uploaded_required_file_user_id',$user_id)->get("bizvault_user_uploaded_required_file");
+
+				$file = $this->partnerDB->where("bizvault_user_required_filelist_id", $val->bizvault_user_required_filelist_id)->where('bizvault_user_uploaded_required_file_user_id',$user_id)->where('bizvault_user_uploaded_required_file_filename != ', '')->get("bizvault_user_uploaded_required_file");
+
 				if($file->num_rows()>0){
 					$file = $file->row();
 					$uploadedFiles = $uploadedFiles+1;
@@ -67,7 +69,7 @@ class File_manager extends CI_Controller {
 		if($totalFiles>0){
 			$uploadedFiles = 0;
 			foreach($totalPreFiles->result() as $key=>$val){
-				$file = $this->partnerDB->where("bizvault_user_required_filelist_id", $val->bizvault_user_required_filelist_id)->where('bizvault_user_uploaded_required_file_user_id',$user_id)->get("bizvault_user_uploaded_required_file");
+				$file = $this->partnerDB->where("bizvault_user_required_filelist_id", $val->bizvault_user_required_filelist_id)->where('bizvault_user_uploaded_required_file_user_id',$user_id)->where('bizvault_user_uploaded_required_file_filename != ','')->get("bizvault_user_uploaded_required_file");
 				if($file->num_rows()>0){
 					$file = $file->row();
 					$uploadedFiles = $uploadedFiles+1;

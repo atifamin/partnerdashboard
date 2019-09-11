@@ -1,42 +1,42 @@
 <div class="row">
 	<div class="form-group col-md-8">
     <label for="main_contact_fname">Main Contact First Name:</label>
-    <input type="text" class="form-control user_info_fields_2" name="main_contact_fname" value="<?php echo $user_info->main_contact_fname; ?>" readonly="" required>
+    <input type="text" class="form-control user_info_fields_2" name="main_contact_fname" value="<?php echo $user_info->main_contact_fname; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-4">
     <label for="main_contact_lname">Main Contact Last Name:</label>
-    <input type="text" class="form-control user_info_fields_2" name="main_contact_lname" value="<?php echo $user_info->main_contact_lname; ?>" readonly="" required>
+    <input type="text" class="form-control user_info_fields_2" name="main_contact_lname" value="<?php echo $user_info->main_contact_lname; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-8">
     <label for="alternate_contact_fname">Alternate Contact First Name:</label>
-    <input type="text" class="form-control user_info_fields_2" name="alternate_contact_fname" value="<?php echo $user_info->alternate_contact_fname; ?>" readonly="" required>
+    <input type="text" class="form-control user_info_fields_2" name="alternate_contact_fname" value="<?php echo $user_info->alternate_contact_fname; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-4">
     <label for="alternate_contact_lname">Alternate Contact Last Name:</label>
-    <input type="text" class="form-control user_info_fields_2" name="alternate_contact_lname" value="<?php echo $user_info->alternate_contact_lname; ?>" readonly="" required>
+    <input type="text" class="form-control user_info_fields_2" name="alternate_contact_lname" value="<?php echo $user_info->alternate_contact_lname; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="main_contact_title">Main Contact Title:</label>
-    <input type="text" class="form-control user_info_fields_2" name="main_contact_title" value="<?php echo $user_info->main_contact_title; ?>" readonly="" required>
+    <input type="text" class="form-control user_info_fields_2" name="main_contact_title" value="<?php echo $user_info->main_contact_title; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="alternate_contract_title">Alternate Contact Title:</label>
-    <input type="text" class="form-control user_info_fields_2" name="alternate_contract_title" value="<?php echo $user_info->alternate_contract_title; ?>" readonly="" required>
+    <input type="text" class="form-control user_info_fields_2" name="alternate_contract_title" value="<?php echo $user_info->alternate_contract_title; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="main_contact_email">Main Contact Email:</label>
-    <input type="email" class="form-control user_info_fields_2" name="main_contact_email" value="<?php echo $user_info->main_contact_email; ?>" readonly="" required>
+    <input type="email" class="form-control user_info_fields_2" name="main_contact_email" value="<?php echo $user_info->main_contact_email; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
     <label for="alternate_contract_email">Alternate Contact Email:</label>
-    <input type="email" class="form-control user_info_fields_2" name="alternate_contract_email" value="<?php echo $user_info->alternate_contract_email; ?>" readonly="" required>
+    <input type="email" class="form-control user_info_fields_2" name="alternate_contract_email" value="<?php echo $user_info->alternate_contract_email; ?>" readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-6">
@@ -46,7 +46,7 @@
   </div>
   <div class="form-group col-md-6">
     <label for="alternate_contract_mobile_phone">Alternate Contact Mobile Phone:</label>
-    <input type="number" class="form-control user_info_fields_2" name="alternate_contract_mobile_phone" value="<?php echo $user_info->alternate_contract_mobile_phone; ?>"  readonly="" required>
+    <input type="number" class="form-control user_info_fields_2" name="alternate_contract_mobile_phone" value="<?php echo $user_info->alternate_contract_mobile_phone; ?>"  readonly="" >
     <div class="help-block with-errors"></div>
   </div>
   <div class="form-group col-md-12 correct-div">

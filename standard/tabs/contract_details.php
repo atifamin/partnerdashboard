@@ -171,29 +171,29 @@ include("../includes/footer.php");
 
 $('.no_step_1').on("click",function(e) {
   $('.user_info_fields_1').removeAttr('readonly');
-	$('.user_info_fields_1').attr('required');
+	$('.user_info_fields_1').attr('required',true);
 });
 $('.yes_step_1').on("click",function(e) {
   $('.user_info_fields_1').attr('readonly',true);
-	$('.user_info_fields_1').removeAttr('required',true);
+	$('.user_info_fields_1').removeAttr('required');
 });
 $('.no_step_2').on("click",function(e) {
   $('.user_info_fields_2').removeAttr('readonly');
-	$('.user_info_fields_2').attr('required');
+	$('.user_info_fields_2').attr('required',true);
 });
 $('.yes_step_2').on("click",function(e) {
   $('.user_info_fields_2').attr('readonly',true);
-	$('.user_info_fields_2').removeAttr('required',true);
+	$('.user_info_fields_2').removeAttr('required');
 });
 $('.no_step_3').on("click",function(e) {
 	$('.user_info_fields_3').removeAttr('readonly');
   $('.user_info_fields_3').removeAttr('disabled');
-	$('.user_info_fields_3').attr('required');
+	$('.user_info_fields_3').attr('required',true);
 });
 $('.yes_step_3').on("click",function(e) {
 	$('.user_info_fields_3').attr('readonly',true);
   $('.user_info_fields_3').attr('disabled',true);
-	$('.user_info_fields_3').removeAttr('required',true);
+	$('.user_info_fields_3').removeAttr('required');
 });
 
 $(function() {
@@ -202,7 +202,6 @@ $(function() {
     }).css("color","gray")
     .change(function() {
     	if (!$.data(this, 'edited')) {
-            //this.value = "";
             $(this).css("color","red");
         }
     });
@@ -210,7 +209,6 @@ $(function() {
 
 
 $(document).ready(function(){
-	//alert();    
 	// Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
     .addClass('btn btn-info')
@@ -222,7 +220,7 @@ $(document).ready(function(){
                 elmForm.validator('validate');
                 var elmErr = elmForm.find('.has-error');
                 if(elmErr && elmErr.length > 0){
-                    alert('Oops we still have error in the form');
+                    alert('Oops we still have error in the form Go back to previous page');
                     return false;
                 }else{
                     alert('Great! Your Information is Updated');
@@ -253,7 +251,6 @@ $(document).ready(function(){
         var elmForm = $("#form-step-" + stepNumber);
         //stepDirection === 'forward' :- this condition allows to do the form validation
         // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
-        
         if(stepDirection === 'forward' && elmForm){
           
             elmForm.validator('validate');
