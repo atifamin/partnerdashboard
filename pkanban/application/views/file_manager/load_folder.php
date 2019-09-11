@@ -216,8 +216,7 @@ function fileIconExt($extension){
               </div>
                 <div class="col-md-1 text-center" style="padding: 0;width: 10%">
                   <img src="<?php echo base_url(). "images/lockunlock.gif";?>" height="51px;" width="57px;">
-                  <marquee direction="left" scrollamount="5" style="color: #e74609;">Secure and Ecrypted</marquee>
-                  <!-- <span style="color: #e74609;">Secure and Ecrypted</span> -->
+                  <marquee direction="left" behavior="slide" id="marquee_text" scrollamount="5" style="color: #e74609;font-size: 10.6px">Secure and Ecrypted</marquee>
                 </div>
               <?php }else{ ?>
               <div class="col-md-4 columnThird">
@@ -422,6 +421,7 @@ function fileIconExt($extension){
 </div>
 
 <script type="text/javascript">
+
   function file_upload_explanation(id){
     var url = $("#pkanban_url").val();
     var formData = new FormData($('#file_upload_explanation_'+id+'')[0]);
