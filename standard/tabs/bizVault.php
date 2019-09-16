@@ -1,5 +1,6 @@
 <?php
 include("../../config/config_main.php");
+
 ?>
 <?php
 include("../includes/header.php");
@@ -114,7 +115,7 @@ if(isset($_GET['type']) && $_GET['type']=="business_folder"){
           <tbody>
             <?php if ($res1->num_rows == 0) { ?>
              <tr style="background-color: #B8DEE6">
-                <td colspan="4">
+                <td colspan="5">
                   <h3 class="text-center">No Request Found !</h3>
                 </td>
               </tr>

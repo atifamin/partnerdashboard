@@ -2,10 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class File_manager extends CI_Controller {
-	
 	public function __construct(){
         parent::__construct();
 		$this->partnerDB = $this->load->database('partnerdashboard', TRUE);
+		$this->load->library('aws3');
     }
 
 	function Tutorial(){
@@ -191,7 +191,8 @@ class File_manager extends CI_Controller {
 	public function remove_file(){
 		$post = $this->input->post();
 		$file = $this->partnerDB->where('bizvault_user_other_uploaded_file_id',$post['file_id'])->get('bizvault_user_other_uploaded_file')->row();
-		unlink($file->bizvault_user_other_uploaded_full_pathname);
+		$this->aws3->delete_bucket_file('partnerdashboard',$file->bizvault_user_other_uploaded_filename);
+		//unlink($file->bizvault_user_other_uploaded_full_pathname);
 		$this->partnerDB->where("bizvault_user_other_uploaded_file_id", $post['file_id'])->delete("bizvault_user_other_uploaded_file");
 	}
 	public function load_company_logo(){
@@ -228,6 +229,47 @@ class File_manager extends CI_Controller {
         }
 	}
 
+	// public function upload_file(){
+	// 	$post = $this->input->post();
+	// 	$filesCount = count($_FILES['files']['name']);
+	// 	$last_id = array();
+	// 	for ($i=0; $i < $filesCount ; $i++) { 
+	// 		$_FILES['file']['name'] 	= $_FILES['files']['name'][$i];
+	// 		$_FILES['file']['type'] 	= $_FILES['files']['type'][$i];
+	// 		$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+ //            $_FILES['file']['error'] 	= $_FILES['files']['error'][$i];
+ //            $_FILES['file']['size'] 	= $_FILES['files']['size'][$i];
+
+ //            $uploadPath = './uploads/temp/';
+ //            $config['upload_path'] = $uploadPath;
+ //            $config['allowed_types'] = '*';
+ //            $this->load->library('upload', $config);
+ //            if ( ! $this->upload->do_upload('file')){
+ //            	$error = array('error' => $this->upload->display_errors());
+	// 		}else{
+	// 			$fileData = $this->upload->data();
+	// 			//$fileData['full_path'] = $this->aws3->sendFile('partnerdashboard',$_FILES['file'][$i]);
+	// 			$data['bizvault_user_other_uploaded_parent_folder_id'] = $post['parent_id'];
+	// 			$data['bizvault_user_other_uploaded_filename'] 	= $fileData['file_name'];
+	// 			$data['bizvault_user_other_uploaded_pathname'] 	= $fileData['file_path'];
+	// 			$data['bizvault_user_other_uploaded_file_type'] 	= $fileData['file_type'];
+	// 			$data['bizvault_user_other_uploaded_full_pathname'] 	= $fileData['full_path'];
+	// 			$data['bizvault_user_other_uploaded_file_extension'] = $fileData['file_ext'];
+	// 			$data['bizvault_user_other_uploaded_file_size'] 	= $fileData['file_size'];
+	// 			$data["bizvault_user_other_uploaded_creation_date"] = date("Y-m-d H:i:s");
+				
+	// 			$this->partnerDB->insert("bizvault_user_other_uploaded_file", $data);
+				
+	// 			array_push($last_id, $this->partnerDB->insert_id());
+	// 		}
+	// 	}
+	// 	$data['files'] = $this->partnerDB->where_in('bizvault_user_other_uploaded_file_id',$last_id)
+	// 					->where('bizvault_user_other_uploaded_parent_folder_id',$post['parent_id'])
+	// 					->get("bizvault_user_other_uploaded_file")
+	// 					->result();
+	// 	$this->load->view("file_manager/create_file", $data);
+	// }
+
 	public function upload_file(){
 		$post = $this->input->post();
 		$filesCount = count($_FILES['files']['name']);
@@ -239,35 +281,28 @@ class File_manager extends CI_Controller {
             $_FILES['file']['error'] 	= $_FILES['files']['error'][$i];
             $_FILES['file']['size'] 	= $_FILES['files']['size'][$i];
 
-            $uploadPath = './uploads/temp/';
-            $config['upload_path'] = $uploadPath;
-            $config['allowed_types'] = '*';
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('file')){
-            	$error = array('error' => $this->upload->display_errors());
-			}else{
-				$fileData = $this->upload->data();
-				$data['bizvault_user_other_uploaded_parent_folder_id'] = $post['parent_id'];
-				$data['bizvault_user_other_uploaded_filename'] 	= $fileData['file_name'];
-				$data['bizvault_user_other_uploaded_pathname'] 	= $fileData['file_path'];
-				$data['bizvault_user_other_uploaded_file_type'] 	= $fileData['file_type'];
-				$data['bizvault_user_other_uploaded_full_pathname'] 	= $fileData['full_path'];
-				$data['bizvault_user_other_uploaded_file_extension'] = $fileData['file_ext'];
-				//$data['file_size'] 	= $fileData['file_size'];
-				$data["bizvault_user_other_uploaded_creation_date"] = date("Y-m-d H:i:s");
-				
-				$this->partnerDB->insert("bizvault_user_other_uploaded_file", $data);
-				
-				array_push($last_id, $this->partnerDB->insert_id());
-			}
+            $fileData = $this->aws3->sendFile('partnerdashboard',$_FILES['file']);
+			$data['bizvault_user_other_uploaded_parent_folder_id'] = $post['parent_id'];
+			$data['bizvault_user_other_uploaded_filename'] 	= $fileData['filename'];
+			$data['bizvault_user_other_uploaded_pathname'] 	= $fileData['file_path'];
+			$data['bizvault_user_other_uploaded_file_type'] 	= $fileData['file_type'];
+			$data['bizvault_user_other_uploaded_full_pathname'] 	= $fileData['full_path'];
+			$data['bizvault_user_other_uploaded_file_extension'] = ".".$fileData['file_ext'];
+			$data['bizvault_user_other_uploaded_file_size'] 	= $fileData['file_size'];
+			$data["bizvault_user_other_uploaded_creation_date"] = date("Y-m-d H:i:s");
+			
+			$this->partnerDB->insert("bizvault_user_other_uploaded_file", $data);
+			
+			array_push($last_id, $this->partnerDB->insert_id());
 		}
 		$data['files'] = $this->partnerDB->where_in('bizvault_user_other_uploaded_file_id',$last_id)
-									->where('bizvault_user_other_uploaded_parent_folder_id',$post['parent_id'])
-									->get("bizvault_user_other_uploaded_file")
-									->result();
+						->where('bizvault_user_other_uploaded_parent_folder_id',$post['parent_id'])
+						->get("bizvault_user_other_uploaded_file")
+						->result();
 		$this->load->view("file_manager/create_file", $data);
 	}
 
+	
 	public function slug($text, $tblname){
 		$text = str_replace("'", "", $text);
 		$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
@@ -305,64 +340,104 @@ class File_manager extends CI_Controller {
 		return $text;
 	}
 
+	// public function upload_predefied_file(){
+	// 	$post = $this->input->post();
+	// 	$config['upload_path']          = './uploads/temp/';
+	// 	if (!file_exists($config['upload_path'])) {
+	// 		mkdir($config['upload_path'], 0777, true);
+	// 	}
+		
+	// 	$file_detail = $this->partnerDB->where('bizvault_user_required_filelist_id', $post['bizvault_user_required_filelist_id'])->get('bizvault_user_required_filelist')->row();
+	// 	if($file_detail->bizvault_user_required_filelist_extension != Null){
+	// 		$config['allowed_types'] = strtolower($file_detail->bizvault_user_required_filelist_extension);
+	// 	}
+	// 	else{
+	// 		$config['allowed_types'] = '*';
+	// 	}
+	// 	$this->load->library('upload', $config);
+	// 	if ( ! $this->upload->do_upload('file')){
+	// 		$error_msg = "File type not Correct only upload ".$file_detail->bizvault_user_required_filelist_extension." files here!";
+
+	// 		setcookie("error_image_loading", $error_msg, time()+15, "/");
+
+	// 		header('Location: '.$post['redirect_url'].'');
+
+	// 	}else{
+	// 		$upload_data = array('upload_data' => $this->upload->data());
+	// 		$data['bizvault_user_required_filelist_id'] = $post['bizvault_user_required_filelist_id'];
+	// 		$data['bizvault_user_uploaded_required_file_user_id'] = $post['user_id'];
+	// 		$data['bizvault_user_uploaded_required_default_file_parent_folder_id'] = $post['folder_id'];
+	// 		$data["bizvault_user_uploaded_required_file_filename"] = $upload_data['upload_data']['file_name'];
+	// 		$data["bizvault_user_uploaded_required_file_pathname"] = $upload_data['upload_data']['file_path'];
+	// 		$data['bizvault_user_uploaded_required_file_type'] = $upload_data['upload_data']['file_type'];
+	// 		$data["bizvault_user_uploaded_required_file_full_pathname"] = $upload_data['upload_data']['full_path'];
+	// 		$data["bizvault_user_uploaded_required_file_extension"] = $upload_data['upload_data']['file_ext'];
+	// 		$data["bizvault_user_uploaded_required_file_size"] = $upload_data['upload_data']['file_size'];
+	// 		$checkIfUploadedBefore = $this->partnerDB->where("bizvault_user_required_filelist_id", $post['bizvault_user_required_filelist_id'])->where("bizvault_user_uploaded_required_file_user_id", $post['user_id'])->get("bizvault_user_uploaded_required_file");
+
+	// 		if($checkIfUploadedBefore->num_rows()>0){
+
+	// 			$checkIfUploadedBefore = $checkIfUploadedBefore->row();
+
+	// 			//unlink($checkIfUploadedBefore->full_path);
+	// 			// $data["updated_at"] = date("Y-m-d H:i:s");
+	// 			// $data["updated_by"] = $post["user_id"];
+	// 			$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $checkIfUploadedBefore->bizvault_user_uploaded_required_file_id)->update("bizvault_user_uploaded_required_file", $data);
+	// 		}else{
+	// 			$data["bizvault_user_uploaded_required_file_upload_date"] = date("Y-m-d H:i:s");
+				
+	// 			$this->partnerDB->insert("bizvault_user_uploaded_required_file", $data);
+	// 		}
+	// 		//header('Location: '.$post['redirect_url'].'');
+	// 	}
+		
+	// }
 	public function upload_predefied_file(){
 		$post = $this->input->post();
-		$config['upload_path']          = './uploads/temp/';
-		if (!file_exists($config['upload_path'])) {
-			mkdir($config['upload_path'], 0777, true);
-		}
+		$OFT = $_FILES['file']['type'];
+		$RFT = explode("/", $OFT);
+		$file_type = strtolower(end($RFT));
 		
 		$file_detail = $this->partnerDB->where('bizvault_user_required_filelist_id', $post['bizvault_user_required_filelist_id'])->get('bizvault_user_required_filelist')->row();
-		if($file_detail->bizvault_user_required_filelist_extension != Null){
-			$config['allowed_types'] = strtolower($file_detail->bizvault_user_required_filelist_extension);
-		}
-		else{
-			$config['allowed_types'] = '*';
-		}
-		$this->load->library('upload', $config);
-		if ( ! $this->upload->do_upload('file')){
-			$error_msg = "File type not Correct only upload ".$file_detail->bizvault_user_required_filelist_extension." files here!";
+		$dbType = strtolower($file_detail->bizvault_user_required_filelist_extension);
 
-			setcookie("error_image_loading", $error_msg, time()+15, "/");
+		if (!empty($dbType) && $dbType != $file_type) 
+		{
+			$error_msg = "File type not Correct only upload ".$dbType." files here!";
+
+			setcookie("error_image_loading", $error_msg, time()+5, "/");
 
 			header('Location: '.$post['redirect_url'].'');
-
 		}else{
-			$upload_data = array('upload_data' => $this->upload->data());
+			$upload_data = $this->aws3->sendFile('partnerdashboard',$_FILES['file']);
 			$data['bizvault_user_required_filelist_id'] = $post['bizvault_user_required_filelist_id'];
 			$data['bizvault_user_uploaded_required_file_user_id'] = $post['user_id'];
 			$data['bizvault_user_uploaded_required_default_file_parent_folder_id'] = $post['folder_id'];
-			$data["bizvault_user_uploaded_required_file_filename"] = $upload_data['upload_data']['file_name'];
-			$data["bizvault_user_uploaded_required_file_pathname"] = $upload_data['upload_data']['file_path'];
-			$data['bizvault_user_uploaded_required_file_type'] = $upload_data['upload_data']['file_type'];
-			$data["bizvault_user_uploaded_required_file_full_pathname"] = $upload_data['upload_data']['full_path'];
-			$data["bizvault_user_uploaded_required_file_extension"] = $upload_data['upload_data']['file_ext'];
-			$data["bizvault_user_uploaded_required_file_size"] = $upload_data['upload_data']['file_size'];
+			$data["bizvault_user_uploaded_required_file_filename"] = $upload_data['filename'];
+			$data["bizvault_user_uploaded_required_file_pathname"] = $upload_data['file_path'];
+			$data['bizvault_user_uploaded_required_file_type'] = $upload_data['file_type'];
+			$data["bizvault_user_uploaded_required_file_full_pathname"] = $upload_data['full_path'];
+			$data["bizvault_user_uploaded_required_file_extension"] = ".".$upload_data['file_ext'];
+			$data["bizvault_user_uploaded_required_file_size"] = $upload_data['file_size'];
 			$checkIfUploadedBefore = $this->partnerDB->where("bizvault_user_required_filelist_id", $post['bizvault_user_required_filelist_id'])->where("bizvault_user_uploaded_required_file_user_id", $post['user_id'])->get("bizvault_user_uploaded_required_file");
 
 			if($checkIfUploadedBefore->num_rows()>0){
 
 				$checkIfUploadedBefore = $checkIfUploadedBefore->row();
-
-				//unlink($checkIfUploadedBefore->full_path);
-				// $data["updated_at"] = date("Y-m-d H:i:s");
-				// $data["updated_by"] = $post["user_id"];
 				$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $checkIfUploadedBefore->bizvault_user_uploaded_required_file_id)->update("bizvault_user_uploaded_required_file", $data);
 			}else{
 				$data["bizvault_user_uploaded_required_file_upload_date"] = date("Y-m-d H:i:s");
 				
 				$this->partnerDB->insert("bizvault_user_uploaded_required_file", $data);
 			}
-			//header('Location: '.$post['redirect_url'].'');
 		}
-		
 	}
 
 	public function delete_file($id){
 		$file = $this->partnerDB->where("bizvault_user_uploaded_required_file_id", $id)->get("bizvault_user_uploaded_required_file")->row();
-		if (is_file($file->bizvault_user_uploaded_required_file_full_pathname)) {
-			unlink($file->bizvault_user_uploaded_required_file_full_pathname);
-		}
+		
+		$this->aws3->delete_bucket_file('partnerdashboard',$file->bizvault_user_uploaded_required_file_filename);
+
 		$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $id)->delete("bizvault_user_uploaded_required_file");
 		return redirect($_SERVER['HTTP_REFERER']);
 	}

@@ -113,16 +113,32 @@
 <?php //echo "<pre>"; print_r($access_request); exit; ?>
 
 <?php
-function formatSizeUnits($size, $precision = 2){
-  static $units = array('kB','MB','GB','TB','PB','EB','ZB','YB');
-    $step = 1024;
-    $i = 0;
-    while (($size / $step) > 0.9) {
-        $size = $size / $step;
-        $i++;
-    }
-    return round($size, $precision).$units[$i];
+function formatSizeUnits($size){
+  if ($size >= 1073741824){
+      $size = number_format($size / 1073741824, 2) . ' GB';
+  }elseif ($size >= 1048576){
+      $size = number_format($size / 1048576, 2) . ' MB';
+  }elseif ($size >= 1024){
+      $size = number_format($size / 1024, 2) . ' KB';
+  }elseif ($size > 1){
+      $size = $size . ' bytes';
+  }elseif ($size == 1){
+      $size = $size . ' byte';
+  }else{
+      $size = '0 bytes';
+  }
+  return $size;
 }
+// function formatSizeUnits($size, $precision = 2){
+//   static $units = array('kB','MB','GB','TB','PB','EB','ZB','YB');
+//     $step = 1024;
+//     $i = 0;
+//     while (($size / $step) > 0.9) {
+//         $size = $size / $step;
+//         $i++;
+//     }
+//     return round($size, $precision).$units[$i];
+// }
 function fileIconExt($extension){
   $ext = strtolower($extension);
   if ($ext == '.pdf') {

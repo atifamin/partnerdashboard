@@ -8,7 +8,7 @@ $query = "SELECT * FROM bizvault_user_uploaded_required_file where bizvault_user
 $query_run = mysqli_query($con_MAIN,$query);
 $query_row = (object)mysqli_fetch_assoc($query_run);
 $filename = $query_row->bizvault_user_uploaded_required_file_filename;
-$url = pkanban_url."uploads/temp/".$filename."";
+$url = $query_row->bizvault_user_uploaded_required_file_full_pathname;
 
 $fileNameArray = explode(".", $filename);
 $fileExtension			= strtolower(end($fileNameArray));
