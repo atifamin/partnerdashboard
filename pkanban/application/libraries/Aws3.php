@@ -12,11 +12,20 @@ class Aws3
 	private $S3;
 
 	function __construct(){
+		/*$this->S3 = S3Client::factory([
+			'region' => 'us-east-1',
+			'version' => 'latest',
+			'endpoint' => 'http://s3.wasabisys.com',
+			'profile' => 'wasabi'
+		]);*/
 		$this->S3 = S3Client::factory([
 			'region' => 'us-east-1',
 			'version' => 'latest',
 			'endpoint' => 'http://s3.wasabisys.com',
-			'profile' => 'wasabi',
+			'credentials' => [
+				'key' => "LEMBD2LK9029Z04NRISZ",
+				'secret' => "S8kL9qX7LCPo9lgaGSR28Zr9SuCBkAFVWMRW221S",
+			]
 		]);
 	}
 
