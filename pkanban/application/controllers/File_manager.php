@@ -191,7 +191,7 @@ class File_manager extends CI_Controller {
 	public function remove_file(){
 		$post = $this->input->post();
 		$file = $this->partnerDB->where('bizvault_user_other_uploaded_file_id',$post['file_id'])->get('bizvault_user_other_uploaded_file')->row();
-		$this->aws3->delete_bucket_file('partnerdashboard',$file->bizvault_user_other_uploaded_filename);
+		$this->aws3->delete_bucket_file('sandboxtest',$file->bizvault_user_other_uploaded_filename);
 		//unlink($file->bizvault_user_other_uploaded_full_pathname);
 		$this->partnerDB->where("bizvault_user_other_uploaded_file_id", $post['file_id'])->delete("bizvault_user_other_uploaded_file");
 	}
@@ -281,7 +281,7 @@ class File_manager extends CI_Controller {
             $_FILES['file']['error'] 	= $_FILES['files']['error'][$i];
             $_FILES['file']['size'] 	= $_FILES['files']['size'][$i];
 
-            $fileData = $this->aws3->sendFile('partnerdashboard',$_FILES['file']);
+            $fileData = $this->aws3->sendFile('sandboxtest',$_FILES['file']);
 			$data['bizvault_user_other_uploaded_parent_folder_id'] = $post['parent_id'];
 			$data['bizvault_user_other_uploaded_filename'] 	= $fileData['filename'];
 			$data['bizvault_user_other_uploaded_pathname'] 	= $fileData['file_path'];
@@ -409,7 +409,7 @@ class File_manager extends CI_Controller {
 
 			header('Location: '.$post['redirect_url'].'');
 		}else{
-			$upload_data = $this->aws3->sendFile('partnerdashboard',$_FILES['file']);
+			$upload_data = $this->aws3->sendFile('sandboxtest',$_FILES['file']);
 			$data['bizvault_user_required_filelist_id'] = $post['bizvault_user_required_filelist_id'];
 			$data['bizvault_user_uploaded_required_file_user_id'] = $post['user_id'];
 			$data['bizvault_user_uploaded_required_default_file_parent_folder_id'] = $post['folder_id'];
@@ -436,7 +436,7 @@ class File_manager extends CI_Controller {
 	public function delete_file($id){
 		$file = $this->partnerDB->where("bizvault_user_uploaded_required_file_id", $id)->get("bizvault_user_uploaded_required_file")->row();
 		
-		$this->aws3->delete_bucket_file('partnerdashboard',$file->bizvault_user_uploaded_required_file_filename);
+		$this->aws3->delete_bucket_file('sandboxtest',$file->bizvault_user_uploaded_required_file_filename);
 
 		$this->partnerDB->where("bizvault_user_uploaded_required_file_id", $id)->delete("bizvault_user_uploaded_required_file");
 		return redirect($_SERVER['HTTP_REFERER']);
@@ -477,7 +477,6 @@ class File_manager extends CI_Controller {
 
 	public function file_explanation() {
 		$post = $this->input->post();
-		// print_r($post); exit;
 		$data['bizvault_user_required_filelist_id'] = $post['file_id'];
 		$data['bizvault_user_uploaded_required_default_file_parent_folder_id'] = $post['folder_id'];
 		$data['bizvault_user_uploaded_required_file_user_id'] = $post['user_id'];

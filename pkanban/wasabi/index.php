@@ -12,19 +12,3 @@ $s3Client = S3Client::factory(array(
 	'region' => 'us-east-1',
 	'version' => 'latest',
 ));
-
-/*$s3Client->createBucket(array('Bucket' => 'aqeelahmadbucket'));*/
-
-/*$result = $s3Client->putObject(array(
-    'Bucket' => 'aqeelahmadbucket',
-    'Key'    => 'All_New_Accord.png',
-	'SourceFile' => 'All_New_Accord.png',
-	'ACL'  	 => 'public-read'
-));*/
-
-/*$result = $s3Client->deleteObject(array(
-    'Bucket' => 'aqeelahmadbucket',
-    'Key' => 'All_New_Accord.png',
-));*/
-
-//echo "<pre>"; print_r($result); exit;
