@@ -14,6 +14,7 @@
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<link rel="stylesheet" href="assets/css/custome-login-onboard.css" />
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="assets/css/ace.min.css" />
@@ -21,6 +22,9 @@
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" />
 		<![endif]-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="assets/css/awt-login.css" />
 
@@ -36,8 +40,67 @@
 		<![endif]-->
 	</head>
 
-	<body class="login-layout">
-		<div class="main-container">
+	<body style="background: #f2f2f2;">
+		<div class="container" style="justify-content: center;align-items: center;padding: 15px;">
+		  	<div class="row" style="background: #fff;">
+		  		<div class="col-md-6" style="padding: 0px">
+		  			<div id="myCarousel" class="carousel slide " data-ride="carousel">
+						    <!-- Indicators -->
+					    <ol class="carousel-indicators">
+					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					      <li data-target="#myCarousel" data-slide-to="1"></li>
+					      <li data-target="#myCarousel" data-slide-to="2"></li>
+					    </ol>
+
+					    <!-- Wrapper for slides -->
+					    <div class="carousel-inner">
+					      <div class="item active">
+					        <img src="assets/img/SampleSliderImage-1.jpg" alt="Los Angeles" style="width:100%;">
+					      </div>
+
+					      <div class="item">
+					        <img src="assets/img/SampleSliderImage-2.jpg" alt="Chicago" style="width:100%;">
+					      </div>
+					    
+					      <div class="item">
+					        <img src="assets/img/SampleSliderImage-3.jpg" alt="New york" style="width:100%;">
+					      </div>
+					    </div>
+
+					    <!-- Left and right controls -->
+					    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+					      <span class="glyphicon glyphicon-chevron-left"></span>
+					      <span class="sr-only">Previous</span>
+					    </a>
+					    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+					      <span class="glyphicon glyphicon-chevron-right"></span>
+					      <span class="sr-only">Next</span>
+					    </a>
+					</div>
+		  		</div>
+		  		<div class="col-md-6">
+		  			<img src="assets/img/banner_image.jpg" alt="Los Angeles" style="width:100%;">
+		  			<div class="validate-form" id="userloginresponse" style="padding: 10px 40px;">
+						<span class="login100-form-title-onboard p-b-34">
+							ENTER YOUR CONFIRMATION CODE HERE
+						</span>
+						<div class="wrap-input100 rs1-wrap-input100-onboard validate-input m-b-20" data-validate="Type user name">
+							<input id="confirmationcode" class="input100" type="text"  placeholder="CONFIRMATION CODE" style="font-size: 18px">
+							<span class="focus-input100"></span>
+						</div>
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" onclick="checkconfirmationcode()">
+								LOGIN
+							</button>
+						</div>
+					</div>
+		  		</div>
+		  	</div>
+		</div>
+
+
+
+		<!-- <div class="main-container">
 			<div class="main-content">
 				<div class="row">
 				<div style="clear:both;height:20px;"></div>
@@ -77,9 +140,9 @@
 				<div class="col-lg-4"><img class="img-responsive" src="assets/img/logo_bottom.png" alt="California Small Business Success" style="margin-left: 51px" /></div>
 				<div class="col-lg-4">&nbsp;</div>
 				<div style="clear:both;height:20px;"></div> 
-				</div><!-- /.row -->
-			</div><!-- /.main-content -->
-		</div><!-- /.main-container -->
+				</div>
+			</div>
+		</div> -->
 
 		<!-- basic scripts -->
 

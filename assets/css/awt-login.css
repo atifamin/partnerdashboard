@@ -11,10 +11,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2577BC', end
 .widget-main{}
 p.alert{color:#fff;background:#012060;font-size:19px;text-align:center;border:1px solid #2375BA;}
 .inpbox{width:60%;margin-left:20%;}
-.yellow-alert{font-size:19px;text-align:center;color:#E9F021;text-transform:uppercase;}
+.yellow-alert{font-size:19px;text-align:center;color:#aa0a0a;text-transform:uppercase;margin: 20px}
 #userloginresponse{text-align:center;}
 
 .cong_heading_1{font-size:36px;text-align:center;color:#fff;text-transform:uppercase;}
 .cong_heading_2{font-size:23px;text-align:center;color:#000;text-transform:uppercase;margin-top:50px;}
 .cong_heading_3{font-size:21px;text-align:center;color:#BB8F2F;text-transform:uppercase;}
-.cong_heading_4{font-size:19px;text-align:center;color:#E9F021;text-transform:uppercase;margin-top:28px;}
+.cong_heading_4{font-size:19px;text-align:center;color:#aa0a0a;text-transform:uppercase;margin-top:28px;}
