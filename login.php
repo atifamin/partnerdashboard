@@ -252,7 +252,7 @@ function forgetPassword(){
 	var direct_login = 'Yes';
 	$.post( "ajax/foget_password.php", {email:email,direct_login:direct_login}).done(function(data){
 		$("#userloginresponse").html(data);
-		//setTimeout(function(){ location.reload(); }, 2500);
+		setTimeout(function(){ location.reload(); }, 3000);
 		//location.reload();
 		// if(data == '<div class="cong_heading_4">PLEASE WAIT WHILE WE CONFIGURE YOUR DASHBOARD....</div>'){
 		// 		//window.location = 'partner-dashboard/dashboard.php#contract_details';

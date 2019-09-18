@@ -13,7 +13,6 @@ if (isset($Email) && !empty($Email)) {
 		//$m = echo "<a href='".url."password_reset.php'>Here</a>";
 		$to = $res['user_email'];
 		$subject = "Recovered Password";
-
 		$message = "Click <a href='".url."password_reset.php'>Here</a> to add your Password";
 		$headers = "From : https://cpm-stage1.pw";
 		if(mail($to, $subject, $message, $headers)){
