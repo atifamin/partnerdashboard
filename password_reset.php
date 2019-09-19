@@ -25,7 +25,51 @@
 		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="assets/css/awt-login.css" />
 	</head>
+<?php  	include "config/config_main.php"; 
+  		include "config/base_path.php"; 
 
+	function make_query($con_MAIN){
+		$query = 'Select * from image_slider';
+		$res = mysqli_query($con_MAIN,$query);
+		return $res;
+	}
+	function make_slider_indicator($con_MAIN){
+		$output = '';
+		$count = 0;
+		$res = make_query($con_MAIN);
+		while($row = mysqli_fetch_array($res)){
+			if ($count == 0) {
+				$output .= '<li data-target="#myCarousel" data-slide-to="'.$count.'" class="active"></li>';
+			}else{
+				$output .= '<li data-target="#myCarousel" data-slide-to="'.$count.'"></li>';
+			}
+			$count = $count + 1;
+		}
+		return $output;
+	}
+	function make_slides($con_MAIN){
+		$output = '';
+		$count = 0;
+		$res = make_query($con_MAIN);
+		while($row = mysqli_fetch_array($res)){
+			if ($count == 0) {
+				$output .= '<div class="item active">';
+			}else{
+				$output .= '<div class="item">';
+			}
+			$output .= '<img src="'.$row["slider_image_path"].'" alt="'.$row["slider_image_title"].'" /><div class="carousel-caption"><h3>'.$row["slider_image_title"].'</h3></div></div>';
+			  $count = $count + 1;
+		}
+		return $output;
+	}
+?>
+<?php 
+	$user_id = $_GET['id'];
+	$query = "Select * from user where user_id = ".$user_id."";
+	$res = mysqli_query($con_MAIN,$query);
+	$row = mysqli_fetch_object($res);
+	//echo $row->user_email;exit;
+?>
 	<body style="background: #f2f2f2;">
 		<div class="container" style="justify-content: center;align-items: center;padding: 15px;">
 		  	<div class="row" style="background: #fff;">
@@ -33,24 +77,12 @@
 		  			<div id="myCarousel" class="carousel slide " data-ride="carousel">
 						    <!-- Indicators -->
 					    <ol class="carousel-indicators">
-					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					      <li data-target="#myCarousel" data-slide-to="1"></li>
-					      <li data-target="#myCarousel" data-slide-to="2"></li>
+					      <?php echo make_slider_indicator($con_MAIN); ?>
 					    </ol>
 
 					    <!-- Wrapper for slides -->
 					    <div class="carousel-inner">
-					      <div class="item active">
-					        <img src="assets/img/SampleSliderImage-1.jpg" alt="Los Angeles" style="width:100%;">
-					      </div>
-
-					      <div class="item">
-					        <img src="assets/img/SampleSliderImage-2.jpg" alt="Chicago" style="width:100%;">
-					      </div>
-					    
-					      <div class="item">
-					        <img src="assets/img/SampleSliderImage-3.jpg" alt="New york" style="width:100%;">
-					      </div>
+					      <?php echo make_slides($con_MAIN); ?>
 					    </div>
 
 					    <!-- Left and right controls -->
@@ -66,27 +98,32 @@
 		  		</div>
 		  		<div class="col-md-6">
 		  			<img src="assets/img/banner_image.jpg" alt="Los Angeles" style="width:100%;">
-		  			<div class="validate-form" style="padding: 10px 40px;">
+		  			<div class="validate-form" id="update_password" style="padding: 10px 40px;">
 						<span class="login100-form-title p-b-34">
 							ENTER NEW PASSWORD 
 						</span>
 						<div class="row">
-							
+							<!-- <div class="col-md-12" style="padding: 0px 15px 0px 15px;">
+								<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
+									<input class="input100" type="email" id="email" placeholder="Email Address" value="<?php //echo $row->user_email; ?>" style="font-size: 18px;">
+									<span class="focus-input100"></span>
+								</div>
+							</div> -->
 							<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
-								<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
-									<input class="input100" type="password" id="password" placeholder="Enter password" style="font-size: 18px;">
+								<div class="wrap-input100 validate-input m-b-20" data-validate="Type user email">
+									<input class="input100" value="<?php echo $row->user_email; ?>" type="email" id="email" placeholder="Email Address" style="font-size: 18px;">
 									<span class="focus-input100"></span>
 								</div>
 							</div>
 							<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
 								<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-									<input class="input100" type="password" id="password1" placeholder="Re Enter" style="font-size: 18px;">
+									<input class="input100" type="password" id="password" placeholder="Enter New Password" style="font-size: 18px;">
 									<span class="focus-input100"></span>
 								</div>
 							</div>
 						</div>
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" onclick="">
+							<button class="login100-form-btn" onclick="update_password(<?php echo $row->user_id; ?>)">
 								SUBMIT
 							</button>
 						</div>
@@ -95,9 +132,18 @@
 		  	</div>
 		</div>
 		
-		<script src="assets/js/jquery.min.js"></script>
 
 		<script type="text/javascript">
+
+			function update_password(user_id){
+				var password = $('#password').val();
+				$.post( "ajax/update_password.php", {user_id:user_id,password:password}).done(function(data){
+					$("#update_password").html(data);
+					setTimeout(function(){ window.location = "index.php"; }, 2500);
+				});
+
+			}
+
 			window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
 		</script>
 

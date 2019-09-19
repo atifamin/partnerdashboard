@@ -39,7 +39,44 @@
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
+<?php  	include "config/config_main.php"; 
+  		include "config/base_path.php"; 
 
+	function make_query($con_MAIN){
+		$query = 'Select * from image_slider';
+		$res = mysqli_query($con_MAIN,$query);
+		return $res;
+	}
+	function make_slider_indicator($con_MAIN){
+		$output = '';
+		$count = 0;
+		$res = make_query($con_MAIN);
+		while($row = mysqli_fetch_array($res)){
+			if ($count == 0) {
+				$output .= '<li data-target="#myCarousel" data-slide-to="'.$count.'" class="active"></li>';
+			}else{
+				$output .= '<li data-target="#myCarousel" data-slide-to="'.$count.'"></li>';
+			}
+			$count = $count + 1;
+		}
+		return $output;
+	}
+	function make_slides($con_MAIN){
+		$output = '';
+		$count = 0;
+		$res = make_query($con_MAIN);
+		while($row = mysqli_fetch_array($res)){
+			if ($count == 0) {
+				$output .= '<div class="item active">';
+			}else{
+				$output .= '<div class="item">';
+			}
+			$output .= '<img src="'.$row["slider_image_path"].'" alt="'.$row["slider_image_title"].'" /><div class="carousel-caption"><h3>'.$row["slider_image_title"].'</h3></div></div>';
+			  $count = $count + 1;
+		}
+		return $output;
+	}
+?>
 	<body style="background: #f2f2f2;">
 		<div class="container" style="justify-content: center;align-items: center;padding: 15px;">
 		  	<div class="row" style="background: #fff;">
@@ -47,24 +84,12 @@
 		  			<div id="myCarousel" class="carousel slide " data-ride="carousel">
 						    <!-- Indicators -->
 					    <ol class="carousel-indicators">
-					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					      <li data-target="#myCarousel" data-slide-to="1"></li>
-					      <li data-target="#myCarousel" data-slide-to="2"></li>
+					      	<?php echo make_slider_indicator($con_MAIN); ?>
 					    </ol>
 
 					    <!-- Wrapper for slides -->
 					    <div class="carousel-inner">
-					      <div class="item active">
-					        <img src="assets/img/SampleSliderImage-1.jpg" alt="Los Angeles" style="width:100%;">
-					      </div>
-
-					      <div class="item">
-					        <img src="assets/img/SampleSliderImage-2.jpg" alt="Chicago" style="width:100%;">
-					      </div>
-					    
-					      <div class="item">
-					        <img src="assets/img/SampleSliderImage-3.jpg" alt="New york" style="width:100%;">
-					      </div>
+					      	<?php echo make_slides($con_MAIN); ?>
 					    </div>
 
 					    <!-- Left and right controls -->

@@ -3,7 +3,7 @@ session_start();
 include "../config/config_main.php";
 $UserID = $_POST['userid'];
 $Email = $_POST['email'];
-$Password = $_POST['password']; 
+$Password = $_POST['password'];
 $Hash = md5($Password);
 $Direct = $_POST['direct_login'];
 	if($Direct == 'Yes'){
@@ -28,7 +28,8 @@ $Direct = $_POST['direct_login'];
 		$_SESSION['user_fname'] 		= $UserData['user_fname'];
 		$_SESSION['user_lname'] 		= $UserData['user_lname'];
 		$_SESSION['user_gender'] 		= $UserData['user_gender'];
-	echo '<div class="cong_heading_4">PLEASE WAIT WHILE WE CONFIGURE YOUR DASHBOARD....</div>';
+	echo "<div style='font-size:20px;text-align:center;color:#0c627b;text-transform:uppercase;margin-top:30px;'>PLEASE WAIT WHILE WE CONFIGURE YOUR DASHBOARD....</div>";
+	
 	}else{
 ?>
 					<input id="userid" class="form-control" value="<?php echo $UserID; ?>" type="hidden">
