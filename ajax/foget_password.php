@@ -4,12 +4,37 @@ include "../config/config_main.php";
 include "../config/base_path.php";
 $Email = $_POST['email'];
 
+function my_simple_crypt( $string, $action = 'e' ) {
+    // you may change these values to your own
+      $secret_key = 'my_simple_secret_key';
+      $secret_iv = 'my_simple_secret_iv';
+   
+      $output = false;
+      $encrypt_method = "AES-256-CBC";
+      $key = hash( 'sha256', $secret_key );
+      $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
+   
+      if( $action == 'e' ) {
+          $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
+      }
+      else if( $action == 'd' ){
+          $output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+      }
+   
+      return $output;
+  }
+
+
+
 if (isset($Email) && !empty($Email)) {
 	$Query1 = "SELECT * FROM `user` WHERE `user_email` = '".$Email."' ";
 	$Query1R = mysqli_query($con_MAIN,$Query1);
 	if(mysqli_num_rows($Query1R)>0){
 
 		$res = mysqli_fetch_assoc($Query1R);
+
+    $id = my_simple_crypt($res['user_id'],'e');
+
 		$to_email = $res['user_email'];
 		//$to_email = 'usama-javed@hotmail.com';
 		$subject = 'Password Recovery';
@@ -128,7 +153,7 @@ if (isset($Email) && !empty($Email)) {
                     <table border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                          <a href="'.url.'password_reset.php?id='.$res['user_id'].'" style="display: inline-block;
+                          <a href="'.url.'password_reset.php?id='.$id.'" style="display: inline-block;
     padding: 16px 36px;font-size: 16px;color: #ffffff;text-decoration: none;border-radius: 6px;">Reset Password</a>
                         </td>
                       </tr>
@@ -141,13 +166,20 @@ if (isset($Email) && !empty($Email)) {
           <tr>
             <td align="center" bgcolor="#ffffff" style="padding: 24px; font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
               <p style="margin: 0;">If that does not work, copy and paste the following link in your browser:</p>
-              <p style="margin: 0;"><a href="'.url.'password_reset.php?id='.$res['user_id'].'">'.url.'password_reset.php?id='.$res['user_id'].'</a></p>
+              <p style="margin: 0;"><a href="'.url.'password_reset.php?id='.$id.'">'.url.'password_reset.php?id='.$id.'</a></p>
             </td>
+            <tr style="height:35px">
+            <td bgcolor="#ffffff"></td>
+            </tr>
           </tr>
         </table>
       </td>
     </tr>
   </table>
+  <div class="row">
+    <div class="col-md-12" style="height:60px">
+    </div>
+  </div>
 </body>
 </html>';
 		if(mail($to_email,$subject,$message,$headers)){

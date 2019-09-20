@@ -110,7 +110,7 @@
 							ENTER YOUR CONFIRMATION CODE HERE
 						</span>
 						<div class="wrap-input100 rs1-wrap-input100-onboard validate-input m-b-20" data-validate="Type user name">
-							<input id="confirmationcode" class="input100" type="text"  placeholder="CONFIRMATION CODE" style="font-size: 18px">
+							<input id="confirmationcode" class="input100" type="text"  placeholder="CONFIRMATION CODE" style="font-size: 18px;padding: 0px 30px;">
 							<span class="focus-input100"></span>
 						</div>
 						<div class="container-login100-form-btn">
