@@ -93,36 +93,39 @@
 		  		</div>
 		  		<div class="col-md-6">
 		  			<img src="assets/img/banner_image.jpg" alt="Los Angeles" style="width:100%;">
-		  			<div class="validate-form" id="userloginresponse" style="padding: 10px 40px;">
+		  			<div class="validate-form" id="userloginresponse" style="padding: 10px 55px;">
 						<span class="login100-form-title p-b-34">
 							Account Login
 						</span>
 						<div class="row">
-							<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
+							<div class="col-md-6" style="padding: 0px">
 								<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
-									<input type="email" class="input100" id="email" placeholder="Email Address" style="font-size: 18px;">
+									<input type="email" class="input100" id="email" placeholder="User name" style="font-size: 18px;padding: 0 15px;">
 									<span class="focus-input100"></span>
 								</div>
 							</div>
-							<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
+							<div class="col-md-6" style="padding: 0px">
 								<div class="wrap-input100 validate-input m-b-20" data-validate="user password">
-									<input type="password" class="input100" id="password1" placeholder="Password">
+									<input type="password" class="input100" id="password1" placeholder="Password" style="font-size: 18px;padding: 0 15px;">
 									<span class="focus-input100"></span>
 								</div>
 							</div>
+							<div class="col-md-12" style="padding: 0px">
+								<div class="container-login100-form-btn">
+									<button class="login100-form-btn" onclick="logmein()">
+										LOGIN
+									</button>
+								</div>
+							</div>
 						</div>
-						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" onclick="logmein()">
-								LOGIN
-							</button>
-						</div>
+						
 
 						<div class="w-full text-center p-t-27 p-b-239">
 							<span class="txt1">
 								Forgot
 							</span>
 
-							<a href="javascript:;" onclick="forgetPassword()" class="txt2">
+							<a href="forgot_password.php" class="txt2">
 								User name / password?
 							</a>
 						</div>
@@ -244,16 +247,6 @@
 		</script>
 <script type="text/javascript">
 
-function forgetPassword(){
-	var email = $("#email").val();
-	var direct_login = 'Yes';
-	$.post( "ajax/foget_password.php", {email:email,direct_login:direct_login}).done(function(data){
-		$("#userloginresponse").html(data);
-		if (data == "<div style='font-size:20px;text-align:center;color:#0c627b;text-transform:uppercase;margin-top:30px;'>MAIL HAS BEEN SENT TO YOUR MAIL ADDRESS.......</div>") {
-			setTimeout(function(){ location.reload(); }, 3000);
-		}
-	});
-}
 
 function logmein(){
 	var userid = '';
@@ -262,7 +255,6 @@ function logmein(){
 	var direct_login = 'Yes';
 	$.post( "ajax/logmein.php", {userid:userid,email:email,password:password,direct_login:direct_login}).done(function(data){
 		$("#userloginresponse").html(data);
-		//window.location = "index.php";
 		if(data == "<div style='font-size:20px;text-align:center;color:#0c627b;text-transform:uppercase;margin-top:30px;'>PLEASE WAIT WHILE WE CONFIGURE YOUR DASHBOARD....</div>"){
 				//window.location = 'partner-dashboard/dashboard.php#contract_details';
 				window.location = "index.php";

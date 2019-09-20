@@ -115,7 +115,7 @@
 						</div>
 						<div class="container-login100-form-btn">
 							<button class="login100-form-btn" onclick="checkconfirmationcode()">
-								LOGIN
+								SUBMIT
 							</button>
 						</div>
 					</div>

@@ -160,67 +160,35 @@ if (isset($Email) && !empty($Email)) {
 		echo "<div style='font-size:19px;text-align:center;color:#aa0a0a;text-transform:uppercase;margin-top:28px;'>USER EMAIL DOES NOT EXIST IN DATABASE</div>";
 		?>
 		<div class="row" style="margin-top: 15px">
-		<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
-			<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
-				<input type="email" class="input100" id="email" placeholder="Email Address" style="font-size: 18px;">
-				<span class="focus-input100"></span>
+			<div class="col-md-12" style="padding: 0px 15px 0px 15px;">
+				<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
+					<input type="email" class="input100" id="email" placeholder="User Name" style="font-size: 18px;padding: 0px 25px;">
+					<span class="focus-input100"></span>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
-			<div class="wrap-input100 validate-input m-b-20" data-validate="user password">
-				<input type="password" class="input100" id="password1" placeholder="Password">
-				<span class="focus-input100"></span>
-			</div>
+		<div class="container-login100-form-btn">
+			<button class="login100-form-btn" onclick="forgetPassword()">
+				SUBMIT
+			</button>
 		</div>
-	</div>
-	<div class="container-login100-form-btn">
-		<button class="login100-form-btn" onclick="logmein()">
-			LOGIN
-		</button>
-	</div>
-
-	<div class="w-full text-center p-t-27 p-b-239">
-		<span class="txt1">
-			Forgot
-		</span>
-
-		<a href="javascript:;" onclick="forgetPassword()" class="txt2">
-			User name / password?
-		</a>
-	</div>
 		<?php 
 	}
 }else{
 	echo "<div style='font-size:19px;text-align:center;color:#aa0a0a;text-transform:uppercase;margin-top:28px;'>PLEASE ENTER YOUR MAIL ADDRESS....</div>";
 	?>
 	<div class="row" style="margin-top: 15px">
-		<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
+		<div class="col-md-12" style="padding: 0px 15px 0px 15px;">
 			<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
-				<input type="email" class="input100" id="email" placeholder="Email Address" style="font-size: 18px;">
-				<span class="focus-input100"></span>
-			</div>
-		</div>
-		<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
-			<div class="wrap-input100 validate-input m-b-20" data-validate="user password">
-				<input type="password" class="input100" id="password1" placeholder="Password">
+				<input type="email" class="input100" id="email" placeholder="User Name" style="font-size: 18px;padding: 0px 25px;">
 				<span class="focus-input100"></span>
 			</div>
 		</div>
 	</div>
 	<div class="container-login100-form-btn">
-		<button class="login100-form-btn" onclick="logmein()">
-			LOGIN
+		<button class="login100-form-btn" onclick="forgetPassword()">
+			SUBMIT
 		</button>
-	</div>
-
-	<div class="w-full text-center p-t-27 p-b-239">
-		<span class="txt1">
-			Forgot
-		</span>
-
-		<a href="javascript:;" onclick="forgetPassword()" class="txt2">
-			User name / password?
-		</a>
 	</div>
 	<?php
 }

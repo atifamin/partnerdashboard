@@ -34,28 +34,37 @@ $Direct = $_POST['direct_login'];
 ?>
 					<input id="userid" class="form-control" value="<?php echo $UserID; ?>" type="hidden">
 					<div class="yellow-alert">Your eMail OR password is wrong.</div>
-					<!-- <div class="widget-main">
-						<p class="alert alert-info">ENTER YOUR EMAIL ADDRESS</p>
-					</div> --> 
 					<div class="row">
-						<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
+						<div class="col-md-6" style="padding: 0px;">
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
-								<input class="input100" type="email" id="email" placeholder="Email Address" style="font-size: 18px;">
+								<input class="input100" type="email" id="email" placeholder="Email Address" style="font-size: 18px;padding: 0 15px;">
 								<span class="focus-input100"></span>
 							</div>
 						</div>
-						<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
+						<div class="col-md-6" style="padding: 0px;">
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-								<input class="input100" type="password" id="password1" placeholder="Password" style="font-size: 18px;">
+								<input class="input100" type="password" id="password1" placeholder="Password" style="font-size: 18px;padding: 0 15px;">
 								<span class="focus-input100"></span>
+							</div>
+						</div>
+						<div class="col-md-12" style="padding: 0px;">
+							<div class="container-login100-form-btn">
+								<button class="login100-form-btn" onclick="logmein()">
+									LOGIN
+								</button>
 							</div>
 						</div>
 					</div>
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="logmein()">
-							LOGIN
-						</button>
-					</div> 
+					 
+					<div class="w-full text-center p-t-27 p-b-239">
+						<span class="txt1">
+							Forgot
+						</span>
+
+						<a href="forgot_password.php" class="txt2">
+							User name / password?
+						</a>
+					</div>
 					<!-- <div class="inpbox">
 					<span class="block input-icon input-icon-right">
 						<input id="email" class="form-control" type="text">
