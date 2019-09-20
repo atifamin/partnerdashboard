@@ -106,7 +106,7 @@ if (isset($Email) && !empty($Email)) {
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr style="text-align:center;">
             <td bgcolor="#ffffff" style="padding: 15px; font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Reset Your Password</h1>
+              <h1 style="margin-top: 15px; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Reset Your Password</h1>
             </td>
           </tr>
         </table>
@@ -150,30 +150,6 @@ if (isset($Email) && !empty($Email)) {
   </table>
 </body>
 </html>';
-		// $message .= "Please click '".url."password_reset.php?id=".$res['user_id']."' to add your Password";
-		// $message = ' 
-  //   <html> 
-  //   <head> 
-  //       <title>Welcome !</title> 
-  //   </head> 
-  //   <body> 
-  //       <h1 style="margin-left: 30%;">Thank you for contacting us!</h1> 
-  //       <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
-  //           <tr> 
-  //               <th>Full Name:</th><td>'.$res['user_fname'].' '.$res['user_lname'].'</td> 
-  //           </tr> 
-  //           <tr style="background-color: #e0e0e0;"> 
-  //               <th>Email:</th><td>'.$res['user_email'].'</td> 
-  //           </tr>
-  //       </table>
-  //       <h2 style="margin-left: 22%;">Please click below button to change your password!</h2>
-  //       <br>
-  //       <a href="'.url.'password_reset.php?id='.$res['user_id'].'" style="margin-left: 37%;background-color: #15c;font-size: 40px;color: #fff;padding: 20px;border-radius: 25px;text-decoration: none;">Click Here!
-  //       </a> 
-  //   </body> 
-  //   </html>';
-		//$message = file_get_contents("../FlightCheckinnemail.html");
-
 		if(mail($to_email,$subject,$message,$headers)){
 			echo "<div style='font-size:20px;text-align:center;color:#0c627b;text-transform:uppercase;margin-top:30px;'>MAIL HAS BEEN SENT TO YOUR MAIL ADDRESS.......</div>";
 		}else{
@@ -182,9 +158,71 @@ if (isset($Email) && !empty($Email)) {
 
 	}else{
 		echo "<div style='font-size:19px;text-align:center;color:#aa0a0a;text-transform:uppercase;margin-top:28px;'>USER EMAIL DOES NOT EXIST IN DATABASE</div>";
+		?>
+		<div class="row" style="margin-top: 15px">
+		<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
+			<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
+				<input type="email" class="input100" id="email" placeholder="Email Address" style="font-size: 18px;">
+				<span class="focus-input100"></span>
+			</div>
+		</div>
+		<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
+			<div class="wrap-input100 validate-input m-b-20" data-validate="user password">
+				<input type="password" class="input100" id="password1" placeholder="Password">
+				<span class="focus-input100"></span>
+			</div>
+		</div>
+	</div>
+	<div class="container-login100-form-btn">
+		<button class="login100-form-btn" onclick="logmein()">
+			LOGIN
+		</button>
+	</div>
+
+	<div class="w-full text-center p-t-27 p-b-239">
+		<span class="txt1">
+			Forgot
+		</span>
+
+		<a href="javascript:;" onclick="forgetPassword()" class="txt2">
+			User name / password?
+		</a>
+	</div>
+		<?php 
 	}
 }else{
 	echo "<div style='font-size:19px;text-align:center;color:#aa0a0a;text-transform:uppercase;margin-top:28px;'>PLEASE ENTER YOUR MAIL ADDRESS....</div>";
+	?>
+	<div class="row" style="margin-top: 15px">
+		<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
+			<div class="wrap-input100 validate-input m-b-20" data-validate="Type user name">
+				<input type="email" class="input100" id="email" placeholder="Email Address" style="font-size: 18px;">
+				<span class="focus-input100"></span>
+			</div>
+		</div>
+		<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
+			<div class="wrap-input100 validate-input m-b-20" data-validate="user password">
+				<input type="password" class="input100" id="password1" placeholder="Password">
+				<span class="focus-input100"></span>
+			</div>
+		</div>
+	</div>
+	<div class="container-login100-form-btn">
+		<button class="login100-form-btn" onclick="logmein()">
+			LOGIN
+		</button>
+	</div>
+
+	<div class="w-full text-center p-t-27 p-b-239">
+		<span class="txt1">
+			Forgot
+		</span>
+
+		<a href="javascript:;" onclick="forgetPassword()" class="txt2">
+			User name / password?
+		</a>
+	</div>
+	<?php
 }
 
 ?>

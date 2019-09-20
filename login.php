@@ -249,7 +249,9 @@ function forgetPassword(){
 	var direct_login = 'Yes';
 	$.post( "ajax/foget_password.php", {email:email,direct_login:direct_login}).done(function(data){
 		$("#userloginresponse").html(data);
-		setTimeout(function(){ location.reload(); }, 3000);
+		if (data == "<div style='font-size:20px;text-align:center;color:#0c627b;text-transform:uppercase;margin-top:30px;'>MAIL HAS BEEN SENT TO YOUR MAIL ADDRESS.......</div>") {
+			setTimeout(function(){ location.reload(); }, 3000);
+		}
 	});
 }
 

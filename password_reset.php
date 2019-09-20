@@ -103,21 +103,21 @@
 							ENTER NEW PASSWORD 
 						</span>
 						<div class="row">
-							<!-- <div class="col-md-12" style="padding: 0px 15px 0px 15px;">
+							<div class="col-md-12" style="padding: 0px 15px 0px 15px;">
 								<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-									<input class="input100" type="email" id="email" placeholder="Email Address" value="<?php //echo $row->user_email; ?>" style="font-size: 18px;">
+									<input class="input100" type="email" id="email" placeholder="Email Address" value="<?php echo $row->user_email; ?>" style="font-size: 18px;">
 									<span class="focus-input100"></span>
 								</div>
-							</div> -->
+							</div>
 							<div class="col-md-6" style="padding: 0px 0px 0px 15px;">
-								<div class="wrap-input100 validate-input m-b-20" data-validate="Type user email">
-									<input class="input100" value="<?php echo $row->user_email; ?>" type="email" id="email" placeholder="Email Address" style="font-size: 18px;">
+								<div class="wrap-input100 validate-input m-b-20" data-validate="Type user password">
+									<input class="input100" type="password" id="password" placeholder="Enter Password" style="font-size: 18px;">
 									<span class="focus-input100"></span>
 								</div>
 							</div>
 							<div class="col-md-6" style="padding: 0px 15px 0px 0px;">
-								<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-									<input class="input100" type="password" id="password" placeholder="Enter New Password" style="font-size: 18px;">
+								<div class="wrap-input100 validate-input m-b-20" data-validate="Type confirm password">
+									<input class="input100" type="password" id="cpassword" placeholder="Re Enter Password" style="font-size: 18px;">
 									<span class="focus-input100"></span>
 								</div>
 							</div>
@@ -137,9 +137,13 @@
 
 			function update_password(user_id){
 				var password = $('#password').val();
-				$.post( "ajax/update_password.php", {user_id:user_id,password:password}).done(function(data){
+				var cpassword = $('#cpassword').val();
+				$.post( "ajax/update_password.php", {user_id:user_id,password:password,cpassword:cpassword}).done(function(data){
 					$("#update_password").html(data);
-					setTimeout(function(){ window.location = "index.php"; }, 2500);
+					if (data == "<div style='font-size:20px;text-align:center;color:#0c627b;text-transform:uppercase;margin-top:30px;'>Password Recovered Successfuly!</div>") {
+						setTimeout(function(){ window.location = "index.php"; }, 2500);
+					}
+					//setTimeout(function(){ window.location = "index.php"; }, 2500);
 				});
 
 			}
