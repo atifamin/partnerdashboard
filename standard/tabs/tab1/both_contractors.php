@@ -1,10 +1,10 @@
       
 <?php
-$CheckPrimeQ = 'SELECT `contract_id` FROM `prime_contractor` WHERE `dbe_firm_id`='.$FirmID.'';
+$CheckPrimeQ = 'SELECT `contract_id` FROM `cpw_main` WHERE `dbe_firm_id`='.$FirmID.'';
 $CheckPrimeQR = mysqli_query($con_MAIN,$CheckPrimeQ) or die(mysqli_error());
 $CheckPrime_N = mysqli_num_rows($CheckPrimeQR);
 // Check Sub
-$CheckSubQ = 'SELECT `sub_contractor_id` FROM `sub_contractor` WHERE `dbe_firm_id`='.$FirmID.'';
+$CheckSubQ = 'SELECT `sub_contractor_id` FROM `cpw_subcontractors` WHERE `dbe_firm_id`='.$FirmID.'';
 $CheckSubQR = mysqli_query($con_MAIN,$CheckSubQ) or die(mysqli_error());
 $CheckSub_N = mysqli_num_rows($CheckSubQR);
 if($CheckPrime_N>0 & $CheckSub_N>0){

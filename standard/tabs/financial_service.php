@@ -100,7 +100,7 @@
 
 
   $Tab1_Q1 = "SELECT *
-      FROM prime_contractor pc
+      FROM cpw_main pc
       WHERE pc.dbe_firm_id = '".$FirmID."' 
       ORDER BY pc.contract_id DESC";
 

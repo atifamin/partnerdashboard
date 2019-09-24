@@ -8,7 +8,7 @@
   $ContractID = $_POST['id'];
 
   $Tab1_Q1 = "SELECT *
-      FROM prime_contractor pc
+      FROM cpw_main pc
       WHERE pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$ContractID."'
       ORDER BY pc.contract_id DESC";
 

@@ -96,7 +96,7 @@ $totalBasic = ($percent + $percent1)/2 ;
       <div class="inner">
         <h3 style="margin-bottom:0px!important;">$<?php echo nice_number(totalContractRevenue($CurrentYear),'format'); ?></h3>
         <span style="font-weight:600;font-size:20px;">TOTAL REVENUE</span><br>
-        <span style="font-weight:600;font-size:20px;"><?php echo date('Y'); ?></span>
+        <span style="font-weight:600;font-size:15px;"><i>PAST 18 MONTHS</i></span>
       </div>
       <div class="icon"> <i class="fa fa-fw fa-dollar"></i> </div>
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> </div>
@@ -106,19 +106,20 @@ $totalBasic = ($percent + $percent1)/2 ;
     <!-- small box -->
     
     <?php
-	  $thisYearTotalPrimeContracts1 = thisYearTotalPrimeContracts($CurrentYear);
-	  $thisYearTotalSubContracts1 = thisYearTotalSubContracts($CurrentYear);
-	  $TotalContractsThisYear1 = $thisYearTotalPrimeContracts1+$thisYearTotalSubContracts1;
-	  $Lenght1 = strlen($TotalContractsThisYear1);
-	  if($Lenght1>=3){
-		$Style1 = 'style="font-size:44px;margin-top:63px;"';
-	  }else{$Style1='';}
+	  $thisYearTotalPrimeContracts = thisYearTotalPrimeContracts($CurrentYear);
+	  $thisYearTotalSubContracts = thisYearTotalSubContracts($CurrentYear);
+	  $TotalContractsThisYear = $thisYearTotalPrimeContracts+$thisYearTotalSubContracts;
+    //print_r($TotalContractsThisYear);exit;
+	  $Lenght = strlen($TotalContractsThisYear);
+	  if($Lenght>=3){
+		$Style = 'style="font-size:44px;margin-top:63px;"';
+	  }else{$Style='';}
 	?>
     <div class="small-box" id="small-box-tc">
       <div class="inner">
-        <h3 style="margin-bottom:0px!important;"><?php echo $TotalContractsThisYear1; ?></h3>
+        <h3 style="margin-bottom:0px!important;"><?php echo $TotalContractsThisYear; ?></h3>
         <span style="font-weight:600;font-size:20px;">TOTAL CONTRACTS</span><br>
-        <span style="font-weight:600;font-size:20px;"><?php echo date('Y'); ?></span>  
+        <span style="font-weight:600;font-size:15px;"><i>PAST 18 MONTHS</i></span>  
       </div>
       <div class="icon"> <i class="fa fa-fw fa-trophy"></i> </div>
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> </div>
@@ -126,20 +127,21 @@ $totalBasic = ($percent + $percent1)/2 ;
   <!-- ./col -->
   <div class="col-lg-3 col-xs-6">
     <?php
-	  $thisYearTotalPrimeContracts = thisYearTotalPrimeContracts($LastYear);
-	  $thisYearTotalSubContracts = thisYearTotalSubContracts($LastYear);
-	  $TotalContractsThisYear = $thisYearTotalPrimeContracts+$thisYearTotalSubContracts;
-	  $Lenght = strlen($TotalContractsThisYear);
-	  if($Lenght>=3){
-		$Style = 'style="font-size:44px;margin-top:63px;"';
-	  }else{$Style='';}
+	 //  $thisYearTotalPrimeContracts = thisYearTotalPrimeContracts($LastYear);
+	 //  $thisYearTotalSubContracts = thisYearTotalSubContracts($LastYear);
+	 //  $TotalContractsThisYear = $thisYearTotalPrimeContracts+$thisYearTotalSubContracts;
+	 //  $Lenght = strlen($TotalContractsThisYear);
+	 //  if($Lenght>=3){
+		// $Style = 'style="font-size:44px;margin-top:63px;"';
+	 //  }else{$Style='';}
 	?>
     <!-- small box -->
     <div class="small-box" id="small-box-sc">
       <div class="inner">
-        <h3 style="margin-bottom:0px!important;"><?php echo $TotalContractsThisYear; ?></h3>
-        <span style="font-weight:600;font-size:20px;">TOTAL SUB-CONTRACTS</span><br>
-        <span style="font-weight:600;font-size:20px;"><?php echo date('Y'); ?></span>
+        <h3 style="margin-bottom:0px!important;"><?php echo awardingAgencies(); ?></h3>
+        <span style="font-weight:600;font-size:20px;">AWARDING AGENCIES</span><br>
+        <!-- <span style="font-weight:600;font-size:20px;"><?php //echo date('Y'); ?></span> -->
+        <span style="font-weight:600;font-size:15px;"><i>PAST 18 MONTHS</i></span>
       </div>
       <div class="icon"> <i class="far fa-thumbs-up"></i> </div>
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> </div>
@@ -149,9 +151,9 @@ $totalBasic = ($percent + $percent1)/2 ;
     <!-- small box -->
     <div class="small-box bg-aqua">
       <div class="inner">
-        <h3 style="margin-bottom:0px!important;"><?php echo newBusinessOpp(); ?></h3>
-        <span style="font-weight:600;font-size:20px;">TOTAL BIDS</span><br>
-        <span style="font-weight:600;font-size:20px;"><?php echo date('Y'); ?></span>
+        <h3 style="margin-bottom:0px!important;"><?php echo businessIndexRating()."%"; ?></h3>
+        <span style="font-weight:600;font-size:20px;">BUSINESS INDEX RATING</span><br>
+        <span style="font-weight:600;font-size:15px;"><i>PAST 18 MONTHS</i></span>
       </div>
       <div class="icon"> <i class="fa fa-fw fa-group"></i> </div>
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> </div>

@@ -2,7 +2,7 @@
 $chevronsubContractOnlyMore = "";
 $counter = 1;
 $Tab1_Q1 = 'SELECT *
-			FROM prime_contractor pc
+			FROM cpw_main pc
 			WHERE pc.dbe_firm_id = '.$FirmID.'
 			ORDER BY pc.contract_id DESC';
 $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 

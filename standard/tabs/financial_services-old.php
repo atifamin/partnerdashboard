@@ -3,8 +3,8 @@ $_FILE_NAME = basename($_SERVER['REQUEST_URI'], '?'.$_SERVER['QUERY_STRING']); ?
 <?php if($_FILE_NAME == "contract_details.php"){ 
 	$FirmID = $_SESSION['dbe_firm_id'];
 	$Tab1_Q1 = 'SELECT *
-	FROM prime_contractor pc
-	JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
+	FROM cpw_main pc
+	JOIN cpw_subcontractors sc ON pc.contract_number = sc.contract_number
 	WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '.$FirmID.'
 	GROUP BY pc.contract_id ORDER BY pc.contract_id DESC';
 	$Tab1_Q1R = mysqli_query($con_AWT,$Tab1_Q1) or die(mysqli_error());  

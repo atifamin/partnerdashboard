@@ -55,12 +55,12 @@ function cashFlowLast($Year){
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0){
-		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
+		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from cpw_main  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
-		$Q_Sub = 'SELECT  SUM(subcontractor_amount) AS TotalAmount from sub_contractor  WHERE dbe_firm_id= '.$UserFirmID.'';
+		$Q_Sub = 'SELECT  SUM(subcontractor_amount) AS TotalAmount from cpw_subcontractors  WHERE dbe_firm_id= '.$UserFirmID.'';
 		$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 		$TotalSub = mysqli_fetch_assoc($CheckSubR);
 		$TotalSub1 = $TotalSub['TotalAmount'];
@@ -77,12 +77,12 @@ function totalContractRevenue($Year){
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
-		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
+		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from cpw_main  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
-		$Q_Sub = 'SELECT  SUM(subcontractor_amount) AS TotalAmount from sub_contractor  WHERE dbe_firm_id= '.$UserFirmID.'';
+		$Q_Sub = 'SELECT  SUM(subcontractor_amount) AS TotalAmount from cpw_subcontractors  WHERE dbe_firm_id= '.$UserFirmID.'';
 		$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 		$TotalSub = mysqli_fetch_assoc($CheckSubR);
 		$TotalSub1 = $TotalSub['TotalAmount'];
@@ -98,12 +98,12 @@ function totalContractRevenue($Year){
 		}
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
 		// Get AWT Records
-		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
+		$Q_Prime = 'SELECT  SUM(award_amount) AS TotalAmount  from cpw_main  WHERE dbe_firm_id= '.$UserFirmID.' AND YEAR(award_date) ='.$Year.''; 
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalAmount'];		
 		
-		$Q_Sub = 'SELECT SUM(subcontractor_amount) AS TotalAmount from sub_contractor  WHERE dbe_firm_id= '.$UserFirmID.'';
+		$Q_Sub = 'SELECT SUM(subcontractor_amount) AS TotalAmount from cpw_subcontractors  WHERE dbe_firm_id= '.$UserFirmID.'';
 		$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 		$TotalSub = mysqli_fetch_assoc($CheckSubR);
 		$TotalSub1 = $TotalSub['TotalAmount'];
@@ -154,14 +154,14 @@ function thisYearTotalPrimeContracts($Year){
 	$UserCertificationID = $_SESSION['certification_id'];
 	
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
-	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from prime_contractor  WHERE dbe_firm_id = '.$UserFirmID.' AND YEAR(award_date ) = '.$Year.''; 
+	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from cpw_main  WHERE dbe_firm_id = '.$UserFirmID.' AND YEAR(award_date ) = '.$Year.''; 
 	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalPrimes1 = $TotalPrimes['TotalPrimeContracts'];
 	return $TotalPrimes1;
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
 		// Get AWT Records
-		$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from prime_contractor  WHERE dbe_firm_id = '.$UserFirmID.' AND YEAR(award_date ) = '.$Year.''; 
+		$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from cpw_main  WHERE dbe_firm_id = '.$UserFirmID.' AND YEAR(award_date ) = '.$Year.''; 
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalPrimes1 = $TotalPrimes['TotalPrimeContracts'];
@@ -223,7 +223,7 @@ function thisYearTotalSubContracts($Year){
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0){
-	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalSubContracts from sub_contractor  WHERE dbe_firm_id = '.$UserFirmID.''; 
+	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalSubContracts from cpw_subcontractors  WHERE dbe_firm_id = '.$UserFirmID.''; 
 	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalSubs1 = $TotalPrimes['TotalSubContracts'];
@@ -239,14 +239,14 @@ function newBusinessOpp(){
 	$UserVendorID = $_SESSION['vendor_id'];
 	$UserCertificationID = $_SESSION['certification_id'];
 	if($UserFirmID>0 && ($UserVendorID==0 && $UserCertificationID==0)){
-	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalOops  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND MONTH(bid_open_date) = '.date('m').''; 
+	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalOops  from cpw_main  WHERE dbe_firm_id= '.$UserFirmID.' AND MONTH(bid_open_date) = '.date('m').''; 
 	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalSubs1 = $TotalPrimes['TotalOops'];
 	return $TotalSubs1;
 	}elseif($UserFirmID>0 && ($UserVendorID>0 || $UserCertificationID>0)){
 		// Get AWT Records
-		$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalOops  from prime_contractor  WHERE dbe_firm_id= '.$UserFirmID.' AND MONTH(bid_open_date) = '.date('m').''; 
+		$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalOops  from cpw_main  WHERE dbe_firm_id= '.$UserFirmID.' AND MONTH(bid_open_date) = '.date('m').''; 
 		$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 		$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 		$TotalSubs1 = $TotalPrimes['TotalOops'];
@@ -457,7 +457,7 @@ function bidWonLost(){
 	
 	// Get Prime COntracts
 	if($UserFirmID>0){
-	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from prime_contractor  WHERE dbe_firm_id = '.$UserFirmID.''; 
+	$Q_Prime = 'SELECT  COUNT(contract_number) AS TotalPrimeContracts from cpw_main  WHERE dbe_firm_id = '.$UserFirmID.''; 
 	$CheckPrimesR = mysqli_query($con_MAIN,$Q_Prime);
 	$TotalPrimes = mysqli_fetch_assoc($CheckPrimesR);
 	$TotalPrimesC = $TotalPrimes['TotalPrimeContracts'];
@@ -469,7 +469,7 @@ function bidWonLost(){
 	
 	// Get Sub Contracts
 	if($UserFirmID>0){
-	$Q_Sub = 'SELECT  COUNT(contract_number) AS TotalSubContracts from sub_contractor  WHERE dbe_firm_id = '.$UserFirmID.''; 
+	$Q_Sub = 'SELECT  COUNT(contract_number) AS TotalSubContracts from cpw_subcontractors  WHERE dbe_firm_id = '.$UserFirmID.''; 
 	$CheckSubR = mysqli_query($con_MAIN,$Q_Sub);
 	$TotalSubs = mysqli_fetch_assoc($CheckSubR);
 	$TotalSubsC = $TotalSubs['TotalSubContracts'];
@@ -531,7 +531,7 @@ function total_State_Spend(){
 				GROUP BY s.`Purchase Order ID`) AS tbl ON tbl.scprs_record_id=m.scprs_record_id';
 	$Val = runner($Query,'t',$con_MAIN);
 	
-	$Query1 = 'SELECT SUM(`award_amount`) AS PrimeTotalAward FROM `prime_contractor`';
+	$Query1 = 'SELECT SUM(`award_amount`) AS PrimeTotalAward FROM `cpw_main`';
 	$Val1 = runner($Query1,'PrimeTotalAward',$con_MAIN);
 	
 	$Total = $Val+$Val1;	
@@ -542,7 +542,7 @@ function total_Contracts(){
 	$Query = 'SELECT DISTINCT(COUNT(`Contract ID`)) AS BUM FROM `scprs`';
 	$Val = runner($Query,'BUM',$con_MAIN);
 	
-	$Query1 = 'SELECT DISTINCT(COUNT(`contract_number`)) AS PUM FROM `prime_contractor`';
+	$Query1 = 'SELECT DISTINCT(COUNT(`contract_number`)) AS PUM FROM `cpw_main`';
 	$Val1 = runner($Query1,'PUM',$con_MAIN);
 	
 	$Total = $Val+$Val1;	

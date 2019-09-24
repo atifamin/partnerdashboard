@@ -8,15 +8,10 @@
   $ContractID = $_POST['id'];
 
   $Tab1_Q1 = "SELECT *
-      FROM prime_contractor pc
+      FROM cpw_main pc
       WHERE pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$ContractID."'
       ORDER BY pc.contract_id DESC";
-  // $Tab1_Q1 = "SELECT pc.contract_number, pc.description_of_work, pc.dist_co_rte_pm, pc.award_date
-  //   FROM prime_contractor pc
-  //   JOIN sub_contractor sc ON pc.contract_number = sc.contract_number
-  //   WHERE pc.contract_number = sc.contract_number AND pc.dbe_firm_id = '".$FirmID."' AND pc.contract_id = '".$ContractID."'
-  //   GROUP BY pc.contract_id ORDER BY pc.contract_id DESC";
-
+      
     $Tab1_Q1R = mysqli_query($con_MAIN,$Tab1_Q1) or die(mysqli_error()); 
     $Tab1_Q1RA = mysqli_fetch_array($Tab1_Q1R);
 ?>
