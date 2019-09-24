@@ -87,14 +87,14 @@ $totalBasic = ($percent + $percent1)/2 ;
 </div>
 <div class="row">
   <?php
-	$CurrentYear = date('Y');
-	$LastYear	 = $CurrentYear-1;
+	// $CurrentYear = date('Y');
+	// $LastYear	 = $CurrentYear-1;
   ?>
   <div class="col-lg-3 col-xs-6"> 
     <!-- small box -->
     <div class="small-box bg-red">
       <div class="inner">
-        <h3 style="margin-bottom:0px!important;">$<?php echo nice_number(totalContractRevenue($CurrentYear),'format'); ?></h3>
+        <h3 style="margin-bottom:0px!important;">$<?php echo nice_number(totalContractRevenue(),'format'); ?></h3>
         <span style="font-weight:600;font-size:20px;">TOTAL REVENUE</span><br>
         <span style="font-weight:600;font-size:15px;"><i>PAST 18 MONTHS</i></span>
       </div>
@@ -106,18 +106,17 @@ $totalBasic = ($percent + $percent1)/2 ;
     <!-- small box -->
     
     <?php
-	  $thisYearTotalPrimeContracts = thisYearTotalPrimeContracts($CurrentYear);
-	  $thisYearTotalSubContracts = thisYearTotalSubContracts($CurrentYear);
-	  $TotalContractsThisYear = $thisYearTotalPrimeContracts+$thisYearTotalSubContracts;
-    //print_r($TotalContractsThisYear);exit;
-	  $Lenght = strlen($TotalContractsThisYear);
+	  $totalPrimeContracts = totalPrimeContracts();
+	  $totalSubContracts = totalSubContracts();
+	  $TotalContracts = $totalPrimeContracts+$totalSubContracts;
+	  $Lenght = strlen($TotalContracts);
 	  if($Lenght>=3){
 		$Style = 'style="font-size:44px;margin-top:63px;"';
 	  }else{$Style='';}
 	?>
     <div class="small-box" id="small-box-tc">
       <div class="inner">
-        <h3 style="margin-bottom:0px!important;"><?php echo $TotalContractsThisYear; ?></h3>
+        <h3 style="margin-bottom:0px!important;"><?php echo $TotalContracts; ?></h3>
         <span style="font-weight:600;font-size:20px;">TOTAL CONTRACTS</span><br>
         <span style="font-weight:600;font-size:15px;"><i>PAST 18 MONTHS</i></span>  
       </div>
